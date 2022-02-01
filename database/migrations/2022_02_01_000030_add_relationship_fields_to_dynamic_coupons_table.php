@@ -11,8 +11,6 @@ class AddRelationshipFieldsToDynamicCouponsTable extends Migration
         Schema::table('dynamic_coupons', function (Blueprint $table) {
             $table->unsignedBigInteger('user_id')->nullable();
             $table->foreign('user_id', 'user_fk_5895710')->references('id')->on('users');
-            $table->unsignedBigInteger('product_id')->nullable();
-            $table->foreign('product_id', 'product_fk_5895711')->references('id')->on('products');
         });
     }
 }

@@ -25,13 +25,15 @@ class UpdateDynamicCouponRequest extends FormRequest
                 'required',
                 'integer',
             ],
-            'product_id' => [
-                'required',
-                'integer',
-            ],
             'expiration' => [
                 'required',
                 'date_format:' . config('panel.date_format') . ' ' . config('panel.time_format'),
+            ],
+            'products.*' => [
+                'integer',
+            ],
+            'products' => [
+                'array',
             ],
         ];
     }

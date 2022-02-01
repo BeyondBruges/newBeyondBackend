@@ -78,22 +78,6 @@
     </div>
 </div>
 
-<div class="card">
-    <div class="card-header">
-        {{ trans('global.relatedData') }}
-    </div>
-    <ul class="nav nav-tabs" role="tablist" id="relationship-tabs">
-        <li class="nav-item">
-            <a class="nav-link" href="#product_dynamic_coupons" role="tab" data-toggle="tab">
-                {{ trans('cruds.dynamicCoupon.title') }}
-            </a>
-        </li>
-    </ul>
-    <div class="tab-content">
-        <div class="tab-pane" role="tabpanel" id="product_dynamic_coupons">
-            @includeIf('admin.products.relationships.productDynamicCoupons', ['dynamicCoupons' => $product->productDynamicCoupons])
-        </div>
-    </div>
-</div>
+
 
 @endsection

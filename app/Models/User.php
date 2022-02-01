@@ -43,6 +43,7 @@ class User extends Authenticatable
         'email_verified_at',
         'password',
         'remember_token',
+        'udid',
         'created_at',
         'updated_at',
         'deleted_at',
@@ -56,6 +57,11 @@ class User extends Authenticatable
     public function userTransactions()
     {
         return $this->hasMany(Transaction::class, 'user_id', 'id');
+    }
+
+    public function userPartnerUsers()
+    {
+        return $this->hasMany(PartnerUser::class, 'user_id', 'id');
     }
 
     public function getEmailVerifiedAtAttribute($value)

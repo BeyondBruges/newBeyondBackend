@@ -376,6 +376,94 @@ class PermissionsTableSeeder extends Seeder
             ],
             [
                 'id'    => 92,
+                'title' => 'partner_user_create',
+            ],
+            [
+                'id'    => 93,
+                'title' => 'partner_user_edit',
+            ],
+            [
+                'id'    => 94,
+                'title' => 'partner_user_show',
+            ],
+            [
+                'id'    => 95,
+                'title' => 'partner_user_delete',
+            ],
+            [
+                'id'    => 96,
+                'title' => 'partner_user_access',
+            ],
+            [
+                'id'    => 97,
+                'title' => 'question_create',
+            ],
+            [
+                'id'    => 98,
+                'title' => 'question_edit',
+            ],
+            [
+                'id'    => 99,
+                'title' => 'question_show',
+            ],
+            [
+                'id'    => 100,
+                'title' => 'question_delete',
+            ],
+            [
+                'id'    => 101,
+                'title' => 'question_access',
+            ],
+            [
+                'id'    => 102,
+                'title' => 'obtained_items_management_access',
+            ],
+            [
+                'id'    => 103,
+                'title' => 'character_create',
+            ],
+            [
+                'id'    => 104,
+                'title' => 'character_edit',
+            ],
+            [
+                'id'    => 105,
+                'title' => 'character_show',
+            ],
+            [
+                'id'    => 106,
+                'title' => 'character_delete',
+            ],
+            [
+                'id'    => 107,
+                'title' => 'character_access',
+            ],
+            [
+                'id'    => 108,
+                'title' => 'obtainables_management_access',
+            ],
+            [
+                'id'    => 109,
+                'title' => 'user_character_create',
+            ],
+            [
+                'id'    => 110,
+                'title' => 'user_character_edit',
+            ],
+            [
+                'id'    => 111,
+                'title' => 'user_character_show',
+            ],
+            [
+                'id'    => 112,
+                'title' => 'user_character_delete',
+            ],
+            [
+                'id'    => 113,
+                'title' => 'user_character_access',
+            ],
+            [
+                'id'    => 114,
                 'title' => 'profile_password_edit',
             ],
         ];

@@ -95,7 +95,7 @@ class PartnerController extends Controller
     {
         abort_if(Gate::denies('partner_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $partner->load('partnerCoupons');
+        $partner->load('partnerCoupons', 'partnerPartnerUsers');
 
         return view('admin.partners.show', compact('partner'));
     }

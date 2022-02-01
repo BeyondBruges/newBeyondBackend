@@ -84,6 +84,26 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::delete('notifications/destroy', 'NotificationController@massDestroy')->name('notifications.massDestroy');
     Route::resource('notifications', 'NotificationController');
 
+    // Partner Users
+    Route::delete('partner-users/destroy', 'PartnerUsersController@massDestroy')->name('partner-users.massDestroy');
+    Route::resource('partner-users', 'PartnerUsersController');
+
+    // Question
+    Route::delete('questions/destroy', 'QuestionController@massDestroy')->name('questions.massDestroy');
+    Route::post('questions/media', 'QuestionController@storeMedia')->name('questions.storeMedia');
+    Route::post('questions/ckmedia', 'QuestionController@storeCKEditorImages')->name('questions.storeCKEditorImages');
+    Route::resource('questions', 'QuestionController');
+
+    // Character
+    Route::delete('characters/destroy', 'CharacterController@massDestroy')->name('characters.massDestroy');
+    Route::post('characters/media', 'CharacterController@storeMedia')->name('characters.storeMedia');
+    Route::post('characters/ckmedia', 'CharacterController@storeCKEditorImages')->name('characters.storeCKEditorImages');
+    Route::resource('characters', 'CharacterController');
+
+    // User Character
+    Route::delete('user-characters/destroy', 'UserCharacterController@massDestroy')->name('user-characters.massDestroy');
+    Route::resource('user-characters', 'UserCharacterController');
+
     Route::get('global-search', 'GlobalSearchController@search')->name('globalSearch');
 });
 Route::group(['prefix' => 'profile', 'as' => 'profile.', 'namespace' => 'Auth', 'middleware' => ['auth']], function () {
@@ -173,6 +193,26 @@ Route::group(['as' => 'frontend.', 'namespace' => 'Frontend', 'middleware' => ['
     // Notification
     Route::delete('notifications/destroy', 'NotificationController@massDestroy')->name('notifications.massDestroy');
     Route::resource('notifications', 'NotificationController');
+
+    // Partner Users
+    Route::delete('partner-users/destroy', 'PartnerUsersController@massDestroy')->name('partner-users.massDestroy');
+    Route::resource('partner-users', 'PartnerUsersController');
+
+    // Question
+    Route::delete('questions/destroy', 'QuestionController@massDestroy')->name('questions.massDestroy');
+    Route::post('questions/media', 'QuestionController@storeMedia')->name('questions.storeMedia');
+    Route::post('questions/ckmedia', 'QuestionController@storeCKEditorImages')->name('questions.storeCKEditorImages');
+    Route::resource('questions', 'QuestionController');
+
+    // Character
+    Route::delete('characters/destroy', 'CharacterController@massDestroy')->name('characters.massDestroy');
+    Route::post('characters/media', 'CharacterController@storeMedia')->name('characters.storeMedia');
+    Route::post('characters/ckmedia', 'CharacterController@storeCKEditorImages')->name('characters.storeCKEditorImages');
+    Route::resource('characters', 'CharacterController');
+
+    // User Character
+    Route::delete('user-characters/destroy', 'UserCharacterController@massDestroy')->name('user-characters.massDestroy');
+    Route::resource('user-characters', 'UserCharacterController');
 
     Route::get('frontend/profile', 'ProfileController@index')->name('profile.index');
     Route::post('frontend/profile', 'ProfileController@update')->name('profile.update');

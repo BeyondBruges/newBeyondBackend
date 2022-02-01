@@ -57,6 +57,14 @@
                             @endforeach
                         </td>
                     </tr>
+                    <tr>
+                        <th>
+                            {{ trans('cruds.user.fields.udid') }}
+                        </th>
+                        <td>
+                            {{ $user->udid }}
+                        </td>
+                    </tr>
                 </tbody>
             </table>
             <div class="form-group">
@@ -78,10 +86,18 @@
                 {{ trans('cruds.transaction.title') }}
             </a>
         </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#user_partner_users" role="tab" data-toggle="tab">
+                {{ trans('cruds.partnerUser.title') }}
+            </a>
+        </li>
     </ul>
     <div class="tab-content">
         <div class="tab-pane" role="tabpanel" id="user_transactions">
             @includeIf('admin.users.relationships.userTransactions', ['transactions' => $user->userTransactions])
+        </div>
+        <div class="tab-pane" role="tabpanel" id="user_partner_users">
+            @includeIf('admin.users.relationships.userPartnerUsers', ['partnerUsers' => $user->userPartnerUsers])
         </div>
     </div>
 </div>

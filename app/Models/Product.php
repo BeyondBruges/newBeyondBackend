@@ -46,11 +46,6 @@ class Product extends Model implements HasMedia
         $this->addMediaConversion('preview')->fit('crop', 120, 120);
     }
 
-    public function productDynamicCoupons()
-    {
-        return $this->hasMany(DynamicCoupon::class, 'product_id', 'id');
-    }
-
     public function getImageAttribute()
     {
         return $this->getMedia('image')->last();

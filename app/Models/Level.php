@@ -46,6 +46,11 @@ class Level extends Model implements HasMedia
         $this->addMediaConversion('preview')->fit('crop', 120, 120);
     }
 
+    public function levelQuestions()
+    {
+        return $this->hasMany(Question::class, 'level_id', 'id');
+    }
+
     public function getImageAttribute()
     {
         return $this->getMedia('image')->last();

@@ -56,6 +56,11 @@ class Partner extends Model implements HasMedia
         return $this->hasMany(Coupon::class, 'partner_id', 'id');
     }
 
+    public function partnerPartnerUsers()
+    {
+        return $this->hasMany(PartnerUser::class, 'partner_id', 'id');
+    }
+
     public function getLogoAttribute()
     {
         $file = $this->getMedia('logo')->last();

@@ -32,6 +32,9 @@
                                         {{ trans('cruds.transaction.fields.value') }}
                                     </th>
                                     <th>
+                                        {{ trans('cruds.transaction.fields.status') }}
+                                    </th>
+                                    <th>
                                         &nbsp;
                                     </th>
                                 </tr>
@@ -47,6 +50,9 @@
                                         </td>
                                         <td>
                                             {{ $transaction->value ?? '' }}
+                                        </td>
+                                        <td>
+                                            {{ $transaction->status ?? '' }}
                                         </td>
                                         <td>
                                             @can('transaction_show')
