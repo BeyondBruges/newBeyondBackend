@@ -1,0 +1,45 @@
+<?php
+
+namespace App\Http\Controllers\Api;
+
+use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
+
+use App\Models\User;
+use App\Models\Transaction;
+
+class TransactionController extends Controller
+{
+   public function index(Request $request){
+
+    $user = User::find($request->user_id);
+    if (!$user) {
+        return response()->json(['not found'], 404);
+    }
+    else
+    {
+    $transactions = $user->userTransactions;
+    return response()->json(['data' => $transactions], 200);
+    }
+
+   }
+
+   public function store(Request $request){
+
+    $user = User::find($request->user_id);
+    if (!$user) {
+        return response()->json(['not found'], 404);
+    }
+    else
+    {
+    $transaction = new Transaction;
+    $transaction->value = $request->value;
+    $transaction->status = 0;
+    $transaction->user_id = $user->id;
+    $transaction->type = $request->transaction_type;
+    $transaction->save();
+    return response()->json(['data' => $transaction], 200);
+    }
+
+   }
+}
