@@ -14,6 +14,9 @@ use App\Http\Controllers\Api\UserLevelObjectController;
 use App\Http\Controllers\Api\UserLevelQuestionController;
 use App\Http\Controllers\Api\AnalyticController;
 use App\Http\Controllers\PassportAuthController;
+use App\Http\Controllers\Api\UserCouponsController;
+use App\Http\Controllers\Api\UserQRController;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -44,9 +47,8 @@ Route::middleware('auth:api')->group(function () {
     Route::post('Userlevelobject_store', [UserLevelObjectController::class, 'store']);
     Route::post('Userlevelquestion_index', [UserLevelQuestionController::class, 'index']);
     Route::post('Userlevelquestion_store', [UserLevelQuestionController::class, 'store']);
+    Route::post('user_qr_index', [UserQRController::class, 'index']);
+    Route::post('user_coupons_index', [UserCouponsController::class, 'index']);
+    Route::post('user_coupons_store', [UserCouponsController::class, 'store']);
 });
 
-
-
-Route::group(['prefix' => 'v1', 'as' => 'api.', 'namespace' => 'Api\V1\Admin', 'middleware' => ['auth:sanctum']], function () {
-});
