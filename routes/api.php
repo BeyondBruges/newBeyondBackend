@@ -9,6 +9,7 @@ use App\Http\Controllers\Api\PartnerController;
 use App\Http\Controllers\Api\ProductsController;
 use App\Http\Controllers\Api\QuestionController;
 use App\Http\Controllers\Api\TransactionController;
+use App\Http\Controllers\Api\UserLandMarkController;
 use App\Http\Controllers\Api\UserLevelController;
 use App\Http\Controllers\PassportAuthController;
 use Illuminate\Http\Request;
@@ -36,6 +37,8 @@ Route::middleware('auth:api')->group(function () {
     Route::post('transaction_store', [TransactionController::class, 'store']);
     Route::post('user_levels_index', [UserLevelController::class, 'index']);
     Route::post('user_levels_store', [UserLevelController::class, 'store']);
+    Route::post('user_landmarks_index', [UserLandMarkController::class, 'index']);
+    Route::post('user_landmarks_store', [UserLandMarkController::class, 'store']);
 });
 
 

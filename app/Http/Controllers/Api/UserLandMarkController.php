@@ -3,12 +3,12 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Models\Level;
+use App\Models\BLandMark;
 use App\Models\User;
-use App\Models\UserLevel;
+use App\Models\UserLandmark;
 use Illuminate\Http\Request;
 
-class UserLevelController extends Controller
+class UserLandMarkController extends Controller
 {
     public function index(Request $request){
         $user = User::find($request->user_id);
@@ -17,29 +17,29 @@ class UserLevelController extends Controller
         }
         else
         {
-            $userLevels = $user->userUserLevels;
-            return response()->json(['data' => $userLevels], 200);
+            $userLandmarks = $user->userUserLandmarks;
+            return response()->json(['data' => $userLandmarks], 200);
         }
    }
 
    public function store(Request $request){
 
         $user = User::find($request->user_id);
-        $level = Level::find($request->level_id);
-        if (!$user || !$level) {
+        $landmark = BLandMark::find($request->landmark_id);
+        if (!$user || !$landmark) {
             return response()->json(['not found'], 404);
         }
         else
         {
-            if (UserLevel::where('user_id', $user->id)->where('level_id', $level->id)->exists()) {
-                return response()->json(['User level already exists'], 409);
+            if (UserLandmark::where('user_id', $user->id)->where('landmark_id', $landmark->id)->exists()) {
+                return response()->json(['User landmark already exists'], 409);
             }
             else
             {
-                $userLevel = new UserLevel;
-                $userLevel->user_id = $user->id;
-                $userLevel->level_id = $level->id;
-                $userLevel->save();
+                $userLandmark = new UserLandmark;
+                $userLandmark->user_id = $user->id;
+                $userLandmark->landmark_id = $landmark->id;
+                $userLandmark->save();
             }
 
             if ($user->udid != null) {
@@ -53,7 +53,7 @@ class UserLevelController extends Controller
             );
         }
 
-        return response()->json(['data' => $userLevel], 200);
+        return response()->json(['data' => $userLandmark], 200);
         }
     }
 }
