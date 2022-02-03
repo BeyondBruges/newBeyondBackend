@@ -21,7 +21,7 @@ Route::post('login', [PassportAuthController::class, 'login']);
 Route::get('blog', [BlogController::class, 'index']);
 Route::get('levels', [LevelController::class, 'index']);
 Route::get('level_objects', [LevelObjectsController::class, 'index']);
-Route::get('b_land_marks', [BLandMarkController::class, 'index']);
+Route::get('b_landmarks', [BLandMarkController::class, 'index']);
 Route::get('coupons', [CouponsController::class, 'index']);
 Route::get('products', [ProductsController::class, 'index']);
 Route::get('questions', [QuestionController::class, 'index']);
