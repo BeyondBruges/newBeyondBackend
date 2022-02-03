@@ -9,6 +9,9 @@ use App\Http\Controllers\Api\ProductsController;
 use App\Http\Controllers\Api\QuestionController;
 use App\Http\Controllers\Api\PartnerController;
 use App\Http\Controllers\Api\TransactionController;
+use App\Http\Controllers\Api\UserDynamicCouponsController;
+use App\Http\Controllers\Api\UserLevelObjectController;
+use App\Http\Controllers\Api\UserLevelQuestionController;
 use App\Http\Controllers\PassportAuthController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -33,6 +36,8 @@ Route::middleware('auth:api')->group(function () {
 
     Route::post('transaction_index', [TransactionController::class, 'index']);
     Route::post('transaction_store', [TransactionController::class, 'store']);
+    Route::post('dynamicCoupon_index', [UserDynamicCouponsController::class, 'index']);
+    Route::post('dynamicCoupon_store', [UserDynamicCouponsController::class, 'store']);
 });
 
 
