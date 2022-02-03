@@ -4,6 +4,8 @@ use App\Http\Controllers\Api\BLandMarkController;
 use App\Http\Controllers\Api\BlogController;
 use App\Http\Controllers\Api\LevelController;
 use App\Http\Controllers\Api\LevelObjectsController;
+use App\Http\Controllers\Api\CouponsController;
+use App\Http\Controllers\Api\ProductsController;
 use App\Http\Controllers\PassportAuthController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -18,6 +20,8 @@ Route::get('blog', [BlogController::class, 'index']);
 Route::get('levels', [LevelController::class, 'index']);
 Route::get('level_objects', [LevelObjectsController::class, 'index']);
 Route::get('b_land_marks', [BLandMarkController::class, 'index']);
+Route::get('coupons', [CouponsController::class, 'index']);
+Route::get('products', [ProductsController::class, 'index']);
 
 
 //Rutas con login
