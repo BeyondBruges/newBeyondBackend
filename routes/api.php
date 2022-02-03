@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PassportAuthController;
 use App\Http\Controllers\Api\BlogController;
+use App\Http\Controllers\Api\LevelController;
 
 
 //Rutas de auth
@@ -12,6 +13,7 @@ Route::post('login', [PassportAuthController::class, 'login']);
 
 //Rutas abiertas a todo el mundo
 Route::get('blog', [BlogController::class, 'index']);
+Route::get('levels', [LevelController::class, 'index']);
 
 
 //Rutas con login
