@@ -9,8 +9,10 @@ use App\Http\Controllers\Api\PartnerController;
 use App\Http\Controllers\Api\ProductsController;
 use App\Http\Controllers\Api\QuestionController;
 use App\Http\Controllers\Api\TransactionController;
+use App\Http\Controllers\Api\UserCouponsController;
 use App\Http\Controllers\Api\UserLandMarkController;
 use App\Http\Controllers\Api\UserLevelController;
+use App\Http\Controllers\Api\UserQRController;
 use App\Http\Controllers\PassportAuthController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -39,6 +41,9 @@ Route::middleware('auth:api')->group(function () {
     Route::post('user_levels_store', [UserLevelController::class, 'store']);
     Route::post('user_landmarks_index', [UserLandMarkController::class, 'index']);
     Route::post('user_landmarks_store', [UserLandMarkController::class, 'store']);
+    Route::post('user_qr_index', [UserQRController::class, 'index']);
+    Route::post('user_coupons_index', [UserCouponsController::class, 'index']);
+    Route::post('user_coupons_store', [UserCouponsController::class, 'store']);
 });
 
 
