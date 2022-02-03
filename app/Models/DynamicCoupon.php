@@ -27,7 +27,6 @@ class DynamicCoupon extends Model
     protected $fillable = [
         'name',
         'user_id',
-        'product_id',
         'expiration',
         'created_at',
         'updated_at',
@@ -39,11 +38,6 @@ class DynamicCoupon extends Model
         return $this->belongsTo(User::class, 'user_id');
     }
 
-    public function product()
-    {
-        return $this->belongsTo(Product::class, 'product_id');
-    }
-
     public function getExpirationAttribute($value)
     {
         return $value ? Carbon::createFromFormat('Y-m-d H:i:s', $value)->format(config('panel.date_format') . ' ' . config('panel.time_format')) : null;
@@ -52,6 +46,11 @@ class DynamicCoupon extends Model
     public function setExpirationAttribute($value)
     {
         $this->attributes['expiration'] = $value ? Carbon::createFromFormat(config('panel.date_format') . ' ' . config('panel.time_format'), $value)->format('Y-m-d H:i:s') : null;
+    }
+
+    public function products()
+    {
+        return $this->belongsToMany(Product::class);
     }
 
     protected function serializeDate(DateTimeInterface $date)

@@ -84,6 +84,58 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::delete('notifications/destroy', 'NotificationController@massDestroy')->name('notifications.massDestroy');
     Route::resource('notifications', 'NotificationController');
 
+    // Partner Users
+    Route::delete('partner-users/destroy', 'PartnerUsersController@massDestroy')->name('partner-users.massDestroy');
+    Route::resource('partner-users', 'PartnerUsersController');
+
+    // Question
+    Route::delete('questions/destroy', 'QuestionController@massDestroy')->name('questions.massDestroy');
+    Route::post('questions/media', 'QuestionController@storeMedia')->name('questions.storeMedia');
+    Route::post('questions/ckmedia', 'QuestionController@storeCKEditorImages')->name('questions.storeCKEditorImages');
+    Route::resource('questions', 'QuestionController');
+
+    // Character
+    Route::delete('characters/destroy', 'CharacterController@massDestroy')->name('characters.massDestroy');
+    Route::post('characters/media', 'CharacterController@storeMedia')->name('characters.storeMedia');
+    Route::post('characters/ckmedia', 'CharacterController@storeCKEditorImages')->name('characters.storeCKEditorImages');
+    Route::resource('characters', 'CharacterController');
+
+    // User Character
+    Route::delete('user-characters/destroy', 'UserCharacterController@massDestroy')->name('user-characters.massDestroy');
+    Route::resource('user-characters', 'UserCharacterController');
+
+    // User Landmark
+    Route::delete('user-landmarks/destroy', 'UserLandmarkController@massDestroy')->name('user-landmarks.massDestroy');
+    Route::resource('user-landmarks', 'UserLandmarkController');
+
+    // User Level
+    Route::delete('user-levels/destroy', 'UserLevelController@massDestroy')->name('user-levels.massDestroy');
+    Route::resource('user-levels', 'UserLevelController');
+
+    // User Qr Code
+    Route::delete('user-qr-codes/destroy', 'UserQrCodeController@massDestroy')->name('user-qr-codes.massDestroy');
+    Route::resource('user-qr-codes', 'UserQrCodeController');
+
+    // User Transaction
+    Route::delete('user-transactions/destroy', 'UserTransactionController@massDestroy')->name('user-transactions.massDestroy');
+    Route::resource('user-transactions', 'UserTransactionController');
+
+    // User Coupon
+    Route::delete('user-coupons/destroy', 'UserCouponController@massDestroy')->name('user-coupons.massDestroy');
+    Route::resource('user-coupons', 'UserCouponController');
+
+    // User Dynamic Coupon
+    Route::delete('user-dynamic-coupons/destroy', 'UserDynamicCouponController@massDestroy')->name('user-dynamic-coupons.massDestroy');
+    Route::resource('user-dynamic-coupons', 'UserDynamicCouponController');
+
+    // User Level Object
+    Route::delete('user-level-objects/destroy', 'UserLevelObjectController@massDestroy')->name('user-level-objects.massDestroy');
+    Route::resource('user-level-objects', 'UserLevelObjectController');
+
+    // User Level Question
+    Route::delete('user-level-questions/destroy', 'UserLevelQuestionController@massDestroy')->name('user-level-questions.massDestroy');
+    Route::resource('user-level-questions', 'UserLevelQuestionController');
+
     Route::get('global-search', 'GlobalSearchController@search')->name('globalSearch');
 });
 Route::group(['prefix' => 'profile', 'as' => 'profile.', 'namespace' => 'Auth', 'middleware' => ['auth']], function () {
@@ -173,6 +225,58 @@ Route::group(['as' => 'frontend.', 'namespace' => 'Frontend', 'middleware' => ['
     // Notification
     Route::delete('notifications/destroy', 'NotificationController@massDestroy')->name('notifications.massDestroy');
     Route::resource('notifications', 'NotificationController');
+
+    // Partner Users
+    Route::delete('partner-users/destroy', 'PartnerUsersController@massDestroy')->name('partner-users.massDestroy');
+    Route::resource('partner-users', 'PartnerUsersController');
+
+    // Question
+    Route::delete('questions/destroy', 'QuestionController@massDestroy')->name('questions.massDestroy');
+    Route::post('questions/media', 'QuestionController@storeMedia')->name('questions.storeMedia');
+    Route::post('questions/ckmedia', 'QuestionController@storeCKEditorImages')->name('questions.storeCKEditorImages');
+    Route::resource('questions', 'QuestionController');
+
+    // Character
+    Route::delete('characters/destroy', 'CharacterController@massDestroy')->name('characters.massDestroy');
+    Route::post('characters/media', 'CharacterController@storeMedia')->name('characters.storeMedia');
+    Route::post('characters/ckmedia', 'CharacterController@storeCKEditorImages')->name('characters.storeCKEditorImages');
+    Route::resource('characters', 'CharacterController');
+
+    // User Character
+    Route::delete('user-characters/destroy', 'UserCharacterController@massDestroy')->name('user-characters.massDestroy');
+    Route::resource('user-characters', 'UserCharacterController');
+
+    // User Landmark
+    Route::delete('user-landmarks/destroy', 'UserLandmarkController@massDestroy')->name('user-landmarks.massDestroy');
+    Route::resource('user-landmarks', 'UserLandmarkController');
+
+    // User Level
+    Route::delete('user-levels/destroy', 'UserLevelController@massDestroy')->name('user-levels.massDestroy');
+    Route::resource('user-levels', 'UserLevelController');
+
+    // User Qr Code
+    Route::delete('user-qr-codes/destroy', 'UserQrCodeController@massDestroy')->name('user-qr-codes.massDestroy');
+    Route::resource('user-qr-codes', 'UserQrCodeController');
+
+    // User Transaction
+    Route::delete('user-transactions/destroy', 'UserTransactionController@massDestroy')->name('user-transactions.massDestroy');
+    Route::resource('user-transactions', 'UserTransactionController');
+
+    // User Coupon
+    Route::delete('user-coupons/destroy', 'UserCouponController@massDestroy')->name('user-coupons.massDestroy');
+    Route::resource('user-coupons', 'UserCouponController');
+
+    // User Dynamic Coupon
+    Route::delete('user-dynamic-coupons/destroy', 'UserDynamicCouponController@massDestroy')->name('user-dynamic-coupons.massDestroy');
+    Route::resource('user-dynamic-coupons', 'UserDynamicCouponController');
+
+    // User Level Object
+    Route::delete('user-level-objects/destroy', 'UserLevelObjectController@massDestroy')->name('user-level-objects.massDestroy');
+    Route::resource('user-level-objects', 'UserLevelObjectController');
+
+    // User Level Question
+    Route::delete('user-level-questions/destroy', 'UserLevelQuestionController@massDestroy')->name('user-level-questions.massDestroy');
+    Route::resource('user-level-questions', 'UserLevelQuestionController');
 
     Route::get('frontend/profile', 'ProfileController@index')->name('profile.index');
     Route::post('frontend/profile', 'ProfileController@update')->name('profile.update');

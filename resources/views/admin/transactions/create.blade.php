@@ -30,6 +30,14 @@
                 <span class="help-block">{{ trans('cruds.transaction.fields.value_helper') }}</span>
             </div>
             <div class="form-group">
+                <label class="required" for="status">{{ trans('cruds.transaction.fields.status') }}</label>
+                <input class="form-control {{ $errors->has('status') ? 'is-invalid' : '' }}" type="number" name="status" id="status" value="{{ old('status', '') }}" step="1" required>
+                @if($errors->has('status'))
+                    <span class="text-danger">{{ $errors->first('status') }}</span>
+                @endif
+                <span class="help-block">{{ trans('cruds.transaction.fields.status_helper') }}</span>
+            </div>
+            <div class="form-group">
                 <button class="btn btn-danger" type="submit">
                     {{ trans('global.save') }}
                 </button>

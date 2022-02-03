@@ -376,6 +376,254 @@ class PermissionsTableSeeder extends Seeder
             ],
             [
                 'id'    => 92,
+                'title' => 'partner_user_create',
+            ],
+            [
+                'id'    => 93,
+                'title' => 'partner_user_edit',
+            ],
+            [
+                'id'    => 94,
+                'title' => 'partner_user_show',
+            ],
+            [
+                'id'    => 95,
+                'title' => 'partner_user_delete',
+            ],
+            [
+                'id'    => 96,
+                'title' => 'partner_user_access',
+            ],
+            [
+                'id'    => 97,
+                'title' => 'question_create',
+            ],
+            [
+                'id'    => 98,
+                'title' => 'question_edit',
+            ],
+            [
+                'id'    => 99,
+                'title' => 'question_show',
+            ],
+            [
+                'id'    => 100,
+                'title' => 'question_delete',
+            ],
+            [
+                'id'    => 101,
+                'title' => 'question_access',
+            ],
+            [
+                'id'    => 102,
+                'title' => 'obtained_items_management_access',
+            ],
+            [
+                'id'    => 103,
+                'title' => 'character_create',
+            ],
+            [
+                'id'    => 104,
+                'title' => 'character_edit',
+            ],
+            [
+                'id'    => 105,
+                'title' => 'character_show',
+            ],
+            [
+                'id'    => 106,
+                'title' => 'character_delete',
+            ],
+            [
+                'id'    => 107,
+                'title' => 'character_access',
+            ],
+            [
+                'id'    => 108,
+                'title' => 'obtainables_management_access',
+            ],
+            [
+                'id'    => 109,
+                'title' => 'user_character_create',
+            ],
+            [
+                'id'    => 110,
+                'title' => 'user_character_edit',
+            ],
+            [
+                'id'    => 111,
+                'title' => 'user_character_show',
+            ],
+            [
+                'id'    => 112,
+                'title' => 'user_character_delete',
+            ],
+            [
+                'id'    => 113,
+                'title' => 'user_character_access',
+            ],
+            [
+                'id'    => 114,
+                'title' => 'user_landmark_create',
+            ],
+            [
+                'id'    => 115,
+                'title' => 'user_landmark_edit',
+            ],
+            [
+                'id'    => 116,
+                'title' => 'user_landmark_show',
+            ],
+            [
+                'id'    => 117,
+                'title' => 'user_landmark_delete',
+            ],
+            [
+                'id'    => 118,
+                'title' => 'user_landmark_access',
+            ],
+            [
+                'id'    => 119,
+                'title' => 'user_level_create',
+            ],
+            [
+                'id'    => 120,
+                'title' => 'user_level_edit',
+            ],
+            [
+                'id'    => 121,
+                'title' => 'user_level_show',
+            ],
+            [
+                'id'    => 122,
+                'title' => 'user_level_delete',
+            ],
+            [
+                'id'    => 123,
+                'title' => 'user_level_access',
+            ],
+            [
+                'id'    => 124,
+                'title' => 'user_qr_code_create',
+            ],
+            [
+                'id'    => 125,
+                'title' => 'user_qr_code_edit',
+            ],
+            [
+                'id'    => 126,
+                'title' => 'user_qr_code_show',
+            ],
+            [
+                'id'    => 127,
+                'title' => 'user_qr_code_delete',
+            ],
+            [
+                'id'    => 128,
+                'title' => 'user_qr_code_access',
+            ],
+            [
+                'id'    => 129,
+                'title' => 'user_transaction_create',
+            ],
+            [
+                'id'    => 130,
+                'title' => 'user_transaction_edit',
+            ],
+            [
+                'id'    => 131,
+                'title' => 'user_transaction_show',
+            ],
+            [
+                'id'    => 132,
+                'title' => 'user_transaction_delete',
+            ],
+            [
+                'id'    => 133,
+                'title' => 'user_transaction_access',
+            ],
+            [
+                'id'    => 134,
+                'title' => 'user_coupon_create',
+            ],
+            [
+                'id'    => 135,
+                'title' => 'user_coupon_edit',
+            ],
+            [
+                'id'    => 136,
+                'title' => 'user_coupon_show',
+            ],
+            [
+                'id'    => 137,
+                'title' => 'user_coupon_delete',
+            ],
+            [
+                'id'    => 138,
+                'title' => 'user_coupon_access',
+            ],
+            [
+                'id'    => 139,
+                'title' => 'user_dynamic_coupon_create',
+            ],
+            [
+                'id'    => 140,
+                'title' => 'user_dynamic_coupon_edit',
+            ],
+            [
+                'id'    => 141,
+                'title' => 'user_dynamic_coupon_show',
+            ],
+            [
+                'id'    => 142,
+                'title' => 'user_dynamic_coupon_delete',
+            ],
+            [
+                'id'    => 143,
+                'title' => 'user_dynamic_coupon_access',
+            ],
+            [
+                'id'    => 144,
+                'title' => 'user_level_object_create',
+            ],
+            [
+                'id'    => 145,
+                'title' => 'user_level_object_edit',
+            ],
+            [
+                'id'    => 146,
+                'title' => 'user_level_object_show',
+            ],
+            [
+                'id'    => 147,
+                'title' => 'user_level_object_delete',
+            ],
+            [
+                'id'    => 148,
+                'title' => 'user_level_object_access',
+            ],
+            [
+                'id'    => 149,
+                'title' => 'user_level_question_create',
+            ],
+            [
+                'id'    => 150,
+                'title' => 'user_level_question_edit',
+            ],
+            [
+                'id'    => 151,
+                'title' => 'user_level_question_show',
+            ],
+            [
+                'id'    => 152,
+                'title' => 'user_level_question_delete',
+            ],
+            [
+                'id'    => 153,
+                'title' => 'user_level_question_access',
+            ],
+            [
+                'id'    => 154,
                 'title' => 'profile_password_edit',
             ],
         ];

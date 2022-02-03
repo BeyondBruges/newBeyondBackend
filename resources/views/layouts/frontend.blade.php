@@ -77,6 +77,21 @@
 
                                     <a class="dropdown-item" href="{{ route('frontend.profile.index') }}">{{ __('My profile') }}</a>
 
+                                    @can('comunication_manager_access')
+                                        <a class="dropdown-item disabled" href="#">
+                                            {{ trans('cruds.comunicationManager.title') }}
+                                        </a>
+                                    @endcan
+                                    @can('blog_access')
+                                        <a class="dropdown-item ml-3" href="{{ route('frontend.blogs.index') }}">
+                                            {{ trans('cruds.blog.title') }}
+                                        </a>
+                                    @endcan
+                                    @can('notification_access')
+                                        <a class="dropdown-item ml-3" href="{{ route('frontend.notifications.index') }}">
+                                            {{ trans('cruds.notification.title') }}
+                                        </a>
+                                    @endcan
                                     @can('game_management_access')
                                         <a class="dropdown-item disabled" href="#">
                                             {{ trans('cruds.gameManagement.title') }}
@@ -95,6 +110,11 @@
                                     @can('b_land_mark_access')
                                         <a class="dropdown-item ml-3" href="{{ route('frontend.b-land-marks.index') }}">
                                             {{ trans('cruds.bLandMark.title') }}
+                                        </a>
+                                    @endcan
+                                    @can('question_access')
+                                        <a class="dropdown-item ml-3" href="{{ route('frontend.questions.index') }}">
+                                            {{ trans('cruds.question.title') }}
                                         </a>
                                     @endcan
                                     @can('transaction_management_access')
@@ -130,6 +150,11 @@
                                     @can('partner_access')
                                         <a class="dropdown-item ml-3" href="{{ route('frontend.partners.index') }}">
                                             {{ trans('cruds.partner.title') }}
+                                        </a>
+                                    @endcan
+                                    @can('partner_user_access')
+                                        <a class="dropdown-item ml-3" href="{{ route('frontend.partner-users.index') }}">
+                                            {{ trans('cruds.partnerUser.title') }}
                                         </a>
                                     @endcan
                                     @can('coupon_management_access')
@@ -187,19 +212,64 @@
                                             {{ trans('cruds.qrCode.title') }}
                                         </a>
                                     @endcan
-                                    @can('comunication_manager_access')
+                                    @can('obtainables_management_access')
                                         <a class="dropdown-item disabled" href="#">
-                                            {{ trans('cruds.comunicationManager.title') }}
+                                            {{ trans('cruds.obtainablesManagement.title') }}
                                         </a>
                                     @endcan
-                                    @can('blog_access')
-                                        <a class="dropdown-item ml-3" href="{{ route('frontend.blogs.index') }}">
-                                            {{ trans('cruds.blog.title') }}
+                                    @can('character_access')
+                                        <a class="dropdown-item ml-3" href="{{ route('frontend.characters.index') }}">
+                                            {{ trans('cruds.character.title') }}
                                         </a>
                                     @endcan
-                                    @can('notification_access')
-                                        <a class="dropdown-item ml-3" href="{{ route('frontend.notifications.index') }}">
-                                            {{ trans('cruds.notification.title') }}
+                                    @can('obtained_items_management_access')
+                                        <a class="dropdown-item disabled" href="#">
+                                            {{ trans('cruds.obtainedItemsManagement.title') }}
+                                        </a>
+                                    @endcan
+                                    @can('user_character_access')
+                                        <a class="dropdown-item ml-3" href="{{ route('frontend.user-characters.index') }}">
+                                            {{ trans('cruds.userCharacter.title') }}
+                                        </a>
+                                    @endcan
+                                    @can('user_level_access')
+                                        <a class="dropdown-item ml-3" href="{{ route('frontend.user-levels.index') }}">
+                                            {{ trans('cruds.userLevel.title') }}
+                                        </a>
+                                    @endcan
+                                    @can('user_landmark_access')
+                                        <a class="dropdown-item ml-3" href="{{ route('frontend.user-landmarks.index') }}">
+                                            {{ trans('cruds.userLandmark.title') }}
+                                        </a>
+                                    @endcan
+                                    @can('user_qr_code_access')
+                                        <a class="dropdown-item ml-3" href="{{ route('frontend.user-qr-codes.index') }}">
+                                            {{ trans('cruds.userQrCode.title') }}
+                                        </a>
+                                    @endcan
+                                    @can('user_transaction_access')
+                                        <a class="dropdown-item ml-3" href="{{ route('frontend.user-transactions.index') }}">
+                                            {{ trans('cruds.userTransaction.title') }}
+                                        </a>
+                                    @endcan
+                                    @can('user_coupon_access')
+                                        <a class="dropdown-item ml-3" href="{{ route('frontend.user-coupons.index') }}">
+                                            {{ trans('cruds.userCoupon.title') }}
+                                        </a>
+                                    @endcan
+                                    @can('user_dynamic_coupon_access')
+                                        <a class="dropdown-item ml-3" href="{{ route('frontend.user-dynamic-coupons.index') }}">
+                                            {{ trans('cruds.userDynamicCoupon.title') }}
+                                        </a>
+                                    @endcan
+                                    @can('user_level_object_access')
+                                        <a class="dropdown-item ml-3" href="{{ route('frontend.user-level-objects.index') }}">
+                                            {{ trans('cruds.userLevelObject.title') }}
+                                        </a>
+                                    @endcan
+                                    @can('user_level_question_access')
+                                        <a class="dropdown-item ml-3" href="{{ route('frontend.user-level-questions.index') }}">
+                                            {{ trans('cruds.userLevelQuestion.title') }}
                                         </a>
                                     @endcan
 

@@ -57,6 +57,14 @@
                             @endforeach
                         </td>
                     </tr>
+                    <tr>
+                        <th>
+                            {{ trans('cruds.user.fields.udid') }}
+                        </th>
+                        <td>
+                            {{ $user->udid }}
+                        </td>
+                    </tr>
                 </tbody>
             </table>
             <div class="form-group">
@@ -78,10 +86,82 @@
                 {{ trans('cruds.transaction.title') }}
             </a>
         </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#user_partner_users" role="tab" data-toggle="tab">
+                {{ trans('cruds.partnerUser.title') }}
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#user_user_landmarks" role="tab" data-toggle="tab">
+                {{ trans('cruds.userLandmark.title') }}
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#user_user_levels" role="tab" data-toggle="tab">
+                {{ trans('cruds.userLevel.title') }}
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#user_user_qr_codes" role="tab" data-toggle="tab">
+                {{ trans('cruds.userQrCode.title') }}
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#user_user_transactions" role="tab" data-toggle="tab">
+                {{ trans('cruds.userTransaction.title') }}
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#user_user_coupons" role="tab" data-toggle="tab">
+                {{ trans('cruds.userCoupon.title') }}
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#user_user_dynamic_coupons" role="tab" data-toggle="tab">
+                {{ trans('cruds.userDynamicCoupon.title') }}
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#user_user_level_objects" role="tab" data-toggle="tab">
+                {{ trans('cruds.userLevelObject.title') }}
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#user_user_level_questions" role="tab" data-toggle="tab">
+                {{ trans('cruds.userLevelQuestion.title') }}
+            </a>
+        </li>
     </ul>
     <div class="tab-content">
         <div class="tab-pane" role="tabpanel" id="user_transactions">
             @includeIf('admin.users.relationships.userTransactions', ['transactions' => $user->userTransactions])
+        </div>
+        <div class="tab-pane" role="tabpanel" id="user_partner_users">
+            @includeIf('admin.users.relationships.userPartnerUsers', ['partnerUsers' => $user->userPartnerUsers])
+        </div>
+        <div class="tab-pane" role="tabpanel" id="user_user_landmarks">
+            @includeIf('admin.users.relationships.userUserLandmarks', ['userLandmarks' => $user->userUserLandmarks])
+        </div>
+        <div class="tab-pane" role="tabpanel" id="user_user_levels">
+            @includeIf('admin.users.relationships.userUserLevels', ['userLevels' => $user->userUserLevels])
+        </div>
+        <div class="tab-pane" role="tabpanel" id="user_user_qr_codes">
+            @includeIf('admin.users.relationships.userUserQrCodes', ['userQrCodes' => $user->userUserQrCodes])
+        </div>
+        <div class="tab-pane" role="tabpanel" id="user_user_transactions">
+            @includeIf('admin.users.relationships.userUserTransactions', ['userTransactions' => $user->userUserTransactions])
+        </div>
+        <div class="tab-pane" role="tabpanel" id="user_user_coupons">
+            @includeIf('admin.users.relationships.userUserCoupons', ['userCoupons' => $user->userUserCoupons])
+        </div>
+        <div class="tab-pane" role="tabpanel" id="user_user_dynamic_coupons">
+            @includeIf('admin.users.relationships.userUserDynamicCoupons', ['userDynamicCoupons' => $user->userUserDynamicCoupons])
+        </div>
+        <div class="tab-pane" role="tabpanel" id="user_user_level_objects">
+            @includeIf('admin.users.relationships.userUserLevelObjects', ['userLevelObjects' => $user->userUserLevelObjects])
+        </div>
+        <div class="tab-pane" role="tabpanel" id="user_user_level_questions">
+            @includeIf('admin.users.relationships.userUserLevelQuestions', ['userLevelQuestions' => $user->userUserLevelQuestions])
         </div>
     </div>
 </div>

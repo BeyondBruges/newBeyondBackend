@@ -132,10 +132,18 @@
                 {{ trans('cruds.coupon.title') }}
             </a>
         </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#partner_partner_users" role="tab" data-toggle="tab">
+                {{ trans('cruds.partnerUser.title') }}
+            </a>
+        </li>
     </ul>
     <div class="tab-content">
         <div class="tab-pane" role="tabpanel" id="partner_coupons">
             @includeIf('admin.partners.relationships.partnerCoupons', ['coupons' => $partner->partnerCoupons])
+        </div>
+        <div class="tab-pane" role="tabpanel" id="partner_partner_users">
+            @includeIf('admin.partners.relationships.partnerPartnerUsers', ['partnerUsers' => $partner->partnerPartnerUsers])
         </div>
     </div>
 </div>

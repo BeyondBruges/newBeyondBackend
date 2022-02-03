@@ -77,6 +77,8 @@ class LevelController extends Controller
     {
         abort_if(Gate::denies('level_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
+        $level->load('levelQuestions');
+
         return view('admin.levels.show', compact('level'));
     }
 

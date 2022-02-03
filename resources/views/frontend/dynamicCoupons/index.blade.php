@@ -32,10 +32,10 @@
                                         {{ trans('cruds.dynamicCoupon.fields.user') }}
                                     </th>
                                     <th>
-                                        {{ trans('cruds.dynamicCoupon.fields.product') }}
+                                        {{ trans('cruds.dynamicCoupon.fields.expiration') }}
                                     </th>
                                     <th>
-                                        {{ trans('cruds.dynamicCoupon.fields.expiration') }}
+                                        {{ trans('cruds.dynamicCoupon.fields.product') }}
                                     </th>
                                     <th>
                                         &nbsp;
@@ -55,10 +55,12 @@
                                             {{ $dynamicCoupon->user->name ?? '' }}
                                         </td>
                                         <td>
-                                            {{ $dynamicCoupon->product->name ?? '' }}
+                                            {{ $dynamicCoupon->expiration ?? '' }}
                                         </td>
                                         <td>
-                                            {{ $dynamicCoupon->expiration ?? '' }}
+                                            @foreach($dynamicCoupon->products as $key => $item)
+                                                <span>{{ $item->name }}</span>
+                                            @endforeach
                                         </td>
                                         <td>
                                             @can('dynamic_coupon_show')
