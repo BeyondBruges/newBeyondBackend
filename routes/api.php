@@ -2,13 +2,14 @@
 
 use App\Http\Controllers\Api\BLandMarkController;
 use App\Http\Controllers\Api\BlogController;
+use App\Http\Controllers\Api\CouponsController;
 use App\Http\Controllers\Api\LevelController;
 use App\Http\Controllers\Api\LevelObjectsController;
-use App\Http\Controllers\Api\CouponsController;
+use App\Http\Controllers\Api\PartnerController;
 use App\Http\Controllers\Api\ProductsController;
 use App\Http\Controllers\Api\QuestionController;
-use App\Http\Controllers\Api\PartnerController;
 use App\Http\Controllers\Api\TransactionController;
+use App\Http\Controllers\Api\UserLevelController;
 use App\Http\Controllers\PassportAuthController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -33,6 +34,8 @@ Route::middleware('auth:api')->group(function () {
 
     Route::post('transaction_index', [TransactionController::class, 'index']);
     Route::post('transaction_store', [TransactionController::class, 'store']);
+    Route::post('user_levels_index', [UserLevelController::class, 'index']);
+    Route::post('user_levels_store', [UserLevelController::class, 'store']);
 });
 
 
