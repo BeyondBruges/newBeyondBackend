@@ -4,9 +4,9 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-
 use App\Models\User;
 use App\Models\Transaction;
+use OneSignal;
 
 class TransactionController extends Controller
 {
@@ -38,6 +38,18 @@ class TransactionController extends Controller
     $transaction->user_id = $user->id;
     $transaction->type = $request->transaction_type;
     $transaction->save();
+
+    if ($user->udid != null) {
+         OneSignal::sendNotificationToUser(
+        "New transaction registered",
+        $userId,
+        $url = null,
+        $data = null,
+        $buttons = null,
+        $schedule = null
+    );
+    }
+
     return response()->json(['data' => $transaction], 200);
     }
 
