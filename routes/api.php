@@ -1,11 +1,12 @@
 <?php
 
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\PassportAuthController;
+use App\Http\Controllers\Api\BLandMarkController;
 use App\Http\Controllers\Api\BlogController;
 use App\Http\Controllers\Api\LevelController;
 use App\Http\Controllers\Api\LevelObjectsController;
+use App\Http\Controllers\PassportAuthController;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
 
 
 //Rutas de auth
@@ -16,6 +17,7 @@ Route::post('login', [PassportAuthController::class, 'login']);
 Route::get('blog', [BlogController::class, 'index']);
 Route::get('levels', [LevelController::class, 'index']);
 Route::get('level_objects', [LevelObjectsController::class, 'index']);
+Route::get('b_land_marks', [BLandMarkController::class, 'index']);
 
 
 //Rutas con login
