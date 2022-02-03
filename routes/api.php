@@ -12,6 +12,7 @@ use App\Http\Controllers\Api\TransactionController;
 use App\Http\Controllers\Api\UserDynamicCouponsController;
 use App\Http\Controllers\Api\UserLevelObjectController;
 use App\Http\Controllers\Api\UserLevelQuestionController;
+use App\Http\Controllers\Api\AnalyticController;
 use App\Http\Controllers\PassportAuthController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -30,6 +31,7 @@ Route::get('coupons', [CouponsController::class, 'index']);
 Route::get('products', [ProductsController::class, 'index']);
 Route::get('questions', [QuestionController::class, 'index']);
 Route::get('partners', [PartnerController::class, 'index']);
+ Route::post('analytics', [AnalyticController::class, 'store']);
 
 //Rutas con login
 Route::middleware('auth:api')->group(function () {
