@@ -11,9 +11,12 @@ Route::post('register', [PassportAuthController::class, 'register']);
 Route::post('login', [PassportAuthController::class, 'login']);
 
 //Rutas abiertas a todo el mundo
+Route::get('blog', [BlogController::class, 'index']);
 
+
+//Rutas con login
 Route::middleware('auth:api')->group(function () {
-    Route::get('blog', [BlogController::class, 'index']);
+    
 });
 
 

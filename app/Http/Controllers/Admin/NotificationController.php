@@ -10,6 +10,7 @@ use App\Models\Notification;
 use Gate;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
+use OneSignal;
 
 class NotificationController extends Controller
 {
@@ -32,6 +33,14 @@ class NotificationController extends Controller
     public function store(StoreNotificationRequest $request)
     {
         $notification = Notification::create($request->all());
+        
+        OneSignal::sendNotificationToAll(
+            $notification->content, 
+            $url = null, 
+            $data = null, 
+            $buttons = null, 
+            $schedule = null
+        );
 
         return redirect()->route('admin.notifications.index');
     }
