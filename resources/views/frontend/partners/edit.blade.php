@@ -86,16 +86,6 @@
                             <span class="help-block">{{ trans('cruds.partner.fields.facebook_helper') }}</span>
                         </div>
                         <div class="form-group">
-                            <label for="twitter">{{ trans('cruds.partner.fields.twitter') }}</label>
-                            <input class="form-control" type="text" name="twitter" id="twitter" value="{{ old('twitter', $partner->twitter) }}">
-                            @if($errors->has('twitter'))
-                                <div class="invalid-feedback">
-                                    {{ $errors->first('twitter') }}
-                                </div>
-                            @endif
-                            <span class="help-block">{{ trans('cruds.partner.fields.twitter_helper') }}</span>
-                        </div>
-                        <div class="form-group">
                             <label for="instagram">{{ trans('cruds.partner.fields.instagram') }}</label>
                             <input class="form-control" type="text" name="instagram" id="instagram" value="{{ old('instagram', $partner->instagram) }}">
                             @if($errors->has('instagram'))

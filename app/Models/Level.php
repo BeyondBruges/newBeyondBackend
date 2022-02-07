@@ -35,6 +35,7 @@ class Level extends Model implements HasMedia
         'description',
         'lat',
         'lng',
+        'key',
         'created_at',
         'updated_at',
         'deleted_at',
@@ -44,6 +45,16 @@ class Level extends Model implements HasMedia
     {
         $this->addMediaConversion('thumb')->fit('crop', 50, 50);
         $this->addMediaConversion('preview')->fit('crop', 120, 120);
+    }
+
+    public function levelQuestions()
+    {
+        return $this->hasMany(Question::class, 'level_id', 'id');
+    }
+
+    public function levelHotspots()
+    {
+        return $this->hasMany(Hotspot::class, 'level_id', 'id');
     }
 
     public function getImageAttribute()

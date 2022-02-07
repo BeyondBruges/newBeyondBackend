@@ -6,6 +6,10 @@
             <a class="btn btn-success" href="{{ route('admin.level-objects.create') }}">
                 {{ trans('global.add') }} {{ trans('cruds.levelObject.title_singular') }}
             </a>
+            <button class="btn btn-warning" data-toggle="modal" data-target="#csvImportModal">
+                {{ trans('global.app_csvImport') }}
+            </button>
+            @include('csvImport.modal', ['model' => 'LevelObject', 'route' => 'admin.level-objects.parseCsvImport'])
         </div>
     </div>
 @endcan
@@ -32,6 +36,9 @@
                             {{ trans('cruds.levelObject.fields.level') }}
                         </th>
                         <th>
+                            {{ trans('cruds.levelObject.fields.key') }}
+                        </th>
+                        <th>
                             &nbsp;
                         </th>
                     </tr>
@@ -53,6 +60,9 @@
                             </select>
                         </td>
                         <td>
+                            <input class="search" type="text" placeholder="{{ trans('global.search') }}">
+                        </td>
+                        <td>
                         </td>
                     </tr>
                 </thead>
@@ -70,6 +80,9 @@
                             </td>
                             <td>
                                 {{ $levelObject->level->name ?? '' }}
+                            </td>
+                            <td>
+                                {{ $levelObject->key ?? '' }}
                             </td>
                             <td>
                                 @can('level_object_show')

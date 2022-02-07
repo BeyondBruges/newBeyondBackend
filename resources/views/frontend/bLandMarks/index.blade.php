@@ -41,6 +41,9 @@
                                         {{ trans('cruds.bLandMark.fields.image') }}
                                     </th>
                                     <th>
+                                        {{ trans('cruds.bLandMark.fields.key') }}
+                                    </th>
+                                    <th>
                                         &nbsp;
                                     </th>
                                 </tr>
@@ -69,6 +72,9 @@
                                                     {{ trans('global.view_file') }}
                                                 </a>
                                             @endif
+                                        </td>
+                                        <td>
+                                            {{ $bLandMark->key ?? '' }}
                                         </td>
                                         <td>
                                             @can('b_land_mark_show')

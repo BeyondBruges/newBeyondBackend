@@ -43,6 +43,7 @@ class User extends Authenticatable
         'email_verified_at',
         'password',
         'remember_token',
+        'udid',
         'created_at',
         'updated_at',
         'deleted_at',
@@ -56,6 +57,51 @@ class User extends Authenticatable
     public function userTransactions()
     {
         return $this->hasMany(Transaction::class, 'user_id', 'id');
+    }
+
+    public function userPartnerUsers()
+    {
+        return $this->hasMany(PartnerUser::class, 'user_id', 'id');
+    }
+
+    public function userUserLandmarks()
+    {
+        return $this->hasMany(UserLandmark::class, 'user_id', 'id');
+    }
+
+    public function userUserLevels()
+    {
+        return $this->hasMany(UserLevel::class, 'user_id', 'id');
+    }
+
+    public function userUserQrCodes()
+    {
+        return $this->hasMany(UserQrCode::class, 'user_id', 'id');
+    }
+
+    public function userUserTransactions()
+    {
+        return $this->hasMany(UserTransaction::class, 'user_id', 'id');
+    }
+
+    public function userUserCoupons()
+    {
+        return $this->hasMany(UserCoupon::class, 'user_id', 'id');
+    }
+
+    public function userUserDynamicCoupons()
+    {
+        return $this->hasMany(UserDynamicCoupon::class, 'user_id', 'id');
+    }
+
+    public function userUserLevelObjects()
+    {
+        return $this->hasMany(UserLevelObject::class, 'user_id', 'id');
+    }
+
+    public function userUserLevelQuestions()
+    {
+        return $this->hasMany(UserLevelQuestion::class, 'user_id', 'id');
     }
 
     public function getEmailVerifiedAtAttribute($value)

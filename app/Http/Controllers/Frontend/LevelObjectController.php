@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\Traits\CsvImportTrait;
 use App\Http\Controllers\Traits\MediaUploadingTrait;
 use App\Http\Requests\MassDestroyLevelObjectRequest;
 use App\Http\Requests\StoreLevelObjectRequest;
@@ -17,6 +18,7 @@ use Symfony\Component\HttpFoundation\Response;
 class LevelObjectController extends Controller
 {
     use MediaUploadingTrait;
+    use CsvImportTrait;
 
     public function index()
     {

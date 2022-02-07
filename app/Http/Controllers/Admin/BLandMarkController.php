@@ -77,6 +77,8 @@ class BLandMarkController extends Controller
     {
         abort_if(Gate::denies('b_land_mark_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
+        $bLandMark->load('landmarkBlandmarkContents');
+
         return view('admin.bLandMarks.show', compact('bLandMark'));
     }
 

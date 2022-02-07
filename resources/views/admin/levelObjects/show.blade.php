@@ -47,6 +47,14 @@
                             {!! $levelObject->description !!}
                         </td>
                     </tr>
+                    <tr>
+                        <th>
+                            {{ trans('cruds.levelObject.fields.key') }}
+                        </th>
+                        <td>
+                            {{ $levelObject->key }}
+                        </td>
+                    </tr>
                 </tbody>
             </table>
             <div class="form-group">

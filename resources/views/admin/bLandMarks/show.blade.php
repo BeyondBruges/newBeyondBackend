@@ -69,18 +69,10 @@
                     </tr>
                     <tr>
                         <th>
-                            {{ trans('cruds.bLandMark.fields.description_a') }}
+                            {{ trans('cruds.bLandMark.fields.key') }}
                         </th>
                         <td>
-                            {!! $bLandMark->description_a !!}
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>
-                            {{ trans('cruds.bLandMark.fields.description_b') }}
-                        </th>
-                        <td>
-                            {!! $bLandMark->description_b !!}
+                            {{ $bLandMark->key }}
                         </td>
                     </tr>
                 </tbody>
@@ -94,6 +86,22 @@
     </div>
 </div>
 
-
+<div class="card">
+    <div class="card-header">
+        {{ trans('global.relatedData') }}
+    </div>
+    <ul class="nav nav-tabs" role="tablist" id="relationship-tabs">
+        <li class="nav-item">
+            <a class="nav-link" href="#landmark_blandmark_contents" role="tab" data-toggle="tab">
+                {{ trans('cruds.blandmarkContent.title') }}
+            </a>
+        </li>
+    </ul>
+    <div class="tab-content">
+        <div class="tab-pane" role="tabpanel" id="landmark_blandmark_contents">
+            @includeIf('admin.bLandMarks.relationships.landmarkBlandmarkContents', ['blandmarkContents' => $bLandMark->landmarkBlandmarkContents])
+        </div>
+    </div>
+</div>
 
 @endsection

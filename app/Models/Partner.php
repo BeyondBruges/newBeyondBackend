@@ -37,7 +37,6 @@ class Partner extends Model implements HasMedia
         'lat',
         'lng',
         'facebook',
-        'twitter',
         'instagram',
         'tiktok',
         'created_at',
@@ -54,6 +53,16 @@ class Partner extends Model implements HasMedia
     public function partnerCoupons()
     {
         return $this->hasMany(Coupon::class, 'partner_id', 'id');
+    }
+
+    public function partnerPartnerUsers()
+    {
+        return $this->hasMany(PartnerUser::class, 'partner_id', 'id');
+    }
+
+    public function partnerPartnerDescriptions()
+    {
+        return $this->hasMany(PartnerDescription::class, 'partner_id', 'id');
     }
 
     public function getLogoAttribute()

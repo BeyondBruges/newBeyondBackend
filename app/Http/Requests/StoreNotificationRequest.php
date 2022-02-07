@@ -25,6 +25,10 @@ class StoreNotificationRequest extends FormRequest
                 'string',
                 'required',
             ],
+            'language_id' => [
+                'required',
+                'integer',
+            ],
         ];
     }
 }

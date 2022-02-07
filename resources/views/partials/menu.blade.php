@@ -65,7 +65,7 @@
                     </li>
                 @endcan
                 @can('game_management_access')
-                    <li class="nav-item has-treeview {{ request()->is("admin/levels*") ? "menu-open" : "" }} {{ request()->is("admin/level-objects*") ? "menu-open" : "" }} {{ request()->is("admin/b-land-marks*") ? "menu-open" : "" }}">
+                    <li class="nav-item has-treeview {{ request()->is("admin/levels*") ? "menu-open" : "" }} {{ request()->is("admin/level-objects*") ? "menu-open" : "" }} {{ request()->is("admin/b-land-marks*") ? "menu-open" : "" }} {{ request()->is("admin/blandmark-contents*") ? "menu-open" : "" }} {{ request()->is("admin/questions*") ? "menu-open" : "" }} {{ request()->is("admin/characters*") ? "menu-open" : "" }} {{ request()->is("admin/hotspots*") ? "menu-open" : "" }}">
                         <a class="nav-link nav-dropdown-toggle" href="#">
                             <i class="fa-fw nav-icon fas fa-gamepad">
 
@@ -108,6 +108,81 @@
                                         </i>
                                         <p>
                                             {{ trans('cruds.bLandMark.title') }}
+                                        </p>
+                                    </a>
+                                </li>
+                            @endcan
+                            @can('blandmark_content_access')
+                                <li class="nav-item">
+                                    <a href="{{ route("admin.blandmark-contents.index") }}" class="nav-link {{ request()->is("admin/blandmark-contents") || request()->is("admin/blandmark-contents/*") ? "active" : "" }}">
+                                        <i class="fa-fw nav-icon far fa-file-alt">
+
+                                        </i>
+                                        <p>
+                                            {{ trans('cruds.blandmarkContent.title') }}
+                                        </p>
+                                    </a>
+                                </li>
+                            @endcan
+                            @can('question_access')
+                                <li class="nav-item">
+                                    <a href="{{ route("admin.questions.index") }}" class="nav-link {{ request()->is("admin/questions") || request()->is("admin/questions/*") ? "active" : "" }}">
+                                        <i class="fa-fw nav-icon fas fa-question">
+
+                                        </i>
+                                        <p>
+                                            {{ trans('cruds.question.title') }}
+                                        </p>
+                                    </a>
+                                </li>
+                            @endcan
+                            @can('character_access')
+                                <li class="nav-item">
+                                    <a href="{{ route("admin.characters.index") }}" class="nav-link {{ request()->is("admin/characters") || request()->is("admin/characters/*") ? "active" : "" }}">
+                                        <i class="fa-fw nav-icon fas fa-users">
+
+                                        </i>
+                                        <p>
+                                            {{ trans('cruds.character.title') }}
+                                        </p>
+                                    </a>
+                                </li>
+                            @endcan
+                            @can('hotspot_access')
+                                <li class="nav-item">
+                                    <a href="{{ route("admin.hotspots.index") }}" class="nav-link {{ request()->is("admin/hotspots") || request()->is("admin/hotspots/*") ? "active" : "" }}">
+                                        <i class="fa-fw nav-icon fas fa-map-pin">
+
+                                        </i>
+                                        <p>
+                                            {{ trans('cruds.hotspot.title') }}
+                                        </p>
+                                    </a>
+                                </li>
+                            @endcan
+                        </ul>
+                    </li>
+                @endcan
+                @can('dialogue_management_access')
+                    <li class="nav-item has-treeview {{ request()->is("admin/dialogues*") ? "menu-open" : "" }}">
+                        <a class="nav-link nav-dropdown-toggle" href="#">
+                            <i class="fa-fw nav-icon far fa-comments">
+
+                            </i>
+                            <p>
+                                {{ trans('cruds.dialogueManagement.title') }}
+                                <i class="right fa fa-fw fa-angle-left nav-icon"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            @can('dialogue_access')
+                                <li class="nav-item">
+                                    <a href="{{ route("admin.dialogues.index") }}" class="nav-link {{ request()->is("admin/dialogues") || request()->is("admin/dialogues/*") ? "active" : "" }}">
+                                        <i class="fa-fw nav-icon far fa-comment-alt">
+
+                                        </i>
+                                        <p>
+                                            {{ trans('cruds.dialogue.title') }}
                                         </p>
                                     </a>
                                 </li>
@@ -182,7 +257,7 @@
                     </li>
                 @endcan
                 @can('partners_management_access')
-                    <li class="nav-item has-treeview {{ request()->is("admin/partners*") ? "menu-open" : "" }}">
+                    <li class="nav-item has-treeview {{ request()->is("admin/partners*") ? "menu-open" : "" }} {{ request()->is("admin/partner-users*") ? "menu-open" : "" }} {{ request()->is("admin/partner-descriptions*") ? "menu-open" : "" }}">
                         <a class="nav-link nav-dropdown-toggle" href="#">
                             <i class="fa-fw nav-icon fas fa-store-alt">
 
@@ -205,11 +280,35 @@
                                     </a>
                                 </li>
                             @endcan
+                            @can('partner_user_access')
+                                <li class="nav-item">
+                                    <a href="{{ route("admin.partner-users.index") }}" class="nav-link {{ request()->is("admin/partner-users") || request()->is("admin/partner-users/*") ? "active" : "" }}">
+                                        <i class="fa-fw nav-icon fas fa-user-edit">
+
+                                        </i>
+                                        <p>
+                                            {{ trans('cruds.partnerUser.title') }}
+                                        </p>
+                                    </a>
+                                </li>
+                            @endcan
+                            @can('partner_description_access')
+                                <li class="nav-item">
+                                    <a href="{{ route("admin.partner-descriptions.index") }}" class="nav-link {{ request()->is("admin/partner-descriptions") || request()->is("admin/partner-descriptions/*") ? "active" : "" }}">
+                                        <i class="fa-fw nav-icon fab fa-app-store-ios">
+
+                                        </i>
+                                        <p>
+                                            {{ trans('cruds.partnerDescription.title') }}
+                                        </p>
+                                    </a>
+                                </li>
+                            @endcan
                         </ul>
                     </li>
                 @endcan
                 @can('coupon_management_access')
-                    <li class="nav-item has-treeview {{ request()->is("admin/coupons*") ? "menu-open" : "" }} {{ request()->is("admin/dynamic-coupons*") ? "menu-open" : "" }}">
+                    <li class="nav-item has-treeview {{ request()->is("admin/coupons*") ? "menu-open" : "" }} {{ request()->is("admin/coupon-descriptions*") ? "menu-open" : "" }} {{ request()->is("admin/dynamic-coupons*") ? "menu-open" : "" }}">
                         <a class="nav-link nav-dropdown-toggle" href="#">
                             <i class="fa-fw nav-icon fas fa-ticket-alt">
 
@@ -228,6 +327,18 @@
                                         </i>
                                         <p>
                                             {{ trans('cruds.coupon.title') }}
+                                        </p>
+                                    </a>
+                                </li>
+                            @endcan
+                            @can('coupon_description_access')
+                                <li class="nav-item">
+                                    <a href="{{ route("admin.coupon-descriptions.index") }}" class="nav-link {{ request()->is("admin/coupon-descriptions") || request()->is("admin/coupon-descriptions/*") ? "active" : "" }}">
+                                        <i class="fa-fw nav-icon fas fa-ticket-alt">
+
+                                        </i>
+                                        <p>
+                                            {{ trans('cruds.couponDescription.title') }}
                                         </p>
                                     </a>
                                 </li>
@@ -357,6 +468,294 @@
                                         </i>
                                         <p>
                                             {{ trans('cruds.qrCode.title') }}
+                                        </p>
+                                    </a>
+                                </li>
+                            @endcan
+                        </ul>
+                    </li>
+                @endcan
+                @can('obtained_items_management_access')
+                    <li class="nav-item has-treeview {{ request()->is("admin/user-characters*") ? "menu-open" : "" }} {{ request()->is("admin/user-levels*") ? "menu-open" : "" }} {{ request()->is("admin/user-landmarks*") ? "menu-open" : "" }} {{ request()->is("admin/user-qr-codes*") ? "menu-open" : "" }} {{ request()->is("admin/user-transactions*") ? "menu-open" : "" }} {{ request()->is("admin/user-coupons*") ? "menu-open" : "" }} {{ request()->is("admin/user-dynamic-coupons*") ? "menu-open" : "" }} {{ request()->is("admin/user-level-objects*") ? "menu-open" : "" }} {{ request()->is("admin/user-level-questions*") ? "menu-open" : "" }}">
+                        <a class="nav-link nav-dropdown-toggle" href="#">
+                            <i class="fa-fw nav-icon fas fa-parachute-box">
+
+                            </i>
+                            <p>
+                                {{ trans('cruds.obtainedItemsManagement.title') }}
+                                <i class="right fa fa-fw fa-angle-left nav-icon"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            @can('user_character_access')
+                                <li class="nav-item">
+                                    <a href="{{ route("admin.user-characters.index") }}" class="nav-link {{ request()->is("admin/user-characters") || request()->is("admin/user-characters/*") ? "active" : "" }}">
+                                        <i class="fa-fw nav-icon fas fa-user-check">
+
+                                        </i>
+                                        <p>
+                                            {{ trans('cruds.userCharacter.title') }}
+                                        </p>
+                                    </a>
+                                </li>
+                            @endcan
+                            @can('user_level_access')
+                                <li class="nav-item">
+                                    <a href="{{ route("admin.user-levels.index") }}" class="nav-link {{ request()->is("admin/user-levels") || request()->is("admin/user-levels/*") ? "active" : "" }}">
+                                        <i class="fa-fw nav-icon fas fa-globe">
+
+                                        </i>
+                                        <p>
+                                            {{ trans('cruds.userLevel.title') }}
+                                        </p>
+                                    </a>
+                                </li>
+                            @endcan
+                            @can('user_landmark_access')
+                                <li class="nav-item">
+                                    <a href="{{ route("admin.user-landmarks.index") }}" class="nav-link {{ request()->is("admin/user-landmarks") || request()->is("admin/user-landmarks/*") ? "active" : "" }}">
+                                        <i class="fa-fw nav-icon fas fa-street-view">
+
+                                        </i>
+                                        <p>
+                                            {{ trans('cruds.userLandmark.title') }}
+                                        </p>
+                                    </a>
+                                </li>
+                            @endcan
+                            @can('user_qr_code_access')
+                                <li class="nav-item">
+                                    <a href="{{ route("admin.user-qr-codes.index") }}" class="nav-link {{ request()->is("admin/user-qr-codes") || request()->is("admin/user-qr-codes/*") ? "active" : "" }}">
+                                        <i class="fa-fw nav-icon fas fa-qrcode">
+
+                                        </i>
+                                        <p>
+                                            {{ trans('cruds.userQrCode.title') }}
+                                        </p>
+                                    </a>
+                                </li>
+                            @endcan
+                            @can('user_transaction_access')
+                                <li class="nav-item">
+                                    <a href="{{ route("admin.user-transactions.index") }}" class="nav-link {{ request()->is("admin/user-transactions") || request()->is("admin/user-transactions/*") ? "active" : "" }}">
+                                        <i class="fa-fw nav-icon far fa-credit-card">
+
+                                        </i>
+                                        <p>
+                                            {{ trans('cruds.userTransaction.title') }}
+                                        </p>
+                                    </a>
+                                </li>
+                            @endcan
+                            @can('user_coupon_access')
+                                <li class="nav-item">
+                                    <a href="{{ route("admin.user-coupons.index") }}" class="nav-link {{ request()->is("admin/user-coupons") || request()->is("admin/user-coupons/*") ? "active" : "" }}">
+                                        <i class="fa-fw nav-icon fas fa-ticket-alt">
+
+                                        </i>
+                                        <p>
+                                            {{ trans('cruds.userCoupon.title') }}
+                                        </p>
+                                    </a>
+                                </li>
+                            @endcan
+                            @can('user_dynamic_coupon_access')
+                                <li class="nav-item">
+                                    <a href="{{ route("admin.user-dynamic-coupons.index") }}" class="nav-link {{ request()->is("admin/user-dynamic-coupons") || request()->is("admin/user-dynamic-coupons/*") ? "active" : "" }}">
+                                        <i class="fa-fw nav-icon fas fa-ticket-alt">
+
+                                        </i>
+                                        <p>
+                                            {{ trans('cruds.userDynamicCoupon.title') }}
+                                        </p>
+                                    </a>
+                                </li>
+                            @endcan
+                            @can('user_level_object_access')
+                                <li class="nav-item">
+                                    <a href="{{ route("admin.user-level-objects.index") }}" class="nav-link {{ request()->is("admin/user-level-objects") || request()->is("admin/user-level-objects/*") ? "active" : "" }}">
+                                        <i class="fa-fw nav-icon fas fa-boxes">
+
+                                        </i>
+                                        <p>
+                                            {{ trans('cruds.userLevelObject.title') }}
+                                        </p>
+                                    </a>
+                                </li>
+                            @endcan
+                            @can('user_level_question_access')
+                                <li class="nav-item">
+                                    <a href="{{ route("admin.user-level-questions.index") }}" class="nav-link {{ request()->is("admin/user-level-questions") || request()->is("admin/user-level-questions/*") ? "active" : "" }}">
+                                        <i class="fa-fw nav-icon far fa-question-circle">
+
+                                        </i>
+                                        <p>
+                                            {{ trans('cruds.userLevelQuestion.title') }}
+                                        </p>
+                                    </a>
+                                </li>
+                            @endcan
+                        </ul>
+                    </li>
+                @endcan
+                @can('language_management_access')
+                    <li class="nav-item has-treeview {{ request()->is("admin/languages*") ? "menu-open" : "" }}">
+                        <a class="nav-link nav-dropdown-toggle" href="#">
+                            <i class="fa-fw nav-icon far fa-flag">
+
+                            </i>
+                            <p>
+                                {{ trans('cruds.languageManagement.title') }}
+                                <i class="right fa fa-fw fa-angle-left nav-icon"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            @can('language_access')
+                                <li class="nav-item">
+                                    <a href="{{ route("admin.languages.index") }}" class="nav-link {{ request()->is("admin/languages") || request()->is("admin/languages/*") ? "active" : "" }}">
+                                        <i class="fa-fw nav-icon far fa-flag">
+
+                                        </i>
+                                        <p>
+                                            {{ trans('cruds.language.title') }}
+                                        </p>
+                                    </a>
+                                </li>
+                            @endcan
+                        </ul>
+                    </li>
+                @endcan
+                @can('landing_page_management_access')
+                    <li class="nav-item has-treeview {{ request()->is("admin/videos*") ? "menu-open" : "" }} {{ request()->is("admin/sliders*") ? "menu-open" : "" }} {{ request()->is("admin/selling-points*") ? "menu-open" : "" }} {{ request()->is("admin/features*") ? "menu-open" : "" }} {{ request()->is("admin/feature-titles*") ? "menu-open" : "" }} {{ request()->is("admin/cta-forms*") ? "menu-open" : "" }} {{ request()->is("admin/contact-texts*") ? "menu-open" : "" }} {{ request()->is("admin/contact-forms*") ? "menu-open" : "" }}">
+                        <a class="nav-link nav-dropdown-toggle" href="#">
+                            <i class="fa-fw nav-icon fas fa-home">
+
+                            </i>
+                            <p>
+                                {{ trans('cruds.landingPageManagement.title') }}
+                                <i class="right fa fa-fw fa-angle-left nav-icon"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            @can('video_access')
+                                <li class="nav-item">
+                                    <a href="{{ route("admin.videos.index") }}" class="nav-link {{ request()->is("admin/videos") || request()->is("admin/videos/*") ? "active" : "" }}">
+                                        <i class="fa-fw nav-icon fas fa-cogs">
+
+                                        </i>
+                                        <p>
+                                            {{ trans('cruds.video.title') }}
+                                        </p>
+                                    </a>
+                                </li>
+                            @endcan
+                            @can('slider_access')
+                                <li class="nav-item">
+                                    <a href="{{ route("admin.sliders.index") }}" class="nav-link {{ request()->is("admin/sliders") || request()->is("admin/sliders/*") ? "active" : "" }}">
+                                        <i class="fa-fw nav-icon far fa-images">
+
+                                        </i>
+                                        <p>
+                                            {{ trans('cruds.slider.title') }}
+                                        </p>
+                                    </a>
+                                </li>
+                            @endcan
+                            @can('selling_point_access')
+                                <li class="nav-item">
+                                    <a href="{{ route("admin.selling-points.index") }}" class="nav-link {{ request()->is("admin/selling-points") || request()->is("admin/selling-points/*") ? "active" : "" }}">
+                                        <i class="fa-fw nav-icon fas fa-ellipsis-h">
+
+                                        </i>
+                                        <p>
+                                            {{ trans('cruds.sellingPoint.title') }}
+                                        </p>
+                                    </a>
+                                </li>
+                            @endcan
+                            @can('feature_access')
+                                <li class="nav-item">
+                                    <a href="{{ route("admin.features.index") }}" class="nav-link {{ request()->is("admin/features") || request()->is("admin/features/*") ? "active" : "" }}">
+                                        <i class="fa-fw nav-icon fas fa-ellipsis-v">
+
+                                        </i>
+                                        <p>
+                                            {{ trans('cruds.feature.title') }}
+                                        </p>
+                                    </a>
+                                </li>
+                            @endcan
+                            @can('feature_title_access')
+                                <li class="nav-item">
+                                    <a href="{{ route("admin.feature-titles.index") }}" class="nav-link {{ request()->is("admin/feature-titles") || request()->is("admin/feature-titles/*") ? "active" : "" }}">
+                                        <i class="fa-fw nav-icon fas fa-text-height">
+
+                                        </i>
+                                        <p>
+                                            {{ trans('cruds.featureTitle.title') }}
+                                        </p>
+                                    </a>
+                                </li>
+                            @endcan
+                            @can('cta_form_access')
+                                <li class="nav-item">
+                                    <a href="{{ route("admin.cta-forms.index") }}" class="nav-link {{ request()->is("admin/cta-forms") || request()->is("admin/cta-forms/*") ? "active" : "" }}">
+                                        <i class="fa-fw nav-icon fas fa-user-tie">
+
+                                        </i>
+                                        <p>
+                                            {{ trans('cruds.ctaForm.title') }}
+                                        </p>
+                                    </a>
+                                </li>
+                            @endcan
+                            @can('contact_text_access')
+                                <li class="nav-item">
+                                    <a href="{{ route("admin.contact-texts.index") }}" class="nav-link {{ request()->is("admin/contact-texts") || request()->is("admin/contact-texts/*") ? "active" : "" }}">
+                                        <i class="fa-fw nav-icon fas fa-at">
+
+                                        </i>
+                                        <p>
+                                            {{ trans('cruds.contactText.title') }}
+                                        </p>
+                                    </a>
+                                </li>
+                            @endcan
+                            @can('contact_form_access')
+                                <li class="nav-item">
+                                    <a href="{{ route("admin.contact-forms.index") }}" class="nav-link {{ request()->is("admin/contact-forms") || request()->is("admin/contact-forms/*") ? "active" : "" }}">
+                                        <i class="fa-fw nav-icon far fa-envelope">
+
+                                        </i>
+                                        <p>
+                                            {{ trans('cruds.contactForm.title') }}
+                                        </p>
+                                    </a>
+                                </li>
+                            @endcan
+                        </ul>
+                    </li>
+                @endcan
+                @can('settings_management_access')
+                    <li class="nav-item has-treeview {{ request()->is("admin/companies*") ? "menu-open" : "" }}">
+                        <a class="nav-link nav-dropdown-toggle" href="#">
+                            <i class="fa-fw nav-icon fas fa-cogs">
+
+                            </i>
+                            <p>
+                                {{ trans('cruds.settingsManagement.title') }}
+                                <i class="right fa fa-fw fa-angle-left nav-icon"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            @can('company_access')
+                                <li class="nav-item">
+                                    <a href="{{ route("admin.companies.index") }}" class="nav-link {{ request()->is("admin/companies") || request()->is("admin/companies/*") ? "active" : "" }}">
+                                        <i class="fa-fw nav-icon fab fa-pied-piper-hat">
+
+                                        </i>
+                                        <p>
+                                            {{ trans('cruds.company.title') }}
                                         </p>
                                     </a>
                                 </li>

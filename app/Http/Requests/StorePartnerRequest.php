@@ -38,10 +38,6 @@ class StorePartnerRequest extends FormRequest
                 'string',
                 'nullable',
             ],
-            'twitter' => [
-                'string',
-                'nullable',
-            ],
             'instagram' => [
                 'string',
                 'nullable',

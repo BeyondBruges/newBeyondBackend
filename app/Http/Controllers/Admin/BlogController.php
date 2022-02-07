@@ -8,6 +8,7 @@ use App\Http\Requests\MassDestroyBlogRequest;
 use App\Http\Requests\StoreBlogRequest;
 use App\Http\Requests\UpdateBlogRequest;
 use App\Models\Blog;
+use App\Models\Language;
 use Gate;
 use Illuminate\Http\Request;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
@@ -21,16 +22,20 @@ class BlogController extends Controller
     {
         abort_if(Gate::denies('blog_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $blogs = Blog::with(['media'])->get();
+        $blogs = Blog::with(['language', 'media'])->get();
 
-        return view('admin.blogs.index', compact('blogs'));
+        $languages = Language::get();
+
+        return view('admin.blogs.index', compact('blogs', 'languages'));
     }
 
     public function create()
     {
         abort_if(Gate::denies('blog_create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        return view('admin.blogs.create');
+        $languages = Language::pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
+
+        return view('admin.blogs.create', compact('languages'));
     }
 
     public function store(StoreBlogRequest $request)
@@ -60,7 +65,11 @@ class BlogController extends Controller
     {
         abort_if(Gate::denies('blog_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        return view('admin.blogs.edit', compact('blog'));
+        $languages = Language::pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
+
+        $blog->load('language');
+
+        return view('admin.blogs.edit', compact('blog', 'languages'));
     }
 
     public function update(UpdateBlogRequest $request, Blog $blog)
@@ -109,6 +118,8 @@ class BlogController extends Controller
     public function show(Blog $blog)
     {
         abort_if(Gate::denies('blog_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+
+        $blog->load('language');
 
         return view('admin.blogs.show', compact('blog'));
     }

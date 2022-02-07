@@ -32,7 +32,6 @@ class Product extends Model implements HasMedia
 
     protected $fillable = [
         'name',
-        'description',
         'stock',
         'cost',
         'created_at',
@@ -44,11 +43,6 @@ class Product extends Model implements HasMedia
     {
         $this->addMediaConversion('thumb')->fit('crop', 50, 50);
         $this->addMediaConversion('preview')->fit('crop', 120, 120);
-    }
-
-    public function productDynamicCoupons()
-    {
-        return $this->hasMany(DynamicCoupon::class, 'product_id', 'id');
     }
 
     public function getImageAttribute()

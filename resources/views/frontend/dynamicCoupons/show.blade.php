@@ -44,18 +44,20 @@
                                 </tr>
                                 <tr>
                                     <th>
-                                        {{ trans('cruds.dynamicCoupon.fields.product') }}
-                                    </th>
-                                    <td>
-                                        {{ $dynamicCoupon->product->name ?? '' }}
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th>
                                         {{ trans('cruds.dynamicCoupon.fields.expiration') }}
                                     </th>
                                     <td>
                                         {{ $dynamicCoupon->expiration }}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>
+                                        {{ trans('cruds.dynamicCoupon.fields.product') }}
+                                    </th>
+                                    <td>
+                                        @foreach($dynamicCoupon->products as $key => $product)
+                                            <span class="label label-info">{{ $product->name }}</span>
+                                        @endforeach
                                     </td>
                                 </tr>
                             </tbody>

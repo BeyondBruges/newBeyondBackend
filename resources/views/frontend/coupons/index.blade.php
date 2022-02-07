@@ -9,6 +9,10 @@
                         <a class="btn btn-success" href="{{ route('frontend.coupons.create') }}">
                             {{ trans('global.add') }} {{ trans('cruds.coupon.title_singular') }}
                         </a>
+                        <button class="btn btn-warning" data-toggle="modal" data-target="#csvImportModal">
+                            {{ trans('global.app_csvImport') }}
+                        </button>
+                        @include('csvImport.modal', ['model' => 'Coupon', 'route' => 'admin.coupons.parseCsvImport'])
                     </div>
                 </div>
             @endcan
@@ -29,9 +33,6 @@
                                         {{ trans('cruds.coupon.fields.title') }}
                                     </th>
                                     <th>
-                                        {{ trans('cruds.coupon.fields.description') }}
-                                    </th>
-                                    <th>
                                         {{ trans('cruds.coupon.fields.value') }}
                                     </th>
                                     <th>
@@ -46,9 +47,6 @@
                                 </tr>
                                 <tr>
                                     <td>
-                                    </td>
-                                    <td>
-                                        <input class="search" type="text" placeholder="{{ trans('global.search') }}">
                                     </td>
                                     <td>
                                         <input class="search" type="text" placeholder="{{ trans('global.search') }}">
@@ -87,9 +85,6 @@
                                         </td>
                                         <td>
                                             {{ $coupon->title ?? '' }}
-                                        </td>
-                                        <td>
-                                            {{ $coupon->description ?? '' }}
                                         </td>
                                         <td>
                                             {{ $coupon->value ?? '' }}

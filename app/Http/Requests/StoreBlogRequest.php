@@ -36,6 +36,10 @@ class StoreBlogRequest extends FormRequest
             'description' => [
                 'required',
             ],
+            'language_id' => [
+                'required',
+                'integer',
+            ],
         ];
     }
 }

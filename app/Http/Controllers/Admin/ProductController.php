@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\Traits\CsvImportTrait;
 use App\Http\Controllers\Traits\MediaUploadingTrait;
 use App\Http\Requests\MassDestroyProductRequest;
 use App\Http\Requests\StoreProductRequest;
@@ -16,6 +17,7 @@ use Symfony\Component\HttpFoundation\Response;
 class ProductController extends Controller
 {
     use MediaUploadingTrait;
+    use CsvImportTrait;
 
     public function index()
     {
@@ -76,8 +78,6 @@ class ProductController extends Controller
     public function show(Product $product)
     {
         abort_if(Gate::denies('product_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
-
-        $product->load('productDynamicCoupons');
 
         return view('admin.products.show', compact('product'));
     }

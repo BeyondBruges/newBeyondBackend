@@ -19,7 +19,7 @@ class DynamicCouponController extends Controller
     {
         abort_if(Gate::denies('dynamic_coupon_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $dynamicCoupons = DynamicCoupon::with(['user', 'product'])->get();
+        $dynamicCoupons = DynamicCoupon::with(['user', 'products'])->get();
 
         return view('frontend.dynamicCoupons.index', compact('dynamicCoupons'));
     }
@@ -30,7 +30,7 @@ class DynamicCouponController extends Controller
 
         $users = User::pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
 
-        $products = Product::pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
+        $products = Product::pluck('name', 'id');
 
         return view('frontend.dynamicCoupons.create', compact('products', 'users'));
     }
@@ -38,6 +38,7 @@ class DynamicCouponController extends Controller
     public function store(StoreDynamicCouponRequest $request)
     {
         $dynamicCoupon = DynamicCoupon::create($request->all());
+        $dynamicCoupon->products()->sync($request->input('products', []));
 
         return redirect()->route('frontend.dynamic-coupons.index');
     }
@@ -48,9 +49,9 @@ class DynamicCouponController extends Controller
 
         $users = User::pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
 
-        $products = Product::pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
+        $products = Product::pluck('name', 'id');
 
-        $dynamicCoupon->load('user', 'product');
+        $dynamicCoupon->load('user', 'products');
 
         return view('frontend.dynamicCoupons.edit', compact('dynamicCoupon', 'products', 'users'));
     }
@@ -58,6 +59,7 @@ class DynamicCouponController extends Controller
     public function update(UpdateDynamicCouponRequest $request, DynamicCoupon $dynamicCoupon)
     {
         $dynamicCoupon->update($request->all());
+        $dynamicCoupon->products()->sync($request->input('products', []));
 
         return redirect()->route('frontend.dynamic-coupons.index');
     }
@@ -66,7 +68,7 @@ class DynamicCouponController extends Controller
     {
         abort_if(Gate::denies('dynamic_coupon_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $dynamicCoupon->load('user', 'product');
+        $dynamicCoupon->load('user', 'products');
 
         return view('frontend.dynamicCoupons.show', compact('dynamicCoupon'));
     }

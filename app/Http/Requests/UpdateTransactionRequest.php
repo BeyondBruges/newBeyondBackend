@@ -25,6 +25,12 @@ class UpdateTransactionRequest extends FormRequest
                 'numeric',
                 'required',
             ],
+            'status' => [
+                'required',
+                'integer',
+                'min:-2147483648',
+                'max:2147483647',
+            ],
         ];
     }
 }

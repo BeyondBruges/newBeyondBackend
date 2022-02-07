@@ -87,6 +87,20 @@
                             <span class="help-block">{{ trans('cruds.blog.fields.description_helper') }}</span>
                         </div>
                         <div class="form-group">
+                            <label class="required" for="language_id">{{ trans('cruds.blog.fields.language') }}</label>
+                            <select class="form-control select2" name="language_id" id="language_id" required>
+                                @foreach($languages as $id => $entry)
+                                    <option value="{{ $id }}" {{ old('language_id') == $id ? 'selected' : '' }}>{{ $entry }}</option>
+                                @endforeach
+                            </select>
+                            @if($errors->has('language'))
+                                <div class="invalid-feedback">
+                                    {{ $errors->first('language') }}
+                                </div>
+                            @endif
+                            <span class="help-block">{{ trans('cruds.blog.fields.language_helper') }}</span>
+                        </div>
+                        <div class="form-group">
                             <button class="btn btn-danger" type="submit">
                                 {{ trans('global.save') }}
                             </button>

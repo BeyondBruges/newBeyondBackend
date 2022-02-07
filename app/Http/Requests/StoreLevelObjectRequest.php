@@ -29,6 +29,10 @@ class StoreLevelObjectRequest extends FormRequest
             'description' => [
                 'required',
             ],
+            'key' => [
+                'string',
+                'required',
+            ],
         ];
     }
 }

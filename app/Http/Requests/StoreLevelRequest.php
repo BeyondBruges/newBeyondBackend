@@ -32,6 +32,10 @@ class StoreLevelRequest extends FormRequest
             'image' => [
                 'required',
             ],
+            'key' => [
+                'string',
+                'required',
+            ],
         ];
     }
 }
