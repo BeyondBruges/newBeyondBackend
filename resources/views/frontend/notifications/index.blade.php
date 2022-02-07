@@ -32,6 +32,9 @@
                                         {{ trans('cruds.notification.fields.content') }}
                                     </th>
                                     <th>
+                                        {{ trans('cruds.notification.fields.language') }}
+                                    </th>
+                                    <th>
                                         &nbsp;
                                     </th>
                                 </tr>
@@ -47,6 +50,9 @@
                                         </td>
                                         <td>
                                             {{ $notification->content ?? '' }}
+                                        </td>
+                                        <td>
+                                            {{ $notification->language->name ?? '' }}
                                         </td>
                                         <td>
                                             @can('notification_show')

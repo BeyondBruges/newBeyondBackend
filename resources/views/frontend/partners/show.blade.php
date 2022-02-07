@@ -92,14 +92,6 @@
                                 </tr>
                                 <tr>
                                     <th>
-                                        {{ trans('cruds.partner.fields.twitter') }}
-                                    </th>
-                                    <td>
-                                        {{ $partner->twitter }}
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th>
                                         {{ trans('cruds.partner.fields.instagram') }}
                                     </th>
                                     <td>

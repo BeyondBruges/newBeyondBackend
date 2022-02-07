@@ -9,6 +9,10 @@
                         <a class="btn btn-success" href="{{ route('frontend.partners.create') }}">
                             {{ trans('global.add') }} {{ trans('cruds.partner.title_singular') }}
                         </a>
+                        <button class="btn btn-warning" data-toggle="modal" data-target="#csvImportModal">
+                            {{ trans('global.app_csvImport') }}
+                        </button>
+                        @include('csvImport.modal', ['model' => 'Partner', 'route' => 'admin.partners.parseCsvImport'])
                     </div>
                 </div>
             @endcan
@@ -47,9 +51,6 @@
                                         {{ trans('cruds.partner.fields.facebook') }}
                                     </th>
                                     <th>
-                                        {{ trans('cruds.partner.fields.twitter') }}
-                                    </th>
-                                    <th>
                                         {{ trans('cruds.partner.fields.instagram') }}
                                     </th>
                                     <th>
@@ -80,9 +81,6 @@
                                         <input class="search" type="text" placeholder="{{ trans('global.search') }}">
                                     </td>
                                     <td>
-                                    </td>
-                                    <td>
-                                        <input class="search" type="text" placeholder="{{ trans('global.search') }}">
                                     </td>
                                     <td>
                                         <input class="search" type="text" placeholder="{{ trans('global.search') }}">
@@ -131,9 +129,6 @@
                                         </td>
                                         <td>
                                             {{ $partner->facebook ?? '' }}
-                                        </td>
-                                        <td>
-                                            {{ $partner->twitter ?? '' }}
                                         </td>
                                         <td>
                                             {{ $partner->instagram ?? '' }}

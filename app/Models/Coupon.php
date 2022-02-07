@@ -7,10 +7,14 @@ use App\Traits\Auditable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
-class Coupon extends Model
+class Coupon extends Model implements HasMedia
 {
     use SoftDeletes;
+    use InteractsWithMedia;
     use Auditable;
     use HasFactory;
 
@@ -38,6 +42,12 @@ class Coupon extends Model
         'updated_at',
         'deleted_at',
     ];
+
+    public function registerMediaConversions(Media $media = null): void
+    {
+        $this->addMediaConversion('thumb')->fit('crop', 50, 50);
+        $this->addMediaConversion('preview')->fit('crop', 120, 120);
+    }
 
     public function partner()
     {

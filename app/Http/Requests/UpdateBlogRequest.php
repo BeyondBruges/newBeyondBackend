@@ -31,6 +31,10 @@ class UpdateBlogRequest extends FormRequest
             'description' => [
                 'required',
             ],
+            'language_id' => [
+                'required',
+                'integer',
+            ],
         ];
     }
 }

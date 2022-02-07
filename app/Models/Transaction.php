@@ -25,6 +25,7 @@ class Transaction extends Model
     protected $fillable = [
         'user_id',
         'value',
+        'status',
         'created_at',
         'updated_at',
         'deleted_at',

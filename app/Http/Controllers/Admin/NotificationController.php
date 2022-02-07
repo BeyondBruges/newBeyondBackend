@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\MassDestroyNotificationRequest;
 use App\Http\Requests\StoreNotificationRequest;
 use App\Http\Requests\UpdateNotificationRequest;
+use App\Models\Language;
 use App\Models\Notification;
 use Gate;
 use Illuminate\Http\Request;
@@ -17,7 +18,7 @@ class NotificationController extends Controller
     {
         abort_if(Gate::denies('notification_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $notifications = Notification::all();
+        $notifications = Notification::with(['language'])->get();
 
         return view('admin.notifications.index', compact('notifications'));
     }
@@ -26,7 +27,9 @@ class NotificationController extends Controller
     {
         abort_if(Gate::denies('notification_create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        return view('admin.notifications.create');
+        $languages = Language::pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
+
+        return view('admin.notifications.create', compact('languages'));
     }
 
     public function store(StoreNotificationRequest $request)
@@ -40,7 +43,11 @@ class NotificationController extends Controller
     {
         abort_if(Gate::denies('notification_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        return view('admin.notifications.edit', compact('notification'));
+        $languages = Language::pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
+
+        $notification->load('language');
+
+        return view('admin.notifications.edit', compact('languages', 'notification'));
     }
 
     public function update(UpdateNotificationRequest $request, Notification $notification)
@@ -53,6 +60,8 @@ class NotificationController extends Controller
     public function show(Notification $notification)
     {
         abort_if(Gate::denies('notification_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+
+        $notification->load('language');
 
         return view('admin.notifications.show', compact('notification'));
     }

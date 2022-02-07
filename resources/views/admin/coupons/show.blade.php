@@ -36,7 +36,7 @@
                             {{ trans('cruds.coupon.fields.description') }}
                         </th>
                         <td>
-                            {{ $coupon->description }}
+                            {!! $coupon->description !!}
                         </td>
                     </tr>
                     <tr>

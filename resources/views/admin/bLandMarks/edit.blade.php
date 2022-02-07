@@ -52,20 +52,12 @@
                 <span class="help-block">{{ trans('cruds.bLandMark.fields.image_helper') }}</span>
             </div>
             <div class="form-group">
-                <label for="description_a">{{ trans('cruds.bLandMark.fields.description_a') }}</label>
-                <textarea class="form-control ckeditor {{ $errors->has('description_a') ? 'is-invalid' : '' }}" name="description_a" id="description_a">{!! old('description_a', $bLandMark->description_a) !!}</textarea>
-                @if($errors->has('description_a'))
-                    <span class="text-danger">{{ $errors->first('description_a') }}</span>
+                <label class="required" for="key">{{ trans('cruds.bLandMark.fields.key') }}</label>
+                <input class="form-control {{ $errors->has('key') ? 'is-invalid' : '' }}" type="text" name="key" id="key" value="{{ old('key', $bLandMark->key) }}" required>
+                @if($errors->has('key'))
+                    <span class="text-danger">{{ $errors->first('key') }}</span>
                 @endif
-                <span class="help-block">{{ trans('cruds.bLandMark.fields.description_a_helper') }}</span>
-            </div>
-            <div class="form-group">
-                <label for="description_b">{{ trans('cruds.bLandMark.fields.description_b') }}</label>
-                <textarea class="form-control ckeditor {{ $errors->has('description_b') ? 'is-invalid' : '' }}" name="description_b" id="description_b">{!! old('description_b', $bLandMark->description_b) !!}</textarea>
-                @if($errors->has('description_b'))
-                    <span class="text-danger">{{ $errors->first('description_b') }}</span>
-                @endif
-                <span class="help-block">{{ trans('cruds.bLandMark.fields.description_b_helper') }}</span>
+                <span class="help-block">{{ trans('cruds.bLandMark.fields.key_helper') }}</span>
             </div>
             <div class="form-group">
                 <button class="btn btn-danger" type="submit">
@@ -131,68 +123,4 @@
      }
 }
 </script>
-<script>
-    $(document).ready(function () {
-  function SimpleUploadAdapter(editor) {
-    editor.plugins.get('FileRepository').createUploadAdapter = function(loader) {
-      return {
-        upload: function() {
-          return loader.file
-            .then(function (file) {
-              return new Promise(function(resolve, reject) {
-                // Init request
-                var xhr = new XMLHttpRequest();
-                xhr.open('POST', '{{ route('admin.b-land-marks.storeCKEditorImages') }}', true);
-                xhr.setRequestHeader('x-csrf-token', window._token);
-                xhr.setRequestHeader('Accept', 'application/json');
-                xhr.responseType = 'json';
-
-                // Init listeners
-                var genericErrorText = `Couldn't upload file: ${ file.name }.`;
-                xhr.addEventListener('error', function() { reject(genericErrorText) });
-                xhr.addEventListener('abort', function() { reject() });
-                xhr.addEventListener('load', function() {
-                  var response = xhr.response;
-
-                  if (!response || xhr.status !== 201) {
-                    return reject(response && response.message ? `${genericErrorText}\n${xhr.status} ${response.message}` : `${genericErrorText}\n ${xhr.status} ${xhr.statusText}`);
-                  }
-
-                  $('form').append('<input type="hidden" name="ck-media[]" value="' + response.id + '">');
-
-                  resolve({ default: response.url });
-                });
-
-                if (xhr.upload) {
-                  xhr.upload.addEventListener('progress', function(e) {
-                    if (e.lengthComputable) {
-                      loader.uploadTotal = e.total;
-                      loader.uploaded = e.loaded;
-                    }
-                  });
-                }
-
-                // Send request
-                var data = new FormData();
-                data.append('upload', file);
-                data.append('crud_id', '{{ $bLandMark->id ?? 0 }}');
-                xhr.send(data);
-              });
-            })
-        }
-      };
-    }
-  }
-
-  var allEditors = document.querySelectorAll('.ckeditor');
-  for (var i = 0; i < allEditors.length; ++i) {
-    ClassicEditor.create(
-      allEditors[i], {
-        extraPlugins: [SimpleUploadAdapter]
-      }
-    );
-  }
-});
-</script>
-
 @endsection

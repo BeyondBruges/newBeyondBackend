@@ -72,18 +72,10 @@
                                 </tr>
                                 <tr>
                                     <th>
-                                        {{ trans('cruds.bLandMark.fields.description_a') }}
+                                        {{ trans('cruds.bLandMark.fields.key') }}
                                     </th>
                                     <td>
-                                        {!! $bLandMark->description_a !!}
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th>
-                                        {{ trans('cruds.bLandMark.fields.description_b') }}
-                                    </th>
-                                    <td>
-                                        {!! $bLandMark->description_b !!}
+                                        {{ $bLandMark->key }}
                                     </td>
                                 </tr>
                             </tbody>

@@ -38,6 +38,9 @@
                                         {{ trans('cruds.user.fields.roles') }}
                                     </th>
                                     <th>
+                                        {{ trans('cruds.user.fields.udid') }}
+                                    </th>
+                                    <th>
                                         &nbsp;
                                     </th>
                                 </tr>
@@ -61,6 +64,9 @@
                                             @foreach($user->roles as $key => $item)
                                                 <span>{{ $item->title }}</span>
                                             @endforeach
+                                        </td>
+                                        <td>
+                                            {{ $user->udid ?? '' }}
                                         </td>
                                         <td>
                                             @can('user_show')

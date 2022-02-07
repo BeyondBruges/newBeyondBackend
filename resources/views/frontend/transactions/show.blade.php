@@ -42,6 +42,14 @@
                                         {{ $transaction->value }}
                                     </td>
                                 </tr>
+                                <tr>
+                                    <th>
+                                        {{ trans('cruds.transaction.fields.status') }}
+                                    </th>
+                                    <td>
+                                        {{ $transaction->status }}
+                                    </td>
+                                </tr>
                             </tbody>
                         </table>
                         <div class="form-group">

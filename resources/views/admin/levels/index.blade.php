@@ -6,6 +6,10 @@
             <a class="btn btn-success" href="{{ route('admin.levels.create') }}">
                 {{ trans('global.add') }} {{ trans('cruds.level.title_singular') }}
             </a>
+            <button class="btn btn-warning" data-toggle="modal" data-target="#csvImportModal">
+                {{ trans('global.app_csvImport') }}
+            </button>
+            @include('csvImport.modal', ['model' => 'Level', 'route' => 'admin.levels.parseCsvImport'])
         </div>
     </div>
 @endcan
@@ -29,9 +33,6 @@
                             {{ trans('cruds.level.fields.name') }}
                         </th>
                         <th>
-                            {{ trans('cruds.level.fields.description') }}
-                        </th>
-                        <th>
                             {{ trans('cruds.level.fields.lat') }}
                         </th>
                         <th>
@@ -41,8 +42,34 @@
                             {{ trans('cruds.level.fields.image') }}
                         </th>
                         <th>
+                            {{ trans('cruds.level.fields.key') }}
+                        </th>
+                        <th>
                             &nbsp;
                         </th>
+                    </tr>
+                    <tr>
+                        <td>
+                        </td>
+                        <td>
+                            <input class="search" type="text" placeholder="{{ trans('global.search') }}">
+                        </td>
+                        <td>
+                            <input class="search" type="text" placeholder="{{ trans('global.search') }}">
+                        </td>
+                        <td>
+                            <input class="search" type="text" placeholder="{{ trans('global.search') }}">
+                        </td>
+                        <td>
+                            <input class="search" type="text" placeholder="{{ trans('global.search') }}">
+                        </td>
+                        <td>
+                        </td>
+                        <td>
+                            <input class="search" type="text" placeholder="{{ trans('global.search') }}">
+                        </td>
+                        <td>
+                        </td>
                     </tr>
                 </thead>
                 <tbody>
@@ -58,9 +85,6 @@
                                 {{ $level->name ?? '' }}
                             </td>
                             <td>
-                                {{ $level->description ?? '' }}
-                            </td>
-                            <td>
                                 {{ $level->lat ?? '' }}
                             </td>
                             <td>
@@ -72,6 +96,9 @@
                                         {{ trans('global.view_file') }}
                                     </a>
                                 @endif
+                            </td>
+                            <td>
+                                {{ $level->key ?? '' }}
                             </td>
                             <td>
                                 @can('level_show')
@@ -153,6 +180,27 @@
           .columns.adjust();
   });
   
+let visibleColumnsIndexes = null;
+$('.datatable thead').on('input', '.search', function () {
+      let strict = $(this).attr('strict') || false
+      let value = strict && this.value ? "^" + this.value + "$" : this.value
+
+      let index = $(this).parent().index()
+      if (visibleColumnsIndexes !== null) {
+        index = visibleColumnsIndexes[index]
+      }
+
+      table
+        .column(index)
+        .search(value, strict)
+        .draw()
+  });
+table.on('column-visibility.dt', function(e, settings, column, state) {
+      visibleColumnsIndexes = []
+      table.columns(":visible").every(function(colIdx) {
+          visibleColumnsIndexes.push(colIdx);
+      });
+  })
 })
 
 </script>

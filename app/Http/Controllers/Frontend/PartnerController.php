@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\Traits\CsvImportTrait;
 use App\Http\Controllers\Traits\MediaUploadingTrait;
 use App\Http\Requests\MassDestroyPartnerRequest;
 use App\Http\Requests\StorePartnerRequest;
@@ -16,6 +17,7 @@ use Symfony\Component\HttpFoundation\Response;
 class PartnerController extends Controller
 {
     use MediaUploadingTrait;
+    use CsvImportTrait;
 
     public function index()
     {
@@ -94,6 +96,8 @@ class PartnerController extends Controller
     public function show(Partner $partner)
     {
         abort_if(Gate::denies('partner_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+
+        $partner->load('partnerCoupons', 'partnerPartnerUsers');
 
         return view('frontend.partners.show', compact('partner'));
     }
