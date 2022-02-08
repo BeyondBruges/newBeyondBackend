@@ -37,6 +37,7 @@ class Blog extends Model implements HasMedia
         'excerpt',
         'slug',
         'description',
+        'language_id',
         'created_at',
         'updated_at',
         'deleted_at',
@@ -82,6 +83,11 @@ class Blog extends Model implements HasMedia
         });
 
         return $files;
+    }
+
+    public function language()
+    {
+        return $this->belongsTo(Language::class, 'language_id');
     }
 
     protected function serializeDate(DateTimeInterface $date)

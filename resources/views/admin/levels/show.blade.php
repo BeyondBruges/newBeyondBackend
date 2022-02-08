@@ -36,7 +36,7 @@
                             {{ trans('cruds.level.fields.description') }}
                         </th>
                         <td>
-                            {{ $level->description }}
+                            {!! $level->description !!}
                         </td>
                     </tr>
                     <tr>
@@ -67,6 +67,14 @@
                             @endif
                         </td>
                     </tr>
+                    <tr>
+                        <th>
+                            {{ trans('cruds.level.fields.key') }}
+                        </th>
+                        <td>
+                            {{ $level->key }}
+                        </td>
+                    </tr>
                 </tbody>
             </table>
             <div class="form-group">
@@ -78,6 +86,30 @@
     </div>
 </div>
 
-
+<div class="card">
+    <div class="card-header">
+        {{ trans('global.relatedData') }}
+    </div>
+    <ul class="nav nav-tabs" role="tablist" id="relationship-tabs">
+        <li class="nav-item">
+            <a class="nav-link" href="#level_questions" role="tab" data-toggle="tab">
+                {{ trans('cruds.question.title') }}
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#level_hotspots" role="tab" data-toggle="tab">
+                {{ trans('cruds.hotspot.title') }}
+            </a>
+        </li>
+    </ul>
+    <div class="tab-content">
+        <div class="tab-pane" role="tabpanel" id="level_questions">
+            @includeIf('admin.levels.relationships.levelQuestions', ['questions' => $level->levelQuestions])
+        </div>
+        <div class="tab-pane" role="tabpanel" id="level_hotspots">
+            @includeIf('admin.levels.relationships.levelHotspots', ['hotspots' => $level->levelHotspots])
+        </div>
+    </div>
+</div>
 
 @endsection

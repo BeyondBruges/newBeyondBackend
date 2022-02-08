@@ -35,10 +35,8 @@ class StoreBLandMarkRequest extends FormRequest
             'image' => [
                 'required',
             ],
-            'description_a' => [
-                'required',
-            ],
-            'description_b' => [
+            'key' => [
+                'string',
                 'required',
             ],
         ];

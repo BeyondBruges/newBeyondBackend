@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\Traits\CsvImportTrait;
 use App\Http\Controllers\Traits\MediaUploadingTrait;
 use App\Http\Requests\MassDestroyLevelRequest;
 use App\Http\Requests\StoreLevelRequest;
@@ -16,6 +17,7 @@ use Symfony\Component\HttpFoundation\Response;
 class LevelController extends Controller
 {
     use MediaUploadingTrait;
+    use CsvImportTrait;
 
     public function index()
     {
@@ -76,6 +78,8 @@ class LevelController extends Controller
     public function show(Level $level)
     {
         abort_if(Gate::denies('level_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+
+        $level->load('levelQuestions', 'levelHotspots');
 
         return view('admin.levels.show', compact('level'));
     }

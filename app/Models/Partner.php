@@ -20,6 +20,11 @@ class Partner extends Model implements HasMedia
 
     public $table = 'partners';
 
+    public static $searchable = [
+        'name',
+        'email',
+    ];
+
     protected $appends = [
         'logo',
         'gallery',
@@ -37,9 +42,9 @@ class Partner extends Model implements HasMedia
         'lat',
         'lng',
         'facebook',
-        'twitter',
         'instagram',
         'tiktok',
+        'email',
         'created_at',
         'updated_at',
         'deleted_at',
@@ -54,6 +59,16 @@ class Partner extends Model implements HasMedia
     public function partnerCoupons()
     {
         return $this->hasMany(Coupon::class, 'partner_id', 'id');
+    }
+
+    public function partnerPartnerUsers()
+    {
+        return $this->hasMany(PartnerUser::class, 'partner_id', 'id');
+    }
+
+    public function partnerPartnerDescriptions()
+    {
+        return $this->hasMany(PartnerDescription::class, 'partner_id', 'id');
     }
 
     public function getLogoAttribute()

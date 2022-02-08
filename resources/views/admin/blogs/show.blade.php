@@ -91,6 +91,14 @@
                             {!! $blog->description !!}
                         </td>
                     </tr>
+                    <tr>
+                        <th>
+                            {{ trans('cruds.blog.fields.language') }}
+                        </th>
+                        <td>
+                            {{ $blog->language->name ?? '' }}
+                        </td>
+                    </tr>
                 </tbody>
             </table>
             <div class="form-group">

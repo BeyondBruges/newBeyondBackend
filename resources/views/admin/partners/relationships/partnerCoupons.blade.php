@@ -28,9 +28,6 @@
                                 {{ trans('cruds.coupon.fields.title') }}
                             </th>
                             <th>
-                                {{ trans('cruds.coupon.fields.description') }}
-                            </th>
-                            <th>
                                 {{ trans('cruds.coupon.fields.value') }}
                             </th>
                             <th>
@@ -55,9 +52,6 @@
                                 </td>
                                 <td>
                                     {{ $coupon->title ?? '' }}
-                                </td>
-                                <td>
-                                    {{ $coupon->description ?? '' }}
                                 </td>
                                 <td>
                                     {{ $coupon->value ?? '' }}

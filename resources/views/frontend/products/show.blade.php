@@ -48,14 +48,6 @@
                                 </tr>
                                 <tr>
                                     <th>
-                                        {{ trans('cruds.product.fields.description') }}
-                                    </th>
-                                    <td>
-                                        {!! $product->description !!}
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th>
                                         {{ trans('cruds.product.fields.stock') }}
                                     </th>
                                     <td>

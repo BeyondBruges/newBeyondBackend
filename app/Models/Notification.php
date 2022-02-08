@@ -23,10 +23,16 @@ class Notification extends Model
     protected $fillable = [
         'title',
         'content',
+        'language_id',
         'created_at',
         'updated_at',
         'deleted_at',
     ];
+
+    public function language()
+    {
+        return $this->belongsTo(Language::class, 'language_id');
+    }
 
     protected function serializeDate(DateTimeInterface $date)
     {

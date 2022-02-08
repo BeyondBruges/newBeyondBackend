@@ -89,14 +89,6 @@
                     </tr>
                     <tr>
                         <th>
-                            {{ trans('cruds.partner.fields.twitter') }}
-                        </th>
-                        <td>
-                            {{ $partner->twitter }}
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>
                             {{ trans('cruds.partner.fields.instagram') }}
                         </th>
                         <td>
@@ -109,6 +101,14 @@
                         </th>
                         <td>
                             {{ $partner->tiktok }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            {{ trans('cruds.partner.fields.email') }}
+                        </th>
+                        <td>
+                            {{ $partner->email }}
                         </td>
                     </tr>
                 </tbody>
@@ -132,10 +132,26 @@
                 {{ trans('cruds.coupon.title') }}
             </a>
         </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#partner_partner_users" role="tab" data-toggle="tab">
+                {{ trans('cruds.partnerUser.title') }}
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#partner_partner_descriptions" role="tab" data-toggle="tab">
+                {{ trans('cruds.partnerDescription.title') }}
+            </a>
+        </li>
     </ul>
     <div class="tab-content">
         <div class="tab-pane" role="tabpanel" id="partner_coupons">
             @includeIf('admin.partners.relationships.partnerCoupons', ['coupons' => $partner->partnerCoupons])
+        </div>
+        <div class="tab-pane" role="tabpanel" id="partner_partner_users">
+            @includeIf('admin.partners.relationships.partnerPartnerUsers', ['partnerUsers' => $partner->partnerPartnerUsers])
+        </div>
+        <div class="tab-pane" role="tabpanel" id="partner_partner_descriptions">
+            @includeIf('admin.partners.relationships.partnerPartnerDescriptions', ['partnerDescriptions' => $partner->partnerPartnerDescriptions])
         </div>
     </div>
 </div>

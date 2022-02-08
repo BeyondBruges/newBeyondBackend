@@ -32,6 +32,10 @@ class UpdateLevelRequest extends FormRequest
             'image' => [
                 'required',
             ],
+            'key' => [
+                'string',
+                'required',
+            ],
         ];
     }
 }

@@ -25,6 +25,10 @@ class UpdateNotificationRequest extends FormRequest
                 'string',
                 'required',
             ],
+            'language_id' => [
+                'required',
+                'integer',
+            ],
         ];
     }
 }

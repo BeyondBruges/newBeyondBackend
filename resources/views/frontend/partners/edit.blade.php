@@ -46,7 +46,7 @@
                         </div>
                         <div class="form-group">
                             <label for="lat">{{ trans('cruds.partner.fields.lat') }}</label>
-                            <input class="form-control" type="number" name="lat" id="lat" value="{{ old('lat', $partner->lat) }}" step="0.01">
+                            <input class="form-control" type="number" name="lat" id="lat" value="{{ old('lat', $partner->lat) }}" step="0.00000001">
                             @if($errors->has('lat'))
                                 <div class="invalid-feedback">
                                     {{ $errors->first('lat') }}
@@ -56,7 +56,7 @@
                         </div>
                         <div class="form-group">
                             <label for="lng">{{ trans('cruds.partner.fields.lng') }}</label>
-                            <input class="form-control" type="number" name="lng" id="lng" value="{{ old('lng', $partner->lng) }}" step="0.01">
+                            <input class="form-control" type="number" name="lng" id="lng" value="{{ old('lng', $partner->lng) }}" step="0.00000001">
                             @if($errors->has('lng'))
                                 <div class="invalid-feedback">
                                     {{ $errors->first('lng') }}
@@ -86,16 +86,6 @@
                             <span class="help-block">{{ trans('cruds.partner.fields.facebook_helper') }}</span>
                         </div>
                         <div class="form-group">
-                            <label for="twitter">{{ trans('cruds.partner.fields.twitter') }}</label>
-                            <input class="form-control" type="text" name="twitter" id="twitter" value="{{ old('twitter', $partner->twitter) }}">
-                            @if($errors->has('twitter'))
-                                <div class="invalid-feedback">
-                                    {{ $errors->first('twitter') }}
-                                </div>
-                            @endif
-                            <span class="help-block">{{ trans('cruds.partner.fields.twitter_helper') }}</span>
-                        </div>
-                        <div class="form-group">
                             <label for="instagram">{{ trans('cruds.partner.fields.instagram') }}</label>
                             <input class="form-control" type="text" name="instagram" id="instagram" value="{{ old('instagram', $partner->instagram) }}">
                             @if($errors->has('instagram'))
@@ -114,6 +104,16 @@
                                 </div>
                             @endif
                             <span class="help-block">{{ trans('cruds.partner.fields.tiktok_helper') }}</span>
+                        </div>
+                        <div class="form-group">
+                            <label class="required" for="email">{{ trans('cruds.partner.fields.email') }}</label>
+                            <input class="form-control" type="email" name="email" id="email" value="{{ old('email', $partner->email) }}" required>
+                            @if($errors->has('email'))
+                                <div class="invalid-feedback">
+                                    {{ $errors->first('email') }}
+                                </div>
+                            @endif
+                            <span class="help-block">{{ trans('cruds.partner.fields.email_helper') }}</span>
                         </div>
                         <div class="form-group">
                             <button class="btn btn-danger" type="submit">

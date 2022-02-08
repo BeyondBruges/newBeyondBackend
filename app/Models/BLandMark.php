@@ -33,8 +33,7 @@ class BLandMark extends Model implements HasMedia
         'address',
         'lat',
         'lng',
-        'description_a',
-        'description_b',
+        'key',
         'created_at',
         'updated_at',
         'deleted_at',
@@ -44,6 +43,11 @@ class BLandMark extends Model implements HasMedia
     {
         $this->addMediaConversion('thumb')->fit('crop', 50, 50);
         $this->addMediaConversion('preview')->fit('crop', 120, 120);
+    }
+
+    public function landmarkBlandmarkContents()
+    {
+        return $this->hasMany(BlandmarkContent::class, 'landmark_id', 'id');
     }
 
     public function getImageAttribute()

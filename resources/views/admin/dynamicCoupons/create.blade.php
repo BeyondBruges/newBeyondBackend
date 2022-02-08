@@ -30,24 +30,28 @@
                 <span class="help-block">{{ trans('cruds.dynamicCoupon.fields.user_helper') }}</span>
             </div>
             <div class="form-group">
-                <label class="required" for="product_id">{{ trans('cruds.dynamicCoupon.fields.product') }}</label>
-                <select class="form-control select2 {{ $errors->has('product') ? 'is-invalid' : '' }}" name="product_id" id="product_id" required>
-                    @foreach($products as $id => $entry)
-                        <option value="{{ $id }}" {{ old('product_id') == $id ? 'selected' : '' }}>{{ $entry }}</option>
-                    @endforeach
-                </select>
-                @if($errors->has('product'))
-                    <span class="text-danger">{{ $errors->first('product') }}</span>
-                @endif
-                <span class="help-block">{{ trans('cruds.dynamicCoupon.fields.product_helper') }}</span>
-            </div>
-            <div class="form-group">
                 <label class="required" for="expiration">{{ trans('cruds.dynamicCoupon.fields.expiration') }}</label>
                 <input class="form-control datetime {{ $errors->has('expiration') ? 'is-invalid' : '' }}" type="text" name="expiration" id="expiration" value="{{ old('expiration') }}" required>
                 @if($errors->has('expiration'))
                     <span class="text-danger">{{ $errors->first('expiration') }}</span>
                 @endif
                 <span class="help-block">{{ trans('cruds.dynamicCoupon.fields.expiration_helper') }}</span>
+            </div>
+            <div class="form-group">
+                <label for="products">{{ trans('cruds.dynamicCoupon.fields.product') }}</label>
+                <div style="padding-bottom: 4px">
+                    <span class="btn btn-info btn-xs select-all" style="border-radius: 0">{{ trans('global.select_all') }}</span>
+                    <span class="btn btn-info btn-xs deselect-all" style="border-radius: 0">{{ trans('global.deselect_all') }}</span>
+                </div>
+                <select class="form-control select2 {{ $errors->has('products') ? 'is-invalid' : '' }}" name="products[]" id="products" multiple>
+                    @foreach($products as $id => $product)
+                        <option value="{{ $id }}" {{ in_array($id, old('products', [])) ? 'selected' : '' }}>{{ $product }}</option>
+                    @endforeach
+                </select>
+                @if($errors->has('products'))
+                    <span class="text-danger">{{ $errors->first('products') }}</span>
+                @endif
+                <span class="help-block">{{ trans('cruds.dynamicCoupon.fields.product_helper') }}</span>
             </div>
             <div class="form-group">
                 <button class="btn btn-danger" type="submit">

@@ -29,6 +29,10 @@ class UpdateLevelObjectRequest extends FormRequest
             'description' => [
                 'required',
             ],
+            'key' => [
+                'string',
+                'required',
+            ],
         ];
     }
 }

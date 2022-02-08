@@ -50,6 +50,14 @@
                 <span class="help-block">{{ trans('cruds.user.fields.roles_helper') }}</span>
             </div>
             <div class="form-group">
+                <label for="udid">{{ trans('cruds.user.fields.udid') }}</label>
+                <input class="form-control {{ $errors->has('udid') ? 'is-invalid' : '' }}" type="text" name="udid" id="udid" value="{{ old('udid', '') }}">
+                @if($errors->has('udid'))
+                    <span class="text-danger">{{ $errors->first('udid') }}</span>
+                @endif
+                <span class="help-block">{{ trans('cruds.user.fields.udid_helper') }}</span>
+            </div>
+            <div class="form-group">
                 <button class="btn btn-danger" type="submit">
                     {{ trans('global.save') }}
                 </button>

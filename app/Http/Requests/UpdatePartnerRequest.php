@@ -38,10 +38,6 @@ class UpdatePartnerRequest extends FormRequest
                 'string',
                 'nullable',
             ],
-            'twitter' => [
-                'string',
-                'nullable',
-            ],
             'instagram' => [
                 'string',
                 'nullable',
@@ -49,6 +45,10 @@ class UpdatePartnerRequest extends FormRequest
             'tiktok' => [
                 'string',
                 'nullable',
+            ],
+            'email' => [
+                'required',
+                'unique:partners,email,' . request()->route('partner')->id,
             ],
         ];
     }

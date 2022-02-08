@@ -42,6 +42,14 @@
                                         {{ $notification->content }}
                                     </td>
                                 </tr>
+                                <tr>
+                                    <th>
+                                        {{ trans('cruds.notification.fields.language') }}
+                                    </th>
+                                    <td>
+                                        {{ $notification->language->name ?? '' }}
+                                    </td>
+                                </tr>
                             </tbody>
                         </table>
                         <div class="form-group">

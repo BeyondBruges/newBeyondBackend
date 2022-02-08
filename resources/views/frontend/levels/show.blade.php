@@ -39,7 +39,7 @@
                                         {{ trans('cruds.level.fields.description') }}
                                     </th>
                                     <td>
-                                        {{ $level->description }}
+                                        {!! $level->description !!}
                                     </td>
                                 </tr>
                                 <tr>
@@ -68,6 +68,14 @@
                                                 {{ trans('global.view_file') }}
                                             </a>
                                         @endif
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>
+                                        {{ trans('cruds.level.fields.key') }}
+                                    </th>
+                                    <td>
+                                        {{ $level->key }}
                                     </td>
                                 </tr>
                             </tbody>
