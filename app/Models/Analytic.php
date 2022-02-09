@@ -27,6 +27,7 @@ class Analytic extends Model
         'created_at',
         'updated_at',
         'deleted_at',
+        'user_id'
     ];
 
     public function type()
@@ -37,5 +38,10 @@ class Analytic extends Model
     protected function serializeDate(DateTimeInterface $date)
     {
         return $date->format('Y-m-d H:i:s');
+    }
+
+        public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
     }
 }

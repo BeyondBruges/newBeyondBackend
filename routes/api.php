@@ -50,5 +50,6 @@ Route::middleware('auth:api')->group(function () {
     Route::post('user_qr_index', [UserQRController::class, 'index']);
     Route::post('user_coupons_index', [UserCouponsController::class, 'index']);
     Route::post('user_coupons_store', [UserCouponsController::class, 'store']);
+
 });
 
