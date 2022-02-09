@@ -26,7 +26,7 @@
                             {{ trans('cruds.analytic.fields.id') }}
                         </th>
                         <th>
-                            {{ trans('cruds.analytic.fields.name') }}
+                            User
                         </th>
                         <th>
                             {{ trans('cruds.analytic.fields.value') }}
@@ -49,7 +49,12 @@
                                 {{ $analytic->id ?? '' }}
                             </td>
                             <td>
-                                {{ $analytic->name ?? '' }}
+                                @if($analytic->user->id == 1)
+                                No User
+                                @else
+                                {{ $analytic->user->name ?? '' }}
+                                @endif
+                                
                             </td>
                             <td>
                                 {{ $analytic->value ?? '' }}

@@ -21,7 +21,7 @@ class HomeController
         $coupons = Coupon::count();
         $dy_coupons = DynamicCoupon::count();
         $qrs = QrCode::count();
-        $bryghia = Analytic::where('name', 'issued_bryghia')->get()->sum('value');
+        $bryghia = Analytic::where('value', 'issued_bryghia')->get()->sum('value');
         $contactForm = ContactForm::latest()->take(5)->get();
         return view('home' ,compact('users','transactions','partners','coupons','dy_coupons','qrs','bryghia','contactForm'));
     }

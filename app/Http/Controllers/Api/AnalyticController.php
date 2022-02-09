@@ -12,7 +12,7 @@ class AnalyticController extends Controller
     {
 
         $analytic = new Analytic;
-        $analytic->name =$request->user_id;
+        $analytic->user_id =$request->user_id;
         $analytic->value =$request->value;
         $analytic->type_id =$request->type_id;
         $analytic-> save();

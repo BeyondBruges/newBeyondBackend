@@ -359,9 +359,9 @@
                      [
                     @for ($i = 0; $i < 30; $i++)
 
-                {{DB::table('analytics')->where('name','issued_bryghia')->whereDate('created_at', '=', now()->subDays(30-$i)->format('Y-m-d'))->get()->sum('value')}},
+                {{DB::table('analytics')->where('value','issued_bryghia')->whereDate('created_at', '=', now()->subDays(30-$i)->format('Y-m-d'))->get()->sum('value')}},
                     @endfor
-                    {{DB::table('analytics')->where('name','issued_bryghia')->whereDate('created_at', '=', now()->format('Y-m-d'))->get()->sum('value')}},
+                    {{DB::table('analytics')->where('value','issued_bryghia')->whereDate('created_at', '=', now()->format('Y-m-d'))->get()->sum('value')}},
                      ],
 
                  fill: false,
