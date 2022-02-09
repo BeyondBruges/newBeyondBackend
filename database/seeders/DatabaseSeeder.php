@@ -15,5 +15,6 @@ class DatabaseSeeder extends Seeder
             UsersTableSeeder::class,
             RoleUserTableSeeder::class,
         ]);
+        $this->call(AnalyticTypesTableSeeder::class);
     }
 }
