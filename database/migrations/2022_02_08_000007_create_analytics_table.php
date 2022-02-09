@@ -10,7 +10,6 @@ class CreateAnalyticsTable extends Migration
     {
         Schema::create('analytics', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('name')->unique();
             $table->string('value')->nullable();
             $table->timestamps();
             $table->softDeletes();

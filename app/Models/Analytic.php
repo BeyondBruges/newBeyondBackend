@@ -21,7 +21,6 @@ class Analytic extends Model
     ];
 
     protected $fillable = [
-        'name',
         'value',
         'type_id',
         'created_at',

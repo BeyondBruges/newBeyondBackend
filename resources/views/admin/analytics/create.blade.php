@@ -9,14 +9,7 @@
     <div class="card-body">
         <form method="POST" action="{{ route("admin.analytics.store") }}" enctype="multipart/form-data">
             @csrf
-            <div class="form-group">
-                <label class="required" for="name">{{ trans('cruds.analytic.fields.name') }}</label>
-                <input class="form-control {{ $errors->has('name') ? 'is-invalid' : '' }}" type="text" name="name" id="name" value="{{ old('name', '') }}" required>
-                @if($errors->has('name'))
-                    <span class="text-danger">{{ $errors->first('name') }}</span>
-                @endif
-                <span class="help-block">{{ trans('cruds.analytic.fields.name_helper') }}</span>
-            </div>
+
             <div class="form-group">
                 <label for="value">{{ trans('cruds.analytic.fields.value') }}</label>
                 <input class="form-control {{ $errors->has('value') ? 'is-invalid' : '' }}" type="text" name="value" id="value" value="{{ old('value', '') }}">
