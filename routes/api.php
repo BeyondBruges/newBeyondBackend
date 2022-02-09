@@ -34,7 +34,7 @@ Route::get('coupons', [CouponsController::class, 'index']);
 Route::get('products', [ProductsController::class, 'index']);
 Route::get('questions', [QuestionController::class, 'index']);
 Route::get('partners', [PartnerController::class, 'index']);
- Route::post('analytics', [AnalyticController::class, 'store']);
+Route::post('analytics', [AnalyticController::class, 'store']);
 
 //Rutas con login
 Route::middleware('auth:api')->group(function () {

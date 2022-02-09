@@ -8,12 +8,13 @@ use App\Models\Analytic;
 
 class AnalyticController extends Controller
 {
-    public function store(Request $resquest)
+    public function store(Request $request)
     {
+
         $analytic = new Analytic;
-        $analytic->name =$resquest->user_id;
-        $analytic->value =$resquest->value;
-        $analytic->type_id =$resquest->type_id;
+        $analytic->name =$request->user_id;
+        $analytic->value =$request->value;
+        $analytic->type_id =$request->type_id;
         $analytic-> save();
 
         return response()->json(['data' => $analytic], 200);
