@@ -51,4 +51,18 @@ class PassportAuthController extends Controller
             return response()->json(['error' => 'Unauthorised'], 401);
         }
     }   
+
+
+    public function user(Request $request){
+
+        $user = User::where('email', $request->email)->first();
+
+        if (!$user) {
+           return response()->json(['error' => 'Not Found'], 404);
+        }
+        else
+        {
+            return response()->json(['data' => $user], 200);
+        }
+    }
 }

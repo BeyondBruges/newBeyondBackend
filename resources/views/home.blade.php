@@ -184,9 +184,9 @@
                          [
                         @for ($i = 0; $i < 7; $i++)
     
-                    {{DB::table('analytics')->where('value', 'login')->whereDate('created_at', '=', now()->subDays(7-$i)->format('Y-m-d'))->count()}},
+                    {{DB::table('analytics')->where('value', 'Login')->whereDate('created_at', '=', now()->subDays(7-$i)->format('Y-m-d'))->count()}},
                         @endfor
-                        {{DB::table('analytics')->where('value', 'login')->whereDate('created_at', '=', now()->format('Y-m-d'))->count()}},
+                        {{DB::table('analytics')->where('value', 'Login')->whereDate('created_at', '=', now()->format('Y-m-d'))->count()}},
                          ],
     
                      fill: false,

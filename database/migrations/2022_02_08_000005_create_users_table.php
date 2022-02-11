@@ -16,6 +16,7 @@ class CreateUsersTable extends Migration
             $table->string('password')->nullable();
             $table->string('remember_token')->nullable();
             $table->string('udid')->nullable();
+            $table->integer('purchased')->default(0);
             $table->timestamps();
             $table->softDeletes();
         });

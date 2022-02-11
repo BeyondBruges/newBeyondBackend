@@ -39,6 +39,8 @@ Route::post('analytics', [AnalyticController::class, 'store']);
 //Rutas con login
 Route::middleware('auth:api')->group(function () {
 
+    Route::post('user', [PassportAuthController::class, 'user']);
+
     Route::post('transaction_index', [TransactionController::class, 'index']);
     Route::post('transaction_store', [TransactionController::class, 'store']);
     Route::post('UserdynamicCoupon_index', [UserDynamicCouponsController::class, 'index']);
