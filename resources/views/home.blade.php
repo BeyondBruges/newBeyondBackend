@@ -113,51 +113,185 @@
         @endforelse
     </table>   
 <hr>
-<h3>Monthly Graphs</h3>
+<h3>Stats</h3>
 
 {{--UsersXmonth--}}    
 <br>
     <div class="row">
-        <h5>Users</h5>
-        <canvas id="usersChart" width="400" height="100"></canvas>
 
-        <script>
-        const user = document.getElementById('usersChart');
-        const usersChart = new Chart(user, {
-            type: 'line',
-            data: {
-                labels: [      
-                    @for ($i = 0; $i < 30; $i++)
-                    {{Carbon\Carbon::today()->subDays(30-$i)->format('d')}},
-                    @endfor
-                    {{Carbon\Carbon::today()->format('d')}},
-                    ],
-                datasets: [{
-                    label: 'New users in the latest 30 days',
-                    data:
-
-                     [
-                    @for ($i = 0; $i < 30; $i++)
-
-                {{DB::table('users')->whereDate('created_at', '=', now()->subDays(30-$i)->format('Y-m-d'))->count()}},
-                    @endfor
-                    {{DB::table('users')->whereDate('created_at', '=', now()->format('Y-m-d'))->count()}},
-                     ],
-
-                 fill: false,
-                    borderColor: '#0960e3',
-                    tension: 0.1
-                        }]
-                    },
-                    options: {
-                        scales: {
-                            y: {
-                                beginAtZero: true
+        <div class="col-md-6 col-sm-12">
+            <h5>App Launches</h5>
+            <canvas id="applaunch" width="100%" height="60"></canvas>
+    
+            <script>
+            const user1 = document.getElementById('applaunch');
+            const applaunch = new Chart(user1, {
+                type: 'line',
+                data: {
+                    labels: [      
+                        @for ($i = 0; $i < 7; $i++)
+                        {{Carbon\Carbon::today()->subDays(7-$i)->format('d')}},
+                        @endfor
+                        {{Carbon\Carbon::today()->format('d')}},
+                        ],
+                    datasets: [{
+                        label: 'App Launches 7 days',
+                        data:
+    
+                         [
+                        @for ($i = 0; $i < 7; $i++)
+    
+                    {{DB::table('analytics')->where('value', 'App Launch')->whereDate('created_at', '=', now()->subDays(7-$i)->format('Y-m-d'))->count()}},
+                        @endfor
+                        {{DB::table('analytics')->where('value', 'App Launch')->whereDate('created_at', '=', now()->format('Y-m-d'))->count()}},
+                         ],
+    
+                     fill: false,
+                        borderColor: '#0960e3',
+                        tension: 0.1
+                            }]
+                        },
+                        options: {
+                            scales: {
+                                y: {
+                                    beginAtZero: true
+                                }
                             }
                         }
-                    }
-                });
-        </script>  
+                    });
+            </script>   
+        </div>
+
+        <div class="col-md-6 col-sm-12">
+            <h5>Logins</h5>
+            <canvas id="logins" width="100%" height="60"></canvas>
+    
+            <script>
+            const login = document.getElementById('logins');
+            const logins = new Chart(login, {
+                type: 'line',
+                data: {
+                    labels: [      
+                        @for ($i = 0; $i < 7; $i++)
+                        {{Carbon\Carbon::today()->subDays(7-$i)->format('d')}},
+                        @endfor
+                        {{Carbon\Carbon::today()->format('d')}},
+                        ],
+                    datasets: [{
+                        label: 'Logins 7 days',
+                        data:
+    
+                         [
+                        @for ($i = 0; $i < 7; $i++)
+    
+                    {{DB::table('analytics')->where('value', 'login')->whereDate('created_at', '=', now()->subDays(7-$i)->format('Y-m-d'))->count()}},
+                        @endfor
+                        {{DB::table('analytics')->where('value', 'login')->whereDate('created_at', '=', now()->format('Y-m-d'))->count()}},
+                         ],
+    
+                     fill: false,
+                        borderColor: '#0960e3',
+                        tension: 0.1
+                            }]
+                        },
+                        options: {
+                            scales: {
+                                y: {
+                                    beginAtZero: true
+                                }
+                            }
+                        }
+                    });
+            </script>   
+        </div>
+
+    </div>
+
+    <br>    
+    <br>   
+
+    <div class="row">  
+        <div class="col-md-4 col-sm-12">
+            <h5>Devices</h5>
+            <canvas id="devices" width="100%" height="100"></canvas>
+    
+            <script>
+            const devices1 = document.getElementById('devices');
+            const devices = new Chart(devices1, {
+                type: 'pie',
+                data: {
+                    labels: [
+    'Red',
+    'Blue',
+    'Yellow'
+  ],
+  datasets: [{
+    label: 'My First Dataset',
+    data: [300, 50, 100],
+    backgroundColor: [
+      'rgb(255, 99, 132)',
+      'rgb(54, 162, 235)',
+      'rgb(255, 205, 86)'
+    ],
+    hoverOffset: 4
+  }]
+                        },
+                        options: {
+                            scales: {
+                                y: {
+                                    beginAtZero: true
+                                }
+                            }
+                        }
+                    });
+            </script>       
+                    
+        </div>
+
+
+
+        <div class="col-md-8 col-sm-12" >
+            <h5>Users</h5>
+            <canvas id="usersChart" width="400" height="200"></canvas>
+    
+            <script>
+            const user = document.getElementById('usersChart');
+            const usersChart = new Chart(user, {
+                type: 'line',
+                data: {
+                    labels: [      
+                        @for ($i = 0; $i < 30; $i++)
+                        {{Carbon\Carbon::today()->subDays(30-$i)->format('d')}},
+                        @endfor
+                        {{Carbon\Carbon::today()->format('d')}},
+                        ],
+                    datasets: [{
+                        label: 'New users in the latest 30 days',
+                        data:
+    
+                         [
+                        @for ($i = 0; $i < 30; $i++)
+    
+                    {{DB::table('users')->whereDate('created_at', '=', now()->subDays(30-$i)->format('Y-m-d'))->count()}},
+                        @endfor
+                        {{DB::table('users')->whereDate('created_at', '=', now()->format('Y-m-d'))->count()}},
+                         ],
+    
+                     fill: false,
+                        borderColor: '#0960e3',
+                        tension: 0.1
+                            }]
+                        },
+                        options: {
+                            scales: {
+                                y: {
+                                    beginAtZero: true
+                                }
+                            }
+                        }
+                    });
+            </script>   
+        </div>
     </div>
 {{--TransactionsXmonth--}}  
 <br>
