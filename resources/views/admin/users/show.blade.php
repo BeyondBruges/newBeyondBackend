@@ -41,6 +41,22 @@
                     </tr>
                     <tr>
                         <th>
+                            Bryghia
+                        </th>
+                        <td>
+                            {{ $user->bryghia }}
+                        </td>
+                    </tr>
+                     <tr>
+                        <th>
+                            Device
+                        </th>
+                        <td>
+                            {{ $user->device }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
                             {{ trans('cruds.user.fields.email_verified_at') }}
                         </th>
                         <td>
@@ -67,11 +83,95 @@
                     </tr>
                 </tbody>
             </table>
-            <div class="form-group">
+
+            {{--<div class="form-group">
                 <a class="btn btn-default" href="{{ route('admin.users.index') }}">
                     {{ trans('global.back_to_list') }}
                 </a>
+            </div>--}}
+
+{{--Pills--}}
+    <div class="row">
+        <div class="col-lg-3 col-12">
+            <!-- small box -->
+            <div class="small-box bg-primary">
+              <div class="inner">
+                <h3>{{$user->userUserLandmarks->count()}}</h3>
+                <p>Unlocked Landmarks</p>
+              </div>
             </div>
+        </div>
+
+        <div class="col-lg-3 col-12">
+            <!-- small box -->
+            <div class="small-box bg-secondary">
+              <div class="inner">
+                <h3>{{$user->userUserLevels->count()}}</h3>
+                <p>Unlocked Levels</p>
+              </div>
+            </div>
+        </div>
+
+        <div class="col-lg-3 col-12">
+            <!-- small box -->
+            <div class="small-box bg-success">
+              <div class="inner">
+                <h3>{{$user->userUserQrCodes->count()}}</h3>
+                <p>Generated QRs</p>
+              </div>
+            </div>
+        </div>
+
+        <div class="col-lg-3 col-12">
+            <!-- small box -->
+            <div class="small-box bg-danger">
+              <div class="inner">
+                <h3>{{$user->userUserTransactions->count()}}</h3>
+                <p>Transactions Made</p>
+              </div>
+            </div>
+        </div>
+
+        <div class="col-lg-3 col-12">
+            <!-- small box -->
+            <div class="small-box bg-warning">
+              <div class="inner">
+                <h3>{{$user->userUserCoupons->count()}}</h3>
+                <p>Generated Coupons</p>
+              </div>
+            </div>
+        </div>
+
+        <div class="col-lg-3 col-12">
+            <!-- small box -->
+            <div class="small-box bg-info">
+              <div class="inner">
+                <h3>{{$user->userUserDynamicCoupons->count()}}</h3>
+                <p>Generated Dynamic Coupons</p>
+              </div>
+            </div>
+        </div>
+
+        <div class="col-lg-3 col-12">
+            <!-- small box -->
+            <div class="small-box bg-light">
+              <div class="inner">
+                <h3>{{$user->userUserLevelObjects->count()}}</h3>
+                <p>Unlocked Level Objects</p>
+              </div>
+            </div>
+        </div>  
+
+        <div class="col-lg-3 col-12">
+            <!-- small box -->
+            <div class="small-box bg-dark">
+              <div class="inner">
+                <h3>{{$user->userUserLevelQuestions->count()}}</h3>
+                <p>Unlocked Level Questions</p>
+              </div>
+            </div>
+        </div>  
+    </div>
         </div>
     </div>
 </div>
