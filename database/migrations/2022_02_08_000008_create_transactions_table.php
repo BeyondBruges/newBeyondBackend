@@ -12,7 +12,7 @@ class CreateTransactionsTable extends Migration
             $table->bigIncrements('id');
             $table->float('value', 15, 2);
             $table->integer('status');
-            $table->unsignedBigInteger('transaction_type')
+            $table->unsignedBigInteger('transaction_type');
             $table->timestamps();
             $table->softDeletes();
         });
