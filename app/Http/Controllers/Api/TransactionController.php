@@ -35,7 +35,7 @@ class TransactionController extends Controller
             $transaction->value = $request->value;
             $transaction->status = 1;
             $transaction->user_id = $user->id;
-            $transaction->type = $request->transaction_type;
+            $transaction->transaction_type = $request->transaction_type;
             $transaction->save();
 
             if ($transaction->type == 1) {
