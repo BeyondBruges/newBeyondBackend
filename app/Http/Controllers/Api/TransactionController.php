@@ -38,7 +38,7 @@ class TransactionController extends Controller
             $transaction->transaction_type = $request->transaction_type;
             $transaction->save();
 
-            if ($transaction->type == 1) {
+            if ($transaction->transaction_type == 1) {
                $user->bryghia += $transaction->value;
                $user->update();
             }
