@@ -238,7 +238,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
 
     Route::get('global-search', 'GlobalSearchController@search')->name('globalSearch');
 
-    Route::resource('transactiontypes', 'TransactionTypeController');t
+    Route::resource('transactiontypes', 'TransactionTypeController');
 
 });
 Route::group(['prefix' => 'profile', 'as' => 'profile.', 'namespace' => 'Auth', 'middleware' => ['auth']], function () {
