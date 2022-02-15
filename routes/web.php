@@ -237,6 +237,9 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::resource('product-descriptions', 'ProductDescriptionController');
 
     Route::get('global-search', 'GlobalSearchController@search')->name('globalSearch');
+
+    Route::resource('transactiontypes', 'TransactionTypeController');t
+
 });
 Route::group(['prefix' => 'profile', 'as' => 'profile.', 'namespace' => 'Auth', 'middleware' => ['auth']], function () {
     // Change password

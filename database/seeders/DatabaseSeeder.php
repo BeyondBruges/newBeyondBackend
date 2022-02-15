@@ -16,5 +16,6 @@ class DatabaseSeeder extends Seeder
             RoleUserTableSeeder::class,
         ]);
         $this->call(AnalyticTypesTableSeeder::class);
+        $this->call(TransactionTypesTableSeeder::class);
     }
 }
