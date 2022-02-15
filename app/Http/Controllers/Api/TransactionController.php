@@ -33,10 +33,15 @@ class TransactionController extends Controller
         {
             $transaction = new Transaction;
             $transaction->value = $request->value;
-            $transaction->status = 0;
+            $transaction->status = 1;
             $transaction->user_id = $user->id;
             $transaction->type = $request->transaction_type;
             $transaction->save();
+
+            if ($transaction->type == 1) {
+               $user->bryghia += $transaction->value;
+               $user->update();
+            }
 
             if ($user->udid != null) {
                  OneSignal::sendNotificationToUser(
