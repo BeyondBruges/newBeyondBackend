@@ -475,7 +475,7 @@
 {{--BryghisXmonth--}}  
 <br>
     <div class="row">
-        <h5>Bryghia</h5>
+        <h5>Bryghia Transactions</h5>
         <canvas id="bryghiaChart" width="400" height="100"></canvas>
 
         <script>
@@ -496,9 +496,9 @@
                      [
                     @for ($i = 0; $i < 30; $i++)
 
-                {{DB::table('analytics')->where('value','issued_bryghia')->whereDate('created_at', '=', now()->subDays(30-$i)->format('Y-m-d'))->get()->sum('value')}},
+                {{DB::table('analytics')->where('value','issued_bryghia')->whereDate('created_at', '=', now()->subDays(30-$i)->format('Y-m-d'))->get()->count()}},
                     @endfor
-                    {{DB::table('analytics')->where('value','issued_bryghia')->whereDate('created_at', '=', now()->format('Y-m-d'))->get()->sum('value')}},
+                    {{DB::table('analytics')->where('value','issued_bryghia')->whereDate('created_at', '=', now()->format('Y-m-d'))->get()->count()}},
                      ],
 
                  fill: false,
