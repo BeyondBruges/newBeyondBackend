@@ -41,17 +41,19 @@ class TransactionController extends Controller
             if ($transaction->transaction_type == 1) {
                $user->bryghia += $transaction->value;
                $user->update();
-            }
 
-            if ($user->udid != null) {
-                 OneSignal::sendNotificationToUser(
-                "New transaction registered",
-                $userId,
-                $url = null,
-                $data = null,
-                $buttons = null,
-                $schedule = null
-            );
+                if ($user->udid != null) {
+                     OneSignal::sendNotificationToUser(
+                    "New transaction registered",
+                    $userId,
+                    $url = null,
+                    $data = null,
+                    $buttons = null,
+                    $schedule = null
+                );
+
+            }
+            return response()->json(['data' => $user->bryghia], 200);
         }
         return response()->json(['data' => $transaction], 200);
         }
