@@ -142,5 +142,10 @@ class User extends Authenticatable
     {
         return $this->hasMany(Analytic::class, 'user_id', 'id');
     }
+    
+        public function userCharacters()
+    {
+        return $this->hasMany(UserCharacter::class, 'user_id', 'id')->with('character');
+    }
 
 }

@@ -11,6 +11,7 @@ class CreateUserLevelQuestionsTable extends Migration
         Schema::create('user_level_questions', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->timestamps();
+            $table->integer('result');
             $table->softDeletes();
         });
     }

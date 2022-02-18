@@ -65,4 +65,12 @@ class PassportAuthController extends Controller
             return response()->json(['data' => $user], 200);
         }
     }
+
+    public function udid(Request $request){
+
+        $user = User::find($request->user_id);
+        $user->udid = $request->udid;
+        $user->update();
+        return response()->json(['data' => $user->udid], 200);   
+    }
 }

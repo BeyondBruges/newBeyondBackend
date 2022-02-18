@@ -53,7 +53,7 @@ class UserLevelController extends Controller
             );
         }
 
-        return response()->json(['data' => $userLevel], 200);
+        return response()->json(['data' => $user->userUserLevels], 200);
         }
     }
 }

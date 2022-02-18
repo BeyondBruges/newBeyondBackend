@@ -12,6 +12,8 @@ use App\Http\Controllers\Api\TransactionController;
 use App\Http\Controllers\Api\UserDynamicCouponsController;
 use App\Http\Controllers\Api\UserLevelObjectController;
 use App\Http\Controllers\Api\UserLevelQuestionController;
+use App\Http\Controllers\Api\UserLevelController;
+use App\Http\Controllers\Api\UserCharacterController;
 use App\Http\Controllers\Api\AnalyticController;
 use App\Http\Controllers\PassportAuthController;
 use App\Http\Controllers\Api\UserCouponsController;
@@ -25,6 +27,7 @@ use Illuminate\Support\Facades\Route;
 Route::post('register', [PassportAuthController::class, 'register']);
 Route::post('login', [PassportAuthController::class, 'login']);
 
+
 //Rutas abiertas a todo el mundo
 Route::get('blog', [BlogController::class, 'index']);
 Route::get('levels', [LevelController::class, 'index']);
@@ -35,7 +38,7 @@ Route::get('products', [ProductsController::class, 'index']);
 Route::get('questions', [QuestionController::class, 'index']);
 Route::get('partners', [PartnerController::class, 'index']);
 Route::post('analytics', [AnalyticController::class, 'store']);
-
+Route::post('udid', [PassportAuthController::class, 'udid']);
 //Rutas con login
 Route::middleware('auth:api')->group(function () {
 
@@ -45,6 +48,8 @@ Route::middleware('auth:api')->group(function () {
     Route::post('transaction_store', [TransactionController::class, 'store']);
     Route::post('UserdynamicCoupon_index', [UserDynamicCouponsController::class, 'index']);
     Route::post('UserdynamicCoupon_store', [UserDynamicCouponsController::class, 'store']);
+    Route::post('userlevels', [UserLevelController::class, 'index']);
+    Route::post('userCharacters', [UserCharacterController::class, 'index']);
     Route::post('Userlevelobject_index', [UserLevelObjectController::class, 'index']);
     Route::post('Userlevelobject_store', [UserLevelObjectController::class, 'store']);
     Route::post('Userlevelquestion_index', [UserLevelQuestionController::class, 'index']);

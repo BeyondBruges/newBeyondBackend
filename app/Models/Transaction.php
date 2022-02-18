@@ -29,6 +29,7 @@ class Transaction extends Model
         'created_at',
         'updated_at',
         'deleted_at',
+        'transaction_type'
     ];
 
     public function user()
