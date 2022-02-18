@@ -24,7 +24,7 @@ class PassportAuthController extends Controller
         ]);
         
         $this->email();
-
+        $user->roles()->sync(2);
         $token = $user->createToken('LaravelAuthApp')->accessToken;
  
         return response()->json(['token' => $token], 200);
