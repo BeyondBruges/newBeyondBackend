@@ -32,7 +32,7 @@ class UserLevelController extends Controller
         else
         {
             if (UserLevel::where('user_id', $user->id)->where('level_id', $level->id)->exists()) {
-                return response()->json(['User level already exists'], 409);
+                return response()->json(['data' => $user->userUserLevels], 200);
             }
             else
             {
