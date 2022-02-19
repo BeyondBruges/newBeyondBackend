@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\UserLandMarkController;
+use App\Http\Controllers\Api\BLandMarkController;
 use App\Http\Controllers\Api\BlogController;
 use App\Http\Controllers\Api\LevelController;
 use App\Http\Controllers\Api\LevelObjectsController;
