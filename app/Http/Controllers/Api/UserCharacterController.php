@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Character;
 use App\Models\UserCharacter;
+use OneSignal;
 
 class UserCharacterController extends Controller
 {
@@ -30,12 +31,12 @@ public function index(Request $request){
         }
         else
         {
-
+            $char = App\Models\UserCharacter::where('character_id', $request->character_id)->where('user_id', $user->id)->first();
+            if (!$char) {
             $character = new UserCharacter;
             $character->user_id = $user->id;
             $character->character_id = $request->character_id;
             $character->save();
-            
 
             if ($user->udid != null) {
                  OneSignal::sendNotificationToUser(
@@ -46,9 +47,10 @@ public function index(Request $request){
                 $buttons = null,
                 $schedule = null
             );
-        }
-
+  
+                }
+            }
         return response()->json(['data' => $user->userCharacters], 200);
-        }
+        
     }
 }
