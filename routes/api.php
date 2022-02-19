@@ -50,7 +50,7 @@ Route::middleware('auth:api')->group(function () {
     Route::post('UserdynamicCoupon_index', [UserDynamicCouponsController::class, 'index']);
     Route::post('UserdynamicCoupon_store', [UserDynamicCouponsController::class, 'store']);
     Route::post('userlevels', [UserLevelController::class, 'index']);
-    Route::post('userlevels_store', [UserLevelController::class, 'index']);
+    Route::post('userlevels_store', [UserLevelController::class, 'store']);
     Route::post('userCharacters', [UserCharacterController::class, 'index']);
     Route::post('userCharacter_store', [UserCharacterController::class, 'store']);
     Route::post('userLandMarks', [UserLandMarkController::class, 'index']);
