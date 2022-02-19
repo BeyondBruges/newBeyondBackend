@@ -68,7 +68,7 @@ class User extends Authenticatable
 
     public function userUserLandmarks()
     {
-        return $this->hasMany(UserLandmark::class, 'user_id', 'id');
+        return $this->hasMany(UserLandmark::class, 'user_id', 'id')->with('landmark');
     }
 
     public function userUserLevels()

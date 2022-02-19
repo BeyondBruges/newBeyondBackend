@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Character;
+use App\Models\UserCharacter;
 
 class UserCharacterController extends Controller
 {
@@ -24,22 +25,17 @@ public function index(Request $request){
    public function store(Request $request){
 
         $user = User::find($request->user_id);
-        $coupon = Coupon::find($request->coupon_id);
-        if (!$user || !$coupon) {
+        if (!$user) {
             return response()->json(['not found'], 404);
         }
         else
         {
-            if (UserCoupon::where('user_id', $user->id)->where('coupon_id', $coupon->id)->exists()) {
-                return response()->json(['User Coupon already exists'], 409);
-            }
-            else
-            {
-                $userCoupon = new UserCoupon;
-                $userCoupon->user_id = $user->id;
-                $userCoupon->coupon_id = $coupon->id;
-                $userCoupon->save();
-            }
+
+            $character = new UserCharacter;
+            $character->user_id = $user->id;
+            $character->character_id = $request->character_id;
+            $character->save();
+            
 
             if ($user->udid != null) {
                  OneSignal::sendNotificationToUser(
@@ -52,7 +48,7 @@ public function index(Request $request){
             );
         }
 
-        return response()->json(['data' => $userCoupon], 200);
+        return response()->json(['data' => $user->userCharacters], 200);
         }
     }
 }

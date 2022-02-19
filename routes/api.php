@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\Api\BLandMarkController;
+use App\Http\Controllers\Api\UserLandMarkController;
 use App\Http\Controllers\Api\BlogController;
 use App\Http\Controllers\Api\LevelController;
 use App\Http\Controllers\Api\LevelObjectsController;
@@ -50,7 +50,8 @@ Route::middleware('auth:api')->group(function () {
     Route::post('UserdynamicCoupon_store', [UserDynamicCouponsController::class, 'store']);
     Route::post('userlevels', [UserLevelController::class, 'index']);
     Route::post('userCharacters', [UserCharacterController::class, 'index']);
-    Route::post('userLandMarks', [BLandMarkController::class, 'index']);
+    Route::post('userCharacter_store', [UserCharacterController::class, 'store']);
+    Route::post('userLandMarks', [UserLandMarkController::class, 'index']);
     Route::post('Userlevelobject_index', [UserLevelObjectController::class, 'index']);
     Route::post('Userlevelobject_store', [UserLevelObjectController::class, 'store']);
     Route::post('Userlevelquestion_index', [UserLevelQuestionController::class, 'index']);
