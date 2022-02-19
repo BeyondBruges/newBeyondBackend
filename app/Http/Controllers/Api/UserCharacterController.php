@@ -52,5 +52,6 @@ public function index(Request $request){
             }
         return response()->json(['data' => $user->userCharacters], 200);
         
+        }
     }
 }
