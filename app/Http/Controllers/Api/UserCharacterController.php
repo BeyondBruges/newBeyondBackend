@@ -35,7 +35,7 @@ public function index(Request $request){
             if (!$char) {
             $character = new UserCharacter;
             $character->user_id = $user->id;
-            $character->character_id = $request->character_id;
+            $character->character_id = isset($request->character_id) ? $request->character_id : 1;
             $character->save();
 
             if ($user->udid != null) {
