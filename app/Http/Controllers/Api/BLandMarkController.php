@@ -10,7 +10,14 @@ use App\Models\User;
 
 class BLandMarkController extends Controller
 {
-    public function index(Request $request){
+
+    public function index(){
+
+        $landmarks = BLandMark::all();
+        return response()->json(['data' => $landmarks], 200);
+    }
+
+    public function user_index(Request $request){
 
      $user = User::find($request->user_id);
         if (!$user) {
