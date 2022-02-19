@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\BLandMark;
 use App\Models\UserLandmark;
+use App\Models\User;
 
 class BLandMarkController extends Controller
 {
