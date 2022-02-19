@@ -10,7 +10,7 @@ use App\Models\User;
 
 class BLandMarkController extends Controller
 {
-    public function index(){
+    public function index(Request $request){
 
      $user = User::find($request->user_id);
         if (!$user) {
