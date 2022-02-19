@@ -31,7 +31,7 @@ public function index(Request $request){
         }
         else
         {
-            $char = App\Models\UserCharacter::where('character_id', $request->character_id)->where('user_id', $user->id)->first();
+            $char = UserCharacter::where('character_id', $request->character_id)->where('user_id', $user->id)->first();
             if (!$char) {
             $character = new UserCharacter;
             $character->user_id = $user->id;
