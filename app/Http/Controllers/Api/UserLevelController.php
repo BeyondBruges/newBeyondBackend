@@ -31,18 +31,14 @@ class UserLevelController extends Controller
         }
         else
         {
-            if (UserLevel::where('user_id', $user->id)->where('level_id', $level->id)->exists()) {
-                return response()->json(['data' => $user->userUserLevels], 200);
-            }
-            else
-            {
-                $userLevel = new UserLevel;
+            $currentlevel = UserLevel::where('user_id', $user->id)->where('level_id', $level->id)->first();
+            if (!$currentlevel) {
+              $userLevel = new UserLevel;
                 $userLevel->user_id = $user->id;
                 $userLevel->level_id = $level->id;
                 $userLevel->save();
-            }
 
-            if ($user->udid != null) {
+                    if ($user->udid != null) {
                  OneSignal::sendNotificationToUser(
                 "New User Level registered",
                 $userId,
@@ -51,6 +47,9 @@ class UserLevelController extends Controller
                 $buttons = null,
                 $schedule = null
             );
+            }
+
+        
         }
 
         return response()->json(['data' => $user->userUserLevels], 200);
