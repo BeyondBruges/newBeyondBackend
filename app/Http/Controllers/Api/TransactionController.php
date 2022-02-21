@@ -57,7 +57,7 @@ class TransactionController extends Controller
         }
 
 
-                if ($transaction->transaction_type == 2) {
+                if ($transaction->transaction_type == 2 || $transaction->transaction_type == 3) {
                $user->bryghia -= $transaction->value;
                $user->update();
 
