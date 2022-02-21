@@ -53,7 +53,8 @@ Route::middleware('auth:api')->group(function () {
     Route::post('userlevels_store', [UserLevelController::class, 'store']);
     Route::post('userCharacters', [UserCharacterController::class, 'index']);
     Route::post('userCharacter_store', [UserCharacterController::class, 'store']);
-    Route::post('userLandMarks', [UserLandMarkController::class, 'index']);
+    Route::post('userlandmarks_index', [UserLandMarkController::class, 'index']);
+    Route::post('userlandmarks_store', [UserLandMarkController::class, 'store']);
     Route::post('Userlevelobject_index', [UserLevelObjectController::class, 'index']);
     Route::post('Userlevelobject_store', [UserLevelObjectController::class, 'store']);
     Route::post('Userlevelquestion_index', [UserLevelQuestionController::class, 'index']);
