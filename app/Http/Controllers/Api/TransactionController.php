@@ -60,7 +60,8 @@ class TransactionController extends Controller
                 if ($transaction->transaction_type == 2 || $transaction->transaction_type == 3) {
                $user->bryghia -= $transaction->value;
                $user->update();
-
+ 
+                /*
                 if ($user->udid != null) {
                      OneSignal::sendNotificationToUser(
                     "New transaction registered",
@@ -70,6 +71,7 @@ class TransactionController extends Controller
                     $buttons = null,
                     $schedule = null
                 );
+                */
 
             }
             
