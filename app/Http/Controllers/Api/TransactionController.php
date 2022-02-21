@@ -80,5 +80,5 @@ class TransactionController extends Controller
 
         return response()->json(['data' => $user->bryghia], 200);
         }
-   }
 }
+
