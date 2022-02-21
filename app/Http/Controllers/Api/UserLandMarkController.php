@@ -42,7 +42,7 @@ class UserLandMarkController extends Controller
                 $userLandmark->save();
             }
 
-            if ($user->udid != null) {
+           /* if ($user->udid != null) {
                  OneSignal::sendNotificationToUser(
                 "New User Landmark registered",
                 $userId,
@@ -50,7 +50,7 @@ class UserLandMarkController extends Controller
                 $data = null,
                 $buttons = null,
                 $schedule = null
-            );
+            );*/
         }
 
         return response()->json(['data' => $userLandmark], 200);
