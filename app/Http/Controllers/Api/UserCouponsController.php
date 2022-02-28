@@ -53,7 +53,7 @@ class UserCouponsController extends Controller
             );
         }
 
-        return response()->json(['data' => $userCoupon], 200);
+        return response()->json(['data' => $user->userUserCoupons], 200);
         }
     }
 }

@@ -37,7 +37,7 @@ class UserLevelObjectController extends Controller
     $level_object->level_object_id = $request->level_object_id;
     $level_object->user_id = $user->id;
     $level_object->save();
-    return response()->json(['data' => $level_object], 200);
+    return response()->json(['data' => $user->userUserLevelObjects], 200);
     }
 
    }
