@@ -26,6 +26,7 @@ class PartnerDescription extends Model
         'created_at',
         'updated_at',
         'deleted_at',
+        'description'
     ];
 
     public function partner()
