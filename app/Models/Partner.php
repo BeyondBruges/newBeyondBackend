@@ -85,7 +85,11 @@ class Partner extends Model implements HasMedia
 
     public function getGalleryAttribute()
     {
-        return $this->getMedia('gallery');
+       $file = $this->getMedia('gallery')->last();
+        if ($file) {
+            $file->url       = $file->getUrl();
+        }
+        return $file;
     }
 
     protected function serializeDate(DateTimeInterface $date)
