@@ -7,6 +7,7 @@ use App\Models\Level;
 use App\Models\User;
 use App\Models\UserLevel;
 use Illuminate\Http\Request;
+use QrCode;
 
 class UserLevelController extends Controller
 {

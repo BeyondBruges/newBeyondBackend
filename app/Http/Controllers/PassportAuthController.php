@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
+use QrCode;
 
 class PassportAuthController extends Controller
 {
@@ -26,7 +27,12 @@ class PassportAuthController extends Controller
         $this->email();
         $user->roles()->sync(2);
         $token = $user->createToken('LaravelAuthApp')->accessToken;
- 
+
+
+        QrCode::size(1024)
+                ->format('png')
+                ->generate(config('app.url').'/admin/qr-codes/create/'.$user->id, public_path('images/'.$user->id.'.png'));
+
         return response()->json(['token' => $token], 200);
     }
 

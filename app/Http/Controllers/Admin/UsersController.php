@@ -89,7 +89,7 @@ class UsersController extends Controller
     {
         QrCode::size(1024)
                 ->format('png')
-                ->generate(config('app.url').'/admin/qr-codes/'.$id, public_path('images/'.$id.'png'));
+                ->generate(config('app.url').'/admin/qr-codes/create/'.$id, public_path('images/'.$id.'.png'));
         
         return back()->with('success', 'QR has been created successfully'); ;
     }
