@@ -47,7 +47,15 @@ class Product extends Model implements HasMedia
 
     public function getImageAttribute()
     {
-        return $this->getMedia('image')->last();
+        
+        $file = $this->getMedia('image')->last();
+        if ($file) {
+            $file->url       = $file->getUrl();
+            $file->thumbnail = $file->getUrl('thumb');
+            $file->preview   = $file->getUrl('preview');
+        }
+
+        return $file;
     }
 
     protected function serializeDate(DateTimeInterface $date)
