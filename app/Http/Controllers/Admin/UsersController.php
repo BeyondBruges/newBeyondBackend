@@ -11,6 +11,7 @@ use App\Models\User;
 use Gate;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
+use QrCode;
 
 class UsersController extends Controller
 {
@@ -82,5 +83,14 @@ class UsersController extends Controller
         User::whereIn('id', request('ids'))->delete();
 
         return response(null, Response::HTTP_NO_CONTENT);
+    }
+
+    public function generateQrCode($id) 
+    {
+        QrCode::size(1024)
+                ->format('png')
+                ->generate(config('app.url').'/admin/qr-codes/'.$id, public_path('images/'.$id.'png'));
+        
+        return back()->with('success', 'QR has been created successfully'); ;
     }
 }

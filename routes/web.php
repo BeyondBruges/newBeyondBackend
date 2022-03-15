@@ -16,7 +16,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     // Users
     Route::delete('users/destroy', 'UsersController@massDestroy')->name('users.massDestroy');
     Route::resource('users', 'UsersController');
-
+    Route::get('users/generateqr', 'UsersController@generateQrCode')->name('users.generateqr');
     // Audit Logs
     Route::resource('audit-logs', 'AuditLogsController', ['except' => ['create', 'store', 'edit', 'update', 'destroy']]);
 
@@ -79,6 +79,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     // Qr Code
     Route::delete('qr-codes/destroy', 'QrCodeController@massDestroy')->name('qr-codes.massDestroy');
     Route::resource('qr-codes', 'QrCodeController');
+    Route::get('qr-codes/generateqr/{id}', 'UsersController@generateQrCode')->name('qr-codes.assignqr');
 
     // B Land Mark
     Route::delete('b-land-marks/destroy', 'BLandMarkController@massDestroy')->name('b-land-marks.massDestroy');

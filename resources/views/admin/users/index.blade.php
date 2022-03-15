@@ -32,7 +32,7 @@
                             {{ trans('cruds.user.fields.email') }}
                         </th>
                         <th>
-                            {{ trans('cruds.user.fields.email_verified_at') }}
+                          Bryghia
                         </th>
                         <th>
                             {{ trans('cruds.user.fields.roles') }}
@@ -61,7 +61,7 @@
                                 {{ $user->email ?? '' }}
                             </td>
                             <td>
-                                {{ $user->email_verified_at ?? '' }}
+                                {{ $user->bryghia ?? '' }}
                             </td>
                             <td>
                                 @foreach($user->roles as $key => $item)
@@ -72,6 +72,9 @@
                                 {{ $user->udid ?? '' }}
                             </td>
                             <td>
+                                    <a class="btn btn-xs btn-dark" href="{{ route('admin.qr-codes.assignqr', $user->id) }}">
+                                       Generate QR
+                                    </a>
                                 @can('user_show')
                                     <a class="btn btn-xs btn-primary" href="{{ route('admin.users.show', $user->id) }}">
                                         {{ trans('global.view') }}
