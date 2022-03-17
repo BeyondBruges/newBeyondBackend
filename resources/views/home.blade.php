@@ -220,21 +220,24 @@
             const devices = new Chart(devices1, {
                 type: 'pie',
                 data: {
-                    labels: ['iPhone', 'Android', 'Unity', 'Undefined'],
+                    labels: ['iPhone', 'Android', 'Unity Windows', 'Unity Mac', 'Undefined'],
   datasets: [{
-    label: 'My First Dataset',
+    label: 'Devices',
     data: [
         
         {{App\Models\User::where('device', 'IPhonePlayer')->get()->count()}}, 
         {{App\Models\User::where('device', 'Android')->get()->count()}},
         {{App\Models\User::where('device', 'WindowsEditor')->get()->count()}},
+        {{App\Models\User::where('device', 'OSXEditor')->get()->count()}},
         {{App\Models\User::where('device', null)->get()->count()}},
 
     ],
     backgroundColor: [
       'rgb(255, 99, 132)',
       'rgb(54, 162, 235)',
-      'rgb(255, 205, 86)'
+      'rgb(255, 205, 86)',
+      'rgb(255, 99, 132)',
+      'rgb(54, 162, 235)',
     ],
     hoverOffset: 4
   }]
