@@ -43,6 +43,34 @@
                 @endif
                 <span class="help-block">{{ trans('cruds.product.fields.cost_helper') }}</span>
             </div>
+
+            <div class="form-group">
+                <label for="description_key">Description Key</label>
+                <input class="form-control {{ $errors->has('description_key') ? 'is-invalid' : '' }}" type="text" name="description_key" id="description_key" value="{{ old('description_key', $product->description_key) }}" step="0.01">
+                @if($errors->has('description_key'))
+                    <span class="text-danger">{{ $errors->first('description_key') }}</span>
+                @endif
+                <span class="help-block">This value has to be added to localization spreadsheet</span>
+            </div>
+
+            <div class="form-group">
+                <label class="required" for="product_category">{{ trans('cruds.analytic.fields.type') }}</label>
+                <select class="form-control select {{ $errors->has('type') ? 'is-invalid' : '' }}" name="product_category" id="product_category" required>
+                    @foreach($categories as $id => $entry)
+                        @if($entry->id == $product->product_category)
+                        <option value="{{ $entry->id }}}" selected>{{ $entry->name }}</option>
+                        @else
+                        <option value="{{ $entry->id }}">{{ $entry->name }}</option>
+                        @endif
+                        
+                    @endforeach
+                </select>
+                @if($errors->has('type'))
+                    <span class="text-danger">{{ $errors->first('type') }}</span>
+                @endif
+                <span class="help-block">{{ trans('cruds.analytic.fields.type_helper') }}</span>
+            </div>
+
             <div class="form-group">
                 <button class="btn btn-danger" type="submit">
                     {{ trans('global.save') }}

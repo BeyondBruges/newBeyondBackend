@@ -13,6 +13,7 @@ use Gate;
 use Illuminate\Http\Request;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 use Symfony\Component\HttpFoundation\Response;
+use App\Models\ProductCategory;
 
 class ProductController extends Controller
 {
@@ -31,8 +32,8 @@ class ProductController extends Controller
     public function create()
     {
         abort_if(Gate::denies('product_create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
-
-        return view('admin.products.create');
+        $categories = ProductCategory::all();
+        return view('admin.products.create', compact('categories'));
     }
 
     public function store(StoreProductRequest $request)
@@ -53,25 +54,14 @@ class ProductController extends Controller
     public function edit(Product $product)
     {
         abort_if(Gate::denies('product_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
-
-        return view('admin.products.edit', compact('product'));
+        $categories = ProductCategory::all();
+        return view('admin.products.edit', compact('product', 'categories'));
     }
 
     public function update(UpdateProductRequest $request, Product $product)
     {
+
         $product->update($request->all());
-
-        if ($request->input('image', false)) {
-            if (!$product->image || $request->input('image') !== $product->image->file_name) {
-                if ($product->image) {
-                    $product->image->delete();
-                }
-                $product->addMedia(storage_path('tmp/uploads/' . basename($request->input('image'))))->toMediaCollection('image');
-            }
-        } elseif ($product->image) {
-            $product->image->delete();
-        }
-
         return redirect()->route('admin.products.index');
     }
 

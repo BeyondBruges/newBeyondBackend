@@ -30,6 +30,10 @@ class UpdateProductRequest extends FormRequest
             'cost' => [
                 'numeric',
             ],
+            [
+            'product_category' => [
+                'optional']
+            ]
         ];
     }
 }

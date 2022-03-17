@@ -485,7 +485,7 @@
                     </li>
                 @endcan
                 @can('product_management_access')
-                    <li class="nav-item has-treeview {{ request()->is("admin/products*") ? "menu-open" : "" }} {{ request()->is("admin/product-descriptions*") ? "menu-open" : "" }}">
+                    <li class="nav-item has-treeview {{ request()->is("admin/products*") ? "menu-open" : "" }} {{ request()->is("admin/product-categories*") ? "menu-open" : "" }}">
                         <a class="nav-link nav-dropdown-toggle" href="#">
                             <i class="fa-fw nav-icon fas fa-box-open">
 
@@ -508,14 +508,14 @@
                                     </a>
                                 </li>
                             @endcan
-                            @can('product_description_access')
+                            @can('product_access')
                                 <li class="nav-item">
-                                    <a href="{{ route("admin.product-descriptions.index") }}" class="nav-link {{ request()->is("admin/product-descriptions") || request()->is("admin/product-descriptions/*") ? "active" : "" }}">
+                                    <a href="{{ route("admin.product-categories.index") }}" class="nav-link {{ request()->is("admin/product-categories") || request()->is("admin/product-categories/*") ? "active" : "" }}">
                                         <i class="fa-fw nav-icon fas fa-tags">
 
                                         </i>
                                         <p>
-                                            {{ trans('cruds.productDescription.title') }}
+                                            Product Categories
                                         </p>
                                     </a>
                                 </li>

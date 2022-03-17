@@ -40,6 +40,10 @@
                         </th>
                         <th>
                             {{ trans('cruds.product.fields.cost') }}
+                        </th>                        
+
+                        <th>
+                           Category
                         </th>
                         <th>
                             &nbsp;
@@ -70,6 +74,10 @@
                             </td>
                             <td>
                                 {{ $product->cost ?? '' }}
+                            </td>                            
+
+                            <td>
+                                {{ $product->category->name ?? '' }}
                             </td>
                             <td>
                                 @can('product_show')

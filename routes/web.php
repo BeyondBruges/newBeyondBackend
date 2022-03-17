@@ -72,6 +72,10 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::post('products/process-csv-import', 'ProductController@processCsvImport')->name('products.processCsvImport');
     Route::resource('products', 'ProductController');
 
+    // Product Categories
+    Route::resource('product-categories', 'ProductCategoriesController');
+    Route::get('product-categories/edit/{id}', 'ProductCategoriesController@edit')->name('product-categories.editcategories');
+
     // Dynamic Coupon
     Route::delete('dynamic-coupons/destroy', 'DynamicCouponController@massDestroy')->name('dynamic-coupons.massDestroy');
     Route::resource('dynamic-coupons', 'DynamicCouponController');

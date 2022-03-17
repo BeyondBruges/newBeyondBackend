@@ -37,6 +37,8 @@ class Product extends Model implements HasMedia
         'created_at',
         'updated_at',
         'deleted_at',
+        'product_category',
+        'description_key'
     ];
 
     public function registerMediaConversions(Media $media = null): void
@@ -61,5 +63,10 @@ class Product extends Model implements HasMedia
     protected function serializeDate(DateTimeInterface $date)
     {
         return $date->format('Y-m-d H:i:s');
+    }
+
+    public function category()
+    {
+        return $this->belongsTo(ProductCategory::class, 'product_category');
     }
 }
