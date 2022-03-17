@@ -75,7 +75,12 @@ class PassportAuthController extends Controller
     public function udid(Request $request){
 
         $user = User::find($request->user_id);
-        $user->udid = $request->udid;
+        if ($request->udid != null) {
+           $user->udid = $request->udid;
+        }
+        if ($request->device != null) {
+           $user->device = $request->device;
+        }
         $user->update();
         return response()->json(['data' => $user->udid], 200);   
     }

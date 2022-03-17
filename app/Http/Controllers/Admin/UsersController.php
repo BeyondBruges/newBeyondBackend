@@ -87,6 +87,7 @@ class UsersController extends Controller
 
     public function generateQrCode($id) 
     {
+        
         QrCode::size(1024)
                 ->format('png')
                 ->generate(config('app.url').'/admin/qr-codes/create/'.$id, public_path('images/'.$id.'.png'));

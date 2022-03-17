@@ -220,7 +220,7 @@
             const devices = new Chart(devices1, {
                 type: 'pie',
                 data: {
-                    labels: ['iPhone', 'Android', 'PC', 'Undefined'],
+                    labels: ['iPhone', 'Android', 'Unity', 'Undefined'],
   datasets: [{
     label: 'My First Dataset',
     data: [
@@ -228,7 +228,7 @@
         {{App\Models\User::where('device', 'IPhonePlayer')->get()->count()}}, 
         {{App\Models\User::where('device', 'Android')->get()->count()}},
         {{App\Models\User::where('device', 'WindowsEditor')->get()->count()}},
-        {{App\Models\User::where('device', 'null')->get()->count()}},
+        {{App\Models\User::where('device', null)->get()->count()}},
 
     ],
     backgroundColor: [
