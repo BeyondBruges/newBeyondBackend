@@ -64,7 +64,8 @@ Route::middleware('auth:api')->group(function () {
     Route::post('user_coupons_index', [UserCouponsController::class, 'index']);
     Route::post('user_coupons_store', [UserCouponsController::class, 'store']);
 
-        Route::post('user_dynamic_coupons_index', [UserDynamicCouponsController::class, 'index']);
+    
+    Route::post('user_dynamic_coupons_index', [UserDynamicCouponsController::class, 'index']);
     Route::post('user_dynamic_coupons_store', [UserDynamicCouponsController::class, 'store']);
 
 
