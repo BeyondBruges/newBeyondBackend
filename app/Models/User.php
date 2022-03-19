@@ -97,6 +97,11 @@ class User extends Authenticatable
         return $this->hasMany(UserDynamicCoupon::class, 'user_id', 'id');
     }
 
+    public function DynamicCoupons()
+    {
+        return $this->hasMany(DynamicCoupon::class, 'user_id', 'id');
+    }
+
     public function userUserLevelObjects()
     {
         return $this->hasMany(UserLevelObject::class, 'user_id', 'id');
