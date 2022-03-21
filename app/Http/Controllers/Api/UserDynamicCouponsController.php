@@ -10,6 +10,7 @@ use App\Models\UserDynamicCoupon;
 use App\Models\DynamicCoupon;
 use Carbon\Carbon;
 use App\Models\Product;
+use Illuminate\Support\Str;
 
 class UserDynamicCouponsController extends Controller
 {
@@ -50,6 +51,7 @@ class UserDynamicCouponsController extends Controller
         }
         $dynamicCoupon->expiration = Carbon::createFromFormat('Y-m-d H:i:s', $date)->format(config('panel.date_format'). ' ' . config('panel.time_format'));   
         $dynamicCoupon->user_id = $user->id;
+        $dynamicCoupon->code = Str::random(8);
         $dynamicCoupon->save();
         $dynamicCoupon->products()->sync($request->productCategory);
 
