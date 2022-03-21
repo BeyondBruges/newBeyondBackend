@@ -34,7 +34,7 @@ class UserDynamicCouponsController extends Controller
 
     $user = User::find($request->user_id);
     if (!$user) {
-        return response()->json(['not found'], 404);
+        return response()->json(['user not found'], 404);
     }
     else
     {   
