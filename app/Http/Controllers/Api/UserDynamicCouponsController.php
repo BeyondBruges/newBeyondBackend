@@ -23,7 +23,7 @@ class UserDynamicCouponsController extends Controller
     else
     {
 
-    $dynamic_coupons = $user->DynamicCoupons;
+    $dynamic_coupons = $user->ActiveDynamicCoupons;
     return response()->json(['data' => $dynamic_coupons], 200);
     }
 

@@ -102,6 +102,11 @@ class User extends Authenticatable
         return $this->hasMany(DynamicCoupon::class, 'user_id', 'id');
     }
 
+    public function ActiveDynamicCoupons(){
+        
+        return $this->hasMany(DynamicCoupon::class, 'user_id', 'id')->whereDate('expiration', '>', Carbon::now());
+    }
+
     public function userUserLevelObjects()
     {
         return $this->hasMany(UserLevelObject::class, 'user_id', 'id');
