@@ -96,6 +96,7 @@ class TransactionController extends Controller
             $donation->value = $request->value;
             $donation->save();
             $user->bryghia =0;
+            $user->update();
             $transaction = new Transaction;
             $transaction->value = $request->value;
             $transaction->status = 1;
