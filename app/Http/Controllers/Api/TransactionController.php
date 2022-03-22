@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Transaction;
 use OneSignal;
+use App\Models\Donation;
 
 class TransactionController extends Controller
 {
@@ -80,6 +81,31 @@ class TransactionController extends Controller
 
 
         return response()->json(['data' => $user->bryghia], 200);
+        }
+
+        public function donate(Request $request){
+
+            $user = User::find($request->user_id);
+        if (!$user) {
+            return response()->json(['user not found'], 404);
+        }
+        else
+        {
+            $donation = new Donation;
+            $donation->user_id = $user->id;
+            $donation->value = $request->value;
+            $donation->save();
+            $user->bryghia =0;
+            $transaction = new Transaction;
+            $transaction->value = $request->value;
+            $transaction->status = 1;
+            $transaction->user_id = $user->id;
+            $transaction->transaction_type = 5;
+            $transaction->save();
+
+             return response()->json(['data' => $user->bryghia], 200);
+        }
+
         }
 }
 
