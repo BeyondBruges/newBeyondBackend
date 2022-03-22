@@ -302,8 +302,10 @@
 {{--TransactionsXmonth--}}  
 <br>
     <div class="row">
-        <h5>Transactions</h5>
-        <canvas id="transacitonChart" width="400" height="100"></canvas>
+        
+        <div class="col-md-6">
+            <h5>Transactions</h5>
+            <canvas id="transacitonChart" width="400" height="300"></canvas>
 
         <script>
         const transaction = document.getElementById('transacitonChart');
@@ -342,6 +344,53 @@
                     }
                 });
         </script>  
+        </div>        
+
+
+        <div class="col-md-6">
+            <h5>Donations</h5>
+            <canvas id="donationChart" width="400" height="300"></canvas>
+
+        <script>
+        const donation = document.getElementById('donationChart');
+        const donationChart = new Chart(donation, {
+            type: 'bar',
+            data: {
+                labels: [      
+                    @for ($i = 0; $i < 30; $i++)
+                    {{Carbon\Carbon::today()->subDays(30-$i)->format('d')}},
+                    @endfor
+                    {{Carbon\Carbon::today()->format('d')}},
+                    ],
+                datasets: [{
+                    label: 'Donation in Bryghia',
+                    data:
+
+                     [
+                    @for ($i = 0; $i < 30; $i++)
+
+                {{DB::table('donations')->whereDate('created_at', '=', now()->subDays(30-$i)->format('Y-m-d'))->count()}},
+                    @endfor
+                    {{DB::table('donations')->whereDate('created_at', '=', now()->format('Y-m-d'))->sum('value')}},
+                     ],
+
+                 fill: false,
+                    borderColor: '#8006D5',
+                    backgroundColor:'rgba(255, 99, 132, 1)',
+                    tension: 0.1
+                        }]
+                    },
+                    options: {
+                        scales: {
+                            y: {
+                                beginAtZero: true
+                            }
+                        }
+                    }
+                });
+        </script>  
+        </div>
+        
     </div> 
 {{--PartnersXmonth--}}  
 <br>
