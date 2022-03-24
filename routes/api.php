@@ -70,6 +70,7 @@ Route::middleware('auth:api')->group(function () {
 
 
     Route::post('user_donate_bryghia', [TransactionController::class, 'donate']);
+    Route::post('user_gift_bryghia', [TransactionController::class, 'gift']);
 
 });
 

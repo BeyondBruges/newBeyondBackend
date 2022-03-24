@@ -11,6 +11,7 @@ use App\Models\DynamicCoupon;
 use Carbon\Carbon;
 use App\Models\Product;
 use Illuminate\Support\Str;
+use OneSignal;
 
 class UserDynamicCouponsController extends Controller
 {
@@ -60,6 +61,20 @@ class UserDynamicCouponsController extends Controller
         $userdynamiccoupon->user_id = $user->id;
         $userdynamiccoupon->dynamic_coupon_id = $dynamicCoupon->id;
         $userdynamiccoupon->save();
+
+        if ($user->udid != null) {
+
+         $userId = $user->udid;   
+             OneSignal::sendNotificationToUser(
+            "Thanks for your purchase. A dynamic coupon has been added to your account. You can use it to exchange it for your item.",
+            $userId,
+            $url = null,
+            $data = null,
+            $buttons = null,
+            $schedule = null
+            );
+        }
+
 
         return response()->json(['data' => $user->DynamicCoupons], 200);
 

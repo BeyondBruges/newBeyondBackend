@@ -26,6 +26,7 @@ class TransactionController extends Controller
    }
 
    public function store(Request $request){
+        $userId = "";
         $user = User::find($request->user_id);
         if (!$user) {
             return response()->json(['not found'], 404);
@@ -42,10 +43,11 @@ class TransactionController extends Controller
             if ($transaction->transaction_type == 1) {
                $user->bryghia += $transaction->value;
                $user->update();
-               /*
+               
                 if ($user->udid != null) {
+                    $userId = $user->udid; 
                      OneSignal::sendNotificationToUser(
-                    "New transaction registered",
+                    "Purchase succeded! ".$request->value." bryghia have been added",
                     $userId,
                     $url = null,
                     $data = null,
@@ -54,7 +56,7 @@ class TransactionController extends Controller
                 );
 
             }
-            */
+            
             
         }
 
@@ -63,17 +65,18 @@ class TransactionController extends Controller
                $user->bryghia -= $transaction->value;
                $user->update();
  
-                /*
+                
                 if ($user->udid != null) {
+                    $userId = $user->udid; 
                      OneSignal::sendNotificationToUser(
-                    "New transaction registered",
+                    "Your purchase has been successfully processed",
                     $userId,
                     $url = null,
                     $data = null,
                     $buttons = null,
                     $schedule = null
                 );
-                */
+                
 
             }
             
@@ -83,30 +86,114 @@ class TransactionController extends Controller
         return response()->json(['data' => $user->bryghia], 200);
         }
 
-        public function donate(Request $request){
+    public function donate(Request $request)
 
-            $user = User::find($request->user_id);
+    {
+        $userId = "";
+
+            
+        $user = User::find($request->user_id);
         if (!$user) {
             return response()->json(['user not found'], 404);
         }
         else
         {
+            //Create Donation
             $donation = new Donation;
             $donation->user_id = $user->id;
             $donation->value = $request->value;
             $donation->save();
+            //Update bryghia from User
             $user->bryghia =0;
             $user->update();
+            //Register Transaction
             $transaction = new Transaction;
             $transaction->value = $request->value;
             $transaction->status = 1;
             $transaction->user_id = $user->id;
             $transaction->transaction_type = 5;
             $transaction->save();
+            // Send notification
+
+            if ($user->udid != null) {
+
+             $userId = $user->udid;   
+                 OneSignal::sendNotificationToUser(
+                "Tour bryghia donation has been processed. Thank you for your generosity!",
+                $userId,
+                $url = null,
+                $data = null,
+                $buttons = null,
+                $schedule = null
+                );
+             }
 
              return response()->json(['data' => $user->bryghia], 200);
         }
 
+    }
+
+    public function gift(Request $request)
+    
+    {
+        $userId = "";
+        $user = User::find($request->user_id);
+        $user_b = User::where('email', $request->user_b)->first();
+
+        if (!$user || !$userb) 
+        {
+            return response()->json(['user not found'], 404);
         }
+        else
+        {
+            //Create Donation
+            $donation = new Donation;
+            $donation->user_id = $user->id;
+            $donation->value = $request->value;
+            $donation->save();
+            //Update bryghia from User
+            $user->bryghia =0;
+            $user_b->bryghia += $request->value;
+            $user_b->update();
+            $user->update();
+            //Register Transaction
+            $transaction = new Transaction;
+            $transaction->value = $request->value;
+            $transaction->status = 1;
+            $transaction->user_id = $user->id;
+            $transaction->transaction_type = 5;
+            $transaction->save();
+            // Send notification
+
+            if ($user->udid != null) {
+
+             $userId = $user->udid;   
+                 OneSignal::sendNotificationToUser(
+                "Your bryghia donation has been processed. Thank you for your generosity!",
+                $userId,
+                $url = null,
+                $data = null,
+                $buttons = null,
+                $schedule = null
+                );
+             }
+
+            if ($user_b->udid != null) {
+
+             $userId = $user_b->udid;   
+                 OneSignal::sendNotificationToUser(
+                $user->name." has given you ".$request->value." Bryghia! You can use them to unlock content in the app!",
+                $userId,
+                $url = null,
+                $data = null,
+                $buttons = null,
+                $schedule = null
+                );
+             }
+
+             return response()->json(['data' => $user->bryghia], 200);
+        }
+
+    }
 }
 
