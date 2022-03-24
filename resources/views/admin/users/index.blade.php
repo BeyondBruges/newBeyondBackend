@@ -1,4 +1,5 @@
 @extends('layouts.admin')
+
 @section('content')
 @can('user_create')
     <div style="margin-bottom: 10px;" class="row">
@@ -41,6 +42,10 @@
                             {{ trans('cruds.user.fields.udid') }}
                         </th>
                         <th>
+                            Notifiable
+                        </th>                        
+
+                        <th>
                             &nbsp;
                         </th>
                     </tr>
@@ -70,6 +75,16 @@
                             </td>
                             <td>
                                 {{ $user->udid ?? '' }}
+                            </td>
+                            <td>
+                                @switch($user->notifiable)
+                                    @case(0)
+                                        <i class="fa fa-close" style="color:red;"></i>
+                                    @break                                    
+                                    @case(1)
+                                        <i class="fa fa-check" style="color: green;"></i>
+                                    @break
+                                @endswitch
                             </td>
                             <td>
                                     <a class="btn btn-xs btn-dark" href="{{ route('admin.qr-codes.assignqr', $user->id) }}">
