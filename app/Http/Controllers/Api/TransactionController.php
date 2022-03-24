@@ -141,7 +141,7 @@ class TransactionController extends Controller
         $user = User::find($request->user_id);
         $user_b = User::where('email', $request->user_b)->first();
 
-        if (!$user || !$userb) 
+        if (!$user || !$user_b) 
         {
             return response()->json(['user not found'], 404);
         }
