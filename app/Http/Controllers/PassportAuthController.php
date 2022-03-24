@@ -33,6 +33,11 @@ class PassportAuthController extends Controller
                 ->format('png')
                 ->generate(config('app.url').'/admin/qr-codes/create/'.$user->id, public_path('images/'.$user->id.'.png'));
 
+        if ($request->notifiable != null && $request->notifiable == 1) {
+            $user->notifiable = 1;
+            $user->update();
+        }
+
         return response()->json(['token' => $token], 200);
     }
 
