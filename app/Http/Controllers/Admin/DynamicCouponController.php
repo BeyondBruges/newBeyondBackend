@@ -88,4 +88,14 @@ class DynamicCouponController extends Controller
 
         return response(null, Response::HTTP_NO_CONTENT);
     }
+
+    public function transaction ($id){
+
+
+        return view('admin.dynamicCoupons.transaction', compact(varname));
+    }
+
+    public function process(Request $request){
+
+    }
 }

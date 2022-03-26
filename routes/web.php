@@ -80,6 +80,12 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::delete('dynamic-coupons/destroy', 'DynamicCouponController@massDestroy')->name('dynamic-coupons.massDestroy');
     Route::resource('dynamic-coupons', 'DynamicCouponController');
 
+    
+    Route::get('redeeemed-dynamic-coupons/create/{id}', 'RedeemedDynamicCouponController@create')->name('dynamic-coupons.trnsaction')->name('redeemed-dynamic-coupons.create');
+
+    Route::post('redeemed-dynamic-coupons/store', 'DynamicCouponController@store')->name('redeemed-dynamic-coupons.store');
+
+
     // Qr Code
     Route::delete('qr-codes/destroy', 'QrCodeController@massDestroy')->name('qr-codes.massDestroy');
     Route::resource('qr-codes', 'QrCodeController');

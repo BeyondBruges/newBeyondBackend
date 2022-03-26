@@ -12,6 +12,7 @@ use Carbon\Carbon;
 use App\Models\Product;
 use Illuminate\Support\Str;
 use OneSignal;
+use QrCode;
 
 class UserDynamicCouponsController extends Controller
 {
@@ -50,9 +51,12 @@ class UserDynamicCouponsController extends Controller
         {
             $date = Carbon::now()->addHours(1);
         }
+
+
         $dynamicCoupon->expiration = Carbon::createFromFormat('Y-m-d H:i:s', $date)->format(config('panel.date_format'). ' ' . config('panel.time_format'));   
         $dynamicCoupon->user_id = $user->id;
         $dynamicCoupon->code = Str::random(8);
+        $dynamicCoupon->imageurl = config('app.url').'/dynamiccoupons/'.$dynamicCoupon->code.'.png');
         $dynamicCoupon->save();
         $dynamicCoupon->products()->sync($request->productCategory);
 
@@ -75,6 +79,10 @@ class UserDynamicCouponsController extends Controller
             );
         }
 
+     QrCode::size(1024)
+                ->format('png')
+                ->generate(config('app.url').'/admin/qr-codes/create/'.$user->id, public_path('dynamiccoupons/'.$dynamicCoupon->code.'.png'));
+        $dynamicCoupon->update();
 
         return response()->json(['data' => $user->DynamicCoupons], 200);
 
