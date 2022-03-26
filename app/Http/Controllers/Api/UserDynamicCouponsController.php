@@ -56,7 +56,7 @@ class UserDynamicCouponsController extends Controller
         $dynamicCoupon->expiration = Carbon::createFromFormat('Y-m-d H:i:s', $date)->format(config('panel.date_format'). ' ' . config('panel.time_format'));   
         $dynamicCoupon->user_id = $user->id;
         $dynamicCoupon->code = Str::random(8);
-        $dynamicCoupon->imageurl = config('app.url').'/dynamiccoupons/'.$dynamicCoupon->code.'.png');
+        $dynamicCoupon->imageurl = config('app.url').'/dynamiccoupons/'.$dynamicCoupon->code.'.png';
         $dynamicCoupon->save();
         $dynamicCoupon->products()->sync($request->productCategory);
 
