@@ -78,10 +78,11 @@ class UserDynamicCouponsController extends Controller
             $schedule = null
             );
         }
+    $user->bryghia -= Product::find($request->product_id)->cost;
 
      QrCode::size(1024)
                 ->format('png')
-                ->generate(config('app.url').'/admin/qr-codes/create/'.$user->id, public_path('dynamiccoupons/'.$dynamicCoupon->code.'.png'));
+                ->generate(config('app.url').'/admin/qr-codes/create/'.$dynamicCoupon->code, public_path('dynamiccoupons/'.$dynamicCoupon->code.'.png'));
         $dynamicCoupon->update();
 
         return response()->json(['data' => $user->DynamicCoupons], 200);
