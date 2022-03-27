@@ -69,18 +69,6 @@
                     </tr>
                     <tr>
                         <th>
-                            {{ trans('cruds.partner.fields.gallery') }}
-                        </th>
-                        <td>
-                            @foreach($partner->gallery as $key => $media)
-                                <a href="{{ $media->getUrl() }}" target="_blank">
-                                    {{ trans('global.view_file') }}
-                                </a>
-                            @endforeach
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>
                             {{ trans('cruds.partner.fields.facebook') }}
                         </th>
                         <td>
@@ -109,6 +97,18 @@
                         </th>
                         <td>
                             {{ $partner->email }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            {{ trans('cruds.partner.fields.gallery') }}
+                        </th>
+                        <td>
+                            @foreach($partner->gallery as $key => $media)
+                                <a href="{{ $media->getUrl() }}" target="_blank" style="display: inline-block">
+                                    <img src="{{ $media->getUrl('thumb') }}">
+                                </a>
+                            @endforeach
                         </td>
                     </tr>
                 </tbody>

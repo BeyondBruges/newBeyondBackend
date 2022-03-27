@@ -45,9 +45,6 @@
                             {{ trans('cruds.partner.fields.lng') }}
                         </th>
                         <th>
-                            {{ trans('cruds.partner.fields.gallery') }}
-                        </th>
-                        <th>
                             {{ trans('cruds.partner.fields.facebook') }}
                         </th>
                         <th>
@@ -58,6 +55,9 @@
                         </th>
                         <th>
                             {{ trans('cruds.partner.fields.email') }}
+                        </th>
+                        <th>
+                            {{ trans('cruds.partner.fields.gallery') }}
                         </th>
                         <th>
                             &nbsp;
@@ -84,8 +84,6 @@
                             <input class="search" type="text" placeholder="{{ trans('global.search') }}">
                         </td>
                         <td>
-                        </td>
-                        <td>
                             <input class="search" type="text" placeholder="{{ trans('global.search') }}">
                         </td>
                         <td>
@@ -96,6 +94,8 @@
                         </td>
                         <td>
                             <input class="search" type="text" placeholder="{{ trans('global.search') }}">
+                        </td>
+                        <td>
                         </td>
                         <td>
                         </td>
@@ -130,13 +130,6 @@
                                 {{ $partner->lng ?? '' }}
                             </td>
                             <td>
-                                @foreach($partner->gallery as $key => $media)
-                                    <a href="{{ $media->getUrl() }}" target="_blank">
-                                        {{ trans('global.view_file') }}
-                                    </a>
-                                @endforeach
-                            </td>
-                            <td>
                                 {{ $partner->facebook ?? '' }}
                             </td>
                             <td>
@@ -147,6 +140,13 @@
                             </td>
                             <td>
                                 {{ $partner->email ?? '' }}
+                            </td>
+                            <td>
+                                @foreach($partner->gallery as $key => $media)
+                                    <a href="{{ $media->getUrl() }}" target="_blank" style="display: inline-block">
+                                        <img src="{{ $media->getUrl('thumb') }}">
+                                    </a>
+                                @endforeach
                             </td>
                             <td>
                                 @can('partner_show')

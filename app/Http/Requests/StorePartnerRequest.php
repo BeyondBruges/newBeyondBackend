@@ -31,9 +31,6 @@ class StorePartnerRequest extends FormRequest
             'lng' => [
                 'numeric',
             ],
-            'gallery' => [
-                'array',
-            ],
             'facebook' => [
                 'string',
                 'nullable',
@@ -49,6 +46,9 @@ class StorePartnerRequest extends FormRequest
             'email' => [
                 'required',
                 'unique:partners',
+            ],
+            'gallery' => [
+                'array',
             ],
         ];
     }

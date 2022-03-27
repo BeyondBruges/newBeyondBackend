@@ -85,6 +85,8 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
 
     Route::post('redeemed-dynamic-coupons/store', 'DynamicCouponController@store')->name('redeemed-dynamic-coupons.store');
 
+    
+
 
     // Qr Code
     Route::delete('qr-codes/destroy', 'QrCodeController@massDestroy')->name('qr-codes.massDestroy');

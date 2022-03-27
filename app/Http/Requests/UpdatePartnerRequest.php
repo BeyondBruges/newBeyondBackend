@@ -31,9 +31,6 @@ class UpdatePartnerRequest extends FormRequest
             'lng' => [
                 'numeric',
             ],
-            'gallery' => [
-                'array',
-            ],
             'facebook' => [
                 'string',
                 'nullable',
@@ -49,6 +46,9 @@ class UpdatePartnerRequest extends FormRequest
             'email' => [
                 'required',
                 'unique:partners,email,' . request()->route('partner')->id,
+            ],
+            'gallery' => [
+                'array',
             ],
         ];
     }

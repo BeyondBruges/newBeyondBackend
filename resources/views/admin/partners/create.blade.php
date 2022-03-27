@@ -51,15 +51,6 @@
                 <span class="help-block">{{ trans('cruds.partner.fields.lng_helper') }}</span>
             </div>
             <div class="form-group">
-                <label for="gallery">{{ trans('cruds.partner.fields.gallery') }}</label>
-                <div class="needsclick dropzone {{ $errors->has('gallery') ? 'is-invalid' : '' }}" id="gallery-dropzone">
-                </div>
-                @if($errors->has('gallery'))
-                    <span class="text-danger">{{ $errors->first('gallery') }}</span>
-                @endif
-                <span class="help-block">{{ trans('cruds.partner.fields.gallery_helper') }}</span>
-            </div>
-            <div class="form-group">
                 <label for="facebook">{{ trans('cruds.partner.fields.facebook') }}</label>
                 <input class="form-control {{ $errors->has('facebook') ? 'is-invalid' : '' }}" type="text" name="facebook" id="facebook" value="{{ old('facebook', '') }}">
                 @if($errors->has('facebook'))
@@ -90,6 +81,15 @@
                     <span class="text-danger">{{ $errors->first('email') }}</span>
                 @endif
                 <span class="help-block">{{ trans('cruds.partner.fields.email_helper') }}</span>
+            </div>
+            <div class="form-group">
+                <label for="gallery">{{ trans('cruds.partner.fields.gallery') }}</label>
+                <div class="needsclick dropzone {{ $errors->has('gallery') ? 'is-invalid' : '' }}" id="gallery-dropzone">
+                </div>
+                @if($errors->has('gallery'))
+                    <span class="text-danger">{{ $errors->first('gallery') }}</span>
+                @endif
+                <span class="help-block">{{ trans('cruds.partner.fields.gallery_helper') }}</span>
             </div>
             <div class="form-group">
                 <button class="btn btn-danger" type="submit">
@@ -164,18 +164,22 @@
 Dropzone.options.galleryDropzone = {
     url: '{{ route('admin.partners.storeMedia') }}',
     maxFilesize: 2, // MB
+    acceptedFiles: '.jpeg,.jpg,.png,.gif',
     addRemoveLinks: true,
     headers: {
       'X-CSRF-TOKEN': "{{ csrf_token() }}"
     },
     params: {
-      size: 2
+      size: 2,
+      width: 4096,
+      height: 4096
     },
     success: function (file, response) {
       $('form').append('<input type="hidden" name="gallery[]" value="' + response.name + '">')
       uploadedGalleryMap[file.name] = response.name
     },
     removedfile: function (file) {
+      console.log(file)
       file.previewElement.remove()
       var name = ''
       if (typeof file.file_name !== 'undefined') {
@@ -187,14 +191,14 @@ Dropzone.options.galleryDropzone = {
     },
     init: function () {
 @if(isset($partner) && $partner->gallery)
-          var files =
-            {!! json_encode($partner->gallery) !!}
-              for (var i in files) {
-              var file = files[i]
-              this.options.addedfile.call(this, file)
-              file.previewElement.classList.add('dz-complete')
-              $('form').append('<input type="hidden" name="gallery[]" value="' + file.file_name + '">')
-            }
+      var files = {!! json_encode($partner->gallery) !!}
+          for (var i in files) {
+          var file = files[i]
+          this.options.addedfile.call(this, file)
+          this.options.thumbnail.call(this, file, file.preview)
+          file.previewElement.classList.add('dz-complete')
+          $('form').append('<input type="hidden" name="gallery[]" value="' + file.file_name + '">')
+        }
 @endif
     },
      error: function (file, response) {
