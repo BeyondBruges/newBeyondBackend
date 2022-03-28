@@ -81,11 +81,10 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::resource('dynamic-coupons', 'DynamicCouponController');
 
     
-    Route::get('redeeemed-dynamic-coupons/create/{id}', 'RedeemedDynamicCouponController@create')->name('dynamic-coupons.trnsaction')->name('redeemed-dynamic-coupons.create');
+    Route::get('redeeemed-dynamic-coupons/create/{id}', 'RedeemedDynamicCouponsController@create')->name('redeemed-dynamic-coupons.create');
+    Route::post('redeemed-dynamic-coupons/store', 'RedeemedDynamicCouponsController@store')->name('redeemed-dynamic-coupons.store');
 
-    Route::post('redeemed-dynamic-coupons/store', 'DynamicCouponController@store')->name('redeemed-dynamic-coupons.store');
 
-    
 
 
     // Qr Code

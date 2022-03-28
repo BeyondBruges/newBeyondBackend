@@ -159,4 +159,9 @@ class User extends Authenticatable
         return $this->hasMany(UserCharacter::class, 'user_id', 'id')->with('character');
     }
 
+        public function partners()
+    {
+        return $this->hasMany(Partner::class, 'user_id', 'id');
+    }
+
 }

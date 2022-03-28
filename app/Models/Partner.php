@@ -99,4 +99,11 @@ class Partner extends Model implements HasMedia
     {
         return $date->format('Y-m-d H:i:s');
     }
+
+    public function user()
+
+    {
+        return $this->belongsTo(User::class);
+    }
+
 }
