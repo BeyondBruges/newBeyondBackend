@@ -13,7 +13,7 @@
             <div class="row">
             	<div class="col-4">
             	
-            		<img src="{{$dynamicCoupon->products->first() ? $dynamicCoupon->products->first()->image->getUrl()  : ''}}">
+            		<img src="{{$dynamicCoupon->products->first() ? $dynamicCoupon->products->first()->image->getUrl()  : ''}}" style="width:100%">
             		
             	</div>
             	<div class="col-8">
