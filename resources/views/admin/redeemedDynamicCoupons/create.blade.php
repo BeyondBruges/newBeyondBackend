@@ -3,10 +3,13 @@
 
 <div class="card">
     <div class="card-header">
-        Redeemed Dynamic Coupon
+        Redeem Dynamic Coupon
     </div>
 
+
     <div class="card-body">
+        
+        @if($dynamicCoupon->status == 1)
         <form method="POST" action="{{ route("admin.redeemed-dynamic-coupons.store") }}" enctype="multipart/form-data">
             @csrf
 
@@ -76,6 +79,10 @@
 
 
         </form>
+        @else
+        <h1>This product has already been redeemed</h1>
+        <h2>Please try scanning another code</h2>
+        @endif
     </div>
 </div>
 

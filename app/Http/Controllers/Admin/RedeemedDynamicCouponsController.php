@@ -15,7 +15,8 @@ class RedeemedDynamicCouponsController extends Controller
     public function index(){
 
         $coupons = RedeemedDynamicCoupon::all();
-        return view('admin.redeemedDynamicCoupons.index');
+        $partners = Partner::all();
+        return view('admin.redeemedDynamicCoupons.index', compact('coupons', 'partners'));
     }
 
     public function create($id){
@@ -34,7 +35,26 @@ class RedeemedDynamicCouponsController extends Controller
 
     public function store(Request $request){
 
-        return $request;
+
+
+        $dynamicCoupon = DynamicCoupon::find($request->dynamic_coupon_id);
+        if (!$dynamicCoupon) {
+            
+            return view('admin.redeemedDynamicCoupons.index');
+        }
+        else
+        {
+            $redeemed = new RedeemedDynamicCoupon;
+            $redeemed->user_id = $request->user_id;
+            $redeemed->partner_id = $request->partner_id;
+            $redeemed->dynamic_coupon_id = $dynamicCoupon->id;
+            $redeemed->save();
+            $dynamicCoupon->status = 0;
+            $dynamicCoupon->update();
+            return redirect()->back();
+
+        }
+        
 
     }
 }

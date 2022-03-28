@@ -82,7 +82,7 @@ class UserDynamicCouponsController extends Controller
 
      QrCode::size(1024)
                 ->format('png')
-                ->generate(config('app.url').'/admin/redeeemed-dynamic-coupons/create/'.$dynamicCoupon->code, public_path('dynamiccoupons/'.$dynamicCoupon->code.'.png'));
+                ->generate(config('app.url').'/admin/redeemed-dynamic-coupons/create/'.$dynamicCoupon->code, public_path('dynamiccoupons/'.$dynamicCoupon->code.'.png'));
         $dynamicCoupon->update();
 
         return response()->json(['data' => $user->DynamicCoupons], 200);

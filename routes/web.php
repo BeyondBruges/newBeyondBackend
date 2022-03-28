@@ -80,8 +80,8 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::delete('dynamic-coupons/destroy', 'DynamicCouponController@massDestroy')->name('dynamic-coupons.massDestroy');
     Route::resource('dynamic-coupons', 'DynamicCouponController');
 
-    
-    Route::get('redeeemed-dynamic-coupons/create/{id}', 'RedeemedDynamicCouponsController@create')->name('redeemed-dynamic-coupons.create');
+    Route::get('redeemed-dynamic-coupons', 'RedeemedDynamicCouponsController@index')->name('redeemed-dynamic-coupons.index');
+    Route::get('redeemed-dynamic-coupons/create/{id}', 'RedeemedDynamicCouponsController@create')->name('redeemed-dynamic-coupons.create');
     Route::post('redeemed-dynamic-coupons/store', 'RedeemedDynamicCouponsController@store')->name('redeemed-dynamic-coupons.store');
 
 
