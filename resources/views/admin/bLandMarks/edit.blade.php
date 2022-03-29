@@ -59,6 +59,29 @@
                 @endif
                 <span class="help-block">{{ trans('cruds.bLandMark.fields.key_helper') }}</span>
             </div>
+
+
+            <div class="form-group">
+                <label class="required" for="level_id">Is this a Legend?</label>
+                <select class="form-control select {{ $errors->has('level') ? 'is-invalid' : '' }}" name="legend" id="legend" required>
+                   
+                @if($bLandMark->legend == 0)
+                <option value="0" selected>No</option>
+                <option value="1" >Yes</option>
+                @else
+                <option value="0" >No</option>
+                <option value="1" selected>Yes</option>
+                @endif
+
+                
+                </select>
+                @if($errors->has('level'))
+                    <span class="text-danger">{{ $errors->first('level') }}</span>
+                @endif
+                <span class="help-block">{{ trans('cruds.question.fields.level_helper') }}</span>
+            </div>
+
+
             <div class="form-group">
                 <button class="btn btn-danger" type="submit">
                     {{ trans('global.save') }}

@@ -37,6 +37,7 @@ class BLandMark extends Model implements HasMedia
         'created_at',
         'updated_at',
         'deleted_at',
+        'legend'
     ];
 
     public function registerMediaConversions(Media $media = null): void
