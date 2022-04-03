@@ -35,6 +35,29 @@ class TransactionController extends Controller
     public function store(StoreTransactionRequest $request)
     {
         $transaction = Transaction::create($request->all());
+        $user = User::find($request->user_id);
+        switch ($request->transaction_type) {
+            case '1':
+                $user->bryghia += $request->value;
+                $user->update();
+
+                    if ($user->udid != null) {
+                    $userId = $user->udid; 
+                     OneSignal::sendNotificationToUser(
+                    "You have been awarded ".$request->value." bryghia.",
+                    $userId,
+                    $url = null,
+                    $data = null,
+                    $buttons = null,
+                    $schedule = null
+                        );
+                     }
+                break;
+            
+            default:
+                // code...
+                break;
+        }
 
         return redirect()->route('admin.transactions.index');
     }

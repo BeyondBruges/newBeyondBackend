@@ -31,12 +31,26 @@
             </div>
             <div class="form-group">
                 <label class="required" for="status">{{ trans('cruds.transaction.fields.status') }}</label>
-                <input class="form-control {{ $errors->has('status') ? 'is-invalid' : '' }}" type="number" name="status" id="status" value="{{ old('status', '') }}" step="1" required>
+                <input class="form-control {{ $errors->has('status') ? 'is-invalid' : '' }}" type="number" name="status" id="status" value="1" step="1" hidden>
                 @if($errors->has('status'))
                     <span class="text-danger">{{ $errors->first('status') }}</span>
                 @endif
                 <span class="help-block">{{ trans('cruds.transaction.fields.status_helper') }}</span>
             </div>
+
+                        <div class="form-group">
+                <label class="required" for="transaction_type">{{ trans('cruds.transaction.fields.user') }}</label>
+                <select class="form-control select2 {{ $errors->has('user') ? 'is-invalid' : '' }}" name="transaction_type" id="transaction_type" required>
+                    
+                <option value="1" {{ old('transaction_type') == $id ? 'selected' : '' }}>Bryghia Update</option>
+           
+                </select>
+                @if($errors->has('user'))
+                    <span class="text-danger">{{ $errors->first('user') }}</span>
+                @endif
+                <span class="help-block">{{ trans('cruds.transaction.fields.user_helper') }}</span>
+            </div>
+
             <div class="form-group">
                 <button class="btn btn-danger" type="submit">
                     {{ trans('global.save') }}
