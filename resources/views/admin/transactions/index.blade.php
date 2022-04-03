@@ -66,7 +66,7 @@
                                 {{ $transaction->value ?? '' }}
                             </td>
                             <td>
-                                @if($transaction->type)
+                                @if($transaction->type == 1)
                                      <span style="color:blue">Euro</span>
                                 @else
                                     <span style="color:teal">Bryghia</span>
