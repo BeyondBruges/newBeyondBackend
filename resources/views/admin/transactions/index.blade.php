@@ -29,7 +29,13 @@
                             {{ trans('cruds.transaction.fields.user') }}
                         </th>
                         <th>
+                            Transaction Type
+                        </th>
+                        <th>
                             {{ trans('cruds.transaction.fields.value') }}
+                        </th>
+                        <th>
+                            Currency
                         </th>
                         <th>
                             {{ trans('cruds.transaction.fields.status') }}
@@ -51,11 +57,36 @@
                             <td>
                                 {{ $transaction->user->name ?? '' }}
                             </td>
+                            <td> 
+
+                                {{$transaction->type ? $transaction->type->name : ''}}
+    
+                            </td>
                             <td>
                                 {{ $transaction->value ?? '' }}
                             </td>
                             <td>
-                                {{ $transaction->status ?? '' }}
+                                  @switch($transaction->status)
+                                    @case(1)
+                                    <span style="color:blue">Euro</span>
+                                    @break
+                                    @case(5)
+                                    <span style="color:yellow">Donation</span>
+                                    @break
+                                    @default
+                                    <span style="color:blue">Bryghia</span>
+                                    @break
+                                @endswitch
+                            </td>
+                            <td>
+                                @switch($transaction->status)
+                                    @case(1)
+                                    <span style="color:green">Transaction Approved</span>
+                                    @break
+                                    @case(2)
+                                    <span style="color:red">Transaction Canceled</span>
+                                    @break
+                                @endswitch
                             </td>
                             <td>
                                 @can('transaction_show')

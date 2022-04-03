@@ -37,6 +37,11 @@ class Transaction extends Model
         return $this->belongsTo(User::class, 'user_id');
     }
 
+    public function type()
+    {
+        return $this->belongsTo(TransactionType::class, 'transaction_type');
+    }
+
     protected function serializeDate(DateTimeInterface $date)
     {
         return $date->format('Y-m-d H:i:s');
