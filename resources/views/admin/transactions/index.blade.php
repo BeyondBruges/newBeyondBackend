@@ -67,10 +67,10 @@
                             </td>
                             <td>
                                   @switch($transaction->type)
-                                    @case(1)
+                                    @case("1")
                                     <span style="color:blue">Euro</span>
                                     @break
-                                    @case(5)
+                                    @case("5")
                                     <span style="color:yellow">Donation</span>
                                     @break
                                     @default
