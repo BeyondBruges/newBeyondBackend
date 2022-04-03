@@ -66,7 +66,7 @@
                                 {{ $transaction->value ?? '' }}
                             </td>
                             <td>
-                                  @switch($transaction->status)
+                                  @switch($transaction->type)
                                     @case(1)
                                     <span style="color:blue">Euro</span>
                                     @break
