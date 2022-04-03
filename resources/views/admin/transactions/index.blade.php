@@ -35,7 +35,7 @@
                             {{ trans('cruds.transaction.fields.value') }}
                         </th>
                         <th>
-                            Currency
+                            Currency Spent
                         </th>
                         <th>
                             {{ trans('cruds.transaction.fields.status') }}
@@ -66,7 +66,7 @@
                                 {{ $transaction->value ?? '' }}
                             </td>
                             <td>
-                                @if($transaction->type == "1")
+                                @if($transaction->transaction_type == "1")
                                      <span style="color:blue">Euro</span>
                                 @else
                                     <span style="color:teal">Bryghia</span>
