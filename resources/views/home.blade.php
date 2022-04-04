@@ -135,7 +135,7 @@
                         {{Carbon\Carbon::today()->format('d')}},
                         ],
                     datasets: [{
-                        label: 'App Launches 7 days',
+                        label: 'App Launches last 7 days',
                         data:
     
                          [
@@ -178,7 +178,7 @@
                         {{Carbon\Carbon::today()->format('d')}},
                         ],
                     datasets: [{
-                        label: 'Logins 7 days',
+                        label: 'Logins last 7 days',
                         data:
     
                          [
@@ -272,7 +272,7 @@
                         {{Carbon\Carbon::today()->format('d')}},
                         ],
                     datasets: [{
-                        label: 'New users in the latest 30 days',
+                        label: 'New users in the last 30 days',
                         data:
     
                          [
@@ -319,7 +319,7 @@
                     {{Carbon\Carbon::today()->format('d')}},
                     ],
                 datasets: [{
-                    label: 'All transactions in the latest 30 days',
+                    label: 'Transactions in the last 30 days',
                     data:
 
                      [
@@ -363,7 +363,7 @@
                     {{Carbon\Carbon::today()->format('d')}},
                     ],
                 datasets: [{
-                    label: 'Donation in Bryghia',
+                    label: 'Bryghia donation in the last 30 days',
                     data:
 
                      [

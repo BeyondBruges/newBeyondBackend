@@ -89,4 +89,17 @@ class PassportAuthController extends Controller
         $user->update();
         return response()->json(['data' => $user->udid], 200);   
     }
+
+        public function stats(Request $request){
+
+        $stats = User::withCount('userUserLandmarks')->withCount('userCharacters')->where('email', $request->email)->first();
+
+        if (!$user) {
+           return response()->json(['error' => 'Not Found'], 404);
+        }
+        else
+        {
+            return response()->json(['data' => $stats], 200);
+        }
+    }
 }
