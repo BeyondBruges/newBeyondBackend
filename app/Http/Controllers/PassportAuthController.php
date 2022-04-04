@@ -92,7 +92,7 @@ class PassportAuthController extends Controller
 
         public function stats(Request $request){
 
-        $stats = User::withCount('userUserLandmarks')->withCount('userCharacters')->where('email', $request->user_id)->first();
+        $stats = User::withCount('userUserLandmarks')->withCount('userCharacters')->where('id', $request->user_id)->first();
 
         if (!$stats) {
            return response()->json(['error' => 'Not Found'], 404);
