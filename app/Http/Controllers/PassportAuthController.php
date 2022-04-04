@@ -94,7 +94,7 @@ class PassportAuthController extends Controller
 
         $stats = User::withCount('userUserLandmarks')->withCount('userCharacters')->where('email', $request->email)->first();
 
-        if (!$user) {
+        if (!$stats) {
            return response()->json(['error' => 'Not Found'], 404);
         }
         else
