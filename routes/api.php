@@ -19,6 +19,7 @@ use App\Http\Controllers\Api\AnalyticController;
 use App\Http\Controllers\PassportAuthController;
 use App\Http\Controllers\Api\UserCouponsController;
 use App\Http\Controllers\Api\UserQRController;
+use App\Http\Controllers\Api\TimeController;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -63,16 +64,12 @@ Route::middleware('auth:api')->group(function () {
     Route::post('user_qr_index', [UserQRController::class, 'index']);
     Route::post('user_coupons_index', [UserCouponsController::class, 'index']);
     Route::post('user_coupons_store', [UserCouponsController::class, 'store']);
-
-    
     Route::post('user_dynamic_coupons_index', [UserDynamicCouponsController::class, 'index']);
     Route::post('user_dynamic_coupons_store', [UserDynamicCouponsController::class, 'store']);
-
-
     Route::post('user_donate_bryghia', [TransactionController::class, 'donate']);
     Route::post('user_gift_bryghia', [TransactionController::class, 'gift']);
-
     Route::post('user_stats', [PassportAuthController::class, 'stats']);
+    Route::post('time', [TimeController::class, 'timeOperation']);
 
 });
 
