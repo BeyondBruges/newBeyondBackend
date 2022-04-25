@@ -85,7 +85,7 @@ class UserDynamicCouponsController extends Controller
                 ->generate(config('app.url').'/admin/redeemed-dynamic-coupons/create/'.$dynamicCoupon->code, public_path('dynamiccoupons/'.$dynamicCoupon->code.'.png'));
         $dynamicCoupon->update();
 
-        return response()->json(['data' => $user->DynamicCoupons], 200);
+        return response()->json(['data' => $user->ActiveDynamicCoupons], 200);
 
 
     }
