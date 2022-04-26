@@ -20,6 +20,7 @@ use App\Http\Controllers\PassportAuthController;
 use App\Http\Controllers\Api\UserCouponsController;
 use App\Http\Controllers\Api\UserQRController;
 use App\Http\Controllers\Api\TimeController;
+use App\Http\Controllers\Api\GeoController;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -41,6 +42,7 @@ Route::get('questions', [QuestionController::class, 'index']);
 Route::get('partners', [PartnerController::class, 'index']);
 Route::post('analytics', [AnalyticController::class, 'store']);
 Route::post('udid', [PassportAuthController::class, 'udid']);
+Route::post('checkgps', [GeoController::class, 'calculate']);
 
 //Rutas con login
 Route::middleware('auth:api')->group(function () {
@@ -70,6 +72,7 @@ Route::middleware('auth:api')->group(function () {
     Route::post('user_gift_bryghia', [TransactionController::class, 'gift']);
     Route::post('user_stats', [PassportAuthController::class, 'stats']);
     Route::post('time', [TimeController::class, 'timeOperation']);
+    
 
 });
 
