@@ -49,10 +49,12 @@
                                 {{ $analytic->id ?? '' }}
                             </td>
                             <td>
-                                @if($analytic->user->id == 1)
-                                No User
-                                @else
-                                {{ $analytic->user->name ?? '' }}
+                                @if(isset($analytic->user))
+                                    @if($analytic->user->id == 1)
+                                    No User
+                                    @else
+                                    {{ $analytic->user->name ?? '' }}
+                                    @endif
                                 @endif
                                 
                             </td>
