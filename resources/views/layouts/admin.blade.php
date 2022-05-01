@@ -58,13 +58,7 @@
         <div class="content-wrapper" style="min-height: 917px;">
             <!-- Main content -->
             <section class="content" style="padding-top: 20px">
-                @if(session('message'))
-                    <div class="row mb-2">
-                        <div class="col-lg-12">
-                            <div class="alert alert-success" role="alert">{{ session('message') }}</div>
-                        </div>
-                    </div>
-                @endif
+              
                 @if($errors->count() > 0)
                     <div class="alert alert-danger">
                         <ul class="list-unstyled">
@@ -74,16 +68,38 @@
                         </ul>
                     </div>
                 @endif
+
+            <div class="col-lg-12">
+                @if (\Session::has('success'))
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                          <strong>Success!</strong> {!! \Session::get('success') !!}
+                          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                    </div>
+                @endif               
+
+                 @if (\Session::has('danger'))
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                          <strong>Error!</strong> {!! \Session::get('danger') !!}
+                          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                    </div>
+                @endif
+                </div>
+
                 @yield('content')
+
             </section>
             <!-- /.content -->
         </div>
 
         <footer class="main-footer">
             <div class="float-right d-none d-sm-block">
-                <b>Version</b> 3.0.0-alpha
+                <b>Version</b> 1.0
             </div>
-            <strong> &copy;</strong> {{ trans('global.allRightsReserved') }}
+           Designed and Developed by  <strong> Peanut Agency Mexico</strong> 
         </footer>
         <form id="logoutform" action="{{ route('logout') }}" method="POST" style="display: none;">
             {{ csrf_field() }}

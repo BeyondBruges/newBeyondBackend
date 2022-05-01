@@ -64,4 +64,24 @@ class ProductCategoriesController extends Controller
         return redirect()->route('admin.product-categories.index');
         }
     }
+
+
+    public function show ($id){
+        return $id;
+    }
+
+    public function destroy ($id)
+    {
+        $productCategory = ProductCategory::find($id);
+
+
+        if ($productCategory->products()->count() == 0) {
+            $productCategory->delete();
+            return redirect()->back()->with('success', 'Category Deleted successfully');
+        }
+        else
+        {
+            return redirect()->back()->with('danger', 'Cannot delete categories with assigned products. Please reassing products first');
+        }
+    }
 }
