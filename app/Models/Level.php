@@ -73,4 +73,9 @@ class Level extends Model implements HasMedia
     {
         return $date->format('Y-m-d H:i:s');
     }
+
+        public function sidequest()
+    {
+        return $this->hasMany(SideQuest::class, 'level_id', 'id');
+    }
 }

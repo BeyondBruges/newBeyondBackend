@@ -151,6 +151,18 @@
                                     </a>
                                 </li>
                             @endcan
+
+                            <li class="nav-item">
+                                <a href="{{ route("admin.side-quests.index") }}" class="nav-link {{ request()->is("admin/side-quests") || request()->is("admin/side-quests/*") ? "active" : "" }}">
+                                    <i class="fa-fw nav-icon fas fa-chess">
+
+                                    </i>
+                                    <p>
+                                        Side Quests
+                                    </p>
+                                </a>
+                            </li>           
+
                             @can('level_object_access')
                                 <li class="nav-item">
                                     <a href="{{ route("admin.level-objects.index") }}" class="nav-link {{ request()->is("admin/level-objects") || request()->is("admin/level-objects/*") ? "active" : "" }}">
@@ -670,6 +682,18 @@
                                     </a>
                                 </li>
                             @endcan
+
+                        <li class="nav-item">
+                            <a href="{{ route("admin.user-side-quests.index") }}" class="nav-link {{ request()->is("admin/user-side-quests") || request()->is("admin/user-side-quests/*") ? "active" : "" }}">
+                                <i class="fa-fw nav-icon fa fa-bolt">
+
+                                </i>
+                                <p>
+                                    User SideQuest
+                                </p>
+                            </a>
+                        </li>
+
                         </ul>
                     </li>
                 @endcan

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddUserToPartnersTable extends Migration
+class AddLevelToSideQuestsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class AddUserToPartnersTable extends Migration
      */
     public function up()
     {
-        Schema::table('partners', function (Blueprint $table) {
-        $table->unsignedBigInteger('user_id')->default(1);
+        Schema::table('side_quests', function (Blueprint $table) {
+        $table->unsignedBigInteger('level_id')->nullable();
         });
     }
 
@@ -25,7 +25,7 @@ class AddUserToPartnersTable extends Migration
      */
     public function down()
     {
-        Schema::table('partners', function (Blueprint $table) {
+        Schema::table('side_quests', function (Blueprint $table) {
             //
         });
     }

@@ -252,6 +252,9 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
 
     Route::resource('transactiontypes', 'TransactionTypeController');
 
+    Route::resource('side-quests', 'SideQuestsController');
+    Route::resource('user-side-quests', 'UserSideQuestsController');
+
 });
 Route::group(['prefix' => 'profile', 'as' => 'profile.', 'namespace' => 'Auth', 'middleware' => ['auth']], function () {
     // Change password
