@@ -8,12 +8,13 @@ use App\Models\User;
 use App\Models\Transaction;
 use OneSignal;
 use App\Models\Donation;
+use Auth;
 
 class TransactionController extends Controller
 {
    public function index(Request $request){
 
-    $user = User::find($request->user_id);
+    $user = Auth::user();
     if (!$user) {
         return response()->json(['not found'], 404);
     }
@@ -27,7 +28,7 @@ class TransactionController extends Controller
 
    public function store(Request $request){
         $userId = "";
-        $user = User::find($request->user_id);
+        $user = Auth::user();
         if (!$user) {
             return response()->json(['not found'], 404);
         }
@@ -91,9 +92,18 @@ class TransactionController extends Controller
 
     {
         $userId = "";
+        $user = Auth::user();
+
+        if ($request->value < 0) {
+           return response()->json(['Donation cannot be negative'], 500);
+        }
+
+        if ($user->bryghia < $request->value) {
+           return response()->json(['User does not have enough funds'], 500);
+        }
 
             
-        $user = User::find($request->user_id);
+        
         if (!$user) {
             return response()->json(['user not found'], 404);
         }
@@ -120,7 +130,7 @@ class TransactionController extends Controller
 
              $userId = $user->udid;   
                  OneSignal::sendNotificationToUser(
-                "Tour bryghia donation has been processed. Thank you for your generosity!",
+                "Your bryghia donation has been processed. Thank you for your generosity!",
                 $userId,
                 $url = null,
                 $data = null,
@@ -138,8 +148,20 @@ class TransactionController extends Controller
     
     {
         $userId = "";
-        $user = User::find($request->user_id);
+        $user = Auth::user();
         $user_b = User::where('email', $request->user_b)->first();
+
+
+         $userId = "";
+        $user = Auth::user();
+
+        if ($request->value < 0) {
+           return response()->json(['Donation cannot be negative'], 500);
+        }
+
+        if ($user->bryghia < $request->value) {
+           return response()->json(['User does not have enough funds'], 500);
+        }
 
         if (!$user || !$user_b) 
         {
