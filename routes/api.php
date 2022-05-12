@@ -73,6 +73,9 @@ Route::middleware('auth:api')->group(function () {
     Route::post('user_stats', [PassportAuthController::class, 'stats']);
     Route::post('time', [TimeController::class, 'timeOperation']);
     
+    Route::post('changepassword', [PlayerManagementController::class, 'ChangePassword']);
+    Route::post('deleteaccount', [PlayerManagementController::class, 'DeleteAccount']);
+    
 
 });
 
