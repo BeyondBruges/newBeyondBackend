@@ -28,6 +28,10 @@ class UserLandMarkController extends Controller
         $user = Auth::user();
 
 
+        if ($user->bryghia < 0) {
+            return response()->json(['User cannot do transactions with less than 0 bryghia'], 500);
+        }
+
 
         $userId = $user->udid;
         $landmark = BLandMark::find($request->landmark_id);
