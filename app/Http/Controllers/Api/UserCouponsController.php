@@ -7,11 +7,12 @@ use App\Models\Coupon;
 use App\Models\User;
 use App\Models\UserCoupon;
 use Illuminate\Http\Request;
+use Auth;
 
 class UserCouponsController extends Controller
 {
     public function index(Request $request){
-        $user = User::find($request->user_id);
+        $user = Auth::user();
         if (!$user) {
             return response()->json(['not found'], 404);
         }
@@ -24,7 +25,8 @@ class UserCouponsController extends Controller
 
    public function store(Request $request){
 
-        $user = User::find($request->user_id);
+        $user = Auth::user();
+        $userId = $user->udid;
         $coupon = Coupon::find($request->coupon_id);
         if (!$user || !$coupon) {
             return response()->json(['not found'], 404);
@@ -44,7 +46,7 @@ class UserCouponsController extends Controller
 
             if ($user->udid != null) {
                  OneSignal::sendNotificationToUser(
-                "New User Coupon registered",
+                "New Coupon Awarded!",
                 $userId,
                 $url = null,
                 $data = null,

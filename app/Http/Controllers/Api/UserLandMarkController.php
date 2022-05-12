@@ -7,11 +7,12 @@ use App\Models\BLandMark;
 use App\Models\User;
 use App\Models\UserLandmark;
 use Illuminate\Http\Request;
+use Auth;
 
 class UserLandMarkController extends Controller
 {
     public function index(Request $request){
-        $user = User::find($request->user_id);
+        $user = Auth::user();
         if (!$user) {
             return response()->json(['not found'], 404);
         }
@@ -24,7 +25,11 @@ class UserLandMarkController extends Controller
 
    public function store(Request $request){
 
-        $user = User::find($request->user_id);
+        $user = Auth::user();
+
+
+
+        $userId = $user->udid;
         $landmark = BLandMark::find($request->landmark_id);
         if (!$user || !$landmark) {
             return response()->json(['not found'], 404);
@@ -42,15 +47,15 @@ class UserLandMarkController extends Controller
                 $userLandmark->save();
             }
 
-           /* if ($user->udid != null) {
+            if ($user->udid != null) {
                  OneSignal::sendNotificationToUser(
-                "New User Landmark registered",
+                "New User Landmark unlocked",
                 $userId,
                 $url = null,
                 $data = null,
                 $buttons = null,
                 $schedule = null
-            );*/
+            );
         }
 
         return response()->json(['data' => $user->userUserLandmarks], 200);

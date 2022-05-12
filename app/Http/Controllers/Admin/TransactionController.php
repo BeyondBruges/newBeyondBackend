@@ -36,7 +36,7 @@ class TransactionController extends Controller
     public function store(StoreTransactionRequest $request)
     {
         $transaction = Transaction::create($request->all());
-        $user = User::find($request->user_id);
+        $user = Auth::user();
         switch ($request->transaction_type) {
             case '1':
                 $user->bryghia += $request->value;

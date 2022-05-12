@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\BLandMark;
 use App\Models\UserLandmark;
 use App\Models\User;
+use Auth;
 
 class BLandMarkController extends Controller
 {
@@ -19,7 +20,7 @@ class BLandMarkController extends Controller
 
     public function user_index(Request $request){
 
-     $user = User::find($request->user_id);
+     $user = Auth::user();
         if (!$user) {
             return response()->json(['not found'], 404);
         }
@@ -32,7 +33,7 @@ class BLandMarkController extends Controller
     }
 
    public function store(Request $request){
-        $user = User::find($request->user_id);
+        $user = Auth::user();
         if (!$user) {
             return response()->json(['not found'], 404);
         }

@@ -79,7 +79,7 @@ class PassportAuthController extends Controller
 
     public function udid(Request $request){
 
-        $user = User::find($request->user_id);
+        $user = Auth::user();
 
         if ($request->udid == "0000000000") {
            $user->udid = null;

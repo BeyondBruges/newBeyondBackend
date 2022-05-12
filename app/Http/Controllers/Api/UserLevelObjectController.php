@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-
+use Auth;
 use App\Models\User;
 use App\Models\UserLevelObject;
 
@@ -12,7 +12,7 @@ class UserLevelObjectController extends Controller
 {
     public function index(Request $request){
 
-    $user = User::find($request->user_id);
+    $user = Auth::user();
     if (!$user) {
         return response()->json(['not found'], 404);
     }
@@ -27,7 +27,7 @@ class UserLevelObjectController extends Controller
 
     public function store(Request $request){
 
-    $user = User::find($request->user_id);
+    $user = Auth::user();
     if (!$user) {
         return response()->json(['not found'], 404);
     }

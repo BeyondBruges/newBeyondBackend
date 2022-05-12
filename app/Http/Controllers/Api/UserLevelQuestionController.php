@@ -7,12 +7,13 @@ use Illuminate\Http\Request;
 
 use App\Models\User;
 use App\Models\UserLevelQuestion;
+use Auth;
 
 class UserLevelQuestionController extends Controller
 {
     public function index(Request $request){
 
-    $user = User::find($request->user_id);
+    $user = Auth::user();
     if (!$user) {
         return response()->json(['not found'], 404);
     }
@@ -27,7 +28,7 @@ class UserLevelQuestionController extends Controller
 
     public function store(Request $request){
 
-    $user = User::find($request->user_id);
+    $user = Auth::user();
     if (!$user) {
         return response()->json(['not found'], 404);
     }

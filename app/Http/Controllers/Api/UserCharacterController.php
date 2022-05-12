@@ -8,11 +8,12 @@ use App\Models\User;
 use App\Models\Character;
 use App\Models\UserCharacter;
 use OneSignal;
+use Auth;
 
 class UserCharacterController extends Controller
 {
 public function index(Request $request){
-        $user = User::find($request->user_id);
+        $user = Auth::user();
         if (!$user) {
             return response()->json(['not found'], 404);
         }
@@ -25,7 +26,7 @@ public function index(Request $request){
 
    public function store(Request $request){
 
-        $user = User::find($request->user_id);
+        $user = Auth::user();
         if (!$user) {
             return response()->json(['not found'], 404);
         }
@@ -38,17 +39,7 @@ public function index(Request $request){
             $character->character_id = isset($request->character_id) ? $request->character_id : 1;
             $character->save();
 
-            if ($user->udid != null) {
-                 OneSignal::sendNotificationToUser(
-                "New User Coupon registered",
-                $userId,
-                $url = null,
-                $data = null,
-                $buttons = null,
-                $schedule = null
-            );
-  
-                }
+
             }
         return response()->json(['data' => $user->userCharacters], 200);
         

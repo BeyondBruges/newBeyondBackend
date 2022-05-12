@@ -7,11 +7,12 @@ use App\Models\QrCode;
 use App\Models\User;
 use App\Models\UserQrCode;
 use Illuminate\Http\Request;
+use Auth;
 
 class UserQRController extends Controller
 {
     public function index(Request $request){
-        $user = User::find($request->user_id);
+        $user = Auth::user();
         if (!$user) {
             return response()->json(['not found'], 404);
         }

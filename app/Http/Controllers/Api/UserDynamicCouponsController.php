@@ -13,12 +13,13 @@ use App\Models\Product;
 use Illuminate\Support\Str;
 use OneSignal;
 use QrCode;
+use Auth;
 
 class UserDynamicCouponsController extends Controller
 {
     public function index(Request $request){
 
-    $user = User::find($request->user_id);
+    $user = Auth::user();
     if (!$user) {
         return response()->json(['not found'], 404);
     }
@@ -34,7 +35,7 @@ class UserDynamicCouponsController extends Controller
     public function store(Request $request){
 
 
-    $user = User::find($request->user_id);
+    $user = Auth::user();
     if (!$user) {
         return response()->json(['user not found'], 404);
     }
