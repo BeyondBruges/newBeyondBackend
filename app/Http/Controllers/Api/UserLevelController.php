@@ -27,6 +27,12 @@ class UserLevelController extends Controller
    public function store(Request $request){
 
         $user = Auth::user();
+
+        if ($user->bryghia < 0) {
+            return response()->json(['User cannot do transactions with less than 0 bryghia'], 500);
+        }
+
+
         $level = Level::find($request->level_id);
         if (!$user || !$level) {
             return response()->json(['not found'], 404);
