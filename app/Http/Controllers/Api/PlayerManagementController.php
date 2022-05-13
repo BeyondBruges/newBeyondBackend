@@ -13,7 +13,7 @@ class PlayerManagementController extends Controller
 
         $user = Auth::user();
         if (!$user) {
-           return response()->json(['not found'], 404);
+           return response()->json(['User not found'], 404);
         }
         else
         {
