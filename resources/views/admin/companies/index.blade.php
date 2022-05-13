@@ -53,20 +53,12 @@
                             {{ trans('cruds.company.fields.logo') }}
                         </th>
                         <th>
-                            {{ trans('cruds.company.fields.google_analyitics') }}
+                            Levels Global Cost
                         </th>
                         <th>
-                            {{ trans('cruds.company.fields.sendinblue_user') }}
+                            Landmarks Global Cost
                         </th>
-                        <th>
-                            {{ trans('cruds.company.fields.sendinblue_password') }}
-                        </th>
-                        <th>
-                            {{ trans('cruds.company.fields.onesignal_appid') }}
-                        </th>
-                        <th>
-                            {{ trans('cruds.company.fields.onesignal_apikey') }}
-                        </th>
+
                         <th>
                             &nbsp;
                         </th>
@@ -125,19 +117,10 @@
                                 @endif
                             </td>
                             <td>
-                                {{ $company->google_analyitics ?? '' }}
+                                {{ $company->level_cost ?? '' }}
                             </td>
                             <td>
-                                {{ $company->sendinblue_user ?? '' }}
-                            </td>
-                            <td>
-                                {{ $company->sendinblue_password ?? '' }}
-                            </td>
-                            <td>
-                                {{ $company->onesignal_appid ?? '' }}
-                            </td>
-                            <td>
-                                {{ $company->onesignal_apikey ?? '' }}
+                                {{ $company->landmark_cost ?? '' }}
                             </td>
                             <td>
                                 @can('company_show')

@@ -126,6 +126,30 @@
                 @endif
                 <span class="help-block">{{ trans('cruds.company.fields.onesignal_apikey_helper') }}</span>
             </div>
+
+<div class="form-group">
+                <label for="level_cost">Global Landmark Cost</label>
+                <input class="form-control {{ $errors->has('level_cost') ? 'is-invalid' : '' }}" type="text" name="level_cost" id="level_cost" value="{{ old('level_cost', $company->level_cost) }}">
+                @if($errors->has('level_cost'))
+                    <span class="text-danger">{{ $errors->first('level_cost') }}</span>
+                @endif
+   
+            </div>
+
+            <div class="form-group">
+                <label for="landmark_cost">Global Level Cost</label>
+                <input class="form-control {{ $errors->has('landmark_cost') ? 'is-invalid' : '' }}" type="text" name="landmark_cost" id="landmark_cost" value="{{ old('landmark_cost', $company->landmark_cost) }}">
+                @if($errors->has('landmark_cost'))
+                    <span class="text-danger">{{ $errors->first('landmark_cost') }}</span>
+                @endif
+        
+            </div>            
+
+            
+
+
+
+
             <div class="form-group">
                 <button class="btn btn-danger" type="submit">
                     {{ trans('global.save') }}
