@@ -25,6 +25,7 @@ class AnalyticController extends Controller
 
     public function create()
     {
+        return view('admin.analytics.index', compact('analytics'));
         abort_if(Gate::denies('analytic_create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         $types = AnalyticType::pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
