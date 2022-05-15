@@ -9,12 +9,13 @@ use App\Models\DynamicCoupon;
 use App\Models\QrCode;
 use App\Models\Analytic;
 use App\Models\ContactForm;
-
+use Auth;
 
 class HomeController
 {
     public function index()
     {
+       
         $users = User::count();
         $transactions = Transaction::count();
         $partners = Partner::count();
