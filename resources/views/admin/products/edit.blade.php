@@ -56,9 +56,9 @@
             <div class="form-group">
                 <label class="required" for="product_category">{{ trans('cruds.analytic.fields.type') }}</label>
                 <select class="form-control select {{ $errors->has('type') ? 'is-invalid' : '' }}" name="product_category" id="product_category" required>
-                    @foreach($categories as $id => $entry)
+                    @foreach($categories as $entry)
                         @if($entry->id == $product->product_category)
-                        <option value="{{ $entry->id }}}" selected>{{ $entry->name }}</option>
+                        <option value="{{ $entry->id }}" selected>{{ $entry->name }}</option>
                         @else
                         <option value="{{ $entry->id }}">{{ $entry->name }}</option>
                         @endif
