@@ -115,7 +115,7 @@ class TransactionController extends Controller
             $donation->value = $request->value;
             $donation->save();
             //Update bryghia from User
-            $user->bryghia =0;
+            $user->bryghia -= $request->value;
             $user->update();
             //Register Transaction
             $transaction = new Transaction;
@@ -128,7 +128,7 @@ class TransactionController extends Controller
 
             if ($user->udid != null) {
 
-             $userId = $user->udid;   
+                $userId = $user->udid;   
                  OneSignal::sendNotificationToUser(
                 "Your bryghia donation has been processed. Thank you for your generosity!",
                 $userId,
