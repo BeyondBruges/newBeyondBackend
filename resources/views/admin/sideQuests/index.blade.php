@@ -58,8 +58,7 @@
                                 {{ $level->key ?? '' }}
                             </td>
                             <td>
-                                {{$level->levels
-                                    ->name}}
+                                {{$level->levels ? $level->levels->name :  ''}}
                           
                             </td>
                             <td>
