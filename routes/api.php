@@ -41,14 +41,13 @@ Route::get('products', [ProductsController::class, 'index']);
 Route::get('questions', [QuestionController::class, 'index']);
 Route::get('partners', [PartnerController::class, 'index']);
 Route::post('analytics', [AnalyticController::class, 'store']);
-Route::post('udid', [PassportAuthController::class, 'udid']);
 Route::post('checkgps', [GeoController::class, 'calculate']);
 
 //Rutas con login
 Route::middleware('auth:api')->group(function () {
 
     Route::post('user', [PassportAuthController::class, 'user']);
-
+    Route::post('udid', [PassportAuthController::class, 'udid']);
     Route::post('transaction_index', [TransactionController::class, 'index']);
     Route::post('transaction_store', [TransactionController::class, 'store']);
     Route::post('UserdynamicCoupon_index', [UserDynamicCouponsController::class, 'index']);
