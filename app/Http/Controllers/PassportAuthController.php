@@ -89,7 +89,6 @@ class PassportAuthController extends Controller
     public function udid(Request $request){
 
         $user = Auth::user();
-        return $user;
         if ($request->udid != null) {
            $user->udid = $request->udid;
         }
