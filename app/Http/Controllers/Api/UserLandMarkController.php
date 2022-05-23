@@ -64,5 +64,5 @@ class UserLandMarkController extends Controller
 
         return response()->json(['data' => $user->userUserLandmarks], 200);
         }
-    
+    }
 }
