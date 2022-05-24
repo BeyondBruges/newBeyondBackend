@@ -1,27 +1,27 @@
 <?php
 
-use App\Http\Controllers\Api\UserLandMarkController;
+use App\Http\Controllers\Api\AnalyticController;
 use App\Http\Controllers\Api\BLandMarkController;
 use App\Http\Controllers\Api\BlogController;
+use App\Http\Controllers\Api\CompanyController;
+use App\Http\Controllers\Api\CouponsController;
+use App\Http\Controllers\Api\GeoController;
 use App\Http\Controllers\Api\LevelController;
 use App\Http\Controllers\Api\LevelObjectsController;
-use App\Http\Controllers\Api\CouponsController;
+use App\Http\Controllers\Api\PartnerController;
 use App\Http\Controllers\Api\ProductsController;
 use App\Http\Controllers\Api\QuestionController;
-use App\Http\Controllers\Api\PartnerController;
+use App\Http\Controllers\Api\TimeController;
 use App\Http\Controllers\Api\TransactionController;
+use App\Http\Controllers\Api\UserCharacterController;
+use App\Http\Controllers\Api\UserCouponsController;
 use App\Http\Controllers\Api\UserDynamicCouponsController;
+use App\Http\Controllers\Api\UserLandMarkController;
+use App\Http\Controllers\Api\UserLevelController;
 use App\Http\Controllers\Api\UserLevelObjectController;
 use App\Http\Controllers\Api\UserLevelQuestionController;
-use App\Http\Controllers\Api\UserLevelController;
-use App\Http\Controllers\Api\UserCharacterController;
-use App\Http\Controllers\Api\AnalyticController;
-use App\Http\Controllers\PassportAuthController;
-use App\Http\Controllers\Api\UserCouponsController;
 use App\Http\Controllers\Api\UserQRController;
-use App\Http\Controllers\Api\TimeController;
-use App\Http\Controllers\Api\GeoController;
-
+use App\Http\Controllers\PassportAuthController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -40,12 +40,12 @@ Route::get('coupons', [CouponsController::class, 'index']);
 Route::get('products', [ProductsController::class, 'index']);
 Route::get('questions', [QuestionController::class, 'index']);
 Route::get('partners', [PartnerController::class, 'index']);
+Route::get('company', [CompanyController::class, 'index']);
 Route::post('analytics', [AnalyticController::class, 'store']);
 Route::post('checkgps', [GeoController::class, 'calculate']);
 
 //Rutas con login
 Route::middleware('auth:api')->group(function () {
-
     Route::post('user', [PassportAuthController::class, 'user']);
     Route::post('udid', [PassportAuthController::class, 'udid']);
     Route::post('transaction_index', [TransactionController::class, 'index']);
