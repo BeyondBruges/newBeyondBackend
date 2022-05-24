@@ -55,18 +55,13 @@ class TransactionController extends Controller
                     $buttons = null,
                     $schedule = null
                 );
-
+                }
             }
-            
-            
-        }
+            else
+            {
+                $user->bryghia -= $transaction->value;
+                $user->update();
 
-
-                if ($transaction->transaction_type == 2 || $transaction->transaction_type == 3) {
-               $user->bryghia -= $transaction->value;
-               $user->update();
- 
-                
                 if ($user->udid != null) {
                     $userId = $user->udid; 
                      OneSignal::sendNotificationToUser(
@@ -77,14 +72,10 @@ class TransactionController extends Controller
                     $buttons = null,
                     $schedule = null
                 );
-                
-
+                }
             }
-            
-        }
 
-
-        return response()->json(['data' => $user->bryghia], 200);
+            return response()->json(['data' => $user->bryghia], 200);
         }
     }
 
