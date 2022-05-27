@@ -14,7 +14,7 @@ class BLandMarkController extends Controller
 
     public function index(){
 
-        $landmarks = BLandMark::all();
+        $landmarks = BLandMark::all()->sortBy("name");;
         return response()->json(['data' => $landmarks], 200);
     }
 
