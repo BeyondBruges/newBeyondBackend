@@ -91,6 +91,15 @@
                 @endif
                 <span class="help-block">{{ trans('cruds.partner.fields.gallery_helper') }}</span>
             </div>
+
+            <div class="form-group">
+                <label  for="phone">Phone</label>
+                <input class="form-control {{ $errors->has('phone') ? 'is-invalid' : '' }}" type="phone" name="phone" id="phone" value="{{ old('phone') }}">
+                @if($errors->has('phone'))
+                    <span class="text-danger">{{ $errors->first('phone') }}</span>
+                @endif
+            </div>
+
             <div class="form-group">
                 <button class="btn btn-danger" type="submit">
                     {{ trans('global.save') }}

@@ -46,7 +46,7 @@
 
             <div class="form-group">
                 <label for="description_key">Description Key</label>
-                <input class="form-control {{ $errors->has('description_key') ? 'is-invalid' : '' }}" type="text" name="description_key" id="description_key" value="{{ old('description_key', $product->description_key) }}" step="0.01">
+                <input class="form-control {{ $errors->has('description_key') ? 'is-invalid' : '' }}" type="text" name="description_key" id="description_key" value="{{ old('description_key', $product->description_key) }}" required>
                 @if($errors->has('description_key'))
                     <span class="text-danger">{{ $errors->first('description_key') }}</span>
                 @endif
