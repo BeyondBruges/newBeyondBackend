@@ -11,10 +11,10 @@
             @method('PUT')
             @csrf
             <div class="form-group">
-                <label class="required" for="name">{{ trans('cruds.product.fields.name') }}</label>
+                <label class="required" for="name">Name Key</label>
                 <input class="form-control {{ $errors->has('name') ? 'is-invalid' : '' }}" type="text" name="name" id="name" value="{{ old('name', $product->name) }}" required>
                 @if($errors->has('name'))
-                    <span class="text-danger">{{ $errors->first('name') }}</span>
+                    <span class="text-danger">This have to be added to the localization table</span>
                 @endif
                 <span class="help-block">{{ trans('cruds.product.fields.name_helper') }}</span>
             </div>

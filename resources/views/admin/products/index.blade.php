@@ -30,7 +30,7 @@
                             {{ trans('cruds.product.fields.id') }}
                         </th>
                         <th>
-                            {{ trans('cruds.product.fields.name') }}
+                            Name Key
                         </th>
                         <th>
                             {{ trans('cruds.product.fields.image') }}
