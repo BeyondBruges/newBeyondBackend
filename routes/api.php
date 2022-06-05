@@ -74,6 +74,10 @@ Route::middleware('auth:api')->group(function () {
     
     Route::post('changepassword', [PlayerManagementController::class, 'ChangePassword']);
     Route::post('deleteaccount', [PlayerManagementController::class, 'DeleteAccount']);
+
+    Route::post('unlockgamemode', [UnlockController::class, 'unlockgame']);
+    Route::post('unlocktourist', [UnlockController::class, 'unlocktourist']);
+    Route::post('unlockeverything', [UnlockController::class, 'unlockeverything']);
     
 
 });
