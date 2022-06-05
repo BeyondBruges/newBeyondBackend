@@ -99,6 +99,14 @@
                 @if($errors->has('phone'))
                     <span class="text-danger">{{ $errors->first('phone') }}</span>
                 @endif
+            </div>            
+
+            <div class="form-group">
+                <label class="" for="address">address</label>
+                <input class="form-control {{ $errors->has('address') ? 'is-invalid' : '' }}" type="address" name="address" id="address" value="{{ old('address', $partner->address) }}" required>
+                @if($errors->has('address'))
+                    <span class="text-danger">{{ $errors->first('address') }}</span>
+                @endif
             </div>
 
             <div class="form-group">

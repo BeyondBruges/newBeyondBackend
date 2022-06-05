@@ -37,6 +37,9 @@
                         </th>
                         <th>
                             Phone
+                        </th>                        
+                        <th>
+                            Address
                         </th>
                         <th>
                             {{ trans('cruds.partner.fields.logo') }}
@@ -77,6 +80,8 @@
                         </td>
                         <td>
                             <input class="search" type="text" placeholder="{{ trans('global.search') }}">
+                        </td>
+                        <td>                        
                         </td>
                         <td>
                         </td>
@@ -123,6 +128,9 @@
                             </td>
                             <td>
                                 {{ $partner->phone ?? '' }}
+                            </td>                            
+                            <td>
+                                {{ $partner->address ?? '' }}
                             </td>
                             <td>
                                 @if($partner->logo)
