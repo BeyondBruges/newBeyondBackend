@@ -64,6 +64,19 @@
                     <span class="text-danger">{{ $errors->first('type') }}</span>
                 @endif
                 <span class="help-block">{{ trans('cruds.analytic.fields.type_helper') }}</span>
+            </div>           
+
+             <div class="form-group">
+                <label class="required" for="status">Status</label>
+                <select class="form-control select {{ $errors->has('type') ? 'is-invalid' : '' }}" name="status" id="status">
+                <option value="1" {{ old('status') == $id ? 'selected' : '' }}>Available</option> 
+
+                <option value="0" >Unavailable</option>
+                </select>
+                @if($errors->has('type'))
+                    <span class="text-danger">{{ $errors->first('type') }}</span>
+                @endif
+                <span class="help-block">{{ trans('cruds.analytic.fields.type_helper') }}</span>
             </div>
 
             <div class="form-group">

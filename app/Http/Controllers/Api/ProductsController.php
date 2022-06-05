@@ -10,7 +10,7 @@ class ProductsController extends Controller
 {
       public function index()
     {
-        $products=Product::all();
+        $products=Product::where('status', 1)->where('stock', ">", 0)->get();
         return response()->json(['data'=>$products], 200);
     }
 }

@@ -38,7 +38,8 @@ class Product extends Model implements HasMedia
         'updated_at',
         'deleted_at',
         'product_category',
-        'description_key'
+        'description_key',
+        'status',
     ];
 
     public function registerMediaConversions(Media $media = null): void

@@ -44,6 +44,9 @@
 
                         <th>
                            Category
+                        </th>                        
+                        <th>
+                           Status
                         </th>
                         <th>
                             &nbsp;
@@ -78,6 +81,14 @@
 
                             <td>
                                 {{ $product->category->name ?? '' }}
+                            </td>                           
+
+                             <td>
+                               @if($product->status == 1)
+                               <span style="color:green">Available</span>
+                               @else
+                               <span style="color:red">Unavailable</span>
+                               @endif
                             </td>
                             <td>
                                 @can('product_show')
