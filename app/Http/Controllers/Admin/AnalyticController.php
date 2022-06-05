@@ -18,7 +18,7 @@ class AnalyticController extends Controller
     {
         abort_if(Gate::denies('analytic_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $analytics = Analytic::with(['type'])->get();
+        $analytics = Analytic::with(['type'])->paginate(100);
 
         return view('admin.analytics.index', compact('analytics'));
     }

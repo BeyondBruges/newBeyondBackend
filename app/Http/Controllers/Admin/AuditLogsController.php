@@ -14,7 +14,7 @@ class AuditLogsController extends Controller
     {
         abort_if(Gate::denies('audit_log_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $auditLogs = AuditLog::all();
+        $auditLogs = AuditLog::paginate(100);
 
         return view('admin.auditLogs.index', compact('auditLogs'));
     }
