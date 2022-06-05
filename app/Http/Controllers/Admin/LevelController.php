@@ -88,9 +88,9 @@ class LevelController extends Controller
     {
         abort_if(Gate::denies('level_delete'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $level->delete();
+        //$level->delete();
 
-        return back();
+        return back()->with('danger', 'levels cant be destroyed');
     }
 
     public function massDestroy(MassDestroyLevelRequest $request)

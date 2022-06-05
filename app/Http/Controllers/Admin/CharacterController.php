@@ -86,9 +86,9 @@ class CharacterController extends Controller
     {
         abort_if(Gate::denies('character_delete'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $character->delete();
+        // $character->delete();
 
-        return back();
+        return back()->with('danger', 'characters cant be deleted');
     }
 
     public function massDestroy(MassDestroyCharacterRequest $request)

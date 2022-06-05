@@ -24,7 +24,7 @@ class RedeemedDynamicCouponsController extends Controller
         $dynamicCoupon = DynamicCoupon::where('code', $id)->first();
 
         if (!$dynamicCoupon) {
-         return view('admin.redeemedDynamicCoupons.index');
+         return view('admin.redeemedDynamicCoupons.index')->with('danger', 'Dynamic coupon does not exists');
         }
         else
         {

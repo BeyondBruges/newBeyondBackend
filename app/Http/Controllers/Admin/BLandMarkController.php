@@ -86,9 +86,9 @@ class BLandMarkController extends Controller
     {
         abort_if(Gate::denies('b_land_mark_delete'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $bLandMark->delete();
+        //$bLandMark->delete();
 
-        return back();
+        return back()->with('danger', 'landmarks cant be destroyed');
     }
 
     public function massDestroy(MassDestroyBLandMarkRequest $request)
