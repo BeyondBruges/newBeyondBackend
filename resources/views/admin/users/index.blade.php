@@ -43,6 +43,9 @@
                         </th>
                         <th>
                             Notifiable
+                        </th>                         
+                        <th>
+                            Timeleft
                         </th>                        
 
                         <th>
@@ -85,6 +88,9 @@
                                         <i class="fa fa-check" style="color: green;"></i>
                                     @break
                                 @endswitch
+                            </td>
+                            <td>
+                                {{$user->timeleft ?? ''}}
                             </td>
                             <td>
                                     <a class="btn btn-xs btn-dark" href="{{ route('admin.qr-codes.assignqr', $user->id) }}">

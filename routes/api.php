@@ -21,6 +21,7 @@ use App\Http\Controllers\Api\UserLevelController;
 use App\Http\Controllers\Api\UserLevelObjectController;
 use App\Http\Controllers\Api\UserLevelQuestionController;
 use App\Http\Controllers\Api\UserQRController;
+use App\Http\Controllers\Api\UserSideQuest;
 use App\Http\Controllers\PassportAuthController;
 use App\Http\Controllers\Api\PlayerManagementController;
 use Illuminate\Http\Request;
@@ -80,6 +81,8 @@ Route::middleware('auth:api')->group(function () {
     Route::post('unlocktourist', [UnlockController::class, 'unlocktourist']);
     Route::post('unlockeverything', [UnlockController::class, 'unlockeverything']);
     
+    Route::post('user_sidequests', [UserSideQuest::class, 'index']);
+    Route::post('user_sidequests', [UserSideQuest::class, 'store']);
 
 });
 
