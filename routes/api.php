@@ -81,8 +81,8 @@ Route::middleware('auth:api')->group(function () {
     Route::post('unlocktourist', [UnlockController::class, 'unlocktourist']);
     Route::post('unlockeverything', [UnlockController::class, 'unlockeverything']);
     
-    Route::post('user_sidequests', [UserSideQuest::class, 'index']);
-    Route::post('user_sidequests', [UserSideQuest::class, 'store']);
+    Route::post('user_sidequests_index', [UserSideQuest::class, 'index']);
+    Route::post('user_sidequests_store', [UserSideQuest::class, 'store']);
 
 });
 
