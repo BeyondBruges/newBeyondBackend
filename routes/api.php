@@ -21,7 +21,7 @@ use App\Http\Controllers\Api\UserLevelController;
 use App\Http\Controllers\Api\UserLevelObjectController;
 use App\Http\Controllers\Api\UserLevelQuestionController;
 use App\Http\Controllers\Api\UserQRController;
-use App\Http\Controllers\PassportAuthController;
+use App\Http\Controllers\Api\PassportAuthController;
 use App\Http\Controllers\PlayerManagementController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
