@@ -62,9 +62,9 @@ class User extends Authenticatable
         return $this->hasMany(Transaction::class, 'user_id', 'id');
     }
 
-    public function userPartnerUsers()
+    public function userpartners()
     {
-        return $this->hasMany(PartnerUser::class, 'user_id', 'id');
+        return $this->hasMany(PartnerUser::class, 'user_id', 'id')->with('partner');
     }
 
     public function userUserLandmarks()
@@ -80,6 +80,11 @@ class User extends Authenticatable
     public function userUserQrCodes()
     {
         return $this->hasMany(UserQrCode::class, 'user_id', 'id');
+    }    
+
+    public function createdqrcodes()
+    {
+        return $this->hasMany(UserQrCode::class, 'created_by_user_id', 'id');
     }
 
     public function userUserTransactions()
