@@ -17,7 +17,7 @@ class CreatePartnersTable extends Migration
             $table->string('facebook')->nullable();
             $table->string('instagram')->nullable();
             $table->string('tiktok')->nullable();
-            $table->string('email')->unique();
+            $table->string('email')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
