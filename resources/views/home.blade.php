@@ -498,7 +498,7 @@
                     {{Carbon\Carbon::today()->format('d')}},
                     ],
                 datasets: [{
-                    label: 'QRs generate in the latest 30 days',
+                    label: 'QRs generated in the latest 30 days',
                     data:
 
                      [
@@ -530,6 +530,10 @@
         <h5>Bryghia</h5>
         <canvas id="bryghiaChart" width="400" height="100"></canvas>
 
+@php
+$transactiontype = \App\Models\TransactionType::where('name', 'Bryghia Award')->first()->id;
+@endphp
+
         <script>
         const bryghia = document.getElementById('bryghiaChart');
         const bryghiaChart = new Chart(bryghia, {
@@ -542,15 +546,15 @@
                     {{Carbon\Carbon::today()->format('d')}},
                     ],
                 datasets: [{
-                    label: 'Bryghia generate in the latest 30 days',
+                    label: 'Bryghia generated in the latest 30 days',
                     data:
 
                      [
                     @for ($i = 0; $i < 30; $i++)
 
-                {{DB::table('analytics')->where('type_id','2')->whereDate('created_at', '=', now()->subDays(30-$i)->format('Y-m-d'))->get()->sum('value')}},
+                {{DB::table('qr_codes')->whereDate('created_at', '=', now()->subDays(30-$i)->format('Y-m-d'))->get()->sum('issued_bryghia')}},
                     @endfor
-                    {{DB::table('analytics')->where('type_id','2')->whereDate('created_at', '=', now()->format('Y-m-d'))->get()->sum('value')}},
+                    {{DB::table('qr_codes')->whereDate('created_at', '=', now()->format('Y-m-d'))->get()->sum('issued_bryghia')}},
                      ],
 
                  fill: false,

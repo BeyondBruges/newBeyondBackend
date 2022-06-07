@@ -45,7 +45,6 @@ class UpdatePartnerRequest extends FormRequest
             ],
             'email' => [
                 'required',
-                'unique:partners,email,' . request()->route('partner')->id,
             ],
             'gallery' => [
                 'array',

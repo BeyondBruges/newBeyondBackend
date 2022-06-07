@@ -92,6 +92,10 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::resource('qr-codes', 'QrCodeController');
     Route::get('qr-codes/generateqr/{id}', 'UsersController@generateQrCode')->name('qr-codes.assignqr');
 
+    //Award Bryghia for users
+    Route::get('qr-codes/create/{id}', 'QrCodeController@awardbryghia')->name('qr-codes.award');
+    Route::post('qr-codes/award', 'QrCodeController@processaward')->name('qr-codes.awardstore');
+
     // B Land Mark
     Route::delete('b-land-marks/destroy', 'BLandMarkController@massDestroy')->name('b-land-marks.massDestroy');
     Route::post('b-land-marks/media', 'BLandMarkController@storeMedia')->name('b-land-marks.storeMedia');

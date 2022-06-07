@@ -45,7 +45,6 @@ class StorePartnerRequest extends FormRequest
             ],
             'email' => [
                 'required',
-                'unique:partners',
             ],
             'gallery' => [
                 'array',

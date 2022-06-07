@@ -7,9 +7,15 @@ use App\Http\Requests\MassDestroyQrCodeRequest;
 use App\Http\Requests\StoreQrCodeRequest;
 use App\Http\Requests\UpdateQrCodeRequest;
 use App\Models\Partner;
+use App\Models\Analytic;
+use App\Models\AnalyticType;
+use App\Models\Transaction;
+use App\Models\TransactionType;
 use App\Models\QrCode;
 use App\Models\User;
 use Gate;
+use Auth;
+use OneSignal;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -85,5 +91,75 @@ class QrCodeController extends Controller
         QrCode::whereIn('id', request('ids'))->delete();
 
         return response(null, Response::HTTP_NO_CONTENT);
+    }
+
+    public function awardbryghia($id){
+
+        $user = User::find($id);
+        $loggeduser = Auth::user();
+
+        if ($loggeduser->userpartners->count() < 1) {
+
+            return redirect('/admin')->with('danger', "You're not assigned to any partners");
+        }
+
+        return view('admin.qrCodes.award', compact('user', 'loggeduser'));
+
+    }
+
+        public function processaward(Request $request){
+
+
+        $user = User::find($request->user_id);
+        $loggeduser = Auth::user();
+
+        $award = New Qrcode;
+        $award->created_by_user_id = $loggeduser->id;
+        $award->user_id = $user->id;
+        $award->transaction_total = $request->transaction_total;
+        $award->issued_bryghia = $request->transaction_total *.1;
+        $award->partner_id = $request->partner_id;
+        $award->save();
+
+        $user->bryghia += $award->issued_bryghia;
+        $user->update();
+
+        $partner = Partner::find($request->partner_id);
+
+        if ($partner) {
+
+            if ($user->udid != null) {
+
+             $userId = $user->udid;   
+                 OneSignal::sendNotificationToUser(
+                "Succes! ".$partner->name." has given you ".$award->issued_bryghia." bryghia",
+                $userId,
+                $url = null,
+                $data = null,
+                $buttons = null,
+                $schedule = null
+                );
+             }
+        }
+
+
+
+            $transaction = new Transaction;
+            $transaction->value = $request->transaction_total;
+            $transaction->status = 1;
+            $transaction->user_id = $user->id;
+            $transaction->transaction_type = TransactionType::where('name', 'Bryghia Award')->first()->id;
+            $transaction->save();            
+
+
+            $analytic = new Analytic;
+            $analytic->value = $award->issued_bryghia;
+            $analytic->user_id = $user->id;
+            $analytic->type_id = AnalyticType::where('name', 'Bryghia Award')->first()->id;
+            $analytic->save();
+
+
+        return redirect()->route('admin.qr-codes.index')->with('sucess', 'Bryghia has been awarded successfuly');
+
     }
 }
