@@ -39,7 +39,28 @@ class UserSideQuestsController extends Controller
                 $usersidequest->side_quest_id = $request->side_quest_id;
                 $usersidequest->save();
         }
-        $user->timelefet += $request->time;
+
+        if ($request->won == 1) {
+           
+           $user->timeleft += 1;
+           $user->update();
+
+
+            if ($user->udid != null) {
+                 OneSignal::sendNotificationToUser(
+                "Congratulations! You won 1 hour",
+                $userId,
+                $url = null,
+                $data = null,
+                $buttons = null,
+                $schedule = null
+            );
+
+            }
+        }
+
+
+       
 
         return response()->json(['data' => $user], 200);
         }

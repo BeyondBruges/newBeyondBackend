@@ -1,14 +1,6 @@
 @extends('layouts.admin')
 @section('content')
-@can('qr_code_create')
-    <div style="margin-bottom: 10px;" class="row">
-        <div class="col-lg-12">
-            <a class="btn btn-success" href="{{ route('admin.qr-codes.create') }}">
-                {{ trans('global.add') }} {{ trans('cruds.qrCode.title_singular') }}
-            </a>
-        </div>
-    </div>
-@endcan
+
 <div class="card">
     <div class="card-header">
         {{ trans('cruds.qrCode.title_singular') }} {{ trans('global.list') }}
@@ -37,9 +29,7 @@
                         <th>
                             {{ trans('cruds.qrCode.fields.partner') }}
                         </th>
-                        <th>
-                            &nbsp;
-                        </th>
+    
                     </tr>
                 </thead>
                 <tbody>
@@ -63,28 +53,7 @@
                             <td>
                                 {{ $qrCode->partner->name ?? '' }}
                             </td>
-                            <td>
-                                @can('qr_code_show')
-                                    <a class="btn btn-xs btn-primary" href="{{ route('admin.qr-codes.show', $qrCode->id) }}">
-                                        {{ trans('global.view') }}
-                                    </a>
-                                @endcan
 
-                                @can('qr_code_edit')
-                                    <a class="btn btn-xs btn-info" href="{{ route('admin.qr-codes.edit', $qrCode->id) }}">
-                                        {{ trans('global.edit') }}
-                                    </a>
-                                @endcan
-
-                                @can('qr_code_delete')
-                                    <form action="{{ route('admin.qr-codes.destroy', $qrCode->id) }}" method="POST" onsubmit="return confirm('{{ trans('global.areYouSure') }}');" style="display: inline-block;">
-                                        <input type="hidden" name="_method" value="DELETE">
-                                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                        <input type="submit" class="btn btn-xs btn-danger" value="{{ trans('global.delete') }}">
-                                    </form>
-                                @endcan
-
-                            </td>
 
                         </tr>
                     @endforeach

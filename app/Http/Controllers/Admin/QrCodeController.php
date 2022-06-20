@@ -13,6 +13,7 @@ use App\Models\Transaction;
 use App\Models\TransactionType;
 use App\Models\QrCode;
 use App\Models\User;
+use App\Models\UserQrCode;
 use Gate;
 use Auth;
 use OneSignal;
