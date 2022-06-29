@@ -43,7 +43,7 @@ class BLandMarkController extends Controller
             $landmark = new UserLandmark;
             $landmark->user_id = $user->id;
             $landmark->landmark_id = $request->id;
-            $transaction->save();
+            $landmark->save();
 
 
         if ($user->udid != null) {
