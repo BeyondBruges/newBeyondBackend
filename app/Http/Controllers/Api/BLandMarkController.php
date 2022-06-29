@@ -8,6 +8,7 @@ use App\Models\BLandMark;
 use App\Models\UserLandmark;
 use App\Models\User;
 use Auth;
+use OneSignal;
 
 class BLandMarkController extends Controller
 {

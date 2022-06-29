@@ -8,6 +8,7 @@ use App\Models\User;
 use App\Models\UserCoupon;
 use Illuminate\Http\Request;
 use Auth;
+use OneSignal;
 
 class UserCouponsController extends Controller
 {

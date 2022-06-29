@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Auth;
 use App\Models\User;
-
+use OneSignal;
 class PlayerManagementController extends Controller
 {
    public function ChangePassword(Request $request){

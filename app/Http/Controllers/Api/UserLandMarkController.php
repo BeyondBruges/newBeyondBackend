@@ -8,6 +8,7 @@ use App\Models\User;
 use App\Models\UserLandmark;
 use Illuminate\Http\Request;
 use Auth;
+use OneSignal;
 
 class UserLandMarkController extends Controller
 {

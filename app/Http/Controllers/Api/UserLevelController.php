@@ -9,6 +9,7 @@ use App\Models\UserLevel;
 use Illuminate\Http\Request;
 use QrCode;
 use Auth;
+use OneSignal;
 
 class UserLevelController extends Controller
 {
