@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Transaction;
+use App\Models\TransactionType;
 use OneSignal;
 use App\Models\Donation;
 use Auth;
@@ -100,6 +101,12 @@ class TransactionController extends Controller
         }
         else
         {
+
+            $type = TransactionType::where('name', 'Foundation Donation')->first();
+            if (!$type) {
+              return response()->json(['Donation type does not exists'], 500);
+            }
+
             //Create Donation
             $donation = new Donation;
             $donation->user_id = $user->id;
@@ -113,7 +120,7 @@ class TransactionController extends Controller
             $transaction->value = $request->value;
             $transaction->status = 1;
             $transaction->user_id = $user->id;
-            $transaction->transaction_type = 5;
+            $transaction->transaction_type = $type->id;
             $transaction->save();
             // Send notification
 
@@ -146,6 +153,11 @@ class TransactionController extends Controller
          $userId = "";
         $user = Auth::user();
 
+        $type = TransactionType::where('name', 'User Donation')->first();
+            if (!$type) {
+              return response()->json(['Donation type does not exists'], 500);
+            }
+
         if ($request->value < 0) {
            return response()->json(['Donation cannot be negative'], 500);
         }
@@ -175,7 +187,7 @@ class TransactionController extends Controller
             $transaction->value = $request->value;
             $transaction->status = 1;
             $transaction->user_id = $user->id;
-            $transaction->transaction_type = 5;
+            $transaction->transaction_type = $type->id;
             $transaction->save();
             // Send notification
 
