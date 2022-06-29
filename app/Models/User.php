@@ -174,5 +174,11 @@ class User extends Authenticatable
         return $this->hasMany(UserSideQuest::class, 'user_id', 'id');
     }
 
+        public function userPartnerUsers()
+        {
+                    return $this->hasMany(PartnerUser::class, 'user_id', 'id');
+
+        }
+
 
 }
