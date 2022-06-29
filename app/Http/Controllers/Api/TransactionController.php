@@ -74,7 +74,7 @@ class TransactionController extends Controller
                 );
                 }
             }
-
+            $user->update();
             return response()->json(['data' => $user->bryghia], 200);
         }
     }
