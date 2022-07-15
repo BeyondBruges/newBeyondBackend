@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
-use App\Models\Sidequest;
+use App\Models\SideQuest;
 use App\Models\UserSideQuest;
 use Auth;
 
@@ -28,7 +28,7 @@ class UserSideQuestsController extends Controller
 
         $user = Auth::user();
 
-        $sidequest = Sidequest::find($request->sidequest_id);
+        $sidequest = SideQuest::find($request->sidequest_id);
         if (!$user || !$sidequest) {
             return response()->json(['not found'], 404);
         }
