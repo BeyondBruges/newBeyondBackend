@@ -64,5 +64,5 @@ class UserSideQuestsController extends Controller
 
         return response()->json(['data' => $user], 200);
         }
-    }
 }
+
