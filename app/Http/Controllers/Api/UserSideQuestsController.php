@@ -42,8 +42,10 @@ class UserSideQuestsController extends Controller
 
         if ($request->won == 1) {
            
-           $user->timeleft += 1;
-           $user->update();
+            if($user->timeleft < 12){
+                $user->timeleft += 1;
+                $user->update();
+            }
 
 
             if ($user->udid != null) {
