@@ -48,4 +48,20 @@ class UserLevelQuestionController extends Controller
     }
 
    }
+
+   public function delete(Request $request){
+
+        $user = Auth::user();
+
+        if (!$user) {
+            return response()->json(['not found'], 404);
+        }   
+        else
+        {
+            $user->timeleft = 12;
+            $user->userUserLevelQuestions->delete();
+            $user->update();
+            return response()->json(['UserLevelQuestions were deleted'], 200);
+        }
+    }
 }

@@ -41,4 +41,20 @@ class UserLevelObjectController extends Controller
     }
 
    }
+
+   public function delete(Request $request){
+
+        $user = Auth::user();
+
+        if (!$user) {
+            return response()->json(['not found'], 404);
+        }
+        else
+        {
+            $user->timeleft = 12;
+            $user->userUserLevelObjects->delete();
+            $user->update();
+            return response()->json(['UserLevelObjects were deleted'], 200);
+        }
+    }
 }

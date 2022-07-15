@@ -60,10 +60,6 @@ Route::middleware('auth:api')->group(function () {
     Route::post('userCharacter_store', [UserCharacterController::class, 'store']);
     Route::post('userlandmarks_index', [UserLandMarkController::class, 'index']);
     Route::post('userlandmarks_store', [UserLandMarkController::class, 'store']);
-    Route::post('Userlevelobject_index', [UserLevelObjectController::class, 'index']);
-    Route::post('Userlevelobject_store', [UserLevelObjectController::class, 'store']);
-    Route::post('Userlevelquestion_index', [UserLevelQuestionController::class, 'index']);
-    Route::post('Userlevelquestion_store', [UserLevelQuestionController::class, 'store']);
     Route::post('user_qr_index', [UserQRController::class, 'index']);
     Route::post('user_coupons_index', [UserCouponsController::class, 'index']);
     Route::post('user_coupons_store', [UserCouponsController::class, 'store']);
@@ -83,6 +79,14 @@ Route::middleware('auth:api')->group(function () {
     
     Route::post('user_sidequests_index', [UserSideQuestsController::class, 'index']);
     Route::post('user_sidequests_store', [UserSideQuestsController::class, 'store']);
+    Route::post('user_sidequests_delete', [UserSideQuestsController::class, 'delete']);
 
+    Route::post('Userlevelobject_index', [UserLevelObjectController::class, 'index']);
+    Route::post('Userlevelobject_store', [UserLevelObjectController::class, 'store']);
+    Route::post('Userlevelobject_delete', [UserLevelObjectController::class, 'delete']);
+
+    Route::post('Userlevelquestion_index', [UserLevelQuestionController::class, 'index']);
+    Route::post('Userlevelquestion_store', [UserLevelQuestionController::class, 'store']);
+    Route::post('Userlevelquestion_delete', [UserLevelQuestionController::class, 'delete']);
 });
 

@@ -19,7 +19,7 @@ class UserSideQuestsController extends Controller
         }
         else
         {
-            $usersidequests = $user->userusersidequests;
+            $usersidequests = $user->userUsersidequest;
             return response()->json(['data' => $usersidequests], 200);
         }
    }
@@ -60,12 +60,23 @@ class UserSideQuestsController extends Controller
 
             }
         }
+        return response()->json(['data' => $user], 200); 
+    }
 
+    public function delete(Request $request){
 
-       
+        $user = Auth::user();
 
-        return response()->json(['data' => $user], 200);
-        
+        if (!$user) {
+            return response()->json(['not found'], 404);
+        }
+        else
+        {
+            $user->timeleft = 12;
+            $user->userUsersidequest->delete();
+            $user->update();
+            return response()->json(['UserSidequests were deleted'], 200);
+        }
     }
 }
 
