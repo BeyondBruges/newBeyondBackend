@@ -28,7 +28,7 @@ class UserSideQuestsController extends Controller
 
         $user = Auth::user();
 
-        $sidequest = Siedequest::find($request->sidequest_id);
+        $sidequest = Sidequest::find($request->sidequest_id);
         if (!$user || !$sidequest) {
             return response()->json(['not found'], 404);
         }
@@ -63,6 +63,7 @@ class UserSideQuestsController extends Controller
        
 
         return response()->json(['data' => $user], 200);
-        }
+        
+    }
 }
 
