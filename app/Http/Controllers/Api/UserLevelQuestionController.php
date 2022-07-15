@@ -34,17 +34,17 @@ class UserLevelQuestionController extends Controller
     }
     else
     {
-    $level_object = new UserLevelQuestion;
-    $level_object->question_id = $request->question_id;
-    $level_object->user_id = $user->id;
-    $level_object->save();
+    $level_question= new UserLevelQuestion;
+    $level_question->question_id = $request->question_id;
+    $level_question->user_id = $user->id;
+    $level_question->save();
 
     if($user->timeleft > 0){
         $user->timeleft -= 1;
         $user->update();
     }
 
-    return response()->json(['data' => $level_object], 200);
+    return response()->json(['data' => $level_question], 200);
     }
 
    }
