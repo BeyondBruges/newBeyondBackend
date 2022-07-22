@@ -11,6 +11,7 @@ class TimeController extends Controller
 {
     public function timeOperation(Request $request){
 
+        $time = 1;
         $user = Auth::user();
 
         if (!$user) {
@@ -19,11 +20,11 @@ class TimeController extends Controller
         else
         {
             if ($request->operation == "+") {
-                $user->timeleft += $request->value;
+                $user->timeleft += $time;
             }
             else
             {
-                $user->timeleft -= $request->value;
+                $user->timeleft -= $time;
             }
             $user->update();
             return response()->json(['data' => $user], 200);
