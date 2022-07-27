@@ -46,7 +46,7 @@ Route::get('partners', [PartnerController::class, 'index']);
 Route::get('company', [CompanyController::class, 'index']);
 Route::post('analytics', [AnalyticController::class, 'store']);
 Route::post('checkgps', [GeoController::class, 'calculate']);
-Route::post('bundles', [BundlesController::class, 'index']);
+Route::get('bundles', [BundlesController::class, 'index']);
 
 //Rutas con login
 Route::middleware('auth:api')->group(function () {
