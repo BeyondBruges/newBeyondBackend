@@ -3,6 +3,7 @@
 use App\Http\Controllers\Api\AnalyticController;
 use App\Http\Controllers\Api\BLandMarkController;
 use App\Http\Controllers\Api\BlogController;
+use App\Http\Controllers\Api\BundlesController;
 use App\Http\Controllers\Api\CompanyController;
 use App\Http\Controllers\Api\CouponsController;
 use App\Http\Controllers\Api\GeoController;
@@ -45,6 +46,7 @@ Route::get('partners', [PartnerController::class, 'index']);
 Route::get('company', [CompanyController::class, 'index']);
 Route::post('analytics', [AnalyticController::class, 'store']);
 Route::post('checkgps', [GeoController::class, 'calculate']);
+Route::post('bundles', [BundlesController::class, 'index']);
 
 //Rutas con login
 Route::middleware('auth:api')->group(function () {
