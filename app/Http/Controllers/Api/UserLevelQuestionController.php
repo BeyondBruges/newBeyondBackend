@@ -42,7 +42,7 @@ class UserLevelQuestionController extends Controller
             $level_question->user_id = $user->id;
             $level_question->save();
 
-            if($user->timeleft > 0){
+            if($user->timeleft > 0 && $request->result == 0){
                 $user->timeleft -= 1;
                 $user->update();
             }
