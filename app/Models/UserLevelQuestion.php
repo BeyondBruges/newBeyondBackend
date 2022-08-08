@@ -25,6 +25,7 @@ class UserLevelQuestion extends Model
     protected $fillable = [
         'user_id',
         'question_id',
+        'result',
         'created_at',
         'updated_at',
         'deleted_at',

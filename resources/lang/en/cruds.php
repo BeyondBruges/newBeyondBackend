@@ -649,6 +649,8 @@ return [
             'user_helper'       => ' ',
             'question'          => 'Question',
             'question_helper'   => ' ',
+            'result'          => 'Result',
+            'result_helper'   => ' ',
             'created_at'        => 'Created at',
             'created_at_helper' => ' ',
             'updated_at'        => 'Updated at',

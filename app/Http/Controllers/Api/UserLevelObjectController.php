@@ -52,7 +52,13 @@ class UserLevelObjectController extends Controller
         else
         {
             $user->timeleft = 12;
-            $user->userUserLevelObjects->delete();
+            if ($user->userUserLevelObjects->count() > 0) 
+            {
+                foreach($user->userUserLevelObjects as $object)
+                {
+                    $object->delete();
+                }
+            }
             $user->update();
             return response()->json(['UserLevelObjects were deleted'], 200);
         }

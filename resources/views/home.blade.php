@@ -529,11 +529,6 @@
     <div class="row">
         <h5>Bryghia</h5>
         <canvas id="bryghiaChart" width="400" height="100"></canvas>
-
-@php
-$transactiontype = \App\Models\TransactionType::where('name', 'Bryghia Award')->first()->id;
-@endphp
-
         <script>
         const bryghia = document.getElementById('bryghiaChart');
         const bryghiaChart = new Chart(bryghia, {

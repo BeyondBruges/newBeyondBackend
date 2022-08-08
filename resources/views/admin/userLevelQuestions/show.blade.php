@@ -39,6 +39,14 @@
                             {{ $userLevelQuestion->question->title ?? '' }}
                         </td>
                     </tr>
+                    <tr>
+                        <th>
+                            {{ trans('cruds.userLevelQuestion.fields.result') }}
+                        </th>
+                        <td>
+                            {{ $userLevelQuestion->result ?? '' }}
+                        </td>
+                    </tr>
                 </tbody>
             </table>
             <div class="form-group">

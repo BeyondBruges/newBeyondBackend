@@ -37,7 +37,10 @@ class UserLevelQuestionController extends Controller
 
     public function store(StoreUserLevelQuestionRequest $request)
     {
-        $userLevelQuestion = UserLevelQuestion::create($request->all());
+        $question = UserLevelQuestion::where('user_id', $request->user_id)->where("question_id", $request->question_id)->first();
+        if(!$question){
+            $userLevelQuestion = UserLevelQuestion::create($request->all());
+        }
 
         return redirect()->route('admin.user-level-questions.index');
     }

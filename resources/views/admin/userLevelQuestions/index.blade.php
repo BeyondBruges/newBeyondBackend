@@ -32,6 +32,9 @@
                             {{ trans('cruds.userLevelQuestion.fields.question') }}
                         </th>
                         <th>
+                            {{ trans('cruds.userLevelQuestion.fields.result') }}
+                        </th>
+                        <th>
                             &nbsp;
                         </th>
                     </tr>
@@ -50,6 +53,17 @@
                             </td>
                             <td>
                                 {{ $userLevelQuestion->question->title ?? '' }}
+                            </td>
+                            <td>
+                                @switch($userLevelQuestion->result)
+                                    @case(0)
+                                        Wrong
+                                        @break
+                                
+                                    @default
+                                        Right
+                                        
+                                @endswitch
                             </td>
                             <td>
                                 @can('user_level_question_show')

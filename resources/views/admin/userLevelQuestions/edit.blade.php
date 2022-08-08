@@ -35,6 +35,17 @@
                 <span class="help-block">{{ trans('cruds.userLevelQuestion.fields.question_helper') }}</span>
             </div>
             <div class="form-group">
+                <label class="required" for="result">{{ trans('cruds.userLevelQuestion.fields.result') }}</label>
+                <select class="form-control select2 {{ $errors->has('result') ? 'is-invalid' : '' }}" name="result" id="result" required>
+                        <option value="0" {{ (old('result') ? old('result') : $userLevelQuestion->result ?? '') == 0 ? 'selected' : '' }}>Wrong</option>
+                        <option value="1" {{ (old('result') ? old('result') : $userLevelQuestion->result ?? '') == 1 ? '' : '' }}>Right</option>
+                </select>
+                @if($errors->has('result'))
+                    <span class="text-danger">{{ $errors->first('result') }}</span>
+                @endif
+                <span class="help-block">{{ trans('cruds.userLevelQuestion.fields.result_helper') }}</span>
+            </div>
+            <div class="form-group">
                 <button class="btn btn-danger" type="submit">
                     {{ trans('global.save') }}
                 </button>

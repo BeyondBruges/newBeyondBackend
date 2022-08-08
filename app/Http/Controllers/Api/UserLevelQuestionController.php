@@ -34,19 +34,25 @@ class UserLevelQuestionController extends Controller
     }
     else
     {
-    $level_question= new UserLevelQuestion;
-    $level_question->question_id = $request->question_id;
-    $level_question->user_id = $user->id;
-    $level_question->save();
+        $question = UserLevelQuestion::where('user_id', $user->id)->where("question_id", $request->question_id)->first();
+        if(!$question){
+            $level_question= new UserLevelQuestion;
+            $level_question->question_id = $request->question_id;
+            $level_question->result = $request->result; //1 bien, 0 mal
+            $level_question->user_id = $user->id;
+            $level_question->save();
 
-    if($user->timeleft > 0){
-        $user->timeleft -= 1;
-        $user->update();
+            if($user->timeleft > 0){
+                $user->timeleft -= 1;
+                $user->update();
+            }
+
+            return response()->json(['data' => $level_question], 200);
+        }
+        else{
+            return response()->json(['UserLeveQuestion Exists'], 404);
+        }
     }
-
-    return response()->json(['data' => $level_question], 200);
-    }
-
    }
 
    public function delete(Request $request){
@@ -59,7 +65,13 @@ class UserLevelQuestionController extends Controller
         else
         {
             $user->timeleft = 12;
-            $user->userUserLevelQuestions->delete();
+            if ($user->userUserLevelQuestions->count() > 0) 
+            {
+                foreach($user->userUserLevelQuestions as $object)
+                {
+                    $object->delete();
+                }
+            }
             $user->update();
             return response()->json(['UserLevelQuestions were deleted'], 200);
         }
