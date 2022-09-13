@@ -44,7 +44,6 @@ class UserDynamicCouponsController extends Controller
         //Generar  dynamic coupon
         $dynamicCoupon = new dynamicCoupon;
         $dynamicCoupon->name = Product::find($request->product_id)->name;
-
         if ($request->productCategory == "1") {
             $date = Carbon::now()->addDays(7);
         }
@@ -59,7 +58,7 @@ class UserDynamicCouponsController extends Controller
         $dynamicCoupon->code = Str::random(8);
         $dynamicCoupon->imageurl = config('app.url').'/dynamiccoupons/'.$dynamicCoupon->code.'.png';
         $dynamicCoupon->save();
-        $dynamicCoupon->products()->sync($request->productCategory);
+        $dynamicCoupon->products()->sync($request->product_id);
 
         //Generar user dynamic coupon
         $userdynamiccoupon = new UserDynamicCoupon;
