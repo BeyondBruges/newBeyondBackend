@@ -45,11 +45,11 @@ class UserDynamicCouponsController extends Controller
         $dynamicCoupon = new dynamicCoupon;
         $dynamicCoupon->name = Product::find($request->product_id)->name;
         if ($request->productCategory == "1") {
-            $date = Carbon::now()->addDays(7);
+            $date = Carbon::parse($dynamicCoupon->created_at)->addDays(7);
         }
         else
         {
-            $date = Carbon::now()->addHours(1);
+            $date = Carbon::parse($dynamicCoupon->created_at)->addHours(1);
         }
 
 
