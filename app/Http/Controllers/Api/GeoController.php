@@ -12,7 +12,7 @@ class GeoController extends Controller
     public function calculate(Request $request){
 
 
-$radius = 31885;
+$radius = 19113;
  /*
      
 
