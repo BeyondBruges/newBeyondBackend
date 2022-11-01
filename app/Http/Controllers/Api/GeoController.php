@@ -11,16 +11,14 @@ class GeoController extends Controller
 {
     public function calculate(Request $request){
 
-
-$radius = 19113;
- /*
-     
-
-     * replace 6371000 with 6371 for kilometer and 3956 for miles
-     */
- 
+/*
+ * @param1 : pass current latitude of the driver
+ * @param2 : pass current longitude of the driver
+ * @param3: pass the radius in meter within how much distance you wanted to fiter
+*/
+    $radius = 4;
     $venues = Company::selectRaw("id, name, lat, lng,
-                     ( 6371000 * acos( cos( radians(?) ) *
+                     ( 6371 * acos( cos( radians(?) ) *
                        cos( radians( lat ) )
                        * cos( radians( lng ) - radians(?)
                        ) + sin( radians(?) ) *
