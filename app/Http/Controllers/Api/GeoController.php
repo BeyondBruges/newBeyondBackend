@@ -16,7 +16,7 @@ class GeoController extends Controller
  * @param2 : pass current longitude of the driver
  * @param3: pass the radius in meter within how much distance you wanted to fiter
 */
-    $radius = 4;
+    $radius = 10;
     $venues = Company::selectRaw("id, name, lat, lng,
                      ( 6371 * acos( cos( radians(?) ) *
                        cos( radians( lat ) )
