@@ -78,10 +78,17 @@ class User extends Authenticatable
         return $this->hasMany(UserLevel::class, 'user_id', 'id');
     }
 
+    public function userGameLevels()
+    {
+        return $this->hasMany(UserGameLevel::class, 'user_id', 'id');
+    }
+
+
+
     public function userUserQrCodes()
     {
         return $this->hasMany(UserQrCode::class, 'user_id', 'id');
-    }    
+    }
 
     public function createdqrcodes()
     {
@@ -109,7 +116,7 @@ class User extends Authenticatable
     }
 
     public function ActiveDynamicCoupons(){
-        
+
         return $this->hasMany(DynamicCoupon::class, 'user_id', 'id')->where('status', '1')->whereDate('expiration', '>', Carbon::now());
     }
 
@@ -159,7 +166,7 @@ class User extends Authenticatable
     {
         return $this->hasMany(Analytic::class, 'user_id', 'id');
     }
-    
+
         public function userCharacters()
     {
         return $this->hasMany(UserCharacter::class, 'user_id', 'id')->with('character');

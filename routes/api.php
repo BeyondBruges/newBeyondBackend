@@ -19,6 +19,7 @@ use App\Http\Controllers\Api\UserCouponsController;
 use App\Http\Controllers\Api\UserDynamicCouponsController;
 use App\Http\Controllers\Api\UserLandMarkController;
 use App\Http\Controllers\Api\UserLevelController;
+use App\Http\Controllers\Api\UserGameLevelController;
 use App\Http\Controllers\Api\UserLevelObjectController;
 use App\Http\Controllers\Api\UserLevelQuestionController;
 use App\Http\Controllers\Api\UserQRController;
@@ -71,14 +72,14 @@ Route::middleware('auth:api')->group(function () {
     Route::post('user_gift_bryghia', [TransactionController::class, 'gift']);
     Route::post('user_stats', [PassportAuthController::class, 'stats']);
     Route::post('time', [TimeController::class, 'timeOperation']);
-    
+
     Route::post('changepassword', [PlayerManagementController::class, 'ChangePassword']);
     Route::post('deleteaccount', [PlayerManagementController::class, 'DeleteAccount']);
 
     Route::post('unlockgamemode', [UnlockController::class, 'unlockgame']);
     Route::post('unlocktourist', [UnlockController::class, 'unlocktourist']);
     Route::post('unlockeverything', [UnlockController::class, 'unlockeverything']);
-    
+
     Route::post('user_sidequests_index', [UserSideQuestsController::class, 'index']);
     Route::post('user_sidequests_store', [UserSideQuestsController::class, 'store']);
     Route::post('user_sidequests_delete', [UserSideQuestsController::class, 'delete']);
@@ -90,5 +91,7 @@ Route::middleware('auth:api')->group(function () {
     Route::post('Userlevelquestion_index', [UserLevelQuestionController::class, 'index']);
     Route::post('Userlevelquestion_store', [UserLevelQuestionController::class, 'store']);
     Route::post('Userlevelquestion_delete', [UserLevelQuestionController::class, 'delete']);
+    Route::post('usergamelevels', [UserGameLevelController::class, 'index']);
+    Route::post('usergamelevels_store', [UserGameLevelController::class, 'store']);
 });
 
