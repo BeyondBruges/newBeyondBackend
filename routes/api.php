@@ -91,7 +91,7 @@ Route::middleware('auth:api')->group(function () {
     Route::post('Userlevelquestion_index', [UserLevelQuestionController::class, 'index']);
     Route::post('Userlevelquestion_store', [UserLevelQuestionController::class, 'store']);
     Route::post('Userlevelquestion_delete', [UserLevelQuestionController::class, 'delete']);
-    Route::post('usergamelevels', [UserGameLevelController::class, 'index']);
+    Route::get('usergamelevels', [UserGameLevelController::class, 'index']);
     Route::post('usergamelevels_store', [UserGameLevelController::class, 'store']);
 });
 

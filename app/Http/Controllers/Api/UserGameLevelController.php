@@ -14,7 +14,7 @@ use OneSignal;
 
 class UserGameLevelController extends Controller
 {
-    public function index(Request $request){
+    public function index(){
         $user = Auth::user();
         if (!$user) {
             return response()->json(['not found'], 404);
