@@ -9,9 +9,8 @@ use Auth;
 
 class TimeController extends Controller
 {
-    public function timeOperation(Request $request){
+    public function addTime(Request $request){
 
-        $time = 1;
         $user = Auth::user();
 
         if (!$user) {
@@ -19,13 +18,10 @@ class TimeController extends Controller
         }
         else
         {
-            if ($request->operation == "+") {
-                $user->timeleft += $time;
+            if ($user->timeleft < 12) {
+                $user->timeleft += $request->time;
             }
-            else
-            {
-                $user->timeleft -= $time;
-            }
+
             $user->update();
             return response()->json(['data' => $user], 200);
         }
