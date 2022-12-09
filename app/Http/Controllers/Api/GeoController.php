@@ -17,7 +17,7 @@ class GeoController extends Controller
         * replace 6371000 with 6371 for kilometer and 3956 for miles
         */
 
-           $venues = Venue::selectRaw("id, name, address, lat, lng,
+           $venues = Company::selectRaw("id, name, address, lat, lng,
                             ( 6371000 * acos( cos( radians(?) ) *
                               cos( radians( lat ) )
                               * cos( radians( lng ) - radians(?)
