@@ -72,6 +72,7 @@ Route::middleware('auth:api')->group(function () {
     Route::post('user_gift_bryghia', [TransactionController::class, 'gift']);
     Route::post('user_stats', [PassportAuthController::class, 'stats']);
     Route::post('add_time', [TimeController::class, 'addTime']);
+    Route::post('set_time', [TimeController::class, 'setTime']);
 
     Route::post('changepassword', [PlayerManagementController::class, 'ChangePassword']);
     Route::post('deleteaccount', [PlayerManagementController::class, 'DeleteAccount']);
