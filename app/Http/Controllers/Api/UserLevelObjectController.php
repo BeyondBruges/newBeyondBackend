@@ -27,18 +27,25 @@ class UserLevelObjectController extends Controller
 
     public function store(Request $request){
 
-    $user = Auth::user();
-    if (!$user) {
-        return response()->json(['not found'], 404);
-    }
-    else
-    {
-    $level_object = new UserLevelObject;
-    $level_object->level_object_id = $request->level_object_id;
-    $level_object->user_id = $user->id;
-    $level_object->save();
-    return response()->json(['data' => $user->userUserLevelObjects], 200);
-    }
+        $user = Auth::user();
+        if (!$user) {
+            return response()->json(['not found'], 404);
+        }
+        else
+        {
+        $level_object = new UserLevelObject;
+        $level_object->level_object_id = $request->level_object_id;
+        $level_object->user_id = $user->id;
+        $level_object->save();
+
+        $user->timeleft += 1;
+        if($user->timeleft > 12){
+            $user->timeleft = 12;
+        }
+        $user->update();
+
+        return response()->json(['data' => $user->userUserLevelObjects], 200);
+        }
 
    }
 
@@ -52,7 +59,7 @@ class UserLevelObjectController extends Controller
         else
         {
             $user->timeleft = 12;
-            if ($user->userUserLevelObjects->count() > 0) 
+            if ($user->userUserLevelObjects->count() > 0)
             {
                 foreach($user->userUserLevelObjects as $object)
                 {
