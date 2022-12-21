@@ -38,11 +38,13 @@ class UserLevelObjectController extends Controller
         $level_object->user_id = $user->id;
         $level_object->save();
 
+        /*
         $user->timeleft += 1;
         if($user->timeleft > 12){
             $user->timeleft = 12;
         }
         $user->update();
+        */
 
         return response()->json(['data' => $user->userUserLevelObjects], 200);
         }
