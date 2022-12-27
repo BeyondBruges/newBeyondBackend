@@ -18,13 +18,13 @@ class PassportAuthController extends Controller
             'email' => 'required|email',
             'password' => 'required|min:6',
         ]);
- 
+
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => bcrypt($request->password)
         ]);
-        
+
         $this->email();
         $user->roles()->sync(2);
         $token = $user->createToken('LaravelAuthApp')->accessToken;
@@ -43,14 +43,14 @@ class PassportAuthController extends Controller
         $user->bryghia = 9999;
         $user->update();
         /*REMOVE THIS ON LAUNCH*/
-        
+
         return response()->json(['token' => $token], 200);
     }
 
     public function email(){
 
     }
- 
+
     /**
      * Login
      */
@@ -62,6 +62,7 @@ class PassportAuthController extends Controller
         ];
 
         if (auth()->attempt($data)) {
+            $this->updateLanguage($request);
             $token = auth()->user()->createToken('LaravelAuthApp')->accessToken;
 
             if (auth()->user()->status == 1) {
@@ -71,11 +72,11 @@ class PassportAuthController extends Controller
             {
                 return response()->json(['error' => 'User account is disabled'], 401);
             }
-            
+
         } else {
             return response()->json(['error' => 'Unauthorised'], 401);
         }
-    }   
+    }
 
 
     public function user(Request $request){
@@ -99,7 +100,7 @@ class PassportAuthController extends Controller
         }
         $user->device = $request->device;
         $user->update();
-        return response()->json(['data' => $user->udid], 200);   
+        return response()->json(['data' => $user->udid], 200);
     }
 
         public function stats(Request $request){
@@ -112,6 +113,16 @@ class PassportAuthController extends Controller
         else
         {
             return response()->json(['data' => $stats], 200);
+        }
+    }
+
+    public function updateLanguage(Request $request){
+
+        if($request->language){
+            $user = Auth::user();
+            $user->language = $request->language;
+            $user->update();
+            return response()->json(['data' => $user->udid], 200);
         }
     }
 }
