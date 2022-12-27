@@ -62,7 +62,6 @@ class PassportAuthController extends Controller
         ];
 
         if (auth()->attempt($data)) {
-            $this->updateLanguage($request);
             $token = auth()->user()->createToken('LaravelAuthApp')->accessToken;
 
             if (auth()->user()->status == 1) {
