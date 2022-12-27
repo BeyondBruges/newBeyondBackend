@@ -124,5 +124,8 @@ class PassportAuthController extends Controller
             $user->update();
             return response()->json(['data' => $user->udid], 200);
         }
+        else{
+            return response()->json(['Request->language is null'], 200);
+        }
     }
 }
