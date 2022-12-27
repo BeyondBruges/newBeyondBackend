@@ -94,6 +94,6 @@ Route::middleware('auth:api')->group(function () {
     Route::post('Userlevelquestion_delete', [UserLevelQuestionController::class, 'delete']);
     Route::get('usergamelevels', [UserGameLevelController::class, 'index']);
     Route::post('usergamelevels_store', [UserGameLevelController::class, 'store']);
-    Route::post('language_update', [Passportauthcontoller::class, 'updateLanguage']);
+    Route::post('language_update', [PassportAuthController::class, 'updateLanguage']);
 });
 
