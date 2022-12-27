@@ -118,8 +118,12 @@ class PassportAuthController extends Controller
     public function updateLanguage(Request $request){
 
         if($request->language){
+
             $user = Auth::user();
-            $user->language = $request->language;
+
+            $sTest = $request->language;
+            preg_match("/\(([^\)]*)\)/", $sTest, $aMatches);
+            $user->language = $aMatches[1];
             $user->update();
             return response()->json(['data' => $user->language], 200);
         }
