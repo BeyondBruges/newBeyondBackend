@@ -77,7 +77,7 @@
                     </li>
                 @endcan
                 @can('comunication_manager_access')
-                    <li class="nav-item has-treeview {{ request()->is("admin/blogs*") ? "menu-open" : "" }} {{ request()->is("admin/notifications*") ? "menu-open" : "" }} {{ request()->is("admin/user-feedbacks*") ? "menu-open" : "" }}">
+                    <li class="nav-item has-treeview {{ request()->is("admin/blogs*") ? "menu-open" : "" }} {{ request()->is("admin/push-notifications*") ? "menu-open" : "" }} {{ request()->is("admin/user-feedbacks*") ? "menu-open" : "" }}">
                         <a class="nav-link nav-dropdown-toggle" href="#">
                             <i class="fa-fw nav-icon fas fa-comment">
 
@@ -102,7 +102,7 @@
                             @endcan
                             @can('notification_access')
                                 <li class="nav-item">
-                                    <a href="{{ route("admin.notifications.index") }}" class="nav-link {{ request()->is("admin/notifications") || request()->is("admin/notifications/*") ? "active" : "" }}">
+                                    <a href="{{ route("admin.push-notifications.index") }}" class="nav-link {{ request()->is("admin/push-notifications") || request()->is("admin/push-notifications/*") ? "active" : "" }}">
                                         <i class="fa-fw nav-icon fas fa-mobile-alt">
 
                                         </i>
@@ -161,7 +161,7 @@
                                         Side Quests
                                     </p>
                                 </a>
-                            </li>           
+                            </li>
 
                             @can('level_object_access')
                                 <li class="nav-item">

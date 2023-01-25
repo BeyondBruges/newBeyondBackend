@@ -112,6 +112,10 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::delete('notifications/destroy', 'NotificationController@massDestroy')->name('notifications.massDestroy');
     Route::resource('notifications', 'NotificationController');
 
+    // PushNotification
+    Route::delete('push-notifications/destroy', 'PushNotificationController@massDestroy')->name('pushNotifications.massDestroy');
+    Route::resource('push-notifications', 'PushNotificationController');
+
     // Partner Users
     Route::delete('partner-users/destroy', 'PartnerUsersController@massDestroy')->name('partner-users.massDestroy');
     Route::resource('partner-users', 'PartnerUsersController');
