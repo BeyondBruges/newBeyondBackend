@@ -563,7 +563,7 @@
                     </li>
                 @endcan
                 @can('obtained_items_management_access')
-                    <li class="nav-item has-treeview {{ request()->is("admin/user-characters*") ? "menu-open" : "" }} {{ request()->is("admin/user-levels*") ? "menu-open" : "" }} {{ request()->is("admin/user-landmarks*") ? "menu-open" : "" }} {{ request()->is("admin/user-qr-codes*") ? "menu-open" : "" }} {{ request()->is("admin/user-transactions*") ? "menu-open" : "" }} {{ request()->is("admin/user-coupons*") ? "menu-open" : "" }} {{ request()->is("admin/user-dynamic-coupons*") ? "menu-open" : "" }} {{ request()->is("admin/user-level-objects*") ? "menu-open" : "" }} {{ request()->is("admin/user-level-questions*") ? "menu-open" : "" }}">
+                    <li class="nav-item has-treeview {{ request()->is("admin/user-characters*") ? "menu-open" : "" }} {{ request()->is("admin/user-game-levels*") ? "menu-open" : "" }} {{ request()->is("admin/user-levels*") ? "menu-open" : "" }} {{ request()->is("admin/user-landmarks*") ? "menu-open" : "" }} {{ request()->is("admin/user-qr-codes*") ? "menu-open" : "" }} {{ request()->is("admin/user-transactions*") ? "menu-open" : "" }} {{ request()->is("admin/user-coupons*") ? "menu-open" : "" }} {{ request()->is("admin/user-dynamic-coupons*") ? "menu-open" : "" }} {{ request()->is("admin/user-level-objects*") ? "menu-open" : "" }} {{ request()->is("admin/user-level-questions*") ? "menu-open" : "" }}">
                         <a class="nav-link nav-dropdown-toggle" href="#">
                             <i class="fa-fw nav-icon fas fa-parachute-box">
 
@@ -582,6 +582,18 @@
                                         </i>
                                         <p>
                                             {{ trans('cruds.userCharacter.title') }}
+                                        </p>
+                                    </a>
+                                </li>
+                            @endcan
+                            @can('user_level_access')
+                                <li class="nav-item">
+                                    <a href="{{ route("admin.user-game-levels.index") }}" class="nav-link {{ request()->is("admin/user-game-levels") || request()->is("admin/user-game-levels/*") ? "active" : "" }}">
+                                        <i class="fa-fw nav-icon fas fa-globe">
+
+                                        </i>
+                                        <p>
+                                            User Game Level
                                         </p>
                                     </a>
                                 </li>

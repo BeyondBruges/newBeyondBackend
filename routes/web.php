@@ -140,6 +140,10 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::delete('user-landmarks/destroy', 'UserLandmarkController@massDestroy')->name('user-landmarks.massDestroy');
     Route::resource('user-landmarks', 'UserLandmarkController');
 
+    // User Game Level
+    Route::delete('user-game-levels/destroy', 'UserGameLevelController@massDestroy')->name('user-game-levels.massDestroy');
+    Route::resource('user-game-levels', 'UserGameLevelController');
+
     // User Level
     Route::delete('user-levels/destroy', 'UserLevelController@massDestroy')->name('user-levels.massDestroy');
     Route::resource('user-levels', 'UserLevelController');
