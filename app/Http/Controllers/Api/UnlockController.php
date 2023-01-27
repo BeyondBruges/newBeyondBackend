@@ -39,14 +39,7 @@ class UnlockController extends Controller
 
     }
 
-    foreach (LevelObject::all() as $key => $value) {
-       
-        $userlvlobj = new UserLevelObject;
-       $userlvlobj->user_id = $user->id;
-       $userlvlobj->level_object_id = $value->id;
-       $userlvlobj->save();
 
-    }
 
     $transaction = new Transaction;
     $transaction->value = $request->value;
@@ -56,6 +49,7 @@ class UnlockController extends Controller
     $transaction->save();
 
        
+       //localize
         if ($user->udid != null) {
 
             $userId = $user->udid; 
@@ -94,7 +88,7 @@ class UnlockController extends Controller
 
     foreach (BLandMark::all() as $key => $value) {
        
-        $userlm = new UserLandmark;
+        $userlm     = new UserLandmark;
        $userlm->user_id = $user->id;
        $userlm->level_object_id = $value->id;
        $userlm->save();
@@ -131,7 +125,7 @@ class UnlockController extends Controller
 
    public function unlockeverything(){
     
-
+$user = Auth::user();
      if (!$user) {
         return response()->json(['not found'], 404);
     }
@@ -145,14 +139,6 @@ class UnlockController extends Controller
 
     }
 
-    foreach (LevelObject::all() as $key => $value) {
-       
-        $userlvlobj = new UserLevelObject;
-       $userlvlobj->user_id = $user->id;
-       $userlvlobj->level_object_id = $value->id;
-       $userlvlobj->save();
-
-    }
 
     foreach (Level::all() as $key => $value) {
         
