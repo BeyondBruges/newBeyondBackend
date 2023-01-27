@@ -108,14 +108,18 @@ class QrCodeController extends Controller
 
     }
 
-        public function processaward(Request $request){
-
-            if ($request->transaction_total -= 0) {
-                   return redirect()->back()->with('danger', 'Total most be more than 0');
-            }
+    public function processaward(Request $request){
 
         $user = User::find($request->user_id);
         $loggeduser = Auth::user();
+
+        if($loggeduser->userpartners->where('partner_id', $request->partner_id)->doesntExist()){
+            return redirect()->back()->with('danger', "You don't have permission to this partner");
+        }
+
+        if ($request->transaction_total -= 0) {
+            return redirect()->back()->with('danger', 'Total most be more than 0');
+        }
 
         $award = New Qrcode;
         $award->created_by_user_id = $loggeduser->id;
@@ -131,40 +135,35 @@ class QrCodeController extends Controller
         $partner = Partner::find($request->partner_id);
 
         if ($partner) {
-
             if ($user->udid != null) {
-
-            //agregar código de las notificaciones
-             $userId = $user->udid;   
-                 OneSignal::sendNotificationToUser(
-                "Succes! ".$partner->name." has given you ".$award->issued_bryghia." bryghia",
-                $userId,
-                $url = null,
-                $data = null,
-                $buttons = null,
-                $schedule = null
+                //agregar código de las notificaciones
+                $userId = $user->udid;
+                OneSignal::sendNotificationToUser(
+                    "Succes! ".$partner->name." has given you ".$award->issued_bryghia." bryghia",
+                    $userId,
+                    $url = null,
+                    $data = null,
+                    $buttons = null,
+                    $schedule = null
                 );
-             }
+            }
         }
 
+        $transaction = new Transaction;
+        $transaction->value = $request->transaction_total;
+        $transaction->status = 1;
+        $transaction->user_id = $user->id;
+        $transaction->transaction_type = TransactionType::where('name', 'Bryghia Award')->first()->id;
+        $transaction->save();
 
 
-            $transaction = new Transaction;
-            $transaction->value = $request->transaction_total;
-            $transaction->status = 1;
-            $transaction->user_id = $user->id;
-            $transaction->transaction_type = TransactionType::where('name', 'Bryghia Award')->first()->id;
-            $transaction->save();            
-
-
-            $analytic = new Analytic;
-            $analytic->value = $award->issued_bryghia;
-            $analytic->user_id = $user->id;
-            $analytic->type_id = AnalyticType::where('name', 'Bryghia Award')->first()->id;
-            $analytic->save();
+        $analytic = new Analytic;
+        $analytic->value = $award->issued_bryghia;
+        $analytic->user_id = $user->id;
+        $analytic->type_id = AnalyticType::where('name', 'Bryghia Award')->first()->id;
+        $analytic->save();
 
 
         return redirect()->route('admin.qr-codes.index')->with('sucess', 'Bryghia has been awarded successfuly');
-
     }
 }
