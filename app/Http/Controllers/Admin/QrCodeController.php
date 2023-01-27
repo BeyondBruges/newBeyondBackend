@@ -110,6 +110,9 @@ class QrCodeController extends Controller
 
         public function processaward(Request $request){
 
+            if ($request->transaction_total -= 0) {
+                   return redirect()->back()->with('danger', 'Total most be more than 0');
+            }
 
         $user = User::find($request->user_id);
         $loggeduser = Auth::user();
@@ -131,6 +134,7 @@ class QrCodeController extends Controller
 
             if ($user->udid != null) {
 
+            //agregar código de las notificaciones
              $userId = $user->udid;   
                  OneSignal::sendNotificationToUser(
                 "Succes! ".$partner->name." has given you ".$award->issued_bryghia." bryghia",
