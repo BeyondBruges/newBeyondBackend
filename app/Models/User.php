@@ -55,7 +55,7 @@ class User extends Authenticatable
 
     public function getIsAdminAttribute()
     {
-        return $this->roles()->where('id', 1)->where('id',3)->exists();
+        return $this->roles()->where('id', 1)->exists();
     }
 
     public function userTransactions()
