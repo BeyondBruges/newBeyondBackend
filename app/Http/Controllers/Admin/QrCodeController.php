@@ -113,7 +113,7 @@ class QrCodeController extends Controller
         $user = User::find($request->user_id);
         $loggeduser = Auth::user();
 
-        if($loggeduser->userpartners->where('partner_id', $request->partner_id)->doesntExist()){
+        if(!$loggeduser->userpartners->where('partner_id', $request->partner_id)->first()){
             return redirect()->back()->with('danger', "You don't have permission to this partner");
         }
 
