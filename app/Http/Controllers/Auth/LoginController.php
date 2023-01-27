@@ -43,9 +43,13 @@ class LoginController extends Controller
             return '/admin';
         }
 
+         if(auth()->user()->roles->first()->title == "Partner")
+        {
+            return '/admin';
+        }
+
         if(auth()->user()->roles->first()->title == "User")
         {
-            Auth::logout();
             return '/';
         }
 
