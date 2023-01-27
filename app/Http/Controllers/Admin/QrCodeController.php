@@ -117,7 +117,7 @@ class QrCodeController extends Controller
             return redirect()->back()->with('danger', "You don't have permission to this partner");
         }
 
-        if ($request->transaction_total -= 0) {
+        if ($request->transaction_total <= 0) {
             return redirect()->back()->with('danger', 'Total most be more than 0');
         }
 
