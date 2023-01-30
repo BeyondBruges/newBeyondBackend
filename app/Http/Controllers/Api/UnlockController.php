@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;]
+use Illuminate\Http\Request;
 use Auth;
 
 //Gamemode
@@ -16,13 +16,14 @@ use App\Models\Level;
 use App\Models\UserLevel;
 use App\Models\UserLandmark;
 use App\Models\BLandMark;
-use OneSignal;
 
+use App\Models\PushNotification;
+use OneSignal;
 use App\Models\Transaction;
 
 class UnlockController extends Controller
 {
-   public function unlockgame(){
+   public function unlockgame(Request $request){
 
     $user = Auth::user();
 
@@ -31,15 +32,12 @@ class UnlockController extends Controller
     }
 
     foreach (Level::all() as $key => $value) {
-        
-       $userlvl = new UserGameLevel;
-       $userlvl->user_id = $user->id;
-       $userlvl->level_id = $value->id;
-       $userlvl->save();
 
+        $userlvl = new UserGameLevel;
+        $userlvl->user_id = $user->id;
+        $userlvl->level_id = $value->id;
+        $userlvl->save();
     }
-
-
 
     $transaction = new Transaction;
     $transaction->value = $request->value;
@@ -48,50 +46,51 @@ class UnlockController extends Controller
     $transaction->transaction_type = 7;
     $transaction->save();
 
-       
        //localize
-        if ($user->udid != null) {
+        $messageLoc = PushNotification::where('key', 'TransactionSucced')->first();
+        $langKey = $user->language;
 
-            $userId = $user->udid; 
-             OneSignal::sendNotificationToUser(
-            "Transaction succeded! Thanks for your purchase",
-            $userId,
-            $url = null,
-            $data = null,
-            $buttons = null,
-            $schedule = null
-        );
+        if ($user->udid != null && $messageLoc) {
+            $userId = $user->udid;
 
+            OneSignal::sendNotificationToUser(
+                $messageLoc->$langKey.'_content',
+                $userId,
+                $url = null,
+                $data = null,
+                $buttons = null,
+                $schedule = null
+            );
         }
 
     //resetear app
     return response()->json([$user], 200);
 
-   }   
+   }
 
-   public function unlocktourist(){
+   public function unlocktourist(Request $request){
 
- $user = Auth::user();
+    $user = Auth::user();
 
     if (!$user) {
         return response()->json(['not found'], 404);
     }
 
     foreach (Level::all() as $key => $value) {
-        
-       $userlvl = new UserLevel;
-       $userlvl->user_id = $user->id;
-       $userlvl->level_id = $value->id;
-       $userlvl->save();
+
+        $userlvl = new UserLevel;
+        $userlvl->user_id = $user->id;
+        $userlvl->level_id = $value->id;
+        $userlvl->save();
 
     }
 
     foreach (BLandMark::all() as $key => $value) {
-       
+
         $userlm     = new UserLandmark;
-       $userlm->user_id = $user->id;
-       $userlm->level_object_id = $value->id;
-       $userlm->save();
+        $userlm->user_id = $user->id;
+        $userlm->level_object_id = $value->id;
+        $userlm->save();
 
     }
 
@@ -102,36 +101,38 @@ class UnlockController extends Controller
     $transaction->transaction_type = 8;
     $transaction->save();
 
-       
-        if ($user->udid != null) {
+    $messageLoc = PushNotification::where('key', 'TransactionSucced')->first();
+    $langKey = $user->language;
 
-            $userId = $user->udid; 
-             OneSignal::sendNotificationToUser(
-            "Transaction succeded! Thanks for your purchase",
+    if ($user->udid != null && $messageLoc) {
+
+        $userId = $user->udid;
+
+        OneSignal::sendNotificationToUser(
+            $messageLoc->$langKey.'_content',
             $userId,
             $url = null,
             $data = null,
             $buttons = null,
             $schedule = null
         );
-
-        }
+    }
 
     //resetear app
     return response()->json([$user], 200);
 
 
-   }   
+   }
 
-   public function unlockeverything(){
-    
-$user = Auth::user();
-     if (!$user) {
+   public function unlockeverything(Request $request){
+
+    $user = Auth::user();
+    if (!$user) {
         return response()->json(['not found'], 404);
     }
 
     foreach (Level::all() as $key => $value) {
-        
+
        $userlvl = new UserGameLevel;
        $userlvl->user_id = $user->id;
        $userlvl->level_id = $value->id;
@@ -141,7 +142,7 @@ $user = Auth::user();
 
 
     foreach (Level::all() as $key => $value) {
-        
+
        $userlvl = new UserLevel;
        $userlvl->user_id = $user->id;
        $userlvl->level_id = $value->id;
@@ -150,7 +151,7 @@ $user = Auth::user();
     }
 
     foreach (BLandMark::all() as $key => $value) {
-       
+
         $userlm = new UserLandmark;
        $userlm->user_id = $user->id;
        $userlm->level_object_id = $value->id;
@@ -165,18 +166,21 @@ $user = Auth::user();
     $transaction->transaction_type = 9;
     $transaction->save();
 
-       
-        if ($user->udid != null) {
+    $messageLoc = PushNotification::where('key', 'TransactionSucced')->first();
+    $langKey = $user->language;
 
-            $userId = $user->udid; 
-             OneSignal::sendNotificationToUser(
-            "Transaction succeded! Thanks for your purchase",
-            $userId,
-            $url = null,
-            $data = null,
-            $buttons = null,
-            $schedule = null
-        );
+        if ($user->udid != null && $messageLoc) {
+
+            $userId = $user->udid;
+
+            OneSignal::sendNotificationToUser(
+                $messageLoc->$langKey.'_content',
+                $userId,
+                $url = null,
+                $data = null,
+                $buttons = null,
+                $schedule = null
+            );
 
         }
 

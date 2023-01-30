@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Coupon;
+use App\Models\PushNotification;
 use App\Models\User;
 use App\Models\UserCoupon;
 use Illuminate\Http\Request;
@@ -45,16 +46,19 @@ class UserCouponsController extends Controller
                 $userCoupon->save();
             }
 
-            if ($user->udid != null) {
-                 OneSignal::sendNotificationToUser(
-                "New Coupon Awarded!",
-                $userId,
-                $url = null,
-                $data = null,
-                $buttons = null,
-                $schedule = null
-            );
-        }
+            $messageLoc = PushNotification::where('key', 'Coupon')->first();
+            $langKey = $user->language;
+
+            if ($user->udid != null && $messageLoc) {
+                OneSignal::sendNotificationToUser(
+                    $messageLoc->$langKey.'_content',
+                    $userId,
+                    $url = null,
+                    $data = null,
+                    $buttons = null,
+                    $schedule = null
+                );
+            }
 
         return response()->json(['data' => $user->userUserCoupons], 200);
         }

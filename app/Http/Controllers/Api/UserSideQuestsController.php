@@ -3,11 +3,13 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\PushNotification;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\SideQuest;
 use App\Models\UserSideQuest;
 use Auth;
+use OneSignal;
 
 class UserSideQuestsController extends Controller
 {
@@ -41,26 +43,28 @@ class UserSideQuestsController extends Controller
         }
 
         if ($request->won == 1) {
-           
+
             if($user->timeleft < 12){
                 $user->timeleft += 1;
                 $user->update();
             }
 
+            $messageLoc = PushNotification::where('key', 'GameExtraHour')->first();
+            $langKey = $user->language;
 
-            if ($user->udid != null) {
-                 OneSignal::sendNotificationToUser(
-                "Congratulations! You won 1 hour",
-                $userId,
-                $url = null,
-                $data = null,
-                $buttons = null,
-                $schedule = null
-            );
+            if ($user->udid != null && $messageLoc) {
+                OneSignal::sendNotificationToUser(
+                    $messageLoc->$langKey.'_content',
+                    $user->udid,
+                    $url = null,
+                    $data = null,
+                    $buttons = null,
+                    $schedule = null
+                );
 
             }
         }
-        return response()->json(['data' => $user], 200); 
+        return response()->json(['data' => $user], 200);
     }
 
     public function delete(Request $request){

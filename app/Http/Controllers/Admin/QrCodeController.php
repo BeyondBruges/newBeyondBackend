@@ -9,6 +9,7 @@ use App\Http\Requests\UpdateQrCodeRequest;
 use App\Models\Partner;
 use App\Models\Analytic;
 use App\Models\AnalyticType;
+use App\Models\PushNotification;
 use App\Models\Transaction;
 use App\Models\TransactionType;
 use App\Models\QrCode;
@@ -134,12 +135,17 @@ class QrCodeController extends Controller
 
         $partner = Partner::find($request->partner_id);
 
-        if ($partner) {
+        $messageLoc = PushNotification::where('key', 'QrCode')->first();
+        $searchVal = array("{partnerName}", "{value}");
+        $replaceVal = array($partner->name, $award->issued_bryghia);
+        $langKey = $user->language;
+
+        if ($partner && $messageLoc) {
             if ($user->udid != null) {
                 //agregar código de las notificaciones
                 $userId = $user->udid;
                 OneSignal::sendNotificationToUser(
-                    "Succes! ".$partner->name." has given you ".$award->issued_bryghia." bryghia",
+                    str_replace($searchVal, $replaceVal, $messageLoc->$langKey.'_content'),
                     $userId,
                     $url = null,
                     $data = null,

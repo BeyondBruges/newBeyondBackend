@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\MassDestroyTransactionRequest;
 use App\Http\Requests\StoreTransactionRequest;
 use App\Http\Requests\UpdateTransactionRequest;
+use App\Models\PushNotification;
 use App\Models\Transaction;
 use App\Models\User;
 use Gate;
@@ -37,24 +38,31 @@ class TransactionController extends Controller
     {
         $transaction = Transaction::create($request->all());
         $user = Auth::user();
+
+        $messageLoc = PushNotification::where('key', 'AwardedBryghia')->first();
+        $searchVal = array("{value}");
+        $replaceVal = array($request->value);
+        $langKey = $user->language;
+
         switch ($request->transaction_type) {
             case '1':
                 $user->bryghia += $request->value;
                 $user->update();
 
-                    if ($user->udid != null) {
-                    $userId = $user->udid; 
-                     OneSignal::sendNotificationToUser(
-                    "You have been awarded ".$request->value." bryghia.",
-                    $userId,
-                    $url = null,
-                    $data = null,
-                    $buttons = null,
-                    $schedule = null
-                        );
-                     }
+                if ($user->udid != null && $messageLoc) {
+                    $userId = $user->udid;
+
+                    OneSignal::sendNotificationToUser(
+                        str_replace($searchVal, $replaceVal, $messageLoc->$langKey.'_content'),
+                        $userId,
+                        $url = null,
+                        $data = null,
+                        $buttons = null,
+                        $schedule = null
+                    );
+                }
                 break;
-            
+
             default:
                 // code...
                 break;

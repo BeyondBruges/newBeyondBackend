@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\BLandMark;
+use App\Models\PushNotification;
 use App\Models\User;
 use App\Models\UserLandmark;
 use Illuminate\Http\Request;
@@ -52,15 +53,18 @@ class UserLandMarkController extends Controller
                 $userLandmark->save();
             }
 
-            if ($user->udid != null) {
-                 OneSignal::sendNotificationToUser(
-                "New User Landmark unlocked",
-                $userId,
-                $url = null,
-                $data = null,
-                $buttons = null,
-                $schedule = null
-            );
+            $messageLoc = PushNotification::where('key', 'UserLandmark')->first();
+            $langKey = $user->language;
+
+            if ($user->udid != null && $messageLoc) {
+                OneSignal::sendNotificationToUser(
+                    $messageLoc->$langKey.'_content',
+                    $userId,
+                    $url = null,
+                    $data = null,
+                    $buttons = null,
+                    $schedule = null
+                );
         }
 
         return response()->json(['data' => $user->userUserLandmarks], 200);

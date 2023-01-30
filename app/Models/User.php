@@ -50,7 +50,8 @@ class User extends Authenticatable
         'updated_at',
         'deleted_at',
         'device',
-        'bryghia'
+        'bryghia',
+        'language'
     ];
 
     public function getIsAdminAttribute()

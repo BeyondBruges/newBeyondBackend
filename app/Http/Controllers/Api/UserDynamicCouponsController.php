@@ -10,6 +10,7 @@ use App\Models\UserDynamicCoupon;
 use App\Models\DynamicCoupon;
 use Carbon\Carbon;
 use App\Models\Product;
+use App\Models\PushNotification;
 use Illuminate\Support\Str;
 use OneSignal;
 use QrCode;
@@ -40,7 +41,7 @@ class UserDynamicCouponsController extends Controller
         return response()->json(['user not found'], 404);
     }
     else
-    {   
+    {
         //Generar  dynamic coupon
         $dynamicCoupon = new dynamicCoupon;
         $dynamicCoupon->name = Product::find($request->product_id)->name;
@@ -53,7 +54,7 @@ class UserDynamicCouponsController extends Controller
         }
 
 
-        $dynamicCoupon->expiration = Carbon::createFromFormat('Y-m-d H:i:s', $date)->format(config('panel.date_format'). ' ' . config('panel.time_format'));   
+        $dynamicCoupon->expiration = Carbon::createFromFormat('Y-m-d H:i:s', $date)->format(config('panel.date_format'). ' ' . config('panel.time_format'));
         $dynamicCoupon->user_id = $user->id;
         $dynamicCoupon->code = Str::random(8);
         $dynamicCoupon->imageurl = config('app.url').'/dynamiccoupons/'.$dynamicCoupon->code.'.png';
@@ -66,16 +67,18 @@ class UserDynamicCouponsController extends Controller
         $userdynamiccoupon->dynamic_coupon_id = $dynamicCoupon->id;
         $userdynamiccoupon->save();
 
-        if ($user->udid != null) {
+        $messageLoc = PushNotification::where('key', 'DynamicCoupon')->first();
+        $langKey = $user->language;
 
-         $userId = $user->udid;   
-             OneSignal::sendNotificationToUser(
-            "Thanks for your purchase. A dynamic coupon has been added to your account. You can use it to exchange it for your item.",
-            $userId,
-            $url = null,
-            $data = null,
-            $buttons = null,
-            $schedule = null
+        if ($user->udid != null && $messageLoc) {
+            $userId = $user->udid;
+            OneSignal::sendNotificationToUser(
+                $messageLoc->$langKey.'_content',
+                $userId,
+                $url = null,
+                $data = null,
+                $buttons = null,
+                $schedule = null
             );
         }
     $user->bryghia -= Product::find($request->product_id)->cost;

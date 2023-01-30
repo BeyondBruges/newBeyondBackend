@@ -3,6 +3,9 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\Donation;
+use App\Models\PushNotification;
+use App\Models\Transaction;
 use Illuminate\Http\Request;
 use Auth;
 use App\Models\User;
@@ -53,18 +56,21 @@ class PlayerManagementController extends Controller
             $user->status = 0;
             $user->update();
 
-            if ($user->udid != null) {
+            $messageLoc = PushNotification::where('key', 'AccountDeactivated')->first();
+            $langKey = $user->language;
 
-             $userId = $user->udid;   
-                 OneSignal::sendNotificationToUser(
-                "Your account has been deactivated, thank you for using Beyond Bruges",
-                $userId,
-                $url = null,
-                $data = null,
-                $buttons = null,
-                $schedule = null
+            if ($user->udid != null && $messageLoc) {
+
+                $userId = $user->udid;
+                OneSignal::sendNotificationToUser(
+                    $messageLoc->$langKey.'_content',
+                    $userId,
+                    $url = null,
+                    $data = null,
+                    $buttons = null,
+                    $schedule = null
                 );
-             }
+            }
 
             return response()->json(['Account deactivated'], 200);
         }

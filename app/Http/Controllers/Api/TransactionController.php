@@ -9,6 +9,7 @@ use App\Models\Transaction;
 use App\Models\TransactionType;
 use OneSignal;
 use App\Models\Donation;
+use App\Models\PushNotification;
 use Auth;
 
 class TransactionController extends Controller
@@ -43,19 +44,24 @@ class TransactionController extends Controller
             $transaction->save();
 
             if ($transaction->transaction_type == 1) {
-               $user->bryghia += $transaction->value;
-               $user->update();
-               
-                if ($user->udid != null) {
-                    $userId = $user->udid; 
-                     OneSignal::sendNotificationToUser(
-                    "Purchase succeded! ".$request->value." bryghia have been added",
-                    $userId,
-                    $url = null,
-                    $data = null,
-                    $buttons = null,
-                    $schedule = null
-                );
+                $user->bryghia += $transaction->value;
+                $user->update();
+
+                $messageLoc = PushNotification::where('key', 'BryghiaPurchased')->first();
+                $searchVal = array("{value}");
+                $replaceVal = array($request->value);
+                $langKey = $user->language;
+
+                if ($user->udid != null && $messageLoc) {
+                    $userId = $user->udid;
+                    OneSignal::sendNotificationToUser(
+                        str_replace($searchVal, $replaceVal, $messageLoc->$langKey.'_content'),
+                        $userId,
+                        $url = null,
+                        $data = null,
+                        $buttons = null,
+                        $schedule = null
+                    );
                 }
             }
             else
@@ -63,16 +69,19 @@ class TransactionController extends Controller
                 $user->bryghia -= $transaction->value;
                 $user->update();
 
-                if ($user->udid != null) {
-                    $userId = $user->udid; 
-                     OneSignal::sendNotificationToUser(
-                    "Your purchase has been successfully processed",
-                    $userId,
-                    $url = null,
-                    $data = null,
-                    $buttons = null,
-                    $schedule = null
-                );
+                $messageLoc = PushNotification::where('key', 'Purchase')->first();
+                $langKey = $user->language;
+
+                if ($user->udid != null && $messageLoc) {
+                    $userId = $user->udid;
+                    OneSignal::sendNotificationToUser(
+                        $messageLoc->$langKey.'_content',
+                        $userId,
+                        $url = null,
+                        $data = null,
+                        $buttons = null,
+                        $schedule = null
+                    );
                 }
             }
             $user->update();
@@ -94,8 +103,8 @@ class TransactionController extends Controller
            return response()->json(['User does not have enough funds'], 500);
         }
 
-            
-        
+
+
         if (!$user) {
             return response()->json(['user not found'], 404);
         }
@@ -126,24 +135,30 @@ class TransactionController extends Controller
 
             if ($user->udid != null) {
 
-                $userId = $user->udid;   
-                 OneSignal::sendNotificationToUser(
-                "Your bryghia donation has been processed. Thank you for your generosity!",
-                $userId,
-                $url = null,
-                $data = null,
-                $buttons = null,
-                $schedule = null
-                );
-             }
+                $userId = $user->udid;
 
-             return response()->json(['data' => $user->bryghia], 200);
+                $messageLoc = PushNotification::where('key', 'BryghiaDonation')->first();
+                $langKey = $user->language;
+
+                if($messageLoc){
+                    OneSignal::sendNotificationToUser(
+                        $messageLoc->$langKey.'_content',
+                        $userId,
+                        $url = null,
+                        $data = null,
+                        $buttons = null,
+                        $schedule = null
+                    );
+                }
+            }
+
+            return response()->json(['data' => $user->bryghia], 200);
         }
 
     }
 
     public function gift(Request $request)
-    
+
     {
         $userId = "";
         $user = Auth::user();
@@ -166,7 +181,7 @@ class TransactionController extends Controller
            return response()->json(['User does not have enough funds'], 500);
         }
 
-        if (!$user || !$user_b) 
+        if (!$user || !$user_b)
         {
             return response()->json(['user not found'], 404);
         }
@@ -193,29 +208,43 @@ class TransactionController extends Controller
 
             if ($user->udid != null) {
 
-             $userId = $user->udid;   
-                 OneSignal::sendNotificationToUser(
-                "Your bryghia donation has been processed. Thank you for your generosity!",
-                $userId,
-                $url = null,
-                $data = null,
-                $buttons = null,
-                $schedule = null
-                );
-             }
+                $userId = $user->udid;
+
+                $messageLoc = PushNotification::where('key', 'BryghiaDonation')->first();
+                $langKey = $user->language;
+
+                if($messageLoc){
+                    OneSignal::sendNotificationToUser(
+                        $messageLoc->$langKey.'_content',
+                        $userId,
+                        $url = null,
+                        $data = null,
+                        $buttons = null,
+                        $schedule = null
+                    );
+                }
+            }
 
             if ($user_b->udid != null) {
 
-             $userId = $user_b->udid;   
-                 OneSignal::sendNotificationToUser(
-                $user->name." has given you ".$request->value." Bryghia! You can use them to unlock content in the app!",
-                $userId,
-                $url = null,
-                $data = null,
-                $buttons = null,
-                $schedule = null
-                );
-             }
+                $userId = $user_b->udid;
+
+                $messageLoc = PushNotification::where('key', 'BryghiaToUser')->first();
+                $searchVal = array("{userName}", "{value}");
+                $replaceVal = array($user->name, $request->value);
+                $langKey = $user_b->language;
+
+                if($messageLoc){
+                    OneSignal::sendNotificationToUser(
+                        str_replace($searchVal, $replaceVal, $messageLoc->$langKey.'_content'),
+                        $userId,
+                        $url = null,
+                        $data = null,
+                        $buttons = null,
+                        $schedule = null
+                    );
+                }
+            }
 
              return response()->json(['data' => $user->bryghia], 200);
         }
