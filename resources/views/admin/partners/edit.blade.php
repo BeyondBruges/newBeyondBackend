@@ -94,12 +94,12 @@
             </div>
 
             <div class="form-group">
-                <label class="" for="phone">Phone</label>
-                <input class="form-control {{ $errors->has('phone') ? 'is-invalid' : '' }}" type="phone" name="phone" id="phone" value="{{ old('phone', $partner->phone) }}" required>
+                <label for="phone">Phone</label>
+                <input class="form-control {{ $errors->has('phone') ? 'is-invalid' : '' }}" type="phone" name="phone" id="phone" value="{{ old('phone', $partner->phone) }}">
                 @if($errors->has('phone'))
                     <span class="text-danger">{{ $errors->first('phone') }}</span>
                 @endif
-            </div>            
+            </div>
 
             <div class="form-group">
                 <label class="" for="address">address</label>
