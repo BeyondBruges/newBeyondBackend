@@ -89,7 +89,7 @@ class UnlockController extends Controller
 
         $userlm     = new UserLandmark;
         $userlm->user_id = $user->id;
-        $userlm->level_object_id = $value->id;
+        $userlm->landmark_id = $value->id;
         $userlm->save();
 
     }
@@ -154,7 +154,7 @@ class UnlockController extends Controller
 
         $userlm = new UserLandmark;
        $userlm->user_id = $user->id;
-       $userlm->level_object_id = $value->id;
+       $userlm->landmark_id = $value->id;
        $userlm->save();
 
     }
