@@ -139,13 +139,14 @@ class QrCodeController extends Controller
         $searchVal = array("{partnerName}", "{value}");
         $replaceVal = array($partner->name, $award->issued_bryghia);
         $langKey = $user->language;
+        $content = $langKey.'_content';
 
         if ($partner && $messageLoc) {
             if ($user->udid != null) {
                 //agregar código de las notificaciones
                 $userId = $user->udid;
                 OneSignal::sendNotificationToUser(
-                    str_replace($searchVal, $replaceVal, $messageLoc->$langKey.'_content'),
+                    str_replace($searchVal, $replaceVal, $messageLoc->$content),
                     $userId,
                     $url = null,
                     $data = null,

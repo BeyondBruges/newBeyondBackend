@@ -51,10 +51,11 @@ class UserSideQuestsController extends Controller
 
             $messageLoc = PushNotification::where('key', 'GameExtraHour')->first();
             $langKey = $user->language;
+            $content = $langKey.'_content';
 
             if ($user->udid != null && $messageLoc) {
                 OneSignal::sendNotificationToUser(
-                    $messageLoc->$langKey.'_content',
+                    $messageLoc->$content,
                     $user->udid,
                     $url = null,
                     $data = null,

@@ -43,6 +43,7 @@ class TransactionController extends Controller
         $searchVal = array("{value}");
         $replaceVal = array($request->value);
         $langKey = $user->language;
+        $content = $langKey.'_content';
 
         switch ($request->transaction_type) {
             case '1':
@@ -53,7 +54,7 @@ class TransactionController extends Controller
                     $userId = $user->udid;
 
                     OneSignal::sendNotificationToUser(
-                        str_replace($searchVal, $replaceVal, $messageLoc->$langKey.'_content'),
+                        str_replace($searchVal, $replaceVal, $messageLoc->$content),
                         $userId,
                         $url = null,
                         $data = null,

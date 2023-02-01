@@ -55,10 +55,11 @@ class UserLandMarkController extends Controller
 
             $messageLoc = PushNotification::where('key', 'UserLandmark')->first();
             $langKey = $user->language;
+            $content = $langKey.'_content';
 
             if ($user->udid != null && $messageLoc) {
                 OneSignal::sendNotificationToUser(
-                    $messageLoc->$langKey.'_content',
+                    $messageLoc->$content,
                     $userId,
                     $url = null,
                     $data = null,

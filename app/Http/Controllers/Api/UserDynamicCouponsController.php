@@ -69,11 +69,12 @@ class UserDynamicCouponsController extends Controller
 
         $messageLoc = PushNotification::where('key', 'DynamicCoupon')->first();
         $langKey = $user->language;
+        $content = $langKey.'_content';
 
         if ($user->udid != null && $messageLoc) {
             $userId = $user->udid;
             OneSignal::sendNotificationToUser(
-                $messageLoc->$langKey.'_content',
+                $messageLoc->$content,
                 $userId,
                 $url = null,
                 $data = null,

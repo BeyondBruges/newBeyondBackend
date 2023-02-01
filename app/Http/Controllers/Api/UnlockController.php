@@ -49,12 +49,13 @@ class UnlockController extends Controller
        //localize
         $messageLoc = PushNotification::where('key', 'TransactionSucced')->first();
         $langKey = $user->language;
+        $content = $langKey.'_content';
 
         if ($user->udid != null && $messageLoc) {
             $userId = $user->udid;
 
             OneSignal::sendNotificationToUser(
-                $messageLoc->$langKey.'_content',
+                $messageLoc->$content,
                 $userId,
                 $url = null,
                 $data = null,
@@ -103,13 +104,14 @@ class UnlockController extends Controller
 
     $messageLoc = PushNotification::where('key', 'TransactionSucced')->first();
     $langKey = $user->language;
+    $content = $langKey.'_content';
 
     if ($user->udid != null && $messageLoc) {
 
         $userId = $user->udid;
 
         OneSignal::sendNotificationToUser(
-            $messageLoc->$langKey.'_content',
+            $messageLoc->$content,
             $userId,
             $url = null,
             $data = null,
@@ -168,13 +170,14 @@ class UnlockController extends Controller
 
     $messageLoc = PushNotification::where('key', 'TransactionSucced')->first();
     $langKey = $user->language;
+    $content = $langKey.'_content';
 
         if ($user->udid != null && $messageLoc) {
 
             $userId = $user->udid;
 
             OneSignal::sendNotificationToUser(
-                $messageLoc->$langKey.'_content',
+                $messageLoc->$content,
                 $userId,
                 $url = null,
                 $data = null,

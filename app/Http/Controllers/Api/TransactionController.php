@@ -51,11 +51,12 @@ class TransactionController extends Controller
                 $searchVal = array("{value}");
                 $replaceVal = array($request->value);
                 $langKey = $user->language;
+                $content = $langKey.'_content';
 
                 if ($user->udid != null && $messageLoc) {
                     $userId = $user->udid;
                     OneSignal::sendNotificationToUser(
-                        str_replace($searchVal, $replaceVal, $messageLoc->$langKey.'_content'),
+                        str_replace($searchVal, $replaceVal, $messageLoc->$content),
                         $userId,
                         $url = null,
                         $data = null,
@@ -71,11 +72,12 @@ class TransactionController extends Controller
 
                 $messageLoc = PushNotification::where('key', 'Purchase')->first();
                 $langKey = $user->language;
+                $content = $langKey.'_content';
 
                 if ($user->udid != null && $messageLoc) {
                     $userId = $user->udid;
                     OneSignal::sendNotificationToUser(
-                        $messageLoc->$langKey.'_content',
+                        $messageLoc->$content,
                         $userId,
                         $url = null,
                         $data = null,
@@ -139,10 +141,11 @@ class TransactionController extends Controller
 
                 $messageLoc = PushNotification::where('key', 'BryghiaDonation')->first();
                 $langKey = $user->language;
+                $content = $langKey.'_content';
 
                 if($messageLoc){
                     OneSignal::sendNotificationToUser(
-                        $messageLoc->$langKey.'_content',
+                        $messageLoc->$content,
                         $userId,
                         $url = null,
                         $data = null,
@@ -212,10 +215,11 @@ class TransactionController extends Controller
 
                 $messageLoc = PushNotification::where('key', 'BryghiaDonation')->first();
                 $langKey = $user->language;
+                $content = $langKey.'_content';
 
                 if($messageLoc){
                     OneSignal::sendNotificationToUser(
-                        $messageLoc->$langKey.'_content',
+                        $messageLoc->$content,
                         $userId,
                         $url = null,
                         $data = null,
@@ -233,10 +237,11 @@ class TransactionController extends Controller
                 $searchVal = array("{userName}", "{value}");
                 $replaceVal = array($user->name, $request->value);
                 $langKey = $user_b->language;
+                $content = $langKey.'_content';
 
                 if($messageLoc){
                     OneSignal::sendNotificationToUser(
-                        str_replace($searchVal, $replaceVal, $messageLoc->$langKey.'_content'),
+                        str_replace($searchVal, $replaceVal, $messageLoc->$content),
                         $userId,
                         $url = null,
                         $data = null,
