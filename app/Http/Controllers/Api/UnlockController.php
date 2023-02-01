@@ -33,6 +33,12 @@ class UnlockController extends Controller
 
     foreach (Level::all() as $key => $value) {
 
+
+        $existinglevel = UserGameLevel::where('user_id', $user->id)->where('level_id', $value->id)->first();
+        if($existinglevel != null){
+            continue;
+        }
+
         $userlvl = new UserGameLevel;
         $userlvl->user_id = $user->id;
         $userlvl->level_id = $value->id;
@@ -79,6 +85,10 @@ class UnlockController extends Controller
 
     foreach (Level::all() as $key => $value) {
 
+        $existinglevel = UserLevel::where('user_id', $user->id)->where('level_id', $value->id)->first();
+        if($existinglevel != null){
+            continue;
+        }
         $userlvl = new UserLevel;
         $userlvl->user_id = $user->id;
         $userlvl->level_id = $value->id;
@@ -88,6 +98,10 @@ class UnlockController extends Controller
 
     foreach (BLandMark::all() as $key => $value) {
 
+        $existinglevel = UserLandmark::where('user_id', $user->id)->where('landmark_id', $value->id)->first();
+        if($existinglevel != null){
+            continue;
+        }
         $userlm     = new UserLandmark;
         $userlm->user_id = $user->id;
         $userlm->landmark_id = $value->id;
@@ -135,6 +149,10 @@ class UnlockController extends Controller
 
     foreach (Level::all() as $key => $value) {
 
+        $existinglevel = UserGameLevel::where('user_id', $user->id)->where('level_id', $value->id)->first();
+        if($existinglevel != null){
+            continue;
+        }
        $userlvl = new UserGameLevel;
        $userlvl->user_id = $user->id;
        $userlvl->level_id = $value->id;
@@ -145,6 +163,10 @@ class UnlockController extends Controller
 
     foreach (Level::all() as $key => $value) {
 
+        $existinglevel = UserLevel::where('user_id', $user->id)->where('level_id', $value->id)->first();
+        if($existinglevel != null){
+            continue;
+        }
        $userlvl = new UserLevel;
        $userlvl->user_id = $user->id;
        $userlvl->level_id = $value->id;
@@ -154,6 +176,10 @@ class UnlockController extends Controller
 
     foreach (BLandMark::all() as $key => $value) {
 
+        $existinglevel = UserLandmark::where('user_id', $user->id)->where('landmark_id', $value->id)->first();
+        if($existinglevel != null){
+            continue;
+        }
         $userlm = new UserLandmark;
        $userlm->user_id = $user->id;
        $userlm->landmark_id = $value->id;
