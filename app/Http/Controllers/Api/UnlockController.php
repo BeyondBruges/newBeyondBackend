@@ -40,7 +40,7 @@ class UnlockController extends Controller
     }
 
     $transaction = new Transaction;
-    $transaction->value = $request->value;
+    $transaction->value = 1;
     $transaction->status = 1;
     $transaction->user_id = $user->id;
     $transaction->transaction_type = 7;
@@ -95,7 +95,7 @@ class UnlockController extends Controller
     }
 
     $transaction = new Transaction;
-    $transaction->value = $request->value;
+    $transaction->value = 1;
     $transaction->status = 1;
     $transaction->user_id = $user->id;
     $transaction->transaction_type = 8;
@@ -160,7 +160,7 @@ class UnlockController extends Controller
     }
 
     $transaction = new Transaction;
-    $transaction->value = $request->value;
+    $transaction->value = 1;
     $transaction->status = 1;
     $transaction->user_id = $user->id;
     $transaction->transaction_type = 9;
