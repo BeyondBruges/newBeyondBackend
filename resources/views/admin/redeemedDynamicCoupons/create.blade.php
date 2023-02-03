@@ -8,16 +8,16 @@
 
 
     <div class="card-body">
-        
+
         @if($dynamicCoupon->status == 1)
         <form method="POST" action="{{ route("admin.redeemed-dynamic-coupons.store") }}" enctype="multipart/form-data">
             @csrf
 
             <div class="row">
             	<div class="col-4">
-            	
+
             		<img src="{{$dynamicCoupon->products->first() ? $dynamicCoupon->products->first()->image->getUrl()  : ''}}" style="width:100%">
-            		
+
             	</div>
             	<div class="col-8">
             	            <div class="form-group">
@@ -42,7 +42,7 @@
                     <span class="text-danger">{{ $errors->first('value') }}</span>
                 @endif
                 <span class="help-block">{{ trans('cruds.coupon.fields.value_helper') }}</span>
-            </div>            
+            </div>
 
             <div class="form-group">
                 <input class="form-control {{ $errors->has('value') ? 'is-invalid' : '' }}" type="text" name="user_id" id="value" value="{{ $dynamicCoupon->user->id }}" hidden>
@@ -50,7 +50,7 @@
                     <span class="text-danger">{{ $errors->first('value') }}</span>
                 @endif
                 <span class="help-block">{{ trans('cruds.coupon.fields.value_helper') }}</span>
-            </div>	
+            </div>
             	</div>
 
 
@@ -58,7 +58,7 @@
             		            <div class="form-group">
                 <label class="required" for="partner_id">{{ trans('cruds.coupon.fields.partner') }}</label>
                 <select class="form-control select2 {{ $errors->has('partner') ? 'is-invalid' : '' }}" name="partner_id" id="partner_id" required>
-                    @foreach(Auth::user()->partners as $id => $entry)
+                    @foreach(Auth::user()->userPartnerUsers as $id => $entry)
                         <option value="{{ $entry->id }}" {{ old('partner_id') == $id ? 'selected' : '' }}>{{ $entry->name }}</option>
                     @endforeach
                 </select>
