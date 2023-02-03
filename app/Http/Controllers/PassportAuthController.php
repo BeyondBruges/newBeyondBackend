@@ -40,7 +40,7 @@ class PassportAuthController extends Controller
         }
 
         /*REMOVE THIS ON LAUNCH*/
-        $user->bryghia = 9999;
+        $user->bryghia = 25;
         $user->update();
         /*REMOVE THIS ON LAUNCH*/
 
