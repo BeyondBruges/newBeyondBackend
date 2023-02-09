@@ -8,6 +8,7 @@ use App\Http\Requests\StorePartnerUserRequest;
 use App\Http\Requests\UpdatePartnerUserRequest;
 use App\Models\Partner;
 use App\Models\PartnerUser;
+use App\Models\Role;
 use App\Models\User;
 use Gate;
 use Illuminate\Http\Request;
@@ -38,6 +39,11 @@ class PartnerUsersController extends Controller
     public function store(StorePartnerUserRequest $request)
     {
         $partnerUser = PartnerUser::create($request->all());
+
+        $user = User::Find($partnerUser->user_id);
+        $role = Role::where('title', 'Partner')->first();
+
+        $user->roles()->syncWithoutDetaching($role->id);
 
         return redirect()->route('admin.partner-users.index');
     }
