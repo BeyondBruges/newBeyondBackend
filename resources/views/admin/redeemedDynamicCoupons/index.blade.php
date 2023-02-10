@@ -9,7 +9,6 @@
     <div class="card-header">
         Redeemed Dynamic Coupons
     </div>
-
     <div class="card-body">
         <div class="table-responsive">
             <table class=" table table-bordered table-striped table-hover datatable datatable-Coupon">
@@ -22,10 +21,10 @@
                             {{ trans('cruds.coupon.fields.id') }}
                         </th>
                         <th>
-                           User
+                            User
                         </th>
                         <th>
-                           Product
+                            Product
                         </th>
                         <th>
                             Dynamic Coupon
@@ -34,7 +33,7 @@
                             {{ trans('cruds.coupon.fields.partner') }}
                         </th>
                         <th>
-                           Redeemed
+                            Redeemed
                         </th>
                     </tr>
                     <tr>
@@ -68,7 +67,6 @@
                     @foreach($coupons as $key => $coupon)
                         <tr data-entry-id="{{ $coupon->id }}">
                             <td>
-
                             </td>
                             <td>
                                 {{ $coupon->id ?? '' }}
@@ -79,6 +77,7 @@
                             <td>
                                 {{ $coupon->dynamicCoupon->name ?? '' }}
                             </td>
+                            <td>
                                 <ul>
                                     <li>
                                         id:  {{ $coupon->dynamicCoupon->id ?? '' }}
@@ -90,7 +89,6 @@
                                     Created: {{ $coupon->created_at ?? ''}}
                                     </li>
                                 </ul>
-
                             </td>
                             <td>
                                 {{ $coupon->partner->name ?? '' }}
@@ -107,8 +105,6 @@
         </div>
     </div>
 </div>
-
-
 
 @endsection
 @section('scripts')
