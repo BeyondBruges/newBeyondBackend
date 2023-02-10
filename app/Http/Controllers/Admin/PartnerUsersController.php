@@ -38,12 +38,15 @@ class PartnerUsersController extends Controller
 
     public function store(StorePartnerUserRequest $request)
     {
+        $role = Role::where('title', 'Partner')->first();
+
         $partnerUser = PartnerUser::create($request->all());
 
         $user = User::Find($partnerUser->user_id);
-        $role = Role::where('title', 'Partner')->first();
 
-        $user->roles()->syncWithoutDetaching($role->id);
+        if (!$user->hasRole($role)) {
+            $user->roles()->syncWithoutDetaching($role->id);
+        }
 
         return redirect()->route('admin.partner-users.index');
     }
@@ -63,7 +66,21 @@ class PartnerUsersController extends Controller
 
     public function update(UpdatePartnerUserRequest $request, PartnerUser $partnerUser)
     {
+        $role = Role::where('title', 'Partner')->first();
+
+        $oldUser = User::Find($partnerUser->user_id);
+
         $partnerUser->update($request->all());
+
+        $newUser = User::Find($partnerUser->user_id);
+
+        if($oldUser->userPartnerUsers->count() == 0){
+            $oldUser->roles()->detach($role->id);
+        }
+
+        if (!$newUser->hasRole($role)) {
+            $newUser->roles()->syncWithoutDetaching($role->id);
+        }
 
         return redirect()->route('admin.partner-users.index');
     }
@@ -80,6 +97,14 @@ class PartnerUsersController extends Controller
     public function destroy(PartnerUser $partnerUser)
     {
         abort_if(Gate::denies('partner_user_delete'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+
+        $role = Role::where('title', 'Partner')->first();
+
+        $user = User::Find($partnerUser->user_id);
+
+        if($user->userPartnerUsers->count() == 1){
+            $user->roles()->detach($role->id);
+        }
 
         $partnerUser->delete();
 
