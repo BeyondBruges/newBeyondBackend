@@ -383,7 +383,7 @@
                     </li>
                 @endcan
                 @can('coupon_management_access')
-                    <li class="nav-item has-treeview {{ request()->is("admin/coupons*") ? "menu-open" : "" }} {{ request()->is("admin/coupon-descriptions*") ? "menu-open" : "" }} {{ request()->is("admin/dynamic-coupons*") ? "menu-open" : "" }}">
+                    <li class="nav-item has-treeview {{ request()->is("admin/coupons*") ? "menu-open" : "" }} {{ request()->is("admin/coupon-descriptions*") ? "menu-open" : "" }} {{ request()->is("admin/dynamic-coupons*") ? "menu-open" : "" }} {{ request()->is("admin/redeemed-dynamic-coupons*") ? "menu-open" : "" }}">
                         <a class="nav-link nav-dropdown-toggle" href="#">
                             <i class="fa-fw nav-icon fas fa-ticket-alt">
 
