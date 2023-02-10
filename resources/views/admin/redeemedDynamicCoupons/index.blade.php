@@ -81,13 +81,13 @@
                             </td>
                                 <ul>
                                     <li>
-                                        id:  {{ $coupon->dynamicCoupon->id }}
+                                        id:  {{ $coupon->dynamicCoupon->id ?? '' }}
                                     </li>
                                     <li>
                                         Product: {{ $coupon->dynamicCoupon->name ?? ''}}
                                     </li>
                                     <li>
-                                    Created: {{ $coupon->created_at}}
+                                    Created: {{ $coupon->created_at ?? ''}}
                                     </li>
                                 </ul>
 
@@ -97,7 +97,7 @@
                             </td>
                             <td>
 
-                                {{$coupon->created_at->diffForHumans()}}
+                                {{$coupon->created_at->diffForHumans() ?? ''}}
                             </td>
 
                         </tr>
