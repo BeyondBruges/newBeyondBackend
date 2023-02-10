@@ -53,7 +53,7 @@ class RedeemedDynamicCouponsController extends Controller
             $redeemed->save();
             $dynamicCoupon->status = 0;
             $dynamicCoupon->update();
-            return redirect()->back();
+            return view('admin.redeemedDynamicCoupons.index');
 
         }
 

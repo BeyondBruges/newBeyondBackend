@@ -430,6 +430,18 @@
                                     </a>
                                 </li>
                             @endcan
+                            @can('redeemed_dynamic_coupon_access')
+                                <li class="nav-item">
+                                    <a href="{{ route("admin.redeemed-dynamic-coupons.index") }}" class="nav-link {{ request()->is("admin/redeemed-dynamic-coupons") || request()->is("admin/redeemed-dynamic-coupons/*") ? "active" : "" }}">
+                                        <i class="fa-fw nav-icon fas fa-ticket-alt">
+
+                                        </i>
+                                        <p>
+                                            Redeemed Dynamic Coupons
+                                        </p>
+                                    </a>
+                                </li>
+                            @endcan
                         </ul>
                     </li>
                 @endcan

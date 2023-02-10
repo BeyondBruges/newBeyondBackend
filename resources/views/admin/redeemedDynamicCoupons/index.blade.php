@@ -7,7 +7,7 @@
 @endcan
 <div class="card">
     <div class="card-header">
-        Redeemed Dynamic Coupons 
+        Redeemed Dynamic Coupons
     </div>
 
     <div class="card-body">
@@ -74,30 +74,29 @@
                                 {{ $coupon->id ?? '' }}
                             </td>
                             <td>
-                                {{ $coupon->user->name}}
+                                {{ $coupon->user->name ?? ''}}
                             </td>
                             <td>
-                                {{ $coupon->dynamicCoupon->name }}
+                                {{ $coupon->dynamicCoupon->name ?? '' }}
                             </td>
-                            <td>
                                 <ul>
                                     <li>
-                                      id:  {{ $coupon->dynamicCoupon->id }} 
+                                        id:  {{ $coupon->dynamicCoupon->id }}
                                     </li>
                                     <li>
-                                       Product: {{ $coupon->dynamicCoupon->name }} 
-                                    </li>                                   
-                                     <li>
-                                       Created: {{ $coupon->created_at}} 
+                                        Product: {{ $coupon->dynamicCoupon->name ?? ''}}
+                                    </li>
+                                    <li>
+                                    Created: {{ $coupon->created_at}}
                                     </li>
                                 </ul>
-                                
+
                             </td>
                             <td>
                                 {{ $coupon->partner->name ?? '' }}
                             </td>
                             <td>
-                               
+
                                 {{$coupon->created_at->diffForHumans()}}
                             </td>
 
@@ -157,7 +156,7 @@
       $($.fn.dataTable.tables(true)).DataTable()
           .columns.adjust();
   });
-  
+
 let visibleColumnsIndexes = null;
 $('.datatable thead').on('input', '.search', function () {
       let strict = $(this).attr('strict') || false
@@ -183,3 +182,4 @@ table.on('column-visibility.dt', function(e, settings, column, state) {
 
 </script>
 @endsection
+
