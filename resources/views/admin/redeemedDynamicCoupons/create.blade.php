@@ -58,7 +58,7 @@
             		            <div class="form-group">
                 <label class="required" for="partner_id">{{ trans('cruds.coupon.fields.partner') }}</label>
                 <select class="form-control select2 {{ $errors->has('partner') ? 'is-invalid' : '' }}" name="partner_id" id="partner_id" required>
-                    @foreach(Illuminate\Support\Facades\Auth::user()->userPartnerUsers as $id => $entry)
+                    @foreach($loggedUser->userPartnerUsers as $id => $entry)
                         <option value="{{ $entry->id }}" {{ old('partner_id') == $id ? 'selected' : '' }}>{{ $entry->name }}</option>
                     @endforeach
                 </select>

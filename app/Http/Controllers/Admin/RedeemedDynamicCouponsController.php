@@ -8,6 +8,7 @@ use App\Models\RedeemedDynamicCoupon;
 use App\Models\User;
 use App\Models\DynamicCoupon;
 use App\Models\Partner;
+use Auth;
 
 class RedeemedDynamicCouponsController extends Controller
 {
@@ -22,13 +23,14 @@ class RedeemedDynamicCouponsController extends Controller
     public function create($id){
 
         $dynamicCoupon = DynamicCoupon::where('code', $id)->first();
+        $loggedUser = Auth::user();
 
         if (!$dynamicCoupon) {
          return view('admin.redeemedDynamicCoupons.index')->with('danger', 'Dynamic coupon does not exists');
         }
         else
         {
-        return view('admin.redeemedDynamicCoupons.create',  compact('dynamicCoupon'));
+        return view('admin.redeemedDynamicCoupons.create',  compact('dynamicCoupon', 'loggedUser'));
         }
 
      }
@@ -39,7 +41,7 @@ class RedeemedDynamicCouponsController extends Controller
 
         $dynamicCoupon = DynamicCoupon::find($request->dynamic_coupon_id);
         if (!$dynamicCoupon) {
-            
+
             return view('admin.redeemedDynamicCoupons.index');
         }
         else
@@ -54,7 +56,7 @@ class RedeemedDynamicCouponsController extends Controller
             return redirect()->back();
 
         }
-        
+
 
     }
 }
