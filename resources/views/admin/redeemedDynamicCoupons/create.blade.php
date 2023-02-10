@@ -59,7 +59,7 @@
                 <label class="required" for="partner_id">{{ trans('cruds.coupon.fields.partner') }}</label>
                 <select class="form-control select2 {{ $errors->has('partner') ? 'is-invalid' : '' }}" name="partner_id" id="partner_id" required>
                     @foreach($loggedUser->userPartnerUsers as $id => $entry)
-                        <option value="{{ $entry->id }}" {{ old('partner_id') == $id ? 'selected' : '' }}>{{ $entry->name }}</option>
+                        <option value="{{ $entry->partner->id }}" {{ old('partner_id') == $id ? 'selected' : '' }}>{{ $entry->partner->name }}</option>
                     @endforeach
                 </select>
                 @if($errors->has('partner'))
