@@ -71,4 +71,29 @@ class UserLandMarkController extends Controller
         return response()->json(['data' => $user->userUserLandmarks], 200);
         }
     }
+
+    public function unlockFourCityGates(){
+        $user = Auth::user();
+        $landmarksToUnlock = BLandMark::where('id', [17, 18, 19, 20]);
+
+        if (!$user || $landmarksToUnlock) {
+            return response()->json(['not found'], 404);
+        }
+        else
+        {
+            foreach($landmarksToUnlock as $landmark){
+                if (UserLandmark::where('user_id', $user->id)->where('landmark_id', $landmark->id)->exists()) {
+                    continue;
+                }
+                else
+                {
+                    $userLandmark = new UserLandmark;
+                    $userLandmark->user_id = $user->id;
+                    $userLandmark->landmark_id = $landmark->id;
+                    $userLandmark->save();
+                }
+            }
+        return response()->json(['data' => $user->userUserLandmarks], 200);
+        }
+    }
 }

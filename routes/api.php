@@ -96,5 +96,7 @@ Route::middleware('auth:api')->group(function () {
     Route::get('usergamelevels', [UserGameLevelController::class, 'index']);
     Route::post('usergamelevels_store', [UserGameLevelController::class, 'store']);
     Route::post('language_update', [PassportAuthController::class, 'updateLanguage']);
+
+    Route::get('unlock_four_city_gates', [UserLandMarkController::class, 'unlockFourCityGates']);
 });
 
