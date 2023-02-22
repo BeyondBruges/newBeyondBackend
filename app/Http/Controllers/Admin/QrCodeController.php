@@ -27,7 +27,16 @@ class QrCodeController extends Controller
     {
         abort_if(Gate::denies('qr_code_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $qrCodes = QrCode::with(['user', 'partner'])->get();
+        $userPartners = Auth::user()->userPartnerUsers;
+        $partnersIDs = array();
+
+        foreach ($userPartners as $userPartner){
+            if(!in_array($userPartner->partner_id, $partnersIDs)){
+                array_push($partnersIDs, $userPartner->partner_id);
+            }
+        }
+
+        $qrCodes = QrCode::where('partner_id', $partnersIDs)->with(['user', 'partner'])->get();
 
         return view('admin.qrCodes.index', compact('qrCodes'));
     }
