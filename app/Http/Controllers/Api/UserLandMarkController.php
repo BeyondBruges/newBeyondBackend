@@ -74,7 +74,7 @@ class UserLandMarkController extends Controller
 
     public function unlockFourCityGates(){
         $user = Auth::user();
-        $landmarksToUnlock = BLandMark::where('id', [17, 18, 19, 20]);
+        $landmarksToUnlock = BLandMark::where('id', [17, 18, 19, 20])->get();
 
         if (!$user || $landmarksToUnlock) {
             return response()->json(['not found'], 404);
