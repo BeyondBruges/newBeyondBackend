@@ -34,6 +34,8 @@ class QrCodeController extends Controller
 
     public function create()
     {
+        return abort(404);
+
         abort_if(Gate::denies('qr_code_create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         $users = User::pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
@@ -45,6 +47,8 @@ class QrCodeController extends Controller
 
     public function store(StoreQrCodeRequest $request)
     {
+        return abort(404);
+
         $qrCode = QrCode::create($request->all());
 
         return redirect()->route('admin.qr-codes.index');
@@ -99,6 +103,10 @@ class QrCodeController extends Controller
 
         $user = User::find($id);
         $loggeduser = Auth::user();
+
+        if(!$user){
+            return redirect('/admin')->with('error', "User does not exists");
+        }
 
         if ($loggeduser->userpartners->count() < 1) {
 

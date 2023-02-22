@@ -15,20 +15,20 @@
                     <div class="col-5">
            <h4>
                User Name: {{$user->name}}
-           </h4> 
+           </h4>
             <h4>
                User email: {{$user->email}}
-           </h4>           
+           </h4>
             <h4>
                User Current Bryghia: {{$user->bryghia}}
-           </h4> 
+           </h4>
         </div>
         <div class="col-7">
                    <form method="POST" action="{{ route("admin.qr-codes.awardstore") }}" enctype="multipart/form-data">
             @csrf
             <div class="form-group">
                 <label class="required" for="transaction_total">{{ trans('cruds.qrCode.fields.transaction_total') }}</label>
-                <input class="form-control {{ $errors->has('transaction_total') ? 'is-invalid' : '' }}" type="number" name="transaction_total" id="transaction_total" value="{{ old('transaction_total', '') }}" step="1" required>
+                <input class="form-control {{ $errors->has('transaction_total') ? 'is-invalid' : '' }}" type="number" name="transaction_total" id="transaction_total" value="{{ old('transaction_total', '') }}" step="0.01" required>
                 @if($errors->has('transaction_total'))
                     <span class="text-danger">{{ $errors->first('transaction_total') }}</span>
                 @endif
@@ -55,7 +55,7 @@
                     {{ trans('global.save') }}
                 </button>
             </div>
-        </form> 
+        </form>
         </div>
         </div>
 

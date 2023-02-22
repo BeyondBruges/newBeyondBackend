@@ -85,13 +85,17 @@ class UsersController extends Controller
         return response(null, Response::HTTP_NO_CONTENT);
     }
 
-    public function generateQrCode($id) 
+    public function generateQrCode($id)
     {
-        
+        $userQR = User::find($id);
+        if(!$userQR){
+            return back()->with('error', 'User does not exists');
+        }
+
         QrCode::size(1024)
                 ->format('png')
                 ->generate(config('app.url').'/admin/qr-codes/create/'.$id, public_path('images/'.$id.'.png'));
-        
-        return back()->with('success', 'QR has been created successfully'); ;
+
+        return back()->with('success', 'QR has been created successfully');
     }
 }
