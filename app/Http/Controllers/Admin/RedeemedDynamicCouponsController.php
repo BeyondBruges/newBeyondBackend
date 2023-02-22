@@ -26,7 +26,7 @@ class RedeemedDynamicCouponsController extends Controller
         $loggedUser = Auth::user();
 
         if (!$dynamicCoupon) {
-         return view('admin.redeemedDynamicCoupons.index')->with('danger', 'Dynamic coupon does not exists');
+            return redirect(route('admin.redeemed-dynamic-coupons.index'))->with('danger', 'Dynamic coupon does not exists');
         }
         else
         {
@@ -37,12 +37,10 @@ class RedeemedDynamicCouponsController extends Controller
 
     public function store(Request $request){
 
-
-
         $dynamicCoupon = DynamicCoupon::find($request->dynamic_coupon_id);
-        if (!$dynamicCoupon) {
+        if (!$dynamicCoupon || $dynamicCoupon->status == 0) {
 
-            return view('admin.redeemedDynamicCoupons.index');
+            return redirect(route('admin.redeemed-dynamic-coupons.index'))->with('danger', 'Dynamic coupon does not exists');
         }
         else
         {
@@ -53,8 +51,7 @@ class RedeemedDynamicCouponsController extends Controller
             $redeemed->save();
             $dynamicCoupon->status = 0;
             $dynamicCoupon->update();
-            return view('admin.redeemedDynamicCoupons.index');
-
+            return redirect(route('admin.redeemed-dynamic-coupons.index'));
         }
 
 
