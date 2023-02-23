@@ -76,7 +76,7 @@ class UserLandMarkController extends Controller
         $user = Auth::user();
         $landmarksToUnlock = BLandMark::where('id', [17, 18, 19, 20])->get();
 
-        if (!$user || !$landmarksToUnlock) {
+        if (!$user || $landmarksToUnlock->count() == 0) {
             return response()->json(['not found'], 404);
         }
         else
