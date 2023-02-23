@@ -46,13 +46,12 @@ class TransactionTypeController extends Controller
         return view('admin.transactiontypes.show', compact('transactionType'));
     }
 
-    public function destroy(TransactionType $TransactionType)
+    public function destroy(TransactionType $transactionType)
     {
-
-        $analyticType->delete();
+        $transactionType->delete();
 
         return back();
     }
 
-  
+
 }

@@ -128,7 +128,7 @@
                     </li>
                 @endcan
                 @can('game_management_access')
-                    <li class="nav-item has-treeview {{ request()->is("admin/levels*") ? "menu-open" : "" }} {{ request()->is("admin/level-objects*") ? "menu-open" : "" }} {{ request()->is("admin/b-land-marks*") ? "menu-open" : "" }} {{ request()->is("admin/blandmark-contents*") ? "menu-open" : "" }} {{ request()->is("admin/questions*") ? "menu-open" : "" }} {{ request()->is("admin/characters*") ? "menu-open" : "" }} {{ request()->is("admin/hotspots*") ? "menu-open" : "" }}">
+                    <li class="nav-item has-treeview {{ request()->is("admin/url-videos*") ? "menu-open" : "" }} {{ request()->is("admin/levels*") ? "menu-open" : "" }} {{ request()->is("admin/level-objects*") ? "menu-open" : "" }} {{ request()->is("admin/b-land-marks*") ? "menu-open" : "" }} {{ request()->is("admin/blandmark-contents*") ? "menu-open" : "" }} {{ request()->is("admin/questions*") ? "menu-open" : "" }} {{ request()->is("admin/characters*") ? "menu-open" : "" }} {{ request()->is("admin/hotspots*") ? "menu-open" : "" }}">
                         <a class="nav-link nav-dropdown-toggle" href="#">
                             <i class="fa-fw nav-icon fas fa-gamepad">
 
@@ -139,6 +139,19 @@
                             </p>
                         </a>
                         <ul class="nav nav-treeview">
+                            @can('url_videos_access')
+                                <li class="nav-item">
+                                    <a href="{{ route("admin.url-videos.index") }}" class="nav-link {{ request()->is("admin/url-videos") || request()->is("admin/url-videos/*") ? "active" : "" }}">
+                                        <i class="fa-fw nav-icon fas fa-video">
+
+                                        </i>
+                                        <p>
+                                            Url Videos
+                                        </p>
+                                    </a>
+                                </li>
+                            @endcan
+
                             @can('level_access')
                                 <li class="nav-item">
                                     <a href="{{ route("admin.levels.index") }}" class="nav-link {{ request()->is("admin/levels") || request()->is("admin/levels/*") ? "active" : "" }}">

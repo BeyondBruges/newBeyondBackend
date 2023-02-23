@@ -27,6 +27,7 @@ use App\Http\Controllers\Api\UserSideQuestsController;
 use App\Http\Controllers\PassportAuthController;
 use App\Http\Controllers\Api\PlayerManagementController;
 use App\Http\Controllers\Api\UnlockController;
+use App\Http\Controllers\Api\UrlVideoController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -46,6 +47,7 @@ Route::get('products', [ProductsController::class, 'index']);
 Route::get('questions', [QuestionController::class, 'index']);
 Route::get('partners', [PartnerController::class, 'index']);
 Route::get('company', [CompanyController::class, 'index']);
+Route::get('url-videos', [UrlVideoController::class, 'index']);
 Route::post('analytics', [AnalyticController::class, 'store']);
 Route::post('checkgps', [GeoController::class, 'calculate']);
 Route::get('bundles', [BundlesController::class, 'index']);

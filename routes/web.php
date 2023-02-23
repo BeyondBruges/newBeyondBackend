@@ -267,6 +267,9 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::resource('side-quests', 'SideQuestsController');
     Route::resource('user-side-quests', 'UserSideQuestsController');
 
+    //URL Videos
+    Route::delete('url-videos/destroy', 'UrlVideoController@massDestroy')->name('url-videos.massDestroy');
+    Route::resource('url-videos', 'UrlVideoController');
 });
 Route::group(['prefix' => 'profile', 'as' => 'profile.', 'namespace' => 'Auth', 'middleware' => ['auth']], function () {
     // Change password
