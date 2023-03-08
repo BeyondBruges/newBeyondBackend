@@ -10,6 +10,19 @@
         <form method="POST" action="{{ route("admin.partners.update", [$partner->id]) }}" enctype="multipart/form-data">
             @method('PUT')
             @csrf
+
+            <div class="form-group">
+                <label for="partner_category_id">Category</label>
+                <select class="form-control select2 {{ $errors->has('hotspot') ? 'is-invalid' : '' }}" name="partner_category_id" id="partner_category_id">
+                    @foreach(\App\Models\PartnerCategory::all() as $id => $entry)
+                        <option value="{{ $entry->id }}" {{ (old('partner_category_id') ? old('partner_category_id') : $partner->partner_category_id ?? '') == $entry->id ? 'selected' : '' }}>{{ $entry->name }}</option>
+                    @endforeach
+                </select>
+                @if($errors->has('hotspot'))
+                    <span class="text-danger">{{ $errors->first('hotspot') }}</span>
+                @endif
+                <span class="help-block">{{ trans('cruds.dialogue.fields.hotspot_helper') }}</span>
+            </div>
             <div class="form-group">
                 <label class="required" for="name">{{ trans('cruds.partner.fields.name') }}</label>
                 <input class="form-control {{ $errors->has('name') ? 'is-invalid' : '' }}" type="text" name="name" id="name" value="{{ old('name', $partner->name) }}" required>

@@ -10,7 +10,7 @@ class PartnerController extends Controller
 {
     public function index()
     {
-        $partners=Partner::with('partnerPartnerDescriptions')->orderByDesc("name")->get();
+        $partners=Partner::with('partnerPartnerDescriptions')->with('category')->orderByDesc("name")->get();
         return response()->json(['data'=>$partners], 200);
     }
 }

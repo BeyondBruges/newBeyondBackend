@@ -32,6 +32,10 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::delete('transactions/destroy', 'TransactionController@massDestroy')->name('transactions.massDestroy');
     Route::resource('transactions', 'TransactionController');
 
+    //Partner categiryt
+
+    Route::resource('partnerCategories', 'PartnersCategoryController');
+
     // Partner
     Route::delete('partners/destroy', 'PartnerController@massDestroy')->name('partners.massDestroy');
     Route::post('partners/media', 'PartnerController@storeMedia')->name('partners.storeMedia');

@@ -14,6 +14,7 @@ use Gate;
 use Illuminate\Http\Request;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 use Symfony\Component\HttpFoundation\Response;
+use App\Models\BoxCode;
 
 class CouponController extends Controller
 {
@@ -23,12 +24,8 @@ class CouponController extends Controller
     public function index()
     {
         abort_if(Gate::denies('coupon_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
-
-        $coupons = Coupon::with(['partner'])->get();
-
-        $partners = Partner::get();
-
-        return view('admin.coupons.index', compact('coupons', 'partners'));
+        $coupons = BoxCode::orderBy('id', 'desc')->paginate(1000);
+        return view('admin.coupons.index', compact('coupons'));
     }
 
     public function create()

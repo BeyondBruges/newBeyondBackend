@@ -100,5 +100,8 @@ Route::middleware('auth:api')->group(function () {
     Route::post('language_update', [PassportAuthController::class, 'updateLanguage']);
 
     Route::get('unlock_four_city_gates', [UserLandMarkController::class, 'unlockFourCityGates']);
+
+    Route::post('unlock_levels', [UnlockController::class, 'unlockLevels']);
+
 });
 

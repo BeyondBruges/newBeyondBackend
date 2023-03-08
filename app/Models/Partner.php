@@ -49,7 +49,8 @@ class Partner extends Model implements HasMedia
         'updated_at',
         'deleted_at',
         'phone',
-        'address'
+        'address',
+        'partner_category_id'
     ];
 
     public function registerMediaConversions(Media $media = null): void
@@ -106,6 +107,11 @@ class Partner extends Model implements HasMedia
 
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function category()
+    {
+        return $this->belongsTo(PartnerCategory::class, 'partner_category_id');
     }
 
 }

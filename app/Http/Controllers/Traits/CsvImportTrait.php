@@ -93,7 +93,15 @@ trait CsvImportTrait
 
         $redirect = url()->previous();
 
-        $routeName = 'admin.' . strtolower(Str::plural(Str::kebab($modelName))) . '.processCsvImport';
+        if($modelName == "BoxCode"){
+
+            $routeName = 'admin.' . strtolower(Str::plural(Str::kebab('coupons'))) . '.processCsvImport';
+
+        }
+        else{
+            $routeName = 'admin.' . strtolower(Str::plural(Str::kebab($modelName))) . '.processCsvImport';
+
+        }
 
         return view('csvImport.parseInput', compact('headers', 'filename', 'fillables', 'hasHeader', 'modelName', 'lines', 'redirect', 'routeName'));
     }

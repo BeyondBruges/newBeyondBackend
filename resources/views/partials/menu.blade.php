@@ -357,6 +357,17 @@
                         </a>
                         <ul class="nav nav-treeview">
                             @can('partner_access')
+
+                            <li class="nav-item">
+                                <a href="{{ route("admin.partnerCategories.index") }}" class="nav-link {{ request()->is("admin/partnerCategories") || request()->is("admin/partnerCategories/*") ? "active" : "" }}">
+                                    <i class="fa-fw nav-icon fas fa-store-alt">
+
+                                    </i>
+                                    <p>
+                                     Categories
+                                    </p>
+                                </a>
+                            </li>
                                 <li class="nav-item">
                                     <a href="{{ route("admin.partners.index") }}" class="nav-link {{ request()->is("admin/partners") || request()->is("admin/partners/*") ? "active" : "" }}">
                                         <i class="fa-fw nav-icon fas fa-store-alt">
@@ -368,6 +379,7 @@
                                     </a>
                                 </li>
                             @endcan
+                            <hr>
                             @can('partner_user_access')
                                 <li class="nav-item">
                                     <a href="{{ route("admin.partner-users.index") }}" class="nav-link {{ request()->is("admin/partner-users") || request()->is("admin/partner-users/*") ? "active" : "" }}">
@@ -414,23 +426,12 @@
 
                                         </i>
                                         <p>
-                                            {{ trans('cruds.coupon.title') }}
+                                           Box Codes
                                         </p>
                                     </a>
                                 </li>
                             @endcan
-                            @can('coupon_description_access')
-                                <li class="nav-item">
-                                    <a href="{{ route("admin.coupon-descriptions.index") }}" class="nav-link {{ request()->is("admin/coupon-descriptions") || request()->is("admin/coupon-descriptions/*") ? "active" : "" }}">
-                                        <i class="fa-fw nav-icon fas fa-ticket-alt">
 
-                                        </i>
-                                        <p>
-                                            {{ trans('cruds.couponDescription.title') }}
-                                        </p>
-                                    </a>
-                                </li>
-                            @endcan
                             @can('dynamic_coupon_access')
                                 <li class="nav-item">
                                     <a href="{{ route("admin.dynamic-coupons.index") }}" class="nav-link {{ request()->is("admin/dynamic-coupons") || request()->is("admin/dynamic-coupons/*") ? "active" : "" }}">

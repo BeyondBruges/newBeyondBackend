@@ -37,7 +37,7 @@
                         </th>
                         <th>
                             Phone
-                        </th>                        
+                        </th>
                         <th>
                             Address
                         </th>
@@ -57,7 +57,7 @@
                             {{ trans('cruds.partner.fields.instagram') }}
                         </th>
                         <th>
-                            {{ trans('cruds.partner.fields.tiktok') }}
+                            Category
                         </th>
                         <th>
                             {{ trans('cruds.partner.fields.email') }}
@@ -81,7 +81,7 @@
                         <td>
                             <input class="search" type="text" placeholder="{{ trans('global.search') }}">
                         </td>
-                        <td>                        
+                        <td>
                         </td>
                         <td>
                         </td>
@@ -128,7 +128,7 @@
                             </td>
                             <td>
                                 {{ $partner->phone ?? '' }}
-                            </td>                            
+                            </td>
                             <td>
                                 {{ $partner->address ?? '' }}
                             </td>
@@ -152,7 +152,7 @@
                                 {{ $partner->instagram ?? '' }}
                             </td>
                             <td>
-                                {{ $partner->tiktok ?? '' }}
+                                {{ $partner->category->name ?? '' }}
                             </td>
                             <td>
                                 {{ $partner->email ?? '' }}
@@ -243,7 +243,7 @@
       $($.fn.dataTable.tables(true)).DataTable()
           .columns.adjust();
   });
-  
+
 let visibleColumnsIndexes = null;
 $('.datatable thead').on('input', '.search', function () {
       let strict = $(this).attr('strict') || false
