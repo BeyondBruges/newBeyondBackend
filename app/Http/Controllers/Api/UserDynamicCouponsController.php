@@ -33,6 +33,31 @@ class UserDynamicCouponsController extends Controller
 
    }
 
+   public function update(Request $request){
+
+
+    $user = Auth::user();
+    if (!$user) {
+        return response()->json(['Forbidden'], 403);
+    }
+
+    $dynamicCoupon = DynamicCoupon::find($request->coupon_id);
+    if(!$dynamicCoupon){
+        return response()->json(['Coupon not found'], 404);
+    }
+
+    else{
+
+        $dynamicCoupon->status = 0;
+        $dynamicCoupon->update();
+    }
+
+
+    return response()->json(['data' => $user->ActiveDynamicCoupons], 200);
+
+
+   }
+
     public function store(Request $request){
 
 

@@ -70,6 +70,7 @@ Route::middleware('auth:api')->group(function () {
     Route::post('user_coupons_index', [UserCouponsController::class, 'index']);
     Route::post('user_coupons_store', [UserCouponsController::class, 'store']);
     Route::post('user_dynamic_coupons_index', [UserDynamicCouponsController::class, 'index']);
+    Route::post('user_dynamic_coupon_update', [UserDynamicCouponsController::class, 'update']);
     Route::post('user_dynamic_coupons_store', [UserDynamicCouponsController::class, 'store']);
     Route::post('user_donate_bryghia', [TransactionController::class, 'donate']);
     Route::post('user_gift_bryghia', [TransactionController::class, 'gift']);
