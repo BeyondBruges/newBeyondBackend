@@ -35,7 +35,7 @@ use Illuminate\Support\Facades\Route;
 //Rutas de auth
 Route::post('register', [PassportAuthController::class, 'register']);
 Route::post('login', [PassportAuthController::class, 'login']);
-
+Route::post('login_apple', [PassportAuthController::class, 'loginApple']);
 
 //Rutas abiertas a todo el mundo
 Route::get('blog', [BlogController::class, 'index']);

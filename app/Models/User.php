@@ -51,7 +51,10 @@ class User extends Authenticatable
         'deleted_at',
         'device',
         'bryghia',
-        'language'
+        'language',
+        'country_id',
+        'age_group_id',
+        'apple_token'
     ];
 
     public function getIsAdminAttribute()
@@ -188,5 +191,12 @@ class User extends Authenticatable
         return $this->hasMany(PartnerUser::class, 'user_id', 'id');
     }
 
-
+    public function nationality()
+    {
+        return $this->belongsToMany(Country::class, 'country_id');
+    }
+    public function ageGroup()
+    {
+        return $this->belongsToMany(AgeGroup::class, 'age_group_id');
+    }
 }
