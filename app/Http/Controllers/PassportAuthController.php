@@ -6,6 +6,8 @@ use App\Models\User;
 use QrCode;
 use Auth;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Log;
+
 class PassportAuthController extends Controller
 {
     /**
@@ -61,7 +63,7 @@ class PassportAuthController extends Controller
             'password' => $request->password
         ];
 
-
+        Log::debug($request);
 
         if ($request->password == "appleuser" || Str::contains($request->email, '@apple.com')){
 
