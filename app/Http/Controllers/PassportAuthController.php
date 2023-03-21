@@ -76,7 +76,7 @@ class PassportAuthController extends Controller
             {
                 Auth::loginUsingId($user->id);
                 $token = auth()->user()->createToken('LaravelAuthApp')->accessToken;
-                return response()->json(['token' => $token], 200);
+                return response()->json(['refresh_token' => $token], 200);
             }
         }
 
@@ -87,7 +87,7 @@ class PassportAuthController extends Controller
             $token = auth()->user()->createToken('LaravelAuthApp')->accessToken;
 
             if (auth()->user()->status == 1) {
-               return response()->json(['token' => $token], 200);
+               return response()->json(['refresh_token' => $token], 200);
             }
             else
             {
@@ -97,7 +97,7 @@ class PassportAuthController extends Controller
         } else {
             return response()->json(['error' => 'Unauthorised'], 401);
         }
-    }
+    }x
 
 
 
