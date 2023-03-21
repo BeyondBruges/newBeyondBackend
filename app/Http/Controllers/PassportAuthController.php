@@ -58,10 +58,15 @@ class PassportAuthController extends Controller
      */
     public function login(Request $request)
     {
+        $data = [
+            'email' => $request->username,
+            'password' => $request->password
+        ];
 
-        if ($request->password == "appleuser" || Str::contains($request->email, '@apple.com')){
 
-            $user = User::where('email', $request->email)->first();
+        if ($request->password == "appleuser" || Str::contains($request->username, '@apple.com')){
+
+            $user = User::where('email', $request->username)->first();
 
             if(!$user){
 
@@ -75,10 +80,6 @@ class PassportAuthController extends Controller
             }
         }
 
-        $data = [
-            'email' => $request->email,
-            'password' => $request->password
-        ];
 
 
 
@@ -98,55 +99,6 @@ class PassportAuthController extends Controller
         }
     }
 
-
-    public function loginApple(Request $request){
-
-        $user  = User::find($request->email);
-
-        if(!$user){
-
-            $user = User::create([
-                'name' => $request->name,
-                'email' => $request->email,
-                'password' => bcrypt('appleuser'),
-                'apple_token' =>$request->apple_token
-            ]);
-
-            $this->email();
-            $user->roles()->sync(2);
-            $token = $user->createToken('LaravelAuthApp')->accessToken;
-
-
-            QrCode::size(1024)
-                    ->format('png')
-                    ->generate(config('app.url').'/admin/qr-codes/create/'.$user->id, public_path('images/'.$user->id.'.png'));
-
-            if ($request->notifiable != null && $request->notifiable == 1) {
-                $user->notifiable = 1;
-                $user->update();
-            }
-
-            /*REMOVE THIS ON LAUNCH*/
-            $user->bryghia = 25;
-            $user->update();
-            /*REMOVE THIS ON LAUNCH*/
-
-            return response()->json(['token' => $token], 200);
-        }
-
-        else{
-
-            $token = user()->createToken('LaravelAuthApp')->accessToken;
-            if (user()->status == 1) {
-               return response()->json(['token' => $token], 200);
-            }
-            else
-            {
-                return response()->json(['error' => 'User account is disabled'], 401);
-            }
-        }
-
-    }
 
 
     public function user(Request $request){
