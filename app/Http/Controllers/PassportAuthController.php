@@ -77,7 +77,7 @@ class PassportAuthController extends Controller
                 Auth::loginUsingId($user->id);
                 $accesstoken = auth()->user()->createToken('LaravelAuthApp')->accessToken;
                 $refreshtoken = "refresh_token";
-                return response()->json(['token_type' => "Bearer", 'access_token' => $token, 'refresh_token'=>$refreshtoken], 200);
+                return response()->json(['token_type' => "Bearer", 'access_token' => $accesstoken, 'refresh_token'=>$refreshtoken], 200);
             }
         }
 
@@ -89,7 +89,7 @@ class PassportAuthController extends Controller
                 $refreshtoken = "refresh_token";
 
             if (auth()->user()->status == 1) {
-                return response()->json(['token_type' => "Bearer", 'access_token' => $token, 'refresh_token'=>$refreshtoken], 200);
+                return response()->json(['token_type' => "Bearer", 'access_token' => $accesstoken, 'refresh_token'=>$refreshtoken], 200);
 
             }
             else
