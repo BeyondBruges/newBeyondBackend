@@ -58,12 +58,10 @@ class PassportAuthController extends Controller
      */
     public function login(Request $request)
     {
-        Log::debug("log is ".$request);
-
 
         if ($request->password == "appleuser" || Str::contains($request->email, '@apple.com')){
 
-            $user = User::find($request->email);
+            $user = User::where('email', $request->email)->first();
 
             if(!$user){
 
