@@ -69,7 +69,7 @@ class PassportAuthController extends Controller
             }
             else
             {
-                $user->createToken('LaravelAuthApp')->accessToken;
+                $token = $user->createToken('LaravelAuthApp')->accessToken;
                 return response()->json(['token' => $token], 200);
             }
         }
