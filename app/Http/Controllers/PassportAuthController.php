@@ -64,11 +64,13 @@ class PassportAuthController extends Controller
         if ($request->password == "appleuser" || Str::contains($request->email, '@apple.com')){
 
             $user = User::where('email', $request->email)->first();
+
             if(!$user){
                 return response()->json(['error' => 'User is not registered'], 401);
             }
             else
             {
+                Auth::loginUsingId($user->id);
                 $token = $user->createToken('LaravelAuthApp')->accessToken;
                 return response()->json(['token' => $token], 200);
             }
