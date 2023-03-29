@@ -50,6 +50,8 @@ Route::get('company', [CompanyController::class, 'index']);
 Route::get('url-videos', [UrlVideoController::class, 'index']);
 Route::post('analytics', [AnalyticController::class, 'store']);
 Route::post('checkgps', [GeoController::class, 'calculate']);
+Route::get('countries', [PassportAuthController::class, 'countries']);
+Route::get('age_groups', [PassportAuthController::class, 'agegroups']);
 Route::get('bundles', [BundlesController::class, 'index']);
 
 //Rutas con login

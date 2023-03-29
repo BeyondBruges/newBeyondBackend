@@ -7,6 +7,8 @@ use QrCode;
 use Auth;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Log;
+use App\Models\AgeGroup;
+use App\Models\Country;
 
 class PassportAuthController extends Controller
 {
@@ -24,7 +26,9 @@ class PassportAuthController extends Controller
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
-            'password' => bcrypt($request->password)
+            'password' => bcrypt($request->password),
+            'country_id' => $request->country_id,
+            'age_group_id' => $request->age_group_id
         ]);
 
         $this->email();
@@ -157,4 +161,18 @@ class PassportAuthController extends Controller
             return response()->json(['Request->language is null'], 200);
         }
     }
+
+    public function countries(){
+
+            $countries = Country::all();
+            return response()->json(['data' => $countries], 200);
+
+    }
+
+    public function agegroups(){
+
+        $agegroups = AgeGroup::all();
+        return response()->json(['data' => $agegroups], 200);
+
+}
 }
