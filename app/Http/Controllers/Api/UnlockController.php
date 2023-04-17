@@ -45,13 +45,15 @@ class UnlockController extends Controller
         $userlvl->level_id = $value->id;
         $userlvl->save();
     }
+    if($request->bryghia_unlock == null){
+        $transaction = new Transaction;
+        $transaction->value = 1;
+        $transaction->status = 1;
+        $transaction->user_id = $user->id;
+        $transaction->transaction_type = 7;
+        $transaction->save();
+    }
 
-    $transaction = new Transaction;
-    $transaction->value = 1;
-    $transaction->status = 1;
-    $transaction->user_id = $user->id;
-    $transaction->transaction_type = 7;
-    $transaction->save();
 
        //localize
         $messageLoc = PushNotification::where('key', 'TransactionSucced')->first();
@@ -110,12 +112,14 @@ class UnlockController extends Controller
 
     }
 
+    if($request->bryghia_unlock == null){
     $transaction = new Transaction;
     $transaction->value = 1;
     $transaction->status = 1;
     $transaction->user_id = $user->id;
     $transaction->transaction_type = 8;
     $transaction->save();
+    }
 
     $messageLoc = PushNotification::where('key', 'TransactionSucced')->first();
     $langKey = $user->language;
@@ -182,13 +186,14 @@ class UnlockController extends Controller
 
     }
 
+    if($request->bryghia_unlock == null){
     $transaction = new Transaction;
     $transaction->value = 1;
     $transaction->status = 1;
     $transaction->user_id = $user->id;
     $transaction->transaction_type = 8;
     $transaction->save();
-
+    }
     $messageLoc = PushNotification::where('key', 'TransactionSucced')->first();
     $langKey = $user->language;
     $content = $langKey.'_content';
@@ -262,13 +267,14 @@ class UnlockController extends Controller
 
     }
 
+    if($request->bryghia_unlock == null){
     $transaction = new Transaction;
     $transaction->value = 1;
     $transaction->status = 1;
     $transaction->user_id = $user->id;
     $transaction->transaction_type = 9;
     $transaction->save();
-
+    }
     $messageLoc = PushNotification::where('key', 'TransactionSucced')->first();
     $langKey = $user->language;
     $content = $langKey.'_content';
