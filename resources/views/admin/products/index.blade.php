@@ -40,17 +40,58 @@
                         </th>
                         <th>
                             {{ trans('cruds.product.fields.cost') }}
-                        </th>                        
+                        </th>
 
                         <th>
                            Category
-                        </th>                        
+                        </th>
                         <th>
                            Status
                         </th>
+
+                        <th>
+                            Eng <br>
+                            Title
+                        </th>
+
+
+                        <th>
+                            Spa <br>
+                            Title
+                        </th>
+
+                        <th>
+                            Nl <br>
+                            Title
+                        </th>
+                        <th>
+                            Fr <br>
+                            Title
+                        </th>
+
+                        <th>
+                           Eng <br>
+                           Desc.
+                        </th>
+                        <th>
+                            Spa <br>
+                            Desc.
+                        </th>
+
+                        <th>
+                            Nl <br>
+                            Desc.
+                        </th>
+                        <th>
+                            Fr <br>
+                            Desc.
+                        </th>
+
                         <th>
                             &nbsp;
                         </th>
+
+
                     </tr>
                 </thead>
                 <tbody>
@@ -67,9 +108,10 @@
                             </td>
                             <td>
                                 @if($product->image)
-                                    <a href="{{ $product->image->getUrl() }}" target="_blank">
-                                        {{ trans('global.view_file') }}
-                                    </a>
+
+                                <img src="{{$product->image->getUrl()}}" alt="" style="max-width:50px">
+                                @else
+                                No image
                                 @endif
                             </td>
                             <td>
@@ -77,11 +119,11 @@
                             </td>
                             <td>
                                 {{ $product->cost ?? '' }}
-                            </td>                            
+                            </td>
 
                             <td>
                                 {{ $product->category->name ?? '' }}
-                            </td>                           
+                            </td>
 
                              <td>
                                @if($product->status == 1)
@@ -90,7 +132,43 @@
                                <span style="color:red">Unavailable</span>
                                @endif
                             </td>
+
                             <td>
+                                {{$product->en_title ?? ''}}
+                            </td>
+
+                            <td>
+                                {{$product->es_title ?? ''}}
+                            </td>
+                            <td>
+                                {{$product->nl_title ?? ''}}
+                            </td>
+
+                            <td>
+                                {{$product->fr_title ?? ''}}
+                            </td>
+
+                            <td>
+                                {{$product->en_description ?? ''}}
+                            </td>
+
+                            <td>
+                                {{$product->es_description ?? ''}}
+                            </td>
+
+                            <td>
+                                {{$product->nl_description ?? ''}}
+                            </td>
+
+
+                            </td>
+                            <td>
+                                {{$product->fr_description ?? ''}}
+
+                            </td>
+                            <td>
+
+
                                 @can('product_show')
                                     <a class="btn btn-xs btn-primary" href="{{ route('admin.products.show', $product->id) }}">
                                         {{ trans('global.view') }}
@@ -169,7 +247,7 @@
       $($.fn.dataTable.tables(true)).DataTable()
           .columns.adjust();
   });
-  
+
 })
 
 </script>

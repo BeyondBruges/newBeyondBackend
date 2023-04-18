@@ -39,7 +39,15 @@ class Product extends Model implements HasMedia
         'deleted_at',
         'product_category',
         'description_key',
-        'status',
+        'en_title',
+        'es_title',
+        'nl_title',
+        'fr_title',
+        'en_description',
+        'es_description',
+        'fr_description',
+        'nl_description',
+        'status'
     ];
 
     public function registerMediaConversions(Media $media = null): void
@@ -50,7 +58,7 @@ class Product extends Model implements HasMedia
 
     public function getImageAttribute()
     {
-        
+
         $file = $this->getMedia('image')->last();
         if ($file) {
             $file->url       = $file->getUrl();

@@ -16,6 +16,8 @@
                     <span class="text-danger">This have to be added to the localization table</span>
                 @endif
                 <span class="help-block">{{ trans('cruds.product.fields.name_helper') }}</span>
+                <span class="help-block">Create a key to identify this product internally  <strong>use "_" instead of spaces </strong> </span>
+
             </div>
             <div class="form-group">
                 <label for="image">{{ trans('cruds.product.fields.image') }}</label>
@@ -41,17 +43,76 @@
                     <span class="text-danger">{{ $errors->first('cost') }}</span>
                 @endif
                 <span class="help-block">{{ trans('cruds.product.fields.cost_helper') }}</span>
-            </div>            
+            </div>
 
+<h1>Titles</h1>
+<hr>
 
             <div class="form-group">
-                <label for="description_key">Description Key</label>
-                <input class="form-control {{ $errors->has('description_key') ? 'is-invalid' : '' }}" type="text" name="description_key" id="description_key" value="{{ old('description_key', '') }}" required>
-                @if($errors->has('description_key'))
-                    <span class="text-danger">{{ $errors->first('description_key') }}</span>
+                <label for="en_title">English title</label>
+                <input class="form-control {{ $errors->has('en_title') ? 'is-invalid' : '' }}" type="text" name="en_title" id="en_title" value="{{ old('en_title', '') }}" required>
+                @if($errors->has('en_title'))
+                    <span class="text-danger">{{ $errors->first('en_title') }}</span>
                 @endif
-                <span class="help-block">This value has to be added to localization spreadsheet</span>
             </div>
+            <div class="form-group">
+                <label for="es_title">Spanish title</label>
+                <input class="form-control {{ $errors->has('es_title') ? 'is-invalid' : '' }}" type="text" name="es_title" id="es_title" value="{{ old('es_title', '') }}" required>
+                @if($errors->has('es_title'))
+                    <span class="text-danger">{{ $errors->first('es_title') }}</span>
+                @endif
+            </div>
+            <div class="form-group">
+                <label for="nl_title">Dutch title</label>
+                <input class="form-control {{ $errors->has('nl_title') ? 'is-invalid' : '' }}" type="text" name="nl_title" id="nl_title" value="{{ old('nl_title', '') }}" required>
+                @if($errors->has('nl_title'))
+                    <span class="text-danger">{{ $errors->first('nl_title') }}</span>
+                @endif
+            </div>
+            <div class="form-group">
+                <label for="fr_title">French title</label>
+                <input class="form-control {{ $errors->has('fr_title') ? 'is-invalid' : '' }}" type="text" name="fr_title" id="fr_title" value="{{ old('fr_title', '') }}" required>
+                @if($errors->has('fr_title'))
+                    <span class="text-danger">{{ $errors->first('fr_title') }}</span>
+                @endif
+            </div>
+
+
+
+<h1>Descriptions</h1>
+<hr>
+        <div class="form-group">
+            <label for="en_description">English Description </label>
+            <textarea class="form-control {{ $errors->has('en_description') ? 'is-invalid' : '' }}" name="en_description" id="en_description">{!! old('en_description') !!}</textarea>
+            @if($errors->has('en_description'))
+                <span class="text-danger">{{ $errors->first('en_description') }}</span>
+            @endif
+        </div>
+        <div class="form-group">
+            <label for="es_description">Spanish Description </label>
+            <textarea class="form-control {{ $errors->has('es_description') ? 'is-invalid' : '' }}" name="es_description" id="es_description">{!! old('es_description') !!}</textarea>
+            @if($errors->has('es_description'))
+                <span class="text-danger">{{ $errors->first('es_description') }}</span>
+            @endif
+        </div>
+        <div class="form-group">
+            <label for="nl_description">Dutch Description </label>
+            <textarea class="form-control {{ $errors->has('nl_description') ? 'is-invalid' : '' }}" name="nl_description" id="nl_description">{!! old('nl_description') !!}</textarea>
+            @if($errors->has('nl_description'))
+                <span class="text-danger">{{ $errors->first('nl_description') }}</span>
+            @endif
+        </div>
+        <div class="form-group">
+            <label for="fr_description">French Description </label>
+            <textarea class="form-control {{ $errors->has('fr_description') ? 'is-invalid' : '' }}" name="fr_description" id="fr_description">{!! old('fr_description') !!}</textarea>
+            @if($errors->has('fr_description'))
+                <span class="text-danger">{{ $errors->first('fr_description') }}</span>
+            @endif
+        </div>
+
+<hr>
+<input class="form-control {{ $errors->has('description_key') ? 'is-invalid' : '' }}" type="text" name="description_key" id="description_key" hidden value="product">
+
 
             <div class="form-group">
                 <label class="required" for="product_category">{{ trans('cruds.analytic.fields.type') }}</label>
@@ -64,12 +125,12 @@
                     <span class="text-danger">{{ $errors->first('type') }}</span>
                 @endif
                 <span class="help-block">{{ trans('cruds.analytic.fields.type_helper') }}</span>
-            </div>           
+            </div>
 
              <div class="form-group">
                 <label class="required" for="status">Status</label>
                 <select class="form-control select {{ $errors->has('type') ? 'is-invalid' : '' }}" name="status" id="status">
-                <option value="1" {{ old('status') == $id ? 'selected' : '' }}>Available</option> 
+                <option value="1" {{ old('status') == $id ? 'selected' : '' }}>Available</option>
 
                 <option value="0" >Unavailable</option>
                 </select>
