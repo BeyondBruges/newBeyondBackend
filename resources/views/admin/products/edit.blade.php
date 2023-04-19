@@ -19,6 +19,14 @@
                 <span class="help-block">{{ trans('cruds.product.fields.name_helper') }}</span>
             </div>
             <div class="form-group">
+                <label class="required" for="description_key">Description Key</label>
+                <input class="form-control {{ $errors->has('description_key') ? 'is-invalid' : '' }}" type="text" name="description_key" id="description_key" value="{{ old('description_key', $product->description_key) }}" required>
+                @if($errors->has('description_key'))
+                    <span class="text-danger">This have to be added to the localization table</span>
+                @endif
+                <span class="help-block">{{ trans('cruds.product.fields.name_helper') }}</span>
+            </div>
+            <div class="form-group">
                 <label for="image">{{ trans('cruds.product.fields.image') }}</label>
                 <div class="needsclick dropzone {{ $errors->has('image') ? 'is-invalid' : '' }}" id="image-dropzone">
                 </div>
@@ -110,7 +118,6 @@
         </div>
 
 <hr>
-<input class="form-control {{ $errors->has('description_key') ? 'is-invalid' : '' }}" type="text" name="description_key" id="description_key" hidden value="product">
 
 
 

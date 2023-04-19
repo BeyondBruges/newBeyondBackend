@@ -38,9 +38,6 @@ class ProductController extends Controller
 
     public function store(StoreProductRequest $request)
     {
-        if($request->description_key == null){
-            $request->description_key = "emptyvalue";
-        }
         $product = Product::create($request->all());
 
         if ($request->input('image', false)) {

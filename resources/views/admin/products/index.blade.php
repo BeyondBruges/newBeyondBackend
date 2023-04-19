@@ -33,6 +33,9 @@
                             Name Key
                         </th>
                         <th>
+                            Description Key
+                        </th>
+                        <th>
                             {{ trans('cruds.product.fields.image') }}
                         </th>
                         <th>
@@ -105,6 +108,9 @@
                             </td>
                             <td>
                                 {{ $product->name ?? '' }}
+                            </td>
+                            <td>
+                                {{ $product->description_key ?? '' }}
                             </td>
                             <td>
                                 @if($product->image)
