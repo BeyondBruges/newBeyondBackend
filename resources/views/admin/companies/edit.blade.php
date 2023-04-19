@@ -192,7 +192,7 @@
                 @if($errors->has('language'))
                     <span class="text-danger">{{ $errors->first('bryhia_store') }}</span>
                 @endif
-                <span class="help-block">Use this to suspend the bryghia store</span>
+                <span class="help-block">Use this to remove login with facebook buttons</span>
             </div>
 
             <div class="form-group">
