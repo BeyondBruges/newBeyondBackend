@@ -151,7 +151,7 @@
         </div>
 
 
-
+{{--
             <div class="form-group">
                 <label class="required" for="status_ios">iOS Status</label>
                 <select class="form-control select {{ $errors->has('language') ? 'is-invalid' : '' }}" name="status_ios" id="status_ios" required>
@@ -165,7 +165,7 @@
                 @endif
                 <span class="help-block">Put in 0 when app is in review</span>
             </div>
-
+--}}
 
             <div class="form-group">
                 <label class="required" for="bryghia_store">Bryghia Store</label>
