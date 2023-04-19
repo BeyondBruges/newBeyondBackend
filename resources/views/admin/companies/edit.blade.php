@@ -126,9 +126,7 @@
                 @endif
                 <span class="help-block">{{ trans('cruds.company.fields.onesignal_apikey_helper') }}</span>
             </div>
-
-            <hr>
-
+<br>
         <h1>Variables</h1>
 
 
