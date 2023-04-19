@@ -127,27 +127,97 @@
                 <span class="help-block">{{ trans('cruds.company.fields.onesignal_apikey_helper') }}</span>
             </div>
 
-<div class="form-group">
-                <label for="level_cost">Global Landmark Cost</label>
-                <input class="form-control {{ $errors->has('level_cost') ? 'is-invalid' : '' }}" type="text" name="level_cost" id="level_cost" value="{{ old('level_cost', $company->level_cost) }}">
-                @if($errors->has('level_cost'))
-                    <span class="text-danger">{{ $errors->first('level_cost') }}</span>
+            <hr>
+
+        <h1>Variables</h1>
+
+
+        <div class="form-group">
+            <label for="level_cost">Global Level Cost</label>
+            <input class="form-control {{ $errors->has('level_cost') ? 'is-invalid' : '' }}" type="text" name="level_cost" id="level_cost" value="{{ old('level_cost', $company->level_cost) }}">
+            @if($errors->has('level_cost'))
+                <span class="text-danger">{{ $errors->first('level_cost') }}</span>
+            @endif
+
+        </div>
+
+        <div class="form-group">
+            <label for="landmark_cost">Global Landmark Cost</label>
+            <input class="form-control {{ $errors->has('landmark_cost') ? 'is-invalid' : '' }}" type="text" name="landmark_cost" id="landmark_cost" value="{{ old('landmark_cost', $company->landmark_cost) }}">
+            @if($errors->has('landmark_cost'))
+                <span class="text-danger">{{ $errors->first('landmark_cost') }}</span>
+            @endif
+
+        </div>
+
+
+
+            <div class="form-group">
+                <label class="required" for="status_ios">iOS Status</label>
+                <select class="form-control select {{ $errors->has('language') ? 'is-invalid' : '' }}" name="status_ios" id="status_ios" required>
+
+                <option value="0" {{ (old('status_ios') ? old('status_ios') : $company->status_ios ?? '') == 0 ? 'selected' : '' }}>In Review</option>
+                <option value="1" {{ (old('status_ios') ? old('status_ios') : $company->status_ios ?? '') == 1 ? 'selected' : '' }}>Live</option>
+
+                </select>
+                @if($errors->has('language'))
+                    <span class="text-danger">{{ $errors->first('status_ios') }}</span>
                 @endif
-   
+                <span class="help-block">Put in 0 when app is in review</span>
+            </div>
+
+
+            <div class="form-group">
+                <label class="required" for="bryghia_store">Bryghia Store</label>
+                <select class="form-control select {{ $errors->has('language') ? 'is-invalid' : '' }}" name="bryghia_store" id="bryghia_store" required>
+
+                <option value="0" {{ (old('bryghia_store') ? old('bryghia_store') : $company->bryghia_store ?? '') == 0 ? 'selected' : '' }}>Disabled</option>
+                <option value="1" {{ (old('bryghia_store') ? old('bryghia_store') : $company->bryghia_store ?? '') == 1 ? 'selected' : '' }}>Enabled</option>
+
+                </select>
+                @if($errors->has('language'))
+                    <span class="text-danger">{{ $errors->first('bryhia_store') }}</span>
+                @endif
+                <span class="help-block">Use this to suspend the bryghia store</span>
             </div>
 
             <div class="form-group">
-                <label for="landmark_cost">Global Level Cost</label>
-                <input class="form-control {{ $errors->has('landmark_cost') ? 'is-invalid' : '' }}" type="text" name="landmark_cost" id="landmark_cost" value="{{ old('landmark_cost', $company->landmark_cost) }}">
-                @if($errors->has('landmark_cost'))
-                    <span class="text-danger">{{ $errors->first('landmark_cost') }}</span>
+                <label class="required" for="facebook_login">Login with Facebook</label>
+                <select class="form-control select {{ $errors->has('language') ? 'is-invalid' : '' }}" name="facebook_login" id="facebook_login" required>
+
+                <option value="0" {{ (old('facebook_login') ? old('facebook_login') : $company->facebook_login ?? '') == 0 ? 'selected' : '' }}>Disabled</option>
+                <option value="1" {{ (old('facebook_login') ? old('facebook_login') : $company->facebook_login ?? '') == 1 ? 'selected' : '' }}>Enabled</option>
+
+                </select>
+                @if($errors->has('language'))
+                    <span class="text-danger">{{ $errors->first('bryhia_store') }}</span>
                 @endif
-        
-            </div>            
+                <span class="help-block">Use this to suspend the bryghia store</span>
+            </div>
 
-            
+            <div class="form-group">
+                <label for="unlock_all_price">Bryghia Price for Unlock all</label>
+                <input class="form-control {{ $errors->has('unlock_all_price') ? 'is-invalid' : '' }}" type="text" name="unlock_all_price" id="unlock_all_price" value="{{ old('unlock_all_price', $company->unlock_all_price) }}">
+                @if($errors->has('unlock_all_price'))
+                    <span class="text-danger">{{ $errors->first('unlock_all_price') }}</span>
+                @endif
+            </div>
 
+            <div class="form-group">
+                <label for="unlock_time_quest_price">Bryghia Price for Unlock Time Quest</label>
+                <input class="form-control {{ $errors->has('unlock_time_quest_price') ? 'is-invalid' : '' }}" type="text" name="unlock_time_quest_price" id="unlock_time_quest_price" value="{{ old('unlock_time_quest_price', $company->unlock_time_quest_price) }}">
+                @if($errors->has('unlock_time_quest_price'))
+                    <span class="text-danger">{{ $errors->first('unlock_time_quest_price') }}</span>
+                @endif
+            </div>
 
+            <div class="form-group">
+                <label for="unlock_visit_price">Bryghia Price for Unlock Visit Bruges</label>
+                <input class="form-control {{ $errors->has('unlock_visit_price') ? 'is-invalid' : '' }}" type="text" name="unlock_visit_price" id="unlock_visit_price" value="{{ old('unlock_visit_price', $company->unlock_visit_price) }}">
+                @if($errors->has('unlock_visit_price'))
+                    <span class="text-danger">{{ $errors->first('unlock_visit_price') }}</span>
+                @endif
+            </div>
 
 
             <div class="form-group">

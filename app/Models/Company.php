@@ -47,6 +47,12 @@ class Company extends Model implements HasMedia
         'deleted_at',
         'landmark_cost',
         'level_cost',
+        'status_ios',
+        'bryhia_store',
+        'facebook_login',
+        'unlock_all_price',
+        'unlock_time_quest_price',
+        'unlock_visit_price'
     ];
 
     public function registerMediaConversions(Media $media = null): void
