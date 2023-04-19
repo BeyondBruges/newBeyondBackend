@@ -48,7 +48,7 @@ class Company extends Model implements HasMedia
         'landmark_cost',
         'level_cost',
         'status_ios',
-        'bryhia_store',
+        'bryghia_store',
         'facebook_login',
         'unlock_all_price',
         'unlock_time_quest_price',
