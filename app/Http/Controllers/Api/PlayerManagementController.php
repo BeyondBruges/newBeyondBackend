@@ -35,24 +35,6 @@ class PlayerManagementController extends Controller
         }
         else
         {
-            if ($user->bryghia > 0) {
-              //Create Donation
-            $donation = new Donation;
-            $donation->user_id = $user->id;
-            $donation->value = $user->bryghia;
-            $donation->save();
-            //Update bryghia from User
-            $user->bryghia =0;
-            //Register Transaction
-            $transaction = new Transaction;
-            $transaction->value = $request->value;
-            $transaction->status = 1;
-            $transaction->user_id = $user->id;
-            $transaction->transaction_type = 5;
-            $transaction->save();
-            // Send notification
-
-            }
             $user->status = 0;
             $user->update();
 
