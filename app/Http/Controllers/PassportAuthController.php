@@ -79,6 +79,7 @@ class PassportAuthController extends Controller
             else
             {
                 Auth::loginUsingId($user->id);
+                $this->patchMinusBryghia();
                 $accesstoken = auth()->user()->createToken('LaravelAuthApp')->accessToken;
                 $refreshtoken = "refresh_token";
                 return response()->json(['token_type' => "Bearer", 'access_token' => $accesstoken, 'refresh_token'=>$refreshtoken], 200);
@@ -93,6 +94,8 @@ class PassportAuthController extends Controller
                 $refreshtoken = "refresh_token";
 
             if (auth()->user()->status == 1) {
+
+                $this->patchMinusBryghia();
                 return response()->json(['token_type' => "Bearer", 'access_token' => $accesstoken, 'refresh_token'=>$refreshtoken], 200);
 
             }
@@ -174,5 +177,22 @@ class PassportAuthController extends Controller
         $agegroups = AgeGroup::all();
         return response()->json(['data' => $agegroups], 200);
 
-}
+        }
+
+    public function patchMinusBryghia(){
+
+         if(auth()->user() != null ){
+
+            $user = auth()->user();
+
+            if($user->bryghia < 0)
+            {
+            $user->bryghia = 0;
+            $user->update();
+             }
+        }
+
+    }
+
+
 }
