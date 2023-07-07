@@ -25,20 +25,15 @@ class QrCodeController extends Controller
 {
     public function index()
     {
-        abort_if(Gate::denies('qr_code_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $userPartners = Auth::user()->userPartnerUsers;
-        $partnersIDs = array();
+        $date = \Carbon\Carbon::createFromDate(2023, 4, 1)->startOfMonth();
+        $qrCodes = QrCode::where('created_at', '>', $date)->get();
 
-        foreach ($userPartners as $userPartner){
-            if(!in_array($userPartner->partner_id, $partnersIDs)){
-                array_push($partnersIDs, $userPartner->partner_id);
-            }
-        }
+        $months = $qrCodes->groupBy(function($qr) {
+            return \Carbon\Carbon::parse($qr->created_at)->format('F Y');
+        });
 
-        $qrCodes = QrCode::where('partner_id', $partnersIDs)->with(['user', 'partner'])->get();
-
-        return view('admin.qrCodes.index', compact('qrCodes'));
+        return view('admin.qrCodes.index', compact('qrCodes', 'months'));
     }
 
     public function create()
@@ -189,5 +184,24 @@ class QrCodeController extends Controller
 
 
         return redirect()->route('admin.qr-codes.index')->with('sucess', 'Bryghia has been awarded successfuly');
+    }
+
+    public function monthly($month){
+
+        $firstDayofMonth = \Carbon\Carbon::parse($month)->startOfMonth();
+        $lastDayofMonth = \Carbon\Carbon::parse($month)->endOfMonth();
+        $monthName =  \Carbon\Carbon::parse($month)->format('F-Y');
+
+        $codes =QRCode::whereBetween('created_at', [$firstDayofMonth, $lastDayofMonth])
+        ->get()
+        ->groupBy('partner_id');
+
+        foreach ($codes as $partnerId => $qrcodesForPartner) {
+        $sum = $qrcodesForPartner->sum('transaction_total');
+        $sumb = $qrcodesForPartner->sum('issued_bryghia');
+        }
+
+        return view('admin.qrCodes.monthly', compact('codes', 'monthName'));
+
     }
 }

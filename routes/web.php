@@ -96,6 +96,8 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::resource('qr-codes', 'QrCodeController');
     Route::get('qr-codes/generateqr/{id}', 'UsersController@generateQrCode')->name('qr-codes.assignqr');
 
+    Route::get('qr-codes/monthly/{month}', 'QrCodeController@monthly')->name('qr-codes.monthly');
+
     //Award Bryghia for users
     Route::get('qr-codes/create/{id}', 'QrCodeController@awardbryghia')->name('qr-codes.award');
     Route::post('qr-codes/award', 'QrCodeController@processaward')->name('qr-codes.awardstore');
