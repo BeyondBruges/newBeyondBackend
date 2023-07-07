@@ -50,12 +50,8 @@
 
         <div class="card">
     <div class="card-header">
-        {{ trans('cruds.qrCode.title_singular') }} {{ trans('global.list') }}
+        Current month's issued Bryghia by Partner
     </div>
-
-    <br>
-    <center>
-    <h2>Current month's issued Bryghia by Partner</h2>
 </center>
     <div class="card-body">
         <div class="table-responsive">
@@ -116,12 +112,12 @@
 </div>
 <div class="card">
     <div class="card-header">
-        {{ trans('cruds.qrCode.title_singular') }} {{ trans('global.list') }}
+        Previous month's issued Bryghia by Partner
     </div>
 
     <br>
     <center>
-    <h2>Previous month's issued Bryghia by Partner</h2>
+
 </center>
     <div class="card-body">
         <div class="table-responsive">

@@ -6,7 +6,31 @@
     $totaleuro = 0;
     $totalbryghia = 0;
     $totaltransactions = 0;
+
+        $date = \Carbon\Carbon::createFromDate(2023, 4, 1)->startOfMonth();
+            $qrCodes = App\Models\QrCode::where('created_at', '>', $date)->get();
+
+        $months = $qrCodes->groupBy(function($qr) {
+            return \Carbon\Carbon::parse($qr->created_at)->format('F Y');
+        });
 @endphp
+
+<div class="card">
+    <div class="card-header">
+     Active Months
+    </div>
+
+    <div class="card-body">
+        <div class="grid">
+            {{----}}
+            @foreach ($months as $monthName => $qrcodesForMonth)
+                <a href="{{ route('admin.qr-codes.monthly', ['month' => $monthName]) }}" class="btn btn-primary">
+                    {{ $monthName }}
+                </a>
+            @endforeach
+        </div>
+    </div>
+</div>
 
 <div class="card">
     <div class="card-header">
@@ -15,7 +39,7 @@
 
     <br>
     <center>
-    <h2>{{$monthName}}</h2>
+<h2>{{\Carbon\Carbon::parse($codes->first()->first()->created_at)->format('F Y')}}</h2>
 </center>
     <div class="card-body">
         <div class="table-responsive">
