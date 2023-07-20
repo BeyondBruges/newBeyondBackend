@@ -45,10 +45,9 @@ class PassportAuthController extends Controller
             $user->update();
         }
 
-        /*REMOVE THIS ON LAUNCH*/
-      //  $user->bryghia = 25;
-      //  $user->update();
-        /*REMOVE THIS ON LAUNCH*/
+        $user->bryghia = 2.5;
+        $user->update();
+
 
         return response()->json(['token' => $token], 200);
     }
