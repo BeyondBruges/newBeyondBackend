@@ -226,6 +226,12 @@ class PassportAuthController extends Controller
         return $request->only('email');
     }
 
+    protected function sendResetLinkResponse(Request $request, $response)
+    {
+        return $request->wantsJson()
+                    ? new JsonResponse(['message' => trans($response)], 200)
+                    : back()->with('status', trans($response));
+    }
 
 
 }
