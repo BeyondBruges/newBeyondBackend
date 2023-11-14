@@ -53,6 +53,7 @@ Route::post('checkgps', [GeoController::class, 'calculate']);
 Route::get('countries', [PassportAuthController::class, 'countries']);
 Route::get('age_groups', [PassportAuthController::class, 'agegroups']);
 Route::get('bundles', [BundlesController::class, 'index']);
+Route::post('password_reset', [PassportAuthController::class, 'forgot']);
 
 //Rutas con login
 Route::middleware('auth:api')->group(function () {

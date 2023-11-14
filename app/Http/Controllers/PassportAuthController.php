@@ -9,7 +9,9 @@ use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Log;
 use App\Models\AgeGroup;
 use App\Models\Country;
-
+use Illuminate\Foundation\Auth\ResetsPasswords;
+use Illuminate\Support\Facades\Password;
+use Illuminate\Validation\ValidationException;
 class PassportAuthController extends Controller
 {
     /**
@@ -192,6 +194,38 @@ class PassportAuthController extends Controller
         }
 
     }
+
+    public function forgot(Request $request){
+        $this->validateEmail($request);
+
+        // We will send the password reset link to this user. Once we have attempted
+        // to send the link, we will examine the response then see the message we
+        // need to show to the user. Finally, we'll send out a proper response.
+        $response = $this->broker()->sendResetLink(
+            $this->credentials($request)
+        );
+
+        return $response == Password::RESET_LINK_SENT
+                    ? $this->sendResetLinkResponse($request, $response)
+                    : $this->sendResetLinkFailedResponse($request, $response);
+
+    }
+
+    protected function validateEmail(Request $request)
+    {
+        $request->validate(['email' => 'required|email']);
+    }
+
+    public function broker()
+    {
+        return Password::broker();
+    }
+
+    protected function credentials(Request $request)
+    {
+        return $request->only('email');
+    }
+
 
 
 }
