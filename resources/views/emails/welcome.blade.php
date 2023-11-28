@@ -63,7 +63,7 @@
             <img src="https://beyondbruges.be/storage/2/614a7a0f48797_6140e044e65d9_sliderbg.jpeg" alt="Overlay"  class="img-fluid imageOne" style="max-width: 100%">
         </div>
         <h1>{{$user->name}}, {{ __('messages.welcome', [], $user->language) }}</h1>
-        <p>
+        <p style="color:black">
             {{ __('messages.enjoy', [], $user->language) }}
         </p>
         <img src="{{ env('APP_URL')}}/images/icon.jpg" alt="" width="100%" style="padding:80px">
@@ -77,10 +77,10 @@
 <hr>
 
         <center>
-            <p>
+            <p style="color:black">
                 {{ __('messages.contact', [], $user->language) }}
             </p>
-            <a href="" class="btn btn-xl btn-primary" style="background-color:black">BeyondBruges.be</a>
+            <a href="https://beyondbruges.be" class="btn btn-xl btn-primary" >BeyondBruges.be</a>
          </center>
 
         <div class="footer">
