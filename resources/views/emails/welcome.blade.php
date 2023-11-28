@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html>
-@php
-    $user= \App\Models\User::find(1);
-@endphp
+
 <head>
     <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
@@ -62,7 +60,7 @@
 
         <img src="https://beyondbruges.be/images/people.jpg" alt="" width="100%" style="padding:5px">
 
-        <h1>{{$user->name}}, {{ __('messages.welcome', [], $user->language) }}</h1>
+        <h1 style="color:black">{{$user->name}}, {{ __('messages.welcome', [], $user->language) }}</h1>
         <p style="color:black">
             {{ __('messages.enjoy', [], $user->language) }}
         </p>
