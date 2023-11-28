@@ -59,7 +59,7 @@
     <div class="container">
 
         <div class="img-container" style="width:100%">
-            <img src="{{ env('APP_URL')}}/images/iphoneinhand.png" alt="Background" class="img-fluid imageTwo" style="max-width: 50%">
+            <img src="https://beyondbruges.be/images/iphoneinhand.png" alt="Background" class="img-fluid imageTwo" style="max-width: 50%">
             <img src="https://beyondbruges.be/storage/2/614a7a0f48797_6140e044e65d9_sliderbg.jpeg" alt="Overlay"  class="img-fluid imageOne" style="max-width: 100%">
         </div>
         <h1>{{$user->name}}, {{ __('messages.welcome', [], $user->language) }}</h1>
@@ -72,7 +72,7 @@
         <hr>
 
 
-<img src="https://phplaravel-493623-2526898.cloudwaysapps.com/images/{{$user->id}}.png" alt="" width="100%" style="padding:20px">
+<img src="{{env('APP_URL')}}/images/{{$user->id}}.png" alt="" width="100%" style="padding:20px">
 
 <hr>
 

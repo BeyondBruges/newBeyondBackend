@@ -40,12 +40,12 @@ class PassportAuthController extends Controller
         $user->roles()->sync(2);
         $token = $user->createToken('LaravelAuthApp')->accessToken;
 
-/*
+
         QrCode::size(1024)
                 ->format('png')
                 ->generate(config('app.url').'/admin/qr-codes/create/'.$user->id, public_path('images/'.$user->id.'.png'));
 
-                */
+
         if ($request->notifiable != null && $request->notifiable == 1) {
             $user->notifiable = 1;
             $user->update();
