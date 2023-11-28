@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
-
+@php
+    $user= \App\Models\User::find(1);
+@endphp
 <head>
     <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
@@ -48,7 +50,7 @@
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-40%, -50%);
 }
 
 }
@@ -58,10 +60,8 @@
 <body>
     <div class="container">
 
-        <div class="img-container" style="width:100%">
-            <img src="https://beyondbruges.be/images/iphoneinhand.png" alt="Background" class="img-fluid imageTwo" style="max-width: 50%">
-            <img src="https://beyondbruges.be/storage/2/614a7a0f48797_6140e044e65d9_sliderbg.jpeg" alt="Overlay"  class="img-fluid imageOne" style="max-width: 100%">
-        </div>
+        <img src="https://beyondbruges.be/images/people.jpg" alt="" width="100%" style="padding:5px">
+
         <h1>{{$user->name}}, {{ __('messages.welcome', [], $user->language) }}</h1>
         <p style="color:black">
             {{ __('messages.enjoy', [], $user->language) }}
