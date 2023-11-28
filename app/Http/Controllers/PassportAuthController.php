@@ -12,6 +12,9 @@ use App\Models\Country;
 use Illuminate\Foundation\Auth\ResetsPasswords;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Validation\ValidationException;
+use App\Mail\WelcomeEmail;
+use Illuminate\Support\Facades\Mail;
+
 class PassportAuthController extends Controller
 {
     /**
@@ -37,11 +40,12 @@ class PassportAuthController extends Controller
         $user->roles()->sync(2);
         $token = $user->createToken('LaravelAuthApp')->accessToken;
 
-
+/*
         QrCode::size(1024)
                 ->format('png')
                 ->generate(config('app.url').'/admin/qr-codes/create/'.$user->id, public_path('images/'.$user->id.'.png'));
 
+                */
         if ($request->notifiable != null && $request->notifiable == 1) {
             $user->notifiable = 1;
             $user->update();
@@ -50,6 +54,8 @@ class PassportAuthController extends Controller
         $user->bryghia = 2.5;
         $user->update();
 
+
+        $this->sendWelcomeEmail($user);
 
         return response()->json(['token' => $token], 200);
     }
@@ -233,5 +239,10 @@ class PassportAuthController extends Controller
                     : back()->with('status', trans($response));
     }
 
+    public function sendWelcomeEmail(User $user)
+    {
+        Mail::to($user->email)->send(new WelcomeEmail($user));
+
+    }
 
 }
