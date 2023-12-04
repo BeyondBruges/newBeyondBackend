@@ -22,7 +22,7 @@
     <link href="{{ asset('css/custom.css') }}" rel="stylesheet" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.5.1/chart.min.js"></script>
     <script src="https://kit.fontawesome.com/78308dda2b.js" crossorigin="anonymous"></script>
-    
+
     @yield('styles')
 </head>
 
@@ -58,7 +58,7 @@
         <div class="content-wrapper" style="min-height: 917px;">
             <!-- Main content -->
             <section class="content" style="padding-top: 20px">
-              
+
                 @if($errors->count() > 0)
                     <div class="alert alert-danger">
                         <ul class="list-unstyled">
@@ -77,7 +77,7 @@
                             <span aria-hidden="true">&times;</span>
                           </button>
                     </div>
-                @endif               
+                @endif
 
                  @if (\Session::has('danger'))
         <div class="alert alert-danger alert-dismissible fade show" role="alert">
@@ -99,7 +99,7 @@
             <div class="float-right d-none d-sm-block">
                 <b>Version</b> 1.0
             </div>
-           Designed and Developed by  <strong> Peanut Agency Mexico</strong> 
+           Designed and Developed by  <strong> Peanut Agency Mexico</strong>
         </footer>
         <form id="logoutform" action="{{ route('logout') }}" method="POST" style="display: none;">
             {{ csrf_field() }}

@@ -33,6 +33,7 @@ class WelcomeEmail extends Mailable
     {
         return $this->subject('Beyond Bruges')->view('emails.welcome')->with([
             'name' => $this->user->name,
+            'lang' => $this->user->language
         ]);
     }
 }

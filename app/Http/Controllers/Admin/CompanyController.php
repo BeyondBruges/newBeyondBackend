@@ -8,6 +8,7 @@ use App\Http\Requests\MassDestroyCompanyRequest;
 use App\Http\Requests\StoreCompanyRequest;
 use App\Http\Requests\UpdateCompanyRequest;
 use App\Models\Company;
+use App\Models\MailContent;
 use Gate;
 use Illuminate\Http\Request;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
@@ -22,8 +23,26 @@ class CompanyController extends Controller
         abort_if(Gate::denies('company_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         $companies = Company::with(['media'])->get();
+        $emailContents = MailContent::first();
+        $company = Company::first();
+        return view('admin.companies.index', compact('companies', 'emailContents', 'company'));
+    }
 
-        return view('admin.companies.index', compact('companies'));
+    public function mail(Request $request){
+        $emailContents = MailContent::first();
+        $emailContents->update($request->all());
+
+
+        return redirect()->back()->with('success', 'Mail texts updated successfuly!');
+
+    }
+
+    public function radius(Request $request){
+        $company = Company::first();
+        $company->radius = $request->radius;
+        $company->update();
+        return redirect()->back()->with('success', 'Radius updated successfuly!');
+
     }
 
     public function create()
