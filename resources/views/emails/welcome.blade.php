@@ -56,16 +56,55 @@
     </style>
 </head>
 <body>
+
+@php
+    $texts = \App\Models\MailContent->first();
+    $topImage = $texts->email_image_top;
+    $welcome = "";
+    $first = "";
+    $middleImage = $texts->email_image_middle;
+    $second = "";
+    $third = "";
+
+    switch ($lang) {
+        case 'en':
+    $welcome =  $texts->en_welcome;
+    $first =  $texts->en_first;
+    $second = $texts->en_second;
+    $third = $texts->en_third;
+            break;
+        case 'es':
+    $welcome =  $texts->es_welcome;
+    $first =  $texts->es_first;
+    $second = $texts->es_second;
+    $third = $texts->es_third;
+            break;
+        case 'nl':
+    $welcome =  $texts->nl_welcome;
+    $first =  $texts->nl_first;
+    $second = $texts->nl_second;
+    $third = $texts->nl_third;
+            break;
+        case 'fr':
+    $welcome =  $texts->fr_welcome;
+    $first =  $texts->fr_first;
+    $second = $texts->fr_second;
+    $third = $texts->fr_third;
+            break;
+
+    }
+@endphp
+
     <div class="container">
 
         <img src="https://beyondbruges.be/images/people.jpg" alt="" width="100%" style="padding:5px">
 
-        <h1 style="color:black">{{$user->name}}, {{ __('messages.welcome', [], $user->language) }}</h1>
+        <h1 style="color:black">{{$user->name}}, {{ $welcome }}</h1>
         <p style="color:black">
-            {{ __('messages.enjoy', [], $user->language) }}
+            {{ $first}}
         </p>
         <img src="{{ env('APP_URL')}}/images/icon.jpg" alt="" width="100%" style="padding:80px">
-        <p style="color:black">{{ __('messages.reward', [], $user->language) }}</p>
+        <p style="color:black">{{ $second }}</p>
 
         <hr>
 
@@ -76,13 +115,13 @@
 
         <center>
             <p style="color:black">
-                {{ __('messages.contact', [], $user->language) }}
+                {{ $third}}
             </p>
             <a href="https://beyondbruges.be" class="btn btn-xl btn-primary" >BeyondBruges.be</a>
          </center>
 
         <div class="footer">
-            <p>{!! __('messages.rights', ['year' => date('Y')], $user->language) !!}</p>
+            <p>© {{env('APP_NAME') \Carbon\Carbon::now()->format('Y')}}</p>
         </div>
     </div>
 </body>
