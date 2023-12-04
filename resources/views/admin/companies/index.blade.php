@@ -1,14 +1,386 @@
 @extends('layouts.admin')
+@section('styles')
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
+@endsection
 @section('content')
-@can('company_create')
-    <div style="margin-bottom: 10px;" class="row">
-        <div class="col-lg-12">
-            <a class="btn btn-success" href="{{ route('admin.companies.create') }}">
-                {{ trans('global.add') }} {{ trans('cruds.company.title_singular') }}
-            </a>
+<div class="card">
+    <div class="card-header">
+      GPS Radius in kms
+
+    </div>
+
+
+    <div class="card-body">
+        <div class="row">
+            <div class="col-12">
+                <form method="POST" action="{{ route("admin.radius") }}" enctype="multipart/form-data">
+                    @csrf
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="basic-addon1">
+                        <i class="fa-fw nav-icon fas fa-map">
+                        </i>
+                    </span>
+
+                    <input type="text" class="form-control" placeholder="radius" aria-label="radius" aria-describedby="basic-addon1" name="radius" value="{{$company->radius}}">
+                  </div>
+                  <div class="form-group">
+                    <button class="btn btn-danger" type="submit">
+                        {{ trans('global.save') }}
+                    </button>
+                </div>
+            </form>
+          </div>
         </div>
     </div>
-@endcan
+</div>
+
+<div class="card">
+    <div class="card-header">
+     email Template
+    </div>
+
+    <div class="card-body">
+        <div class="row">
+            <div class="col-8">
+                <form method="POST" action="{{ route("admin.emailtexts") }}" enctype="multipart/form-data">
+                    @csrf
+                    <p>This is a representation of the email that new users will receive</p>
+                    <hr>
+                    <img src="{{$emailContents->email_image_top}}" alt="" width="100%">
+                    <br>
+                    <br>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="basic-addon1">
+                            <i class="fa-fw nav-icon fas fa-image">
+                            </i>
+                        </span>
+
+                        <input type="text" class="form-control" placeholder="radius" aria-label="radius" aria-describedby="basic-addon1" name="emal_image_top" value="{{$emailContents->email_image_top}}">
+                      </div>
+                    <br>
+                    <br>
+                    <h2>{UserName}</h2>
+                    <small>This will show the registered user's name</small>
+                    <br>
+                    <br>
+
+                    <div class="col-12">
+                        <div class="card card-primary card-outline card-outline-tabs">
+                        <div class="card-header p-0 border-bottom-0">
+                        <ul class="nav nav-tabs" id="custom-tabs-four-tab" role="tablist">
+                        <li class="nav-item">
+                        <a class="nav-link active" id="custom-tabs-four-home-tab" data-toggle="pill" href="#custom-tabs-four-home0" role="tab" aria-controls="custom-tabs-four-home0" aria-selected="true">Eng</a>
+                        </li>
+                        <li class="nav-item">
+                        <a class="nav-link" id="custom-tabs-four-profile-tab" data-toggle="pill" href="#custom-tabs-four-profile0" role="tab" aria-controls="custom-tabs-four-profile0" aria-selected="false">Nl</a>
+                        </li>
+                        <li class="nav-item">
+                        <a class="nav-link" id="custom-tabs-four-messages-tab" data-toggle="pill" href="#custom-tabs-four-messages0" role="tab" aria-controls="custom-tabs-four-messages0" aria-selected="false">Esp</a>
+                        </li>
+                        <li class="nav-item">
+                        <a class="nav-link" id="custom-tabs-four-settings-tab" data-toggle="pill" href="#custom-tabs-four-settings0" role="tab" aria-controls="custom-tabs-four-settings0" aria-selected="false">Fr</a>
+                        </li>
+                        </ul>
+                        </div>
+                        <div class="card-body">
+                        <div class="tab-content" id="custom-tabs-four-tabContent">
+                        <div class="tab-pane fade show active" id="custom-tabs-four-home0" role="tabpanel" aria-labelledby="custom-tabs-four-home0-tab">
+
+                            <div class="form-group">
+                                <textarea class="form-control ckeditor {{ $errors->has('en_welcome') ? 'is-invalid' : '' }}" name="en_welcome" id="en_welcome">{!! $emailContents->en_welcome !!}</textarea>
+                                @if($errors->has('en_welcome'))
+                                    <span class="text-danger">{{ $errors->first('en_welcome') }}</span>
+                                @endif
+                            </div>
+
+                        </div>
+                        <div class="tab-pane fade" id="custom-tabs-four-profile0" role="tabpanel" aria-labelledby="custom-tabs-four-profile0-tab">
+
+
+                            <div class="form-group">
+                                <textarea class="form-control ckeditor {{ $errors->has('nl_welcome') ? 'is-invalid' : '' }}" name="nl_welcome" id="nl_welcome">{!! $emailContents->nl_welcome !!}</textarea>
+                                @if($errors->has('nl_welcome'))
+                                    <span class="text-danger">{{ $errors->first('nl_welcome') }}</span>
+                                @endif
+                            </div>
+
+
+                        </div>
+                        <div class="tab-pane fade" id="custom-tabs-four-messages0" role="tabpanel" aria-labelledby="custom-tabs-four-messages0-tab">
+
+
+
+                            <div class="form-group">
+                                <textarea class="form-control ckeditor {{ $errors->has('es_welcome') ? 'is-invalid' : '' }}" name="es_welcome" id="es_welcome">{!! $emailContents->es_welcome !!}</textarea>
+                                @if($errors->has('es_welcome'))
+                                    <span class="text-danger">{{ $errors->first('es_welcome') }}</span>
+                                @endif
+                            </div>
+
+                        </div>
+                        <div class="tab-pane fade" id="custom-tabs-four-settings0" role="tabpanel" aria-labelledby="custom-tabs-four-settings0-tab">
+
+
+                            <div class="form-group">
+                                <textarea class="form-control ckeditor {{ $errors->has('fr_welcome') ? 'is-invalid' : '' }}" name="fr_welcome" id="fr_welcome">{!! $emailContents->fr_welcome !!}</textarea>
+                                @if($errors->has('fr_welcome'))
+                                    <span class="text-danger">{{ $errors->first('fr_welcome') }}</span>
+                                @endif
+                            </div>
+
+                        </div>
+                        </div>
+                        </div>
+
+                        </div>
+                        <small>This is the message right after the name</small>
+
+                    </div>
+
+
+                    <br>
+                    <div class="col-12">
+                        <div class="card card-primary card-outline card-outline-tabs">
+                        <div class="card-header p-0 border-bottom-0">
+                        <ul class="nav nav-tabs" id="custom-tabs-four-tab" role="tablist">
+                        <li class="nav-item">
+                        <a class="nav-link active" id="custom-tabs-four-home-tab" data-toggle="pill" href="#custom-tabs-four-home" role="tab" aria-controls="custom-tabs-four-home" aria-selected="true">Eng</a>
+                        </li>
+                        <li class="nav-item">
+                        <a class="nav-link" id="custom-tabs-four-profile-tab" data-toggle="pill" href="#custom-tabs-four-profile" role="tab" aria-controls="custom-tabs-four-profile" aria-selected="false">Nl</a>
+                        </li>
+                        <li class="nav-item">
+                        <a class="nav-link" id="custom-tabs-four-messages-tab" data-toggle="pill" href="#custom-tabs-four-messages" role="tab" aria-controls="custom-tabs-four-messages" aria-selected="false">Esp</a>
+                        </li>
+                        <li class="nav-item">
+                        <a class="nav-link" id="custom-tabs-four-settings-tab" data-toggle="pill" href="#custom-tabs-four-settings" role="tab" aria-controls="custom-tabs-four-settings" aria-selected="false">Fr</a>
+                        </li>
+                        </ul>
+                        </div>
+                        <div class="card-body">
+                        <div class="tab-content" id="custom-tabs-four-tabContent">
+                        <div class="tab-pane fade show active" id="custom-tabs-four-home" role="tabpanel" aria-labelledby="custom-tabs-four-home-tab">
+
+                            <div class="form-group">
+                                <textarea class="form-control ckeditor {{ $errors->has('en_welcome') ? 'is-invalid' : '' }}" name="en_welcome" id="en_welcome">{!! $emailContents->en_welcome !!}</textarea>
+                                @if($errors->has('en_welcome'))
+                                    <span class="text-danger">{{ $errors->first('en_welcome') }}</span>
+                                @endif
+                            </div>
+
+                        </div>
+                        <div class="tab-pane fade" id="custom-tabs-four-profile" role="tabpanel" aria-labelledby="custom-tabs-four-profile-tab">
+
+
+                            <div class="form-group">
+                                <textarea class="form-control ckeditor {{ $errors->has('nl_welcome') ? 'is-invalid' : '' }}" name="nl_welcome" id="nl_welcome">{!! $emailContents->nl_welcome !!}</textarea>
+                                @if($errors->has('nl_welcome'))
+                                    <span class="text-danger">{{ $errors->first('nl_welcome') }}</span>
+                                @endif
+                            </div>
+
+
+                        </div>
+                        <div class="tab-pane fade" id="custom-tabs-four-messages" role="tabpanel" aria-labelledby="custom-tabs-four-messages-tab">
+
+
+
+                            <div class="form-group">
+                                <textarea class="form-control ckeditor {{ $errors->has('es_welcome') ? 'is-invalid' : '' }}" name="es_welcome" id="es_welcome">{!! $emailContents->es_welcome !!}</textarea>
+                                @if($errors->has('es_welcome'))
+                                    <span class="text-danger">{{ $errors->first('es_welcome') }}</span>
+                                @endif
+                            </div>
+
+                        </div>
+                        <div class="tab-pane fade" id="custom-tabs-four-settings" role="tabpanel" aria-labelledby="custom-tabs-four-settings-tab">
+
+
+                            <div class="form-group">
+                                <textarea class="form-control ckeditor {{ $errors->has('fr_welcome') ? 'is-invalid' : '' }}" name="fr_welcome" id="fr_welcome">{!! $emailContents->fr_welcome !!}</textarea>
+                                @if($errors->has('fr_welcome'))
+                                    <span class="text-danger">{{ $errors->first('fr_welcome') }}</span>
+                                @endif
+                            </div>
+
+                        </div>
+                        </div>
+                        </div>
+
+                        </div>
+                    </div>
+                    <center>
+                        <img src="{{$emailContents->email_image_middle}}" alt="" width="40%">
+                    </center>
+                    <br>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="basic-addon1">
+                            <i class="fa-fw nav-icon fas fa-image">
+                            </i>
+                        </span>
+
+                        <input type="text" class="form-control" placeholder="radius" aria-label="radius" aria-describedby="basic-addon1" name="emal_image_middle" value="{{$emailContents->email_image_middle}}">
+                      </div>
+                    <br>
+                    <div class="col-12">
+                        <div class="card card-primary card-outline card-outline-tabs">
+                        <div class="card-header p-0 border-bottom-0">
+                        <ul class="nav nav-tabs" id="custom-tabs-four-tab1" role="tablist">
+                        <li class="nav-item">
+                        <a class="nav-link active" id="custom-tabs-four-home-tab" data-toggle="pill" href="#custom-tabs-four-home1" role="tab" aria-controls="custom-tabs-four-home1" aria-selected="true">Eng</a>
+                        </li>
+                        <li class="nav-item">
+                        <a class="nav-link" id="custom-tabs-four-profile-tab" data-toggle="pill" href="#custom-tabs-four-profile1" role="tab" aria-controls="custom-tabs-four-profile1" aria-selected="false">Nl</a>
+                        </li>
+                        <li class="nav-item">
+                        <a class="nav-link" id="custom-tabs-four-messages-tab" data-toggle="pill" href="#custom-tabs-four-messages1" role="tab" aria-controls="custom-tabs-four-messages1" aria-selected="false">Esp</a>
+                        </li>
+                        <li class="nav-item">
+                        <a class="nav-link" id="custom-tabs-four-settings-tab" data-toggle="pill" href="#custom-tabs-four-settings1" role="tab" aria-controls="custom-tabs-four-settings1" aria-selected="false">Fr</a>
+                        </li>
+                        </ul>
+                        </div>
+                        <div class="card-body">
+                        <div class="tab-content" id="custom-tabs-four-tab1Content">
+                        <div class="tab-pane fade show active" id="custom-tabs-four-home1" role="tabpanel" aria-labelledby="custom-tabs-four-home1-tab">
+
+                            <div class="form-group">
+                                <textarea class="form-control ckeditor {{ $errors->has('en_second') ? 'is-invalid' : '' }}" name="en_second" id="en_second">{!! $emailContents->en_second !!}</textarea>
+                                @if($errors->has('en_second'))
+                                    <span class="text-danger">{{ $errors->first('en_second') }}</span>
+                                @endif
+                            </div>
+
+                        </div>
+                        <div class="tab-pane fade" id="custom-tabs-four-profile1" role="tabpanel" aria-labelledby="custom-tabs-four-profile1-tab">
+
+
+                            <div class="form-group">
+                                <textarea class="form-control ckeditor {{ $errors->has('nl_second') ? 'is-invalid' : '' }}" name="nl_second" id="nl_second">{!! $emailContents->nl_second !!}</textarea>
+                                @if($errors->has('nl_second'))
+                                    <span class="text-danger">{{ $errors->first('nl_second') }}</span>
+                                @endif
+                            </div>
+
+
+                        </div>
+                        <div class="tab-pane fade" id="custom-tabs-four-messages1" role="tabpanel" aria-labelledby="custom-tabs-four-messages1-tab">
+
+
+
+                            <div class="form-group">
+                                <textarea class="form-control ckeditor {{ $errors->has('es_second') ? 'is-invalid' : '' }}" name="es_second" id="es_second">{!! $emailContents->es_second !!}</textarea>
+                                @if($errors->has('es_second'))
+                                    <span class="text-danger">{{ $errors->first('es_second') }}</span>
+                                @endif
+                            </div>
+
+                        </div>
+                        <div class="tab-pane fade" id="custom-tabs-four-settings1" role="tabpanel" aria-labelledby="custom-tabs-four-settings1-tab">
+
+
+                            <div class="form-group">
+                                <textarea class="form-control ckeditor {{ $errors->has('fr_second') ? 'is-invalid' : '' }}" name="fr_second" id="fr_second">{!! $emailContents->fr_second !!}</textarea>
+                                @if($errors->has('fr_second'))
+                                    <span class="text-danger">{{ $errors->first('fr_second') }}</span>
+                                @endif
+                            </div>
+
+                        </div>
+                        </div>
+                        </div>
+
+                        </div>
+                    </div>
+                    <center>
+                        <img src="/images/{{auth()->user()->id}}.png" alt="" width="40%">
+                    </center>
+
+                    <div class="col-12">
+                        <div class="card card-primary card-outline card-outline-tabs">
+                        <div class="card-header p-0 border-bottom-0">
+                        <ul class="nav nav-tabs" id="custom-tabs-four-tab" role="tablist">
+                        <li class="nav-item">
+                        <a class="nav-link active" id="custom-tabs-four-home-tab" data-toggle="pill" href="#custom-tabs-four-home3" role="tab" aria-controls="custom-tabs-four-home3" aria-selected="true">Eng</a>
+                        </li>
+                        <li class="nav-item">
+                        <a class="nav-link" id="custom-tabs-four-profile-tab" data-toggle="pill" href="#custom-tabs-four-profile3" role="tab" aria-controls="custom-tabs-four-profile3" aria-selected="false">Nl</a>
+                        </li>
+                        <li class="nav-item">
+                        <a class="nav-link" id="custom-tabs-four-messages-tab" data-toggle="pill" href="#custom-tabs-four-messages3" role="tab" aria-controls="custom-tabs-four-messages3" aria-selected="false">Esp</a>
+                        </li>
+                        <li class="nav-item">
+                        <a class="nav-link" id="custom-tabs-four-settings-tab" data-toggle="pill" href="#custom-tabs-four-settings3" role="tab" aria-controls="custom-tabs-four-settings3" aria-selected="false">Fr</a>
+                        </li>
+                        </ul>
+                        </div>
+                        <div class="card-body">
+                        <div class="tab-content" id="custom-tabs-four-tabContent">
+                        <div class="tab-pane fade show active" id="custom-tabs-four-home3" role="tabpanel" aria-labelledby="custom-tabs-four-home3-tab">
+
+                            <div class="form-group">
+                                <textarea class="form-control ckeditor {{ $errors->has('en_third') ? 'is-invalid' : '' }}" name="en_third" id="en_third">{!! $emailContents->en_third !!}</textarea>
+                                @if($errors->has('en_third'))
+                                    <span class="text-danger">{{ $errors->first('en_third') }}</span>
+                                @endif
+                            </div>
+
+                        </div>
+                        <div class="tab-pane fade" id="custom-tabs-four-profile3" role="tabpanel" aria-labelledby="custom-tabs-four-profile3-tab">
+
+
+                            <div class="form-group">
+                                <textarea class="form-control ckeditor {{ $errors->has('nl_third') ? 'is-invalid' : '' }}" name="nl_third" id="nl_third">{!! $emailContents->nl_third !!}</textarea>
+                                @if($errors->has('nl_third'))
+                                    <span class="text-danger">{{ $errors->first('nl_third') }}</span>
+                                @endif
+                            </div>
+
+
+                        </div>
+                        <div class="tab-pane fade" id="custom-tabs-four-messages3" role="tabpanel" aria-labelledby="custom-tabs-four-messages3-tab">
+
+
+
+                            <div class="form-group">
+                                <textarea class="form-control ckeditor {{ $errors->has('es_third') ? 'is-invalid' : '' }}" name="es_third" id="es_third">{!! $emailContents->es_third !!}</textarea>
+                                @if($errors->has('es_third'))
+                                    <span class="text-danger">{{ $errors->first('es_third') }}</span>
+                                @endif
+                            </div>
+
+                        </div>
+                        <div class="tab-pane fade" id="custom-tabs-four-settings3" role="tabpanel" aria-labelledby="custom-tabs-four-settings3-tab">
+
+
+                            <div class="form-group">
+                                <textarea class="form-control ckeditor {{ $errors->has('fr_third') ? 'is-invalid' : '' }}" name="fr_third" id="fr_third">{!! $emailContents->fr_third !!}</textarea>
+                                @if($errors->has('fr_third'))
+                                    <span class="text-danger">{{ $errors->first('fr_third') }}</span>
+                                @endif
+                            </div>
+
+                        </div>
+                        </div>
+                        </div>
+
+                        </div>
+                    </div>
+
+                  <hr>
+                  <div class="form-group">
+                    <button class="btn btn-danger" type="submit">
+                        {{ trans('global.save') }}
+                    </button>
+                </div>
+            </form>
+          </div>
+        </div>
+    </div>
+</div>
+
+
 <div class="card">
     <div class="card-header">
         {{ trans('cruds.company.title_singular') }} {{ trans('global.list') }}
@@ -159,6 +531,9 @@
 @section('scripts')
 @parent
 <script>
+<script src="../plugins/jquery/jquery.min.js"></script>
+</script>
+<script>
     $(function () {
   let dtButtons = $.extend(true, [], $.fn.dataTable.defaults.buttons)
 @can('company_delete')
@@ -201,8 +576,73 @@
       $($.fn.dataTable.tables(true)).DataTable()
           .columns.adjust();
   });
-  
+
 })
 
+
 </script>
+<script>
+    $(document).ready(function () {
+  function SimpleUploadAdapter(editor) {
+    editor.plugins.get('FileRepository').createUploadAdapter = function(loader) {
+      return {
+        upload: function() {
+          return loader.file
+            .then(function (file) {
+              return new Promise(function(resolve, reject) {
+                // Init request
+                var xhr = new XMLHttpRequest();
+                xhr.open('POST', '{{ route('admin.blogs.storeCKEditorImages') }}', true);
+                xhr.setRequestHeader('x-csrf-token', window._token);
+                xhr.setRequestHeader('Accept', 'application/json');
+                xhr.responseType = 'json';
+
+                // Init listeners
+                var genericErrorText = `Couldn't upload file: ${ file.name }.`;
+                xhr.addEventListener('error', function() { reject(genericErrorText) });
+                xhr.addEventListener('abort', function() { reject() });
+                xhr.addEventListener('load', function() {
+                  var response = xhr.response;
+
+                  if (!response || xhr.status !== 201) {
+                    return reject(response && response.message ? `${genericErrorText}\n${xhr.status} ${response.message}` : `${genericErrorText}\n ${xhr.status} ${xhr.statusText}`);
+                  }
+
+                  $('form').append('<input type="hidden" name="ck-media[]" value="' + response.id + '">');
+
+                  resolve({ default: response.url });
+                });
+
+                if (xhr.upload) {
+                  xhr.upload.addEventListener('progress', function(e) {
+                    if (e.lengthComputable) {
+                      loader.uploadTotal = e.total;
+                      loader.uploaded = e.loaded;
+                    }
+                  });
+                }
+
+                // Send request
+                var data = new FormData();
+                data.append('upload', file);
+                data.append('crud_id', '{{ $blog->id ?? 0 }}');
+                xhr.send(data);
+              });
+            })
+        }
+      };
+    }
+  }
+
+  var allEditors = document.querySelectorAll('.ckeditor');
+  for (var i = 0; i < allEditors.length; ++i) {
+    ClassicEditor.create(
+      allEditors[i], {
+        extraPlugins: [SimpleUploadAdapter]
+      }
+    );
+  }
+});
+</script>
+
 @endsection
