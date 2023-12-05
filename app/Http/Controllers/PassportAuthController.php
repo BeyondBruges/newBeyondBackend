@@ -14,6 +14,8 @@ use Illuminate\Support\Facades\Password;
 use Illuminate\Validation\ValidationException;
 use App\Mail\WelcomeEmail;
 use Illuminate\Support\Facades\Mail;
+use App\Models\AutomaticCoupon;
+use App\Models\UserDynamicCoupon;
 
 class PassportAuthController extends Controller
 {
@@ -54,13 +56,25 @@ class PassportAuthController extends Controller
         $user->bryghia = 2.5;
         $user->update();
 
-
+        $this->assigntickets($user);
         $this->sendWelcomeEmail($user);
 
         return response()->json(['token' => $token], 200);
     }
 
-    public function email(){
+
+    public function assigntickets(User $user){
+
+        $autocoupons = AutomaticCouponn::all();
+        foreach ($autocoupons as $key => $value) {
+
+            $userDynamicCoupon = new UserDynamicCoupon;
+            $userDynamicCoupon->user_id = $user->id;
+            $userDynamicCoupon->productCategory = $value->product->product_category;
+            $userDynamicCoupon->product_id = $value->product->id;
+            $userDynamicCoupon->save();
+        }
+
 
     }
 
