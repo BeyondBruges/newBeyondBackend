@@ -9,7 +9,8 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
 
     Route::post('mail-contents-update', 'CompanyController@mail')->name('emailtexts');
     Route::post('radius-update', 'CompanyController@radius')->name('radius');
-
+    Route::get('assignautocoupon/{id}', 'ProductController@autoassign')->name('products.autocouponassing');
+    Route::post('destroyautocoupon', 'ProductController@autocpupondestroy')->name('products.autocoupondestroy');
     // Permissions
     Route::delete('permissions/destroy', 'PermissionsController@massDestroy')->name('permissions.massDestroy');
     Route::resource('permissions', 'PermissionsController');

@@ -9,6 +9,7 @@ use App\Http\Requests\MassDestroyProductRequest;
 use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
 use App\Models\Product;
+use App\Models\AutomaticCoupon;
 use Gate;
 use Illuminate\Http\Request;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
@@ -24,9 +25,10 @@ class ProductController extends Controller
     {
         abort_if(Gate::denies('product_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
+        $autocoupons = AutomaticCoupon::all();
         $products = Product::with(['media'])->get();
 
-        return view('admin.products.index', compact('products'));
+        return view('admin.products.index', compact('products', 'autocoupons'));
     }
 
     public function create()
@@ -98,5 +100,32 @@ class ProductController extends Controller
         $media         = $model->addMediaFromRequest('upload')->toMediaCollection('ck-media');
 
         return response()->json(['id' => $media->id, 'url' => $media->getUrl()], Response::HTTP_CREATED);
+    }
+
+
+    public function autoassign($id){
+
+        $product = Product::find($id);
+        $autocoupon = AutomaticCoupon::where('product_id', $product->id)->first();
+        if ($autocoupon) {
+            return redirect()->back()->with('danger', 'this product already has an automatic coupon');
+        }
+        else{
+            $autocoupon = new AutomaticCoupon;
+            $autocoupon->product_id = $product->id;
+            $autocoupon->save();
+            return redirect()->back()->with('success', 'Automatic coupon successfuly created');
+
+        }
+
+
+    }
+    public function autocpupondestroy(Request $request){
+
+        $autocoupon = AutomaticCoupon::find($request->id);
+         $autocoupon->delete();
+         return redirect()->back()->with('success', 'Automatic coupon successfuly deleted');
+
+
     }
 }

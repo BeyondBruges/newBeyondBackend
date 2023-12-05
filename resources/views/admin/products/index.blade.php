@@ -13,7 +13,77 @@
         </div>
     </div>
 @endcan
+
+<style>
+td{
+    max-width: 150px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+</style>
+
 <div class="card">
+    <div class="card-header">
+        Automatically generated products <br>
+        <small>Select new products that will automatically assign to new users</small>
+    </div>
+
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class=" table table-bordered table-striped table-hover datatable datatable-Product">
+                <thead>
+                    <tr>
+                        <th width="10">
+
+                        </th>
+                        <th>
+                            {{ trans('cruds.product.fields.id') }}
+                        </th>
+                        <th>
+                            Product
+                        </th>
+
+                        <th>
+                            &nbsp;
+                        </th>
+
+
+                    </tr>
+                </thead>
+                <tbody>
+                    @forelse($autocoupons as $key => $coupon)
+                        <tr data-entry-id="{{ $coupon->id }}">
+                            <td>
+
+                            </td>
+                            <td>
+                                {{ $coupon->id ?? '' }}
+                            </td>
+                            <td>
+                                {{ $coupon->product->name ?? '' }}
+                            </td>
+
+                            <td>
+
+                                @can('product_delete')
+                                    <form action="{{ route('admin.products.autocoupondestroy')}}" method="POST" onsubmit="return confirm('{{ trans('global.areYouSure') }}');" style="display: inline-block;">
+                                        <input type="hidden" name="_method" value="post">
+                                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                        <input type="hidden" name="id" value="{{$coupon->id}}">
+                                        <input type="submit" class="btn btn-xs btn-danger" value="{{ trans('global.delete') }}">
+                                    </form>
+                                @endcan
+
+                            </td>
+
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div><div class="card">
     <div class="card-header">
         {{ trans('cruds.product.title_singular') }} {{ trans('global.list') }}
     </div>
@@ -194,7 +264,10 @@
                                         <input type="submit" class="btn btn-xs btn-danger" value="{{ trans('global.delete') }}">
                                     </form>
                                 @endcan
-
+                                    <br>
+                                    <a class="btn btn-block btn-success" href="{{route('admin.products.autocouponassing', $product->id)}}" onclick="return confirm('{{ trans('global.areYouSure') }} this product will be automatically assigned to every user who creates a new account');" style="width:100%; height:30%; margin-top:5px;">
+                                       automatic
+                                    </a>
                             </td>
 
                         </tr>
@@ -204,6 +277,7 @@
         </div>
     </div>
 </div>
+
 
 
 
