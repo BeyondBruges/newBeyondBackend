@@ -58,45 +58,29 @@
 <body>
 
 @php
-    $texts = \App\Models\MailContent->first();
+    $texts = \App\Models\MailContent::first();
     $topImage = $texts->email_image_top;
-    $success = "";
-
-
-    switch ($lang) {
-        case 'en':
-    $success =  $texts->en_success;
-
-            break;
-        case 'es':
-    $success =  $texts->es_success;
-
-            break;
-        case 'nl':
-    $success =  $texts->nl_success;
-
-            break;
-        case 'fr':
-    $success =  $texts->fr_success;
-
-            break;
-
-    }
 @endphp
 
     <div class="container">
-
         <img src="https://beyondbruges.be/images/people.jpg" alt="" width="100%" style="padding:5px">
 
 
         <p>
-            {!!$success!!}
+
+            {!!$texts->en_success!!}
+            <hr>
+            {!! $texts->es_success!!}
+            <hr>
+            {!!$texts->nl_success!!}
+            <hr>
+            {!!$texts->fr_success!!}
         </p>
 
         <hr>
 
         <div class="footer">
-            <p>© {{env('APP_NAME') \Carbon\Carbon::now()->format('Y')}}</p>
+            <p>© {{env('APP_NAME')}} {{Carbon\Carbon::now()->format('Y')}}</p>
         </div>
     </div>
 </body>

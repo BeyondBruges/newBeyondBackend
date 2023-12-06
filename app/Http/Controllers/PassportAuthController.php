@@ -16,6 +16,9 @@ use App\Mail\WelcomeEmail;
 use Illuminate\Support\Facades\Mail;
 use App\Models\AutomaticCoupon;
 use App\Models\UserDynamicCoupon;
+use App\Models\DynamicCoupon;
+use App\Models\Product;
+use Carbon\Carbon;
 
 class PassportAuthController extends Controller
 {
@@ -24,6 +27,7 @@ class PassportAuthController extends Controller
      */
     public function register(Request $request)
     {
+
         $this->validate($request, [
             'name' => 'required|min:4',
             'email' => 'required|email',
@@ -35,10 +39,10 @@ class PassportAuthController extends Controller
             'email' => $request->email,
             'password' => bcrypt($request->password),
             'country_id' => $request->country_id,
-            'age_group_id' => $request->age_group_id
+            'age_group_id' => $request->age_group_id,
+            'language' => $request->language != null ? $request->language : 'en',
         ]);
 
-        $this->email();
         $user->roles()->sync(2);
         $token = $user->createToken('LaravelAuthApp')->accessToken;
 
@@ -65,14 +69,41 @@ class PassportAuthController extends Controller
 
     public function assigntickets(User $user){
 
-        $autocoupons = AutomaticCouponn::all();
+        $autocoupons = AutomaticCoupon::all();
         foreach ($autocoupons as $key => $value) {
 
-            $userDynamicCoupon = new UserDynamicCoupon;
-            $userDynamicCoupon->user_id = $user->id;
-            $userDynamicCoupon->productCategory = $value->product->product_category;
-            $userDynamicCoupon->product_id = $value->product->id;
-            $userDynamicCoupon->save();
+
+        //Generar  dynamic coupon
+        $dynamicCoupon = new dynamicCoupon;
+        $dynamicCoupon->name = Product::find($value->product_id)->name;
+        if ($value->product->product_category == "1") {
+            $date = Carbon::now()->addDays(7);
+        }
+        else
+        {
+            $date = Carbon::now()->addHours(1);
+        }
+
+
+        $dynamicCoupon->expiration = Carbon::createFromFormat('Y-m-d H:i:s', $date)->format(config('panel.date_format'). ' ' . config('panel.time_format'));
+        $dynamicCoupon->user_id = $user->id;
+        $dynamicCoupon->code = Str::random(8);
+        $dynamicCoupon->imageurl = config('app.url').'/dynamiccoupons/'.$dynamicCoupon->code.'.png';
+        $dynamicCoupon->save();
+        $dynamicCoupon->products()->sync($value->product_id);
+
+        //Generar user dynamic coupon
+        $userdynamiccoupon = new UserDynamicCoupon;
+        $userdynamiccoupon->user_id = $user->id;
+        $userdynamiccoupon->dynamic_coupon_id = $dynamicCoupon->id;
+        $userdynamiccoupon->save();
+
+     QrCode::size(1024)
+                ->format('png')
+                ->generate(config('app.url').'/admin/redeemed-dynamic-coupons/create/'.$dynamicCoupon->code, public_path('dynamiccoupons/'.$dynamicCoupon->code.'.png'));
+        $dynamicCoupon->update();
+
+
         }
 
 

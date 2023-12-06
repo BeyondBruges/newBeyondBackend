@@ -56,7 +56,7 @@
                             </i>
                         </span>
 
-                        <input type="text" class="form-control" placeholder="radius" aria-label="radius" aria-describedby="basic-addon1" name="emal_image_top" value="{{$emailContents->email_image_top}}">
+                        <input type="text" class="form-control" placeholder="radius" aria-label="radius" aria-describedby="basic-addon1" name="email_image_top" value="{{$emailContents->email_image_top}}">
                       </div>
                     <br>
                     <br>
@@ -220,7 +220,7 @@
                             </i>
                         </span>
 
-                        <input type="text" class="form-control" placeholder="radius" aria-label="radius" aria-describedby="basic-addon1" name="emal_image_middle" value="{{$emailContents->email_image_middle}}">
+                        <input type="text" class="form-control" placeholder="radius" aria-label="radius" aria-describedby="basic-addon1" name="email_image_middle" value="{{$emailContents->email_image_middle}}">
                       </div>
                     <br>
                     <div class="col-12">

@@ -58,7 +58,8 @@
 <body>
 
 @php
-    $texts = \App\Models\MailContent->first();
+    $texts = \App\Models\MailContent::first();
+    $lang = \App\Models\User::find($user->id)->language;
     $topImage = $texts->email_image_top;
     $welcome = "";
     $first = "";
@@ -97,19 +98,19 @@
 
     <div class="container">
 
-        <img src="https://beyondbruges.be/images/people.jpg" alt="" width="100%" style="padding:5px">
+        <img src="https://beyondbruges.be{{$topImage}}" alt="" width="100%" style="padding:5px">
 
         <h1 style="color:black">{{$user->name}}</h1> {!! $welcome !!}
         <p style="color:black">
             {!!$first!!}
         </p>
-        <img src="{{ env('APP_URL')}}/images/icon.jpg" alt="" width="100%" style="padding:80px">
+        <img src="https://beyondbruges.be{{$middleImage}}" alt="" width="100%" style="padding:80px">
         <p style="color:black">{!! $second !!}</p>
 
         <hr>
 
 
-<img src="{{env('APP_URL')}}/images/{{$user->id}}.png" alt="" width="100%" style="padding:20px">
+<img src="https://beyondbruges.be/images/{{$user->id}}.png" alt="" width="100%" style="padding:20px">
 
 <hr>
 
@@ -121,7 +122,7 @@
          </center>
 
         <div class="footer">
-            <p>© {{env('APP_NAME') \Carbon\Carbon::now()->format('Y')}}</p>
+            <p>© {{env('APP_NAME')}} {{\Carbon\Carbon::now()->format('Y')}}</p>
         </div>
     </div>
 </body>
