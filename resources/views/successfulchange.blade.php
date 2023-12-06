@@ -60,36 +60,25 @@
 @php
     $texts = \App\Models\MailContent->first();
     $topImage = $texts->email_image_top;
-    $welcome = "";
-    $first = "";
-    $middleImage = $texts->email_image_middle;
-    $second = "";
-    $third = "";
+    $success = "";
+
 
     switch ($lang) {
         case 'en':
-    $welcome =  $texts->en_welcome;
-    $first =  $texts->en_first;
-    $second = $texts->en_second;
-    $third = $texts->en_third;
+    $success =  $texts->en_success;
+
             break;
         case 'es':
-    $welcome =  $texts->es_welcome;
-    $first =  $texts->es_first;
-    $second = $texts->es_second;
-    $third = $texts->es_third;
+    $success =  $texts->es_success;
+
             break;
         case 'nl':
-    $welcome =  $texts->nl_welcome;
-    $first =  $texts->nl_first;
-    $second = $texts->nl_second;
-    $third = $texts->nl_third;
+    $success =  $texts->nl_success;
+
             break;
         case 'fr':
-    $welcome =  $texts->fr_welcome;
-    $first =  $texts->fr_first;
-    $second = $texts->fr_second;
-    $third = $texts->fr_third;
+    $success =  $texts->fr_success;
+
             break;
 
     }
@@ -99,26 +88,12 @@
 
         <img src="https://beyondbruges.be/images/people.jpg" alt="" width="100%" style="padding:5px">
 
-        <h1 style="color:black">{{$user->name}}</h1> {!! $welcome !!}
-        <p style="color:black">
-            {!!$first!!}
+
+        <p>
+            {!!$success!!}
         </p>
-        <img src="{{ env('APP_URL')}}/images/icon.jpg" alt="" width="100%" style="padding:80px">
-        <p style="color:black">{!! $second !!}</p>
 
         <hr>
-
-
-<img src="{{env('APP_URL')}}/images/{{$user->id}}.png" alt="" width="100%" style="padding:20px">
-
-<hr>
-
-        <center>
-            <p style="color:black">
-                {!! $third!!}
-            </p>
-            <a href="https://beyondbruges.be" class="btn btn-xl btn-primary" >BeyondBruges.be</a>
-         </center>
 
         <div class="footer">
             <p>© {{env('APP_NAME') \Carbon\Carbon::now()->format('Y')}}</p>

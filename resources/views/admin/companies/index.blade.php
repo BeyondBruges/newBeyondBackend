@@ -381,6 +381,95 @@
 </div>
 
 
+
+<div class="card">
+    <div class="card-header">
+       Messages for successful password update
+    </div>
+
+    <div class="card-body">
+        <div class="col-12">
+
+            <form method="POST" action="{{ route("admin.emailtexts") }}" enctype="multipart/form-data">
+                @csrf
+            <div class="card card-primary card-outline card-outline-tabs">
+            <div class="card-header p-0 border-bottom-0">
+            <ul class="nav nav-tabs" id="custom-tabs-four-tab" role="tablist">
+            <li class="nav-item">
+            <a class="nav-link active" id="custom-tabs-four-home-tab" data-toggle="pill" href="#custom-tabs-four-home4" role="tab" aria-controls="custom-tabs-four-home4" aria-selected="true">Eng</a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link" id="custom-tabs-four-profile-tab" data-toggle="pill" href="#custom-tabs-four-profile4" role="tab" aria-controls="custom-tabs-four-profile4" aria-selected="false">Nl</a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link" id="custom-tabs-four-messages-tab" data-toggle="pill" href="#custom-tabs-four-messages4" role="tab" aria-controls="custom-tabs-four-messages4" aria-selected="false">Esp</a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link" id="custom-tabs-four-settings-tab" data-toggle="pill" href="#custom-tabs-four-settings4" role="tab" aria-controls="custom-tabs-four-settings4" aria-selected="false">Fr</a>
+            </li>
+            </ul>
+            </div>
+            <div class="card-body">
+            <div class="tab-content" id="custom-tabs-four-tabContent">
+            <div class="tab-pane fade show active" id="custom-tabs-four-home4" role="tabpanel" aria-labelledby="custom-tabs-four-home4-tab">
+
+                <div class="form-group">
+                    <textarea class="form-control ckeditor {{ $errors->has('en_success') ? 'is-invalid' : '' }}" name="en_success" id="en_success">{!! $emailContents->en_success !!}</textarea>
+                    @if($errors->has('en_success'))
+                        <span class="text-danger">{{ $errors->first('en_success') }}</span>
+                    @endif
+                </div>
+
+            </div>
+            <div class="tab-pane fade" id="custom-tabs-four-profile4" role="tabpanel" aria-labelledby="custom-tabs-four-profile4-tab">
+
+
+                <div class="form-group">
+                    <textarea class="form-control ckeditor {{ $errors->has('nl_success') ? 'is-invalid' : '' }}" name="nl_success" id="nl_success">{!! $emailContents->nl_success !!}</textarea>
+                    @if($errors->has('nl_success'))
+                        <span class="text-danger">{{ $errors->first('nl_success') }}</span>
+                    @endif
+                </div>
+
+
+            </div>
+            <div class="tab-pane fade" id="custom-tabs-four-messages4" role="tabpanel" aria-labelledby="custom-tabs-four-messages4-tab">
+
+
+
+                <div class="form-group">
+                    <textarea class="form-control ckeditor {{ $errors->has('es_success') ? 'is-invalid' : '' }}" name="es_success" id="es_success">{!! $emailContents->es_success !!}</textarea>
+                    @if($errors->has('es_success'))
+                        <span class="text-danger">{{ $errors->first('es_success') }}</span>
+                    @endif
+                </div>
+
+            </div>
+            <div class="tab-pane fade" id="custom-tabs-four-settings4" role="tabpanel" aria-labelledby="custom-tabs-four-settings4-tab">
+
+
+                <div class="form-group">
+                    <textarea class="form-control ckeditor {{ $errors->has('fr_success') ? 'is-invalid' : '' }}" name="fr_success" id="fr_success">{!! $emailContents->fr_success !!}</textarea>
+                    @if($errors->has('fr_success'))
+                        <span class="text-danger">{{ $errors->first('fr_success') }}</span>
+                    @endif
+                </div>
+
+            </div>
+            </div>
+            </div>
+
+            </div>
+            <div class="form-group">
+                <button class="btn btn-danger" type="submit">
+                    {{ trans('global.save') }}
+                </button>
+            </div>
+            </form>
+        </div>
+    </div>
+</div>
+
 <div class="card">
     <div class="card-header">
         {{ trans('cruds.company.title_singular') }} {{ trans('global.list') }}
