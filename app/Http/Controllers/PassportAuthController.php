@@ -19,6 +19,8 @@ use App\Models\UserDynamicCoupon;
 use App\Models\DynamicCoupon;
 use App\Models\Product;
 use Carbon\Carbon;
+use App\Models\UserLandmark;
+use App\Models\BLandMark;
 
 class PassportAuthController extends Controller
 {
@@ -61,7 +63,7 @@ class PassportAuthController extends Controller
 
        // $this->assigntickets($user);
        // $this->sendWelcomeEmail($user);
-
+        $this->unlocktourist();
         return response()->json(['token' => $token], 200);
     }
 
@@ -288,5 +290,31 @@ class PassportAuthController extends Controller
         Mail::to($user->email)->send(new WelcomeEmail($user));
 
     }
+
+
+    public function unlocktourist(){
+
+        $user = Auth::user();
+
+        if (!$user) {
+            return response()->json(['not found'], 404);
+        }
+
+
+        foreach (BLandMark::all() as $key => $value) {
+
+            $existinglevel = UserLandmark::where('user_id', $user->id)->where('landmark_id', $value->id)->first();
+            if($existinglevel != null){
+                continue;
+            }
+            $userlm = new UserLandmark;
+            $userlm->user_id = $user->id;
+            $userlm->landmark_id = $value->id;
+            $userlm->save();
+
+            }
+
+
+       }
 
 }
