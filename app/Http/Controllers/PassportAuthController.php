@@ -133,6 +133,7 @@ class PassportAuthController extends Controller
             {
                 Auth::loginUsingId($user->id);
                 $this->patchMinusBryghia();
+                $this->unlocktourist();
                 $accesstoken = auth()->user()->createToken('LaravelAuthApp')->accessToken;
                 $refreshtoken = "refresh_token";
                 return response()->json(['token_type' => "Bearer", 'access_token' => $accesstoken, 'refresh_token'=>$refreshtoken], 200);
