@@ -19,6 +19,8 @@ use App\Models\UserDynamicCoupon;
 use App\Models\DynamicCoupon;
 use App\Models\Product;
 use Carbon\Carbon;
+use App\Models\UserLevel;
+use App\Models\UserCharacter;
 use App\Models\UserLandmark;
 use App\Models\BLandMark;
 
@@ -134,6 +136,7 @@ class PassportAuthController extends Controller
                 Auth::loginUsingId($user->id);
                 $this->patchMinusBryghia();
                 $this->unlocktourist();
+                $this->checkFirstUnlocks();
                 $accesstoken = auth()->user()->createToken('LaravelAuthApp')->accessToken;
                 $refreshtoken = "refresh_token";
                 return response()->json(['token_type' => "Bearer", 'access_token' => $accesstoken, 'refresh_token'=>$refreshtoken], 200);
@@ -315,6 +318,36 @@ class PassportAuthController extends Controller
 
             }
 
+
+       }
+
+       public function checkFirstUnlocks()
+       {
+
+            $user = Auth::user();
+
+            if (!$user) {
+                return response()->json(['not found'], 404);
+            }
+
+            $firstLevel = UserLevel::where('user_id', $user->id)->where('level_id', 1)->first();
+
+            if ($firstLevel) {
+               $firstLevel = new UserLevel;
+               $firstLevel->user_id = $user->id;
+               $firstLevel->level_id = 1;
+               $firstLevel->save();
+            }
+
+            $firstCharacter = UserCharacter::where('user_id', $user->id)->where('character_id', 10)->first();
+
+
+            if ($firstCharacter) {
+                $firstCharacter = new UserLevel;
+                $firstCharacter->user_id = $user->id;
+                $firstCharacter->level_id = 10;
+                $firstCharacter->save();
+             }
 
        }
 
