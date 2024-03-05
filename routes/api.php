@@ -44,6 +44,7 @@ Route::get('level_objects', [LevelObjectsController::class, 'index']);
 Route::get('landmarks', [BLandMarkController::class, 'index']);
 Route::get('coupons', [CouponsController::class, 'index']);
 Route::get('products', [ProductsController::class, 'index']);
+Route::get('digitalproducts', [ProductsController::class, 'digitalproducts']);
 Route::get('questions', [QuestionController::class, 'index']);
 Route::get('partners', [PartnerController::class, 'index']);
 Route::get('company', [CompanyController::class, 'index']);
