@@ -9,6 +9,7 @@ use App\Http\Requests\MassDestroyCouponRequest;
 use App\Http\Requests\StoreCouponRequest;
 use App\Http\Requests\UpdateCouponRequest;
 use App\Models\Coupon;
+use App\Models\PermanentCode;
 use App\Models\Partner;
 use Gate;
 use Illuminate\Http\Request;
@@ -25,7 +26,32 @@ class CouponController extends Controller
     {
         abort_if(Gate::denies('coupon_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
         $coupons = BoxCode::orderBy('id', 'desc')->paginate(1000);
-        return view('admin.coupons.index', compact('coupons'));
+        $permanentCoupons = PermanentCode::orderBy('id', 'desc')->paginate(1000);
+        return view('admin.coupons.index', compact('coupons', 'permanentCoupons'));
+    }
+
+    public function storepermantent(Request $request){
+
+        $coupon = PermanentCode::create($request->all());
+        $coupon->status = 1;
+        $coupon->update();
+        return redirect()->route('admin.coupons.index');
+    }
+
+
+    public function editpermantent($id){
+
+        $coupon = PermanentCode::find($id);
+        $coupon->status = $coupon->status == 1 ? 2 : 1;
+        $coupon->update();
+        return redirect()->route('admin.coupons.index');
+    }
+
+    public function destroypermanent(Request $request){
+
+        $coupon = PermanentCode::find($request->id);
+        $coupon->delete();
+        return back();
     }
 
     public function create()

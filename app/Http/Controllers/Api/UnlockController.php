@@ -21,6 +21,7 @@ use App\Models\PushNotification;
 use OneSignal;
 use App\Models\Transaction;
 use App\Models\BoxCode;
+use App\Models\PermanentCode;
 
 class UnlockController extends Controller
 {
@@ -148,7 +149,11 @@ class UnlockController extends Controller
 
    public function unlockLevels(Request $request){
 
-
+    $code = PermanentCode::where('code', $request->code)->where('status', 1)->first();
+    if($code){
+        $this->unlockeverything();
+        return;
+    }
     $user = Auth::user();
 
     if (!$user) {

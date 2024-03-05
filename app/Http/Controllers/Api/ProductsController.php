@@ -10,6 +10,12 @@ class ProductsController extends Controller
 {
       public function index()
     {
+        $products=Product::where('status', 1)->where('stock', ">", 0)->where('product_type_id', '1')->get();
+        return response()->json(['data'=>$products], 200);
+    }
+
+    public function digitalproducts(){
+
         $products=Product::where('status', 1)->where('stock', ">", 0)->get();
         return response()->json(['data'=>$products], 200);
     }

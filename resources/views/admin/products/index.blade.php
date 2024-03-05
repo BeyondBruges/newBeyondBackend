@@ -122,43 +122,7 @@ td{
                            Status
                         </th>
 
-                        <th>
-                            Eng <br>
-                            Title
-                        </th>
 
-
-                        <th>
-                            Spa <br>
-                            Title
-                        </th>
-
-                        <th>
-                            Nl <br>
-                            Title
-                        </th>
-                        <th>
-                            Fr <br>
-                            Title
-                        </th>
-
-                        <th>
-                           Eng <br>
-                           Desc.
-                        </th>
-                        <th>
-                            Spa <br>
-                            Desc.
-                        </th>
-
-                        <th>
-                            Nl <br>
-                            Desc.
-                        </th>
-                        <th>
-                            Fr <br>
-                            Desc.
-                        </th>
 
                         <th>
                             &nbsp;
@@ -209,39 +173,7 @@ td{
                                @endif
                             </td>
 
-                            <td>
-                                {{$product->en_title ?? ''}}
-                            </td>
 
-                            <td>
-                                {{$product->es_title ?? ''}}
-                            </td>
-                            <td>
-                                {{$product->nl_title ?? ''}}
-                            </td>
-
-                            <td>
-                                {{$product->fr_title ?? ''}}
-                            </td>
-
-                            <td>
-                                {{$product->en_description ?? ''}}
-                            </td>
-
-                            <td>
-                                {{$product->es_description ?? ''}}
-                            </td>
-
-                            <td>
-                                {{$product->nl_description ?? ''}}
-                            </td>
-
-
-                            </td>
-                            <td>
-                                {{$product->fr_description ?? ''}}
-
-                            </td>
                             <td>
 
 
@@ -265,9 +197,11 @@ td{
                                     </form>
                                 @endcan
                                     <br>
+                                    @if($product->product_type_id == 2)
                                     <a class="btn btn-block btn-success" href="{{route('admin.products.autocouponassing', $product->id)}}" onclick="return confirm('{{ trans('global.areYouSure') }} this product will be automatically assigned to every user who creates a new account');" style="width:100%; height:30%; margin-top:5px;">
                                        automatic
                                     </a>
+                                    @endif
                             </td>
 
                         </tr>

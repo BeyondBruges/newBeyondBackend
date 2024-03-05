@@ -10,6 +10,100 @@
         </div>
     </div>
 @endcan
+
+<div class="card">
+    <div class="card-header">
+       Box codes List
+    </div>
+
+    <div class="card-body">
+
+
+
+        <form method="POST" action="{{ route("admin.products.storepermanent") }}" enctype="multipart/form-data">
+            @csrf
+            <div class="form-group">
+                <label class="required" for="title">Create New Code</label>
+                <input class="form-control {{ $errors->has('title') ? 'is-invalid' : '' }}" type="text" name="code" id="code" value="{{ old('code', '') }}" required>
+                @if($errors->has('code'))
+                    <span class="text-danger">{{ $errors->first('code') }}</span>
+                @endif
+            </div>
+
+            <div class="form-group">
+                <button class="btn btn-danger" type="submit">
+                    {{ trans('global.save') }}
+                </button>
+            </div>
+        </form>
+
+<hr>
+
+        <div class="table-responsive">
+            <table class=" table table-bordered table-striped table-hover datatable datatable-Coupon">
+                <thead>
+                    <tr>
+                        <th width="10">
+
+                        </th>
+                        <th>
+                            {{ trans('cruds.coupon.fields.id') }}
+                        </th>
+                        <th>
+                          Code
+                        </th>
+
+                        <th>
+                            Status
+                        </th>
+
+                        <th>
+                            Actions
+                        </th>
+                    </tr>
+
+                </thead>
+                <tbody>
+                    @foreach($permanentCoupons as $key => $coupon)
+                        <tr data-entry-id="{{ $coupon->id }}">
+                            <td>
+
+                            </td>
+                            <td>
+                                {{ $coupon->id ?? '' }}
+                            </td>
+                            <td>
+                                {{ $coupon->code ?? '' }}
+                            </td>
+                            <td>
+                                {{ $coupon->status == "1" ? 'Active' : 'Inactive'}}
+                            </td>
+                            <td>
+
+                                <a class="btn btn-xs btn-info" href="{{ route('admin.products.editpermantent', $coupon->id) }}">
+                                   Change Status
+                                </a>
+                                <form action="{{ route('admin.products.destroypermanent')}}" method="POST" onsubmit="return confirm('{{ trans('global.areYouSure') }}');" style="display: inline-block;">
+                                    <input type="hidden" name="_method" value="post">
+                                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                    <input type="hidden" name="id" value="{{ $coupon->id}}">
+                                    <input type="submit" class="btn btn-xs btn-danger" value="{{ trans('global.delete') }}">
+                                </form>
+                            </td>
+
+
+
+
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+            <br>
+
+        </div>
+    </div>
+</div>
+
 <div class="card">
     <div class="card-header">
        Box codes List

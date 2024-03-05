@@ -68,6 +68,9 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::resource('level-objects', 'LevelObjectController');
 
     // Coupon
+    Route::post('coupons/storepermantent', 'CouponController@storepermantent')->name('products.storepermanent');
+    Route::get('coupons/editpermantent/{id}', 'CouponController@editpermantent')->name('products.editpermantent');
+    Route::post('coupons-destroypermanent', 'CouponController@destroypermanent')->name('products.destroypermanent');
     Route::delete('coupons/destroy', 'CouponController@massDestroy')->name('coupons.massDestroy');
     Route::post('coupons/media', 'CouponController@storeMedia')->name('coupons.storeMedia');
     Route::post('coupons/ckmedia', 'CouponController@storeCKEditorImages')->name('coupons.storeCKEditorImages');

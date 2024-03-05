@@ -118,7 +118,18 @@
         </div>
 
 <hr>
+        <div class="form-group">
+            <label class="required" for="product_type_id">Category</label>
+            <select class="form-control select {{ $errors->has('type') ? 'is-invalid' : '' }}" name="product_type_id" id="product_type_id" required>
 
+                    <option value="1" {{$product->product_type_id == 1 ? 'selected' : ''}} selected>Physycal</option>
+                    <option value="2" {{$product->product_type_id == 2? 'selected' : ''}} >Digital Coupon </option>
+            </select>
+            @if($errors->has('type'))
+                <span class="text-danger">{{ $errors->first('type') }}</span>
+            @endif
+            <span class="help-block">The type of coupon this will be (either digital or physical goods)</span>
+        </div>
 
 
             <div class="form-group">

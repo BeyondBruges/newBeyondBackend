@@ -97,7 +97,7 @@
 
         <footer class="main-footer">
             <div class="float-right d-none d-sm-block">
-                <b>Version</b> 1.0
+                <b>Version</b> 1.2
             </div>
            Designed and Developed by  <strong> Peanut Agency Mexico</strong>
         </footer>
