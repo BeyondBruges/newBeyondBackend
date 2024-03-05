@@ -47,6 +47,7 @@ class Product extends Model implements HasMedia
         'es_description',
         'fr_description',
         'nl_description',
+        'product_type_id',
         'status'
     ];
 

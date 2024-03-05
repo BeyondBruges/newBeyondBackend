@@ -63,8 +63,8 @@ class PassportAuthController extends Controller
         $user->bryghia = 2.5;
         $user->update();
 
-       // $this->assigntickets($user);
-       // $this->sendWelcomeEmail($user);
+      //  $this->assigntickets($user);
+      //  $this->sendWelcomeEmail($user);
         $this->unlocktourist();
         return response()->json(['token' => $token], 200);
     }

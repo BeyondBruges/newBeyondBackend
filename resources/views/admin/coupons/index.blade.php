@@ -90,10 +90,6 @@
                                     <input type="submit" class="btn btn-xs btn-danger" value="{{ trans('global.delete') }}">
                                 </form>
                             </td>
-
-
-
-
                         </tr>
                     @endforeach
                 </tbody>

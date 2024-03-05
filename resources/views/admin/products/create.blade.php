@@ -123,6 +123,19 @@
 <hr>
 
 
+<div class="form-group">
+    <label class="required" for="product_type_id">{{ trans('cruds.analytic.fields.type') }}</label>
+    <select class="form-control select {{ $errors->has('type') ? 'is-invalid' : '' }}" name="product_type_id" id="product_type_id" required>
+        <option value="1"  selected>Physycal</option>
+        <option value="2"  >Digital Coupon </option>
+    </select>
+    @if($errors->has('type'))
+        <span class="text-danger">{{ $errors->first('type') }}</span>
+    @endif
+    <span class="help-block">{{ trans('cruds.analytic.fields.type_helper') }}</span>
+</div>
+
+
             <div class="form-group">
                 <label class="required" for="product_category">{{ trans('cruds.analytic.fields.type') }}</label>
                 <select class="form-control select {{ $errors->has('type') ? 'is-invalid' : '' }}" name="product_category" id="product_category" required>
