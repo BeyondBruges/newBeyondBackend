@@ -348,7 +348,7 @@ class PassportAuthController extends Controller
 
             $firstLevel = UserLevel::where('user_id', $user->id)->where('level_id', 1)->first();
 
-            if ($firstLevel) {
+            if (!$firstLevel) {
                $firstLevel = new UserLevel;
                $firstLevel->user_id = $user->id;
                $firstLevel->level_id = 1;
@@ -358,7 +358,7 @@ class PassportAuthController extends Controller
             $firstCharacter = UserCharacter::where('user_id', $user->id)->where('character_id', 10)->first();
 
 
-            if ($firstCharacter) {
+            if (!$firstCharacter) {
                 $firstCharacter = new UserLevel;
                 $firstCharacter->user_id = $user->id;
                 $firstCharacter->level_id = 10;
