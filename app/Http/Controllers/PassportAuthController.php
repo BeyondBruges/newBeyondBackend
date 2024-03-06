@@ -63,30 +63,41 @@ class PassportAuthController extends Controller
         $user->bryghia = 2.5;
         $user->update();
 
-      //  $this->assigntickets($user);
-      //  $this->sendWelcomeEmail($user);
-        $this->unlocktourist();
         return response()->json(['token' => $token], 200);
     }
 
 
     public function assigntickets(User $user){
 
+        Log::debug("Starting autocoupons");
+
         $autocoupons = AutomaticCoupon::all();
         foreach ($autocoupons as $key => $value) {
+            $exists = false;
+            $currentProduct = Product::find($value->product_id);
+            if (!$currentProduct){
+                Log::debug($currentProduct->name." is not present");
+                continue;
+            }
 
+            foreach(\App\Models\DynamicCoupon::where('user_id', $user->id)->get() as $coupon){
+
+                if($coupon->products->first()->id == $value->product_id){
+                    $exists = true;
+                    continue;
+                }
+
+            }
+
+            if($exists){
+                continue;
+            }
 
         //Generar  dynamic coupon
-        $dynamicCoupon = new dynamicCoupon;
+        $dynamicCoupon = new DynamicCoupon;
         $dynamicCoupon->name = Product::find($value->product_id)->name;
-        if ($value->product->product_category == "1") {
-            $date = Carbon::now()->addDays(7);
-        }
-        else
-        {
-            $date = Carbon::now()->addHours(1);
-        }
 
+        $date = Carbon::now()->addDays(365);
 
         $dynamicCoupon->expiration = Carbon::createFromFormat('Y-m-d H:i:s', $date)->format(config('panel.date_format'). ' ' . config('panel.time_format'));
         $dynamicCoupon->user_id = $user->id;
@@ -101,10 +112,12 @@ class PassportAuthController extends Controller
         $userdynamiccoupon->dynamic_coupon_id = $dynamicCoupon->id;
         $userdynamiccoupon->save();
 
+
      QrCode::size(1024)
                 ->format('png')
                 ->generate(config('app.url').'/admin/redeemed-dynamic-coupons/create/'.$dynamicCoupon->code, public_path('dynamiccoupons/'.$dynamicCoupon->code.'.png'));
         $dynamicCoupon->update();
+
 
 
         }
@@ -134,9 +147,7 @@ class PassportAuthController extends Controller
             else
             {
                 Auth::loginUsingId($user->id);
-                $this->patchMinusBryghia();
-                $this->unlocktourist();
-                $this->checkFirstUnlocks();
+                Log::debug("Logging with apple or facebook account");
                 $accesstoken = auth()->user()->createToken('LaravelAuthApp')->accessToken;
                 $refreshtoken = "refresh_token";
                 return response()->json(['token_type' => "Bearer", 'access_token' => $accesstoken, 'refresh_token'=>$refreshtoken], 200);
@@ -147,12 +158,13 @@ class PassportAuthController extends Controller
 
 
         if (auth()->attempt($data)) {
+
             $accesstoken = auth()->user()->createToken('LaravelAuthApp')->accessToken;
                 $refreshtoken = "refresh_token";
 
             if (auth()->user()->status == 1) {
 
-                $this->patchMinusBryghia();
+                Log::debug("Logging with email account");
                 return response()->json(['token_type' => "Bearer", 'access_token' => $accesstoken, 'refresh_token'=>$refreshtoken], 200);
 
             }
@@ -177,6 +189,10 @@ class PassportAuthController extends Controller
         }
         else
         {
+            $this->patchMinusBryghia();
+            $this->unlocktourist();
+           // $this->checkFirstUnlocks();
+            $this->assigntickets($user);
             return response()->json(['data' => $user], 200);
         }
     }
