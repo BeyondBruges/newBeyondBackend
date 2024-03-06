@@ -191,7 +191,7 @@ class PassportAuthController extends Controller
         {
             $this->patchMinusBryghia();
             $this->unlocktourist();
-           // $this->checkFirstUnlocks();
+            $this->checkFirstUnlocks();
             $this->assigntickets($user);
             return response()->json(['data' => $user], 200);
         }
