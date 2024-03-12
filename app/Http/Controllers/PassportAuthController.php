@@ -63,9 +63,6 @@ class PassportAuthController extends Controller
         $user->bryghia = 2.5;
         $user->update();
 
-        $this->unlocktourist();
-        $this->checkFirstUnlocks();
-        $this->assigntickets($user);
         return response()->json(['token' => $token], 200);
     }
 
@@ -362,7 +359,7 @@ class PassportAuthController extends Controller
 
 
             if (!$firstCharacter) {
-                $firstCharacter = new UserLevel;
+                $firstCharacter = new UserCharacter;
                 $firstCharacter->user_id = $user->id;
                 $firstCharacter->level_id = 10;
                 $firstCharacter->save();
