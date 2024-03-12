@@ -361,7 +361,7 @@ class PassportAuthController extends Controller
             if (!$firstCharacter) {
                 $firstCharacter = new UserCharacter;
                 $firstCharacter->user_id = $user->id;
-                $firstCharacter->level_id = 10;
+                $firstCharacter->character_id = 10;
                 $firstCharacter->save();
              }
 
