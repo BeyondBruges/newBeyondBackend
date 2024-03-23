@@ -229,9 +229,6 @@
 							</div>
 						</div>
 					</div>
-					<center>
-						<img src="/images/{{auth()->user()->id}}.png" alt="" width="40%">
-					</center>
 					<div class="form-group">
 						<button class="btn btn-danger" type="submit">
 						{{ trans('global.save') }}
