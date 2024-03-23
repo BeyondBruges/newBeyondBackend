@@ -13,6 +13,7 @@ use Gate;
 use Illuminate\Http\Request;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 use Symfony\Component\HttpFoundation\Response;
+use Illuminate\Support\Str;
 
 class CompanyController extends Controller
 {
@@ -32,6 +33,22 @@ class CompanyController extends Controller
         $emailContents = MailContent::first();
         $emailContents->update($request->all());
 
+    // Handle file uploads
+    if ($request->hasFile('email_image_top')) {
+        $image = $request->file('email_image_top');
+        $imageName = Str::random(10) . '.' . $image->getClientOriginalExtension();
+        $imagePath = $image->storeAs('public/email_images', $imageName);
+        $emailContents->email_image_top = str_replace('public/', '', $imagePath); // Remove 'public/' from the stored path
+        $emailContents->update();
+    }
+
+    if ($request->hasFile('email_image_middle')) {
+        $image = $request->file('email_image_middle');
+        $imageName = Str::random(10) . '.' . $image->getClientOriginalExtension();
+        $imagePath = $image->storeAs('public/email_images', $imageName);
+        $emailContents->email_image_middle = str_replace('public/', '', $imagePath); // Remove 'public/' from the stored path
+        $emailContents->update();
+    }
 
         return redirect()->back()->with('success', 'Mail texts updated successfuly!');
 
