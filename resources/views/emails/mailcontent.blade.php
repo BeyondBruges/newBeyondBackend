@@ -36,7 +36,7 @@ break;
 }
 @endphp
 <div class="container">
-	<img src="{{env('APP_URL')}}/{{$topImage}}" alt="" width="100%" style="padding:5px">
+	<img src="{{env('APP_URL')}}/storage/{{$topImage}}" alt="" width="100%" style="padding:5px">
 	<br>
 	<br>
 	<h1 style="color:black">{{$user->name}}</h1>
@@ -44,7 +44,7 @@ break;
 	<p style="color:black">
 		{!!$first!!}
 	</p>
-	<img src="{{env('APP_URL')}}/{{$middleImage}}" alt="" width="100%" style="padding:80px">
+	<img src="{{env('APP_URL')}}/storage/{{$middleImage}}" alt="" width="100%" style="padding:80px">
 	<p style="color:black">{!! $second !!}</p>
 	<hr>
 	<center>
