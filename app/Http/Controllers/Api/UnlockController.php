@@ -149,12 +149,13 @@ class UnlockController extends Controller
 
    public function unlockLevels(Request $request){
 
+    $user = Auth::user();
+
     $code = PermanentCode::where('code', $request->code)->where('status', 1)->first();
     if($code){
-        $this->unlockeverything();
-        return;
+         $this->UnlockWithPermanentCode($user);
+         return;
     }
-    $user = Auth::user();
 
     if (!$user) {
         return response()->json(['not found'], 404);
@@ -222,6 +223,58 @@ class UnlockController extends Controller
     $availableCoupon->update();
      //reset app
      return response()->json([$user->userUserLevels], 200);
+
+   }
+
+   public function UnlockWithPermanentCode(User $user){
+
+    //If everyghing is ok, then we unlock everything
+
+    foreach (Level::all() as $key => $value) {
+
+        $existinglevel = UserLevel::where('user_id', $user->id)->where('level_id', $value->id)->first();
+        if($existinglevel != null){
+            continue;
+        }
+        $userlvl = new UserLevel;
+        $userlvl->user_id = $user->id;
+        $userlvl->level_id = $value->id;
+        $userlvl->save();
+
+    }
+
+    if($request->bryghia_unlock == null){
+    $transaction = new Transaction;
+    $transaction->value = 1;
+    $transaction->status = 1;
+    $transaction->user_id = $user->id;
+    $transaction->transaction_type = 8;
+    $transaction->save();
+    }
+    $messageLoc = PushNotification::where('key', 'TransactionSucced')->first();
+    $langKey = $user->language;
+    $content = $langKey.'_content';
+
+    if ($user->udid != null && $messageLoc) {
+
+        $userId = $user->udid;
+
+        OneSignal::sendNotificationToUser(
+            $messageLoc->$content,
+            $userId,
+            $url = null,
+            $data = null,
+            $buttons = null,
+            $schedule = null
+        );
+
+    }
+
+    $availableCoupon->status =0;
+    $availableCoupon->update();
+     //reset app
+     return response()->json([$user->userUserLevels], 200);
+
 
    }
 
