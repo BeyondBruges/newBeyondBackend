@@ -245,14 +245,14 @@ class UnlockController extends Controller
 
     }
 
-    if($request->bryghia_unlock == null){
+
     $transaction = new Transaction;
     $transaction->value = 1;
     $transaction->status = 1;
     $transaction->user_id = $user->id;
-    $transaction->transaction_type = 8;
+    $transaction->transaction_type = 19;
     $transaction->save();
-    }
+
     $messageLoc = PushNotification::where('key', 'TransactionSucced')->first();
     $langKey = $user->language;
     $content = $langKey.'_content';
