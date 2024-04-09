@@ -153,7 +153,7 @@ class UnlockController extends Controller
 
     $code = PermanentCode::where('code', $request->code)->where('status', 1)->first();
     if($code){
-         $this->UnlockWithPermanentCode($user);
+         $this->UnlockWithPermanentCode();
          return;
     }
 
@@ -226,7 +226,9 @@ class UnlockController extends Controller
 
    }
 
-   public function UnlockWithPermanentCode(User $user){
+   public function UnlockWithPermanentCode(){
+
+    $user = Auth::user();
 
     //If everyghing is ok, then we unlock everything
 
@@ -270,8 +272,6 @@ class UnlockController extends Controller
 
     }
 
-    $availableCoupon->status =0;
-    $availableCoupon->update();
      //reset app
      return response()->json([$user->userUserLevels], 200);
 
