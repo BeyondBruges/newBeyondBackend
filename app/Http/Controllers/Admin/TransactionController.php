@@ -54,7 +54,7 @@ class TransactionController extends Controller
                     $userId = $user->udid;
 
                     OneSignal::sendNotificationToUser(
-                        str_replace($searchVal, $replaceVal, $messageLoc->$content),
+                       '{"en":'.str_replace($searchVal, $replaceVal, $messageLoc->$content).'}',
                         $userId,
                         $url = null,
                         $data = null,
