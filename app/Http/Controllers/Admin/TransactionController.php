@@ -13,6 +13,7 @@ use Gate;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 use OneSignal;
+use Illuminate\Support\Facades\Log;
 
 class TransactionController extends Controller
 {
@@ -52,7 +53,7 @@ class TransactionController extends Controller
 
                 if ($user->udid != null && $messageLoc) {
                     $userId = $user->udid;
-
+                    Log::debug($messageLoc->$content);
                     OneSignal::sendNotificationToUser(
                         str_replace($searchVal, $replaceVal, $messageLoc->$content),
                         $userId,
