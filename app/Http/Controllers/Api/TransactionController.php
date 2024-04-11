@@ -11,6 +11,7 @@ use OneSignal;
 use App\Models\Donation;
 use App\Models\PushNotification;
 use Auth;
+use Illuminate\Support\Facades\Log;
 
 class TransactionController extends Controller
 {
@@ -53,6 +54,7 @@ class TransactionController extends Controller
                 $langKey = $user->language;
                 $content = $langKey.'_content';
 
+                Log::debug(str_replace($searchVal, $replaceVal, $messageLoc->$content));
                 if ($user->udid != null && $messageLoc) {
                     $userId = $user->udid;
                     OneSignal::sendNotificationToUser(
