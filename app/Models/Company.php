@@ -52,7 +52,8 @@ class Company extends Model implements HasMedia
         'facebook_login',
         'unlock_all_price',
         'unlock_time_quest_price',
-        'unlock_visit_price'
+        'unlock_visit_price',
+        'welcome_email'
     ];
 
     public function registerMediaConversions(Media $media = null): void

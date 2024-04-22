@@ -194,6 +194,21 @@
             </div>
 
             <div class="form-group">
+                <label class="required" for="welcome_email">Welcome email</label>
+                <select class="form-control select {{ $errors->has('language') ? 'is-invalid' : '' }}" name="welcome_email" id="welcome_email" required>
+
+                <option value="0" {{ (old('welcome_email') ? old('welcome_email') : $company->welcome_email ?? '') == 0 ? 'selected' : '' }}>Disabled</option>
+                <option value="1" {{ (old('welcome_email') ? old('welcome_email') : $company->welcome_email ?? '') == 1 ? 'selected' : '' }}>Enabled</option>
+
+                </select>
+                @if($errors->has('language'))
+                    <span class="text-danger">{{ $errors->first('bryhia_store') }}</span>
+                @endif
+                <span class="help-block">Use this to remove enable or disable welcome email</span>
+            </div>
+
+
+            <div class="form-group">
                 <label for="unlock_all_price">Bryghia Price for Unlock all</label>
                 <input class="form-control {{ $errors->has('unlock_all_price') ? 'is-invalid' : '' }}" type="text" name="unlock_all_price" id="unlock_all_price" value="{{ old('unlock_all_price', $company->unlock_all_price) }}">
                 @if($errors->has('unlock_all_price'))

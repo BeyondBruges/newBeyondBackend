@@ -23,6 +23,7 @@ use App\Models\UserLevel;
 use App\Models\UserCharacter;
 use App\Models\UserLandmark;
 use App\Models\BLandMark;
+use App\Models\Company;
 
 class PassportAuthController extends Controller
 {
@@ -62,6 +63,11 @@ class PassportAuthController extends Controller
 
         $user->bryghia = 2.5;
         $user->update();
+
+        $company = Company::first();
+        if ($company->welcome_email == 1) {
+           $this->sendWelcomeEmail($user);
+        }
 
         return response()->json(['token' => $token], 200);
     }
@@ -345,7 +351,7 @@ class PassportAuthController extends Controller
             if (!$user) {
                 return response()->json(['not found'], 404);
             }
-
+/*
             $firstLevel = UserLevel::where('user_id', $user->id)->where('level_id', 1)->first();
 
             if (!$firstLevel) {
@@ -354,7 +360,7 @@ class PassportAuthController extends Controller
                $firstLevel->level_id = 1;
                $firstLevel->save();
             }
-
+*/
             $firstCharacter = UserCharacter::where('user_id', $user->id)->where('character_id', 10)->first();
 
 
