@@ -192,6 +192,19 @@ class UnlockController extends Controller
 
     }
 
+    foreach (Level::all() as $key => $value) {
+
+        $existinglevel = UserGameLevel::where('user_id', $user->id)->where('level_id', $value->id)->first();
+        if($existinglevel != null){
+            continue;
+        }
+       $userlvl = new UserGameLevel;
+       $userlvl->user_id = $user->id;
+       $userlvl->level_id = $value->id;
+       $userlvl->save();
+
+    }
+
     if($request->bryghia_unlock == null){
     $transaction = new Transaction;
     $transaction->value = 1;
@@ -242,6 +255,19 @@ class UnlockController extends Controller
         $userlvl->user_id = $user->id;
         $userlvl->level_id = $value->id;
         $userlvl->save();
+
+    }
+
+    foreach (Level::all() as $key => $value) {
+
+        $existinglevel = UserGameLevel::where('user_id', $user->id)->where('level_id', $value->id)->first();
+        if($existinglevel != null){
+            continue;
+        }
+       $userlvl = new UserGameLevel;
+       $userlvl->user_id = $user->id;
+       $userlvl->level_id = $value->id;
+       $userlvl->save();
 
     }
 
