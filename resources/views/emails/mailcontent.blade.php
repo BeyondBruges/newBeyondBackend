@@ -51,13 +51,13 @@ break;
 		<img src="https://phplaravel-493623-2526898.cloudwaysapps.com/images/{{$user->id}}.png"  alt="" width="50%" style="padding:20px">
 	</center>
 	<hr>
-	<center>
+
 		<p style="color:black">
 			{!! $third!!}
 		</p>
+        <center>
 		<a href="{{env('APP_URL')}}" class="btn btn-xl btn-dark" >BeyondBruges.be</a>
-
-	<div class="footer">
+	    <div class="footer">
         <br>
 		<small>© {{env('APP_NAME')}} {{\Carbon\Carbon::now()->format('Y')}}</small>
 	</div>
