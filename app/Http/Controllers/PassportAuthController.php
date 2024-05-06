@@ -313,7 +313,12 @@ class PassportAuthController extends Controller
 
     public function sendWelcomeEmail(User $user)
     {
-        Mail::to($user->email)->send(new WelcomeEmail($user));
+        try {
+            Mail::to($user->email)->send(new WelcomeEmail($user));
+        } catch (\Throwable $th) {
+            Log::debug($th);
+
+        }
 
     }
 
