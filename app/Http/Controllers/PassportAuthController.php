@@ -45,6 +45,7 @@ class PassportAuthController extends Controller
             'password' => bcrypt($request->password),
             'country_id' => $request->country_id,
             'age_group_id' => $request->age_group_id,
+            'language' => $request->language ? $request->language : 'en'
         ]);
 
         $user->roles()->sync(2);
