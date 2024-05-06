@@ -232,10 +232,7 @@ class PassportAuthController extends Controller
         if($request->language){
 
             $user = Auth::user();
-
-            $sTest = $request->language;
-            preg_match("/\(([^\)]*)\)/", $sTest, $aMatches);
-            $user->language = $aMatches[1];
+            $user->language = $request->language;
             $user->update();
             return response()->json(['data' => $user->language], 200);
         }
