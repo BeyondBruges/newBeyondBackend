@@ -288,7 +288,7 @@ class PassportAuthController extends Controller
 
         switch($user->language){
             case "Dutch (nl)":
-                $user->language = "de";
+                $user->language = "nl";
                 break;
             case "Spanish (es)":
                 $user->language = "es";
