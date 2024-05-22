@@ -190,6 +190,8 @@ class PassportAuthController extends Controller
 
         $user = User::where('email', $request->email)->first();
 
+
+
         if (!$user) {
            return response()->json(['error' => 'Not Found'], 404);
         }
@@ -264,6 +266,27 @@ class PassportAuthController extends Controller
             if($user->bryghia < 0)
             {
             $user->bryghia = 0;
+
+
+            if($user->language == " '\'1\'' " || $user->language == "1"){
+                $user->language = "en";
+            }
+
+            switch($user->language){
+                case "Dutch (nl)":
+                    $user->language = "de";
+                    break;
+                case "Spanish (es)":
+                    $user->language = "es";
+                break;
+                case "English (en)":
+                    $user->language = "en";
+                    break;
+                case "French (fr)":
+                    $user->language = "fr";
+                    break;
+            }
+
             $user->update();
              }
         }
