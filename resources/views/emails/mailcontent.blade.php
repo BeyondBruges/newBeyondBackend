@@ -1,5 +1,10 @@
 @php
-$user = auth()->user();
+if (!$user) {
+    $user = auth()->user();
+}
+else {
+    $user =  \App\Models\User::find($id);
+}
 $texts = \App\Models\MailContent::first();
 $lang = \App\Models\User::find($user->id)->language;
 $topImage = $texts->email_image_top;
