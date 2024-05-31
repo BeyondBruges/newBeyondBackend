@@ -1,10 +1,16 @@
 @php
-if (!$user) {
+
+try {
+
+    if ($user) {
+    $user =  \App\Models\User::find($id);
+    }
+
+} catch (\Throwable $th) {
     $user = auth()->user();
 }
-else {
-    $user =  \App\Models\User::find($id);
-}
+
+
 $texts = \App\Models\MailContent::first();
 $lang = \App\Models\User::find($user->id)->language;
 $topImage = $texts->email_image_top;
@@ -40,7 +46,7 @@ $third = $texts->fr_third;
 break;
 }
 @endphp
-<div class="container">
+<div class="container" style="max-width:500px;">
 	<img src="{{env('APP_URL')}}/storage/{{$topImage}}" alt="" width="100%" style="padding:5px">
 	<br>
 	<br>
