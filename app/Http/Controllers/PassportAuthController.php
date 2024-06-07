@@ -88,7 +88,9 @@ class PassportAuthController extends Controller
 
             foreach(\App\Models\DynamicCoupon::where('user_id', $user->id)->get() as $coupon){
 
-                if($coupon->products->first()->id == $value->product_id){
+                $firstCoupon  = $coupon->products->first();
+
+                if($firstCoupon && $firstCoupon->id == $value->product_id){
                     $exists = true;
                     continue;
                 }
