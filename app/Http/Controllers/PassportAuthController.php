@@ -243,7 +243,7 @@ class PassportAuthController extends Controller
             return response()->json(['data' => $user->language], 200);
         }
         else{
-            return response()->json(['Request->language is null'], 200);
+            return response()->json(['Language is null'], 200);
         }
     }
 
@@ -343,6 +343,12 @@ class PassportAuthController extends Controller
         return $request->wantsJson()
                     ? new JsonResponse(['message' => trans($response)], 200)
                     : back()->with('status', trans($response));
+    }
+
+    protected function sendResetLinkFailedResponse(Request $request, $response)
+    {
+        return response()->json(['email not found'], 200);
+
     }
 
     public function sendWelcomeEmail(User $user)
