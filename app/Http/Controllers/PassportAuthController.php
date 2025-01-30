@@ -347,7 +347,7 @@ class PassportAuthController extends Controller
 
     protected function sendResetLinkFailedResponse(Request $request, $response)
     {
-        return response()->json(['email not found'], 500);
+        return response()->json(['error' => 'email not found'], 200);
 
     }
 
